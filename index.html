@@ -79,7 +79,7 @@ input,select,textarea{font:inherit;color:inherit;}
 .nav-logo{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;}
 .hero-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 0 0 1px var(--border);}
 .brand-row{display:flex;align-items:center;gap:1rem;}
-.site-nav-links{display:flex;gap:.35rem;flex-wrap:wrap;font-size:.85rem;font-weight:600;}
+.site-nav-links{display:flex;gap:.35rem;flex-wrap:wrap;font-size:.85rem;font-weight:600;order:3;flex-basis:100%;}
 .site-nav-links a,.site-nav-links button{color:var(--ink-muted);padding:.4rem .8rem;border-radius:999px;background:var(--surface-2);border:1px solid transparent;transition:background .15s,color .15s,border-color .15s;}
 .site-nav-links a:hover,.site-nav-links button:hover{color:var(--ink);border-color:var(--border);}
 .site-nav-links a.active,.site-nav-links button.active{color:var(--accent-ink);background:var(--accent);}
@@ -89,8 +89,8 @@ input,select,textarea{font:inherit;color:inherit;}
 .nav-binder-link:hover{background:var(--surface-2);}
 .nav-binder-link-title{font-weight:700;font-size:.82rem;line-height:1.3;color:var(--ink);}
 .nav-binder-link-desc{font-size:.7rem;line-height:1.35;color:var(--ink-muted);font-weight:500;}
-.site-nav-spacer{flex:1;}
-.nav-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0;}
+.site-nav-spacer{flex:1;order:1;}
+.nav-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0;order:2;}
 .nav-toggle{display:none;}
 @media (max-width:760px){
   .site-nav-inner{gap:.6rem;padding:.6rem 0;}
@@ -280,6 +280,7 @@ input,select,textarea{font:inherit;color:inherit;}
 .status-ribbon{position:absolute;top:.6rem;left:.6rem;padding:.2rem .55rem;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;z-index:2;border-radius:5px;background:var(--surface);}
 .status-ribbon.sold{color:var(--sold);box-shadow:inset 0 0 0 1px var(--sold);}
 .status-ribbon.reserved{color:var(--reserved);box-shadow:inset 0 0 0 1px var(--reserved);}
+.status-ribbon.jp{left:auto;right:.6rem;background:var(--teal);color:#fff;box-shadow:none;}
 .card-tile .info{padding:1rem 1.05rem 1.15rem;display:flex;flex-direction:column;gap:.4rem;flex:1;}
 .card-tile .name{font-size:1rem;font-weight:600;line-height:1.3;}
 .card-tile .set{font-size:.74rem;color:var(--ink-muted);}
@@ -724,6 +725,7 @@ input,select,textarea{font:inherit;color:inherit;}
   </div>
 
   <div id="view-set" class="view-set" hidden></div>
+  <div id="view-set-jp" class="view-set" hidden></div>
   <div id="view-japan" class="view-set" hidden></div>
 
   <div id="view-mybinder" hidden>
@@ -1242,6 +1244,7 @@ input,select,textarea{font:inherit;color:inherit;}
         priceSGD: Number(get('PriceSGD')) || 0,
         image: get('ImageURL'),
         status: status,
+        jp: get('JP').toUpperCase() === 'TRUE',
         swirls: get('Swirls').toUpperCase() === 'TRUE',
         holoBleed: get('HoloBleed').toUpperCase() === 'TRUE',
         misprint: get('Misprint').toUpperCase() === 'TRUE',
@@ -1530,6 +1533,22 @@ input,select,textarea{font:inherit;color:inherit;}
   var SET_BY_ID = {};
   SETS.forEach(function(s){ SET_BY_ID[s.id] = s; });
 
+  /* Japanese-print expansions — kept separate from the English SET_ROWS above since Japan's
+     set history/numbering doesn't map onto English eras. Card rows use these exact Set names. */
+  var JP_SET_ROWS = [
+    ['Japanese Fossil','Japanese Vintage (WotC Era)',1997],
+    ['Japanese Jungle','Japanese Vintage (WotC Era)',1997],
+    ['Japanese Neo Genesis','Japanese Vintage (WotC Era)',1999],
+    ['Japanese Gym 2','Japanese Vintage (WotC Era)',1998],
+    ['Japanese Team Rocket','Japanese Vintage (WotC Era)',2000]
+  ];
+  var JP_SETS = JP_SET_ROWS.map(function(row){
+    var name = row[0], era = row[1], year = row[2];
+    return { id: slugify(name), name: name, era: era, year: year, abbr: setAbbr(name), hue: hueFromString(name) };
+  });
+  var JP_SET_BY_ID = {};
+  JP_SETS.forEach(function(s){ JP_SET_BY_ID[s.id] = s; });
+
   /* Official expansion logos, keyed by set id. Sets without an entry fall back to the generated badge. */
   var SET_LOGOS = {
     '151': 'data:image/webp;base64,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',
@@ -1699,6 +1718,7 @@ input,select,textarea{font:inherit;color:inherit;}
     var ribbon = '';
     if(status === 'sold') ribbon = '<span class="status-ribbon sold">Sold</span>';
     else if(status === 'reserved') ribbon = '<span class="status-ribbon reserved">Reserved</span>';
+    var jpRibbon = card.jp ? '<span class="status-ribbon jp" title="Japanese print">JP</span>' : '';
     var art = card.image
       ? '<img src="'+card.image+'" alt="'+escapeHtml(card.name)+'" loading="lazy">'
       : placeholderArtHTML(card);
@@ -1706,7 +1726,7 @@ input,select,textarea{font:inherit;color:inherit;}
     var badges = flagBadgesHTML(card);
     return ''
       + '<article class="card-tile" data-id="'+escapeHtml(card.id)+'" data-name="'+escapeHtml((card.name||'').toLowerCase())+'" data-set="'+escapeHtml((card.set||'').toLowerCase())+'" data-status="'+escapeHtml(status)+'" data-price="'+(Number(card.priceSGD)||0)+'" data-added="'+escapeHtml(card.addedAt||'')+'">'
-      +   '<div class="art">'+ribbon+art+'</div>'
+      +   '<div class="art">'+ribbon+jpRibbon+art+'</div>'
       +   '<div class="info">'
       +     '<div class="name">'+escapeHtml(card.name)+'</div>'
       +     '<div class="set mono">'+escapeHtml(card.set||'')+(card.number ? ' &middot; #'+escapeHtml(card.number) : '')+'</div>'
@@ -1858,14 +1878,55 @@ input,select,textarea{font:inherit;color:inherit;}
 
   function renderJapanView(){
     var container = document.getElementById('view-japan');
+    var items = JP_SETS.map(function(s){
+      return '<a class="set-chip" href="#/set-jp/' + s.id + '">' + badgeHTML(s) + '<span>' + escapeHtml(s.name) + '<small>' + s.year + '</small></span></a>';
+    }).join('');
     container.innerHTML = ''
       + '<div class="wrap set-missing">'
       +   '<a href="#/catalog" class="back-link">&larr; Full catalog</a>'
-      +   '<div class="empty-state" style="margin-top:1.5rem;">'
-      +     '<h3>Japanese sets &mdash; under construction</h3>'
-      +     '<p>Not listing Japanese-print cards here yet. Check back later, or browse the English catalog in the meantime.</p>'
+      +   '<div class="set-hero-row" style="margin-top:1.25rem;">'
+      +     '<span class="set-badge japan-badge set-badge-lg">JP</span>'
+      +     '<div>'
+      +       '<p class="eyebrow">Japanese-print cards</p>'
+      +       '<h2>Japanese Expansions</h2>'
+      +     '</div>'
+      +   '</div>'
+      +   '<p class="muted" style="margin:.6rem 0 1.25rem;">Genuine Japanese-print cards, kept separate from the English catalog since Japan\u2019s set history doesn\u2019t line up with the English one. Every card here also carries a small JP flag on its listing.</p>'
+      +   '<div class="set-chip-list">' + items + '</div>'
+      + '</div>';
+  }
+
+  function cardsForSetJP(setName){
+    var norm = (setName || '').trim().toLowerCase();
+    return (STATE.cards || []).filter(function(c){ return (c.set || '').trim().toLowerCase() === norm; });
+  }
+
+  function renderSetJPView(id){
+    var setObj = JP_SET_BY_ID[id];
+    var container = document.getElementById('view-set-jp');
+    if(!setObj){
+      container.innerHTML = '<div class="wrap set-missing"><a href="#/japan" class="back-link">&larr; Japanese expansions</a><div class="empty-state" style="margin-top:1.5rem;"><h3>Unknown expansion</h3><p>Couldn\u2019t find that one &mdash; try browsing Japanese expansions again.</p></div></div>';
+      return;
+    }
+    var cards = cardsForSetJP(setObj.name);
+    var head = ''
+      + '<div class="set-hero wrap">'
+      +   '<a href="#/japan" class="back-link">&larr; Japanese expansions</a>'
+      +   '<div class="set-hero-row">'
+      +     badgeHTML(setObj, 'set-badge-lg')
+      +     '<div>'
+      +       '<p class="eyebrow">' + escapeHtml(setObj.era) + ' &middot; ' + setObj.year + '</p>'
+      +       '<h2>' + escapeHtml(setObj.name) + '</h2>'
+      +     '</div>'
       +   '</div>'
       + '</div>';
+    var body;
+    if(cards.length === 0){
+      body = '<div class="wrap"><div class="empty-state"><h3>Nothing from ' + escapeHtml(setObj.name) + ' yet</h3><p>No cards from this expansion are listed right now &mdash; check back soon, or browse the full catalog.</p></div></div>';
+    } else {
+      body = '<div class="wrap"><div class="grid">' + cards.map(cardTileHTML).join('') + '</div></div>';
+    }
+    container.innerHTML = head + body;
   }
 
   /* ---------------- expansion browse panel ---------------- */
@@ -1881,7 +1942,7 @@ input,select,textarea{font:inherit;color:inherit;}
       + '<input id="set-search" type="search" placeholder="Find an expansion&hellip;" aria-label="Find an expansion">'
       + '<div id="set-groups">'
       +   groups
-      +   '<a class="set-chip japan-chip" href="#/japan"><span class="set-badge japan-badge">JP</span><span>Japanese<small>Under construction</small></span></a>'
+      +   '<a class="set-chip japan-chip" href="#/japan"><span class="set-badge japan-badge">JP</span><span>Japanese<small>' + JP_SETS.length + ' expansions</small></span></a>'
       + '</div>';
   }
 
@@ -2029,6 +2090,8 @@ input,select,textarea{font:inherit;color:inherit;}
     if(cm) return {view:'catalog', focus:decodeURIComponent(cm[1])};
     var m = hash.match(/^set\/(.+)$/);
     if(m) return {view:'set', id:decodeURIComponent(m[1])};
+    var jm = hash.match(/^set-jp\/(.+)$/);
+    if(jm) return {view:'setjp', id:decodeURIComponent(jm[1])};
     return {view:'home'};
   }
 
@@ -2053,6 +2116,7 @@ input,select,textarea{font:inherit;color:inherit;}
     document.getElementById('view-home').hidden = r.view !== 'home';
     document.getElementById('view-catalog').hidden = r.view !== 'catalog';
     document.getElementById('view-set').hidden = r.view !== 'set';
+    document.getElementById('view-set-jp').hidden = r.view !== 'setjp';
     document.getElementById('view-japan').hidden = r.view !== 'japan';
     document.getElementById('view-mybinder').hidden = r.view !== 'mybinder';
     document.getElementById('view-news').hidden = r.view !== 'news';
@@ -2076,7 +2140,7 @@ input,select,textarea{font:inherit;color:inherit;}
     });
     var binderNavBtn = document.getElementById('binder-nav-btn');
     if(binderNavBtn){
-      var binderViews = {catalog:1, mybinder:1, set:1, japan:1};
+      var binderViews = {catalog:1, mybinder:1, set:1, setjp:1, japan:1};
       binderNavBtn.classList.toggle('active', !!binderViews[r.view]);
     }
     var learnNavBtn = document.getElementById('learn-nav-btn');
@@ -2086,6 +2150,7 @@ input,select,textarea{font:inherit;color:inherit;}
     }
     if(r.view === 'catalog'){ renderGrid(); if(r.focus) focusCard(r.focus); }
     else if(r.view === 'set'){ renderSetView(r.id); }
+    else if(r.view === 'setjp'){ renderSetJPView(r.id); }
     else if(r.view === 'japan'){ renderJapanView(); }
     else if(r.view === 'mybinder'){ renderBinderView(); }
     else if(r.view === 'news'){ renderNewsList(); }
