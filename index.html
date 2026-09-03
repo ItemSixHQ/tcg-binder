@@ -233,7 +233,16 @@ input,select,textarea{font:inherit;color:inherit;}
 #search-input{flex:1;min-width:200px;}
 .result-count{margin-left:auto;color:var(--ink-muted);font-size:.83rem;}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:1.5rem;padding-bottom:3.5rem;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:1.5rem;padding-bottom:2rem;}
+
+.pager{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;padding-bottom:3.5rem;}
+.pager-btn{font-size:.8rem;padding:.5rem .9rem;}
+.pager-btn:disabled{opacity:.4;cursor:default;pointer-events:none;}
+.pager-pages{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;}
+.pager-page{min-width:2.1rem;height:2.1rem;padding:0 .4rem;border-radius:7px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.82rem;font-weight:600;cursor:pointer;transition:border-color .15s;}
+.pager-page:hover{border-color:var(--ink-muted);}
+.pager-page.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);cursor:default;}
+.pager-ellipsis{color:var(--ink-muted);padding:0 .2rem;font-size:.82rem;}
 .card-tile{background:var(--surface);border:1px solid var(--border);border-radius:9px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s;}
 .card-tile:hover{border-color:var(--ink-muted);}
 .card-tile .art{aspect-ratio:5/7;background:var(--surface-2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:zoom-in;}
@@ -674,6 +683,7 @@ input,select,textarea{font:inherit;color:inherit;}
       <div id="empty" class="empty-wrap" hidden></div>
 
       <div id="grid" class="grid" hidden></div>
+      <nav id="pager" class="pager" hidden aria-label="Catalog pages"></nav>
     </main>
   </div>
 
@@ -1172,7 +1182,8 @@ input,select,textarea{font:inherit;color:inherit;}
       });
   }
 
-  var UI = { search:'', status:'all', sort:'newest' };
+  var UI = { search:'', status:'all', sort:'newest', page:1 };
+  var PAGE_SIZE = 24;
   var unlocked = false;
   try{ unlocked = localStorage.getItem('itemsixhq_unlocked') === '1'; }catch(e){}
 
@@ -1601,29 +1612,84 @@ input,select,textarea{font:inherit;color:inherit;}
     toolbar.hidden = false;
     grid.hidden = false;
     grid.innerHTML = cards.map(cardTileHTML).join('');
-    applyFilters();
+    applyFilters(true);
   }
 
-  function applyFilters(){
+  function getFilteredSortedTiles(){
     var q = (UI.search || '').trim().toLowerCase();
     var status = UI.status;
     var tiles = Array.prototype.slice.call(document.querySelectorAll('.card-tile'));
-    tiles.forEach(function(t){
+    var matches = tiles.filter(function(t){
       var matchesQ = !q || t.dataset.name.indexOf(q) !== -1 || t.dataset.set.indexOf(q) !== -1;
       var matchesStatus = status === 'all' || t.dataset.status === status;
-      t.hidden = !(matchesQ && matchesStatus);
+      return matchesQ && matchesStatus;
     });
-    var grid = document.getElementById('grid');
-    var visible = tiles.filter(function(t){ return !t.hidden; });
-    visible.sort(function(a,b){
+    matches.sort(function(a,b){
       if(UI.sort === 'price-asc') return (Number(a.dataset.price) - Number(b.dataset.price));
       if(UI.sort === 'price-desc') return (Number(b.dataset.price) - Number(a.dataset.price));
       if(UI.sort === 'name') return a.dataset.name.localeCompare(b.dataset.name);
       return (b.dataset.added || '').localeCompare(a.dataset.added || '');
     });
-    visible.forEach(function(t){ grid.appendChild(t); });
+    return matches;
+  }
+
+  function applyFilters(resetPage){
+    if(resetPage) UI.page = 1;
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('.card-tile'));
+    var matches = getFilteredSortedTiles();
+
+    var totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
+    if(UI.page > totalPages) UI.page = totalPages;
+    if(UI.page < 1) UI.page = 1;
+    var start = (UI.page - 1) * PAGE_SIZE;
+    var pageSlice = matches.slice(start, start + PAGE_SIZE);
+    var onPage = {};
+    pageSlice.forEach(function(t){ onPage[t.dataset.id] = true; });
+    tiles.forEach(function(t){ t.hidden = !onPage[t.dataset.id]; });
+
+    var grid = document.getElementById('grid');
+    matches.forEach(function(t){ grid.appendChild(t); });
+
     var countEl = document.getElementById('result-count');
-    if(countEl) countEl.textContent = visible.length + (visible.length === 1 ? ' card' : ' cards');
+    if(countEl){
+      if(matches.length === 0){ countEl.textContent = '0 cards'; }
+      else {
+        var from = start + 1;
+        var to = Math.min(start + PAGE_SIZE, matches.length);
+        countEl.textContent = 'Showing ' + from + '–' + to + ' of ' + matches.length + (matches.length === 1 ? ' card' : ' cards');
+      }
+    }
+    renderPager(totalPages);
+  }
+
+  function renderPager(totalPages){
+    var pagerEl = document.getElementById('pager');
+    if(!pagerEl) return;
+    if(totalPages <= 1){ pagerEl.hidden = true; pagerEl.innerHTML = ''; return; }
+    var page = UI.page;
+    var pagesToShow = [];
+    for(var p = 1; p <= totalPages; p++){
+      if(p === 1 || p === totalPages || Math.abs(p - page) <= 1) pagesToShow.push(p);
+    }
+    var html = '<button class="pill ghost pager-btn" type="button" data-page="' + (page - 1) + '"' + (page <= 1 ? ' disabled' : '') + '>&larr; Prev</button>';
+    html += '<div class="pager-pages">';
+    var last = 0;
+    pagesToShow.forEach(function(p){
+      if(last && p - last > 1) html += '<span class="pager-ellipsis">&hellip;</span>';
+      html += '<button class="pager-page' + (p === page ? ' active' : '') + '" type="button" data-page="' + p + '"' + (p === page ? ' aria-current="page"' : '') + '>' + p + '</button>';
+      last = p;
+    });
+    html += '</div>';
+    html += '<button class="pill ghost pager-btn" type="button" data-page="' + (page + 1) + '"' + (page >= totalPages ? ' disabled' : '') + '>Next &rarr;</button>';
+    pagerEl.hidden = false;
+    pagerEl.innerHTML = html;
+  }
+
+  function goToPage(p){
+    UI.page = p;
+    applyFilters(false);
+    var toolbarEl = document.getElementById('toolbar');
+    if(toolbarEl) toolbarEl.scrollIntoView({block:'start', behavior:'smooth'});
   }
 
   /* ---------------- rendering (expansion pages) ---------------- */
@@ -1841,6 +1907,12 @@ input,select,textarea{font:inherit;color:inherit;}
     setTimeout(function(){
       var tile = document.querySelector('.card-tile[data-id="'+cssEscape(id)+'"]');
       if(!tile) return;
+      var matches = getFilteredSortedTiles();
+      var idx = matches.indexOf(tile);
+      if(idx !== -1){
+        var targetPage = Math.floor(idx / PAGE_SIZE) + 1;
+        if(targetPage !== UI.page){ UI.page = targetPage; applyFilters(false); }
+      }
       tile.scrollIntoView({behavior:'smooth', block:'center'});
       tile.classList.add('flash-highlight');
       setTimeout(function(){ tile.classList.remove('flash-highlight'); }, 2500);
@@ -1990,7 +2062,7 @@ input,select,textarea{font:inherit;color:inherit;}
   /* ---------------- events ---------------- */
 
   document.addEventListener('input', function(e){
-    if(e.target.id === 'search-input'){ UI.search = e.target.value; applyFilters(); }
+    if(e.target.id === 'search-input'){ UI.search = e.target.value; applyFilters(true); }
     if(e.target.classList.contains('binder-label-input')){
       if(BINDER_DRAFT) BINDER_DRAFT[Number(e.target.dataset.index)] = e.target.value;
     }
@@ -2007,11 +2079,16 @@ input,select,textarea{font:inherit;color:inherit;}
   });
 
   document.addEventListener('change', function(e){
-    if(e.target.id === 'status-filter'){ UI.status = e.target.value; applyFilters(); }
-    if(e.target.id === 'sort-select'){ UI.sort = e.target.value; applyFilters(); }
+    if(e.target.id === 'status-filter'){ UI.status = e.target.value; applyFilters(true); }
+    if(e.target.id === 'sort-select'){ UI.sort = e.target.value; applyFilters(true); }
   });
 
   document.addEventListener('click', function(e){
+    var pagerBtn = e.target.closest('#pager button[data-page]');
+    if(pagerBtn && !pagerBtn.disabled && !pagerBtn.classList.contains('active')){
+      goToPage(Number(pagerBtn.dataset.page));
+      return;
+    }
     if(e.target.closest('#set-browse-btn')){ toggleSetPanel(); return; }
     if(e.target.closest('#binder-nav-btn')){ toggleBinderNavPanel(); return; }
     if(e.target.closest('#learn-nav-btn')){ toggleLearnNavPanel(); return; }
