@@ -347,6 +347,8 @@ input,select,textarea{font:inherit;color:inherit;}
 .flag-legend dt{width:6.5rem;}
 .flag-legend div{flex-wrap:wrap;}
 .condition-legend dd{margin:0;color:var(--ink-muted);font-size:.87rem;}
+.condition-legend.wide-terms dt{width:6.4rem;}
+@media (max-width:520px){.condition-legend.wide-terms div{display:block;}.condition-legend.wide-terms dt{width:auto;margin-bottom:.15rem;}}
 @media (max-width:800px){ .about-row{grid-template-columns:1fr;} }
 
 .site-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;padding:1.75rem 0 2.75rem;border-top:1px solid var(--border);color:var(--ink-muted);font-size:.84rem;}
@@ -619,6 +621,10 @@ input,select,textarea{font:inherit;color:inherit;}
               <span class="nav-binder-link-title">Beginners Guide</span>
               <span class="nav-binder-link-desc">New to the TCG? Start here</span>
             </a>
+            <a href="#/advanced" class="nav-binder-link">
+              <span class="nav-binder-link-title">Advanced Guide</span>
+              <span class="nav-binder-link-desc">Once the basics click &mdash; the next layer</span>
+            </a>
             <a href="#/meta" class="nav-binder-link">
               <span class="nav-binder-link-title">Meta Decks</span>
               <span class="nav-binder-link-desc">What&rsquo;s winning in Standard right now</span>
@@ -853,15 +859,20 @@ input,select,textarea{font:inherit;color:inherit;}
       <article class="terms-page article-page">
         <h2>New to the Pok&eacute;mon TCG? Start Here.</h2>
         <div class="article-body">
-        <p>I get asked &ldquo;how do I even start playing&rdquo; more than almost anything else &mdash; way more than card values, honestly. So here it is: everything you need to sit down with a friend and actually play a full game, no prior knowledge assumed. I&rsquo;m keeping this to the physical/paper game (Pok&eacute;mon TCG Live works the same way, just automated). A video version is coming once I&rsquo;ve got this written version locked down.</p>
+        <p>I get asked &ldquo;how do I even start playing&rdquo; more than anything else &mdash; way more than card values, honestly. So here it is: everything you need to sit down with a friend and play a full game, assuming you know nothing. This is the paper game, though Pok&eacute;mon TCG Live works the same way. Once it clicks, the <a href="#/advanced">Advanced Guide</a> takes it further.</p>
 
         <div class="terms-block">
         <h3>The goal</h3>
         <p>You win one of three ways:</p>
-        <p><strong>Take all your Prize cards.</strong> You set aside 6 cards face-down at the start of the game. Every time you knock out one of your opponent&rsquo;s Pok&eacute;mon, you take Prize cards for it: a regular Pok&eacute;mon is worth 1, an <strong>ex</strong> Pok&eacute;mon is worth 2, and a <strong>Mega</strong> Pok&eacute;mon is worth 3. Plot how you want to take your Prizes strategically &mdash; those bigger point values add up fast, for better or worse.</p>
+        <p><strong>Take all your Prize cards.</strong> You set aside 6 face-down at the start. Knock out one of your opponent&rsquo;s Pok&eacute;mon and you take Prizes for it:</p>
+        <ul class="terms-list">
+          <li>A regular Pok&eacute;mon &mdash; 1 Prize</li>
+          <li>An <strong>ex</strong> Pok&eacute;mon &mdash; 2 Prizes</li>
+          <li>A <strong>Mega</strong> Pok&eacute;mon &mdash; 3 Prizes</li>
+        </ul>
         <p><strong>Your opponent runs out of Pok&eacute;mon.</strong> No Pok&eacute;mon in play, none left to play &mdash; game over.</p>
         <p><strong>Your opponent can&rsquo;t draw a card.</strong> If someone&rsquo;s deck is empty on their draw step, they lose right there. This is also called &ldquo;decking your opponent out&rdquo; &mdash; it barely ever comes up in a casual game, but it&rsquo;s a real strategy some decks are built entirely around. If you&rsquo;re familiar with other TCGs, the term is also called <strong>milling</strong>.</p>
-        <p>Most games end on Prize cards. Just remember: bigger, splashier Pok&eacute;mon usually cost your opponent more Prizes when they go down, which matters a lot when you&rsquo;re deciding what to attack into.</p>
+        <p>Most games end this way. The thing to hold onto: the bigger and splashier the Pok&eacute;mon, the more it hands your opponent when it goes down.</p>
         </div>
 
         <div class="terms-block">
@@ -893,7 +904,16 @@ input,select,textarea{font:inherit;color:inherit;}
         <h3>How a turn works</h3>
         <p>Every turn has three parts, always in this order:</p>
         <p><strong>1. Draw.</strong> Draw one card. Mandatory, no skipping it.</p>
-        <p><strong>2. Main phase.</strong> Do as much or as little of this as you want, in any order: play Basic Pok&eacute;mon to your Bench (up to 5 total); evolve a Pok&eacute;mon (see &ldquo;Evolution, explained&rdquo; below); attach <strong>one</strong> Energy card from your hand to any of your Pok&eacute;mon (one attachment per turn, total &mdash; not per Pok&eacute;mon); use Pok&eacute;mon Abilities; play as many Item cards as you want; play <strong>one</strong> Supporter card; play <strong>one</strong> Stadium card; retreat your Active Pok&eacute;mon once, paying its Retreat Cost in Energy, to swap in a Benched Pok&eacute;mon.</p>
+        <p><strong>2. Main phase.</strong> As much or as little of this as you like, in any order:</p>
+        <ul class="terms-list">
+          <li>Play Basic Pok&eacute;mon to your Bench (5 max)</li>
+          <li>Evolve a Pok&eacute;mon</li>
+          <li>Attach <strong>one</strong> Energy from your hand &mdash; one per turn total, not one per Pok&eacute;mon</li>
+          <li>Use Pok&eacute;mon Abilities</li>
+          <li>Play any number of Item cards</li>
+          <li>Play <strong>one</strong> Supporter and <strong>one</strong> Stadium</li>
+          <li>Retreat your Active Pok&eacute;mon once, paying its Retreat Cost</li>
+        </ul>
         <p><strong>3. Attack.</strong> Pick an attack your Active Pok&eacute;mon has enough Energy for, resolve it, and your turn ends. One attack per turn, and once you attack, that&rsquo;s it.</p>
         </div>
 
@@ -907,11 +927,73 @@ input,select,textarea{font:inherit;color:inherit;}
 
         <div class="terms-block">
         <h3>Evolution, explained</h3>
-        <p>Basic Pok&eacute;mon can evolve into a Stage 1, and some Stage 1s can evolve again into a Stage 2 &mdash; follow the evolution chain printed on the card. You can only evolve a Pok&eacute;mon that&rsquo;s already been in play since the <em>start</em> of your turn, which means two things in practice: you can never evolve something the same turn you played it, and nobody can evolve anything at all on turn 1, for either player, since nothing&rsquo;s been in play since the start of a turn that hasn&rsquo;t happened yet.</p>
-        <p>To evolve, place the new evolution card directly on top of the Pok&eacute;mon it&rsquo;s evolving from. It keeps everything already attached &mdash; Energy, damage counters, Tools &mdash; it just becomes the new, usually stronger, Pok&eacute;mon. Each individual Pok&eacute;mon can only evolve once per turn (so no Basic &rarr; Stage 1 &rarr; Stage 2 in the same turn for the same Pok&eacute;mon), but you can evolve as many <em>different</em> Pok&eacute;mon as you want in a single turn, as long as each one qualifies.</p>
+        <p>Basics evolve into Stage 1s, and some Stage 1s evolve again into Stage 2s &mdash; follow the chain printed on the card. Place the new card directly on top of the old one. It keeps everything already attached: Energy, damage, Tools. It&rsquo;s the same Pok&eacute;mon, just bigger.</p>
+        <p>The timing rule: <strong>a Pok&eacute;mon has to have been in play since the start of your turn.</strong> Two consequences &mdash; you can&rsquo;t evolve something the turn you play it, and nobody evolves anything on turn 1.</p>
+        <p>Each Pok&eacute;mon evolves once per turn (no Basic &rarr; Stage 1 &rarr; Stage 2 in one go), but you can evolve as many different Pok&eacute;mon in a turn as you like.</p>
+        <p class="muted">Some cards deliberately break this rule &mdash; Rare Candy, and Stadiums like Forest of Vitality. That&rsquo;s covered in the <a href="#/advanced">Advanced Guide</a>.</p>
         </div>
 
         <div class="terms-block">
+        <h3>What&rsquo;s next</h3>
+        <p>That&rsquo;s genuinely enough to sit down and play a full game.</p>
+        <p>When the basics start feeling automatic, the <strong><a href="#/advanced">Advanced Guide</a></strong> picks up from here &mdash; status conditions, rotation and regulation marks, prize mapping, sequencing, and what to expect at your first tournament.</p>
+        <p>Otherwise: <a href="#/meta">Meta Decks</a> for what&rsquo;s winning, <a href="#/mydecks">Jack&rsquo;s Decks</a> for what I play, or <a href="#/play-with-jack">Play with Jack</a> if you fancy a game.</p>
+        </div>
+
+        <p class="news-refreshed">Written by Jack, cross-referenced against the official tournament rules and a handful of community rules guides &mdash; if anything here ever looks off, tell me and I&rsquo;ll fix it.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+
+  <div id="view-advanced" class="view-set" hidden>
+    <div class="wrap set-missing">
+      <a href="#/guide" class="back-link">&larr; Beginners Guide</a>
+      <article class="terms-page article-page">
+        <h2>Advanced Guide</h2>
+        <p class="muted">Finished the <a href="#/guide">Beginners Guide</a> and want the next layer? This is the stuff that turns &ldquo;I can play a game&rdquo; into &ldquo;I know what I&rsquo;m doing.&rdquo;</p>
+
+        <div class="terms-block">
+        <p>None of this is needed to sit down and play. It matters when you start caring about <em>winning</em> &mdash; or when you start buying cards for a tournament deck rather than for the binder. Work through it in order, or jump to whatever you&rsquo;re stuck on.</p>
+        <ul class="terms-list">
+          <li><a href="#adv-conditions">Special Conditions</a> &mdash; the five status effects, and what actually removes them</li>
+          <li><a href="#adv-evolution">Evolution: the exceptions</a> &mdash; Rare Candy, Stadiums that break the rule</li>
+          <li><a href="#adv-rotation">Standard format and rotation</a> &mdash; regulation marks, and what&rsquo;s legal</li>
+          <li><a href="#adv-acespec">ACE SPEC cards</a> &mdash; the one-per-deck rule</li>
+          <li><a href="#adv-prizes">Prize mapping</a> &mdash; planning your six knockouts before you take the first</li>
+          <li><a href="#adv-sequencing">Sequencing</a> &mdash; playing the right card first</li>
+          <li><a href="#adv-tournament">Your first tournament</a> &mdash; deck lists, deck checks, sleeves</li>
+        </ul>
+        </div>
+
+        <div class="terms-block" id="adv-conditions">
+        <h3>Special Conditions</h3>
+        <p>Five status effects exist. They only ever apply to the <strong>Active</strong> Pok&eacute;mon &mdash; the moment a Pok&eacute;mon goes to the Bench, every Special Condition on it disappears. That&rsquo;s the single most useful thing to remember here: <strong>retreating is a cure.</strong></p>
+        <p>Three of them are shown by physically turning the card, and because a card can only face one direction at a time, <strong>only one of those three can be on a Pok&eacute;mon at once</strong> &mdash; a new one replaces the old. The other two use damage-counter-style markers, so they can sit alongside anything.</p>
+        <dl class="condition-legend wide-terms">
+          <div><dt>Asleep</dt><dd>Can&rsquo;t attack or retreat. At Pok&eacute;mon Checkup, flip a coin &mdash; heads and it wakes up. Card is turned <strong>counter-clockwise</strong>.</dd></div>
+          <div><dt>Paralyzed</dt><dd>Can&rsquo;t attack or retreat. Clears automatically at the start of that player&rsquo;s next turn, so it only ever costs one turn. Card is turned <strong>clockwise</strong>.</dd></div>
+          <div><dt>Confused</dt><dd>Can still retreat, but to attack you flip a coin first &mdash; tails and the attack fails, 3 damage counters go on your own Pok&eacute;mon, and your turn ends. Card is turned <strong>upside-down</strong>.</dd></div>
+          <div><dt>Burned</dt><dd>At Checkup, put 2 damage counters on it, then flip a coin &mdash; heads removes the Burn, tails and it stays. Uses a marker.</dd></div>
+          <div><dt>Poisoned</dt><dd>At Checkup, put 1 damage counter on it (some cards make it more). Nothing removes it on its own &mdash; you retreat, evolve, or play a card that clears it. Uses a marker.</dd></div>
+        </dl>
+        <p><strong>Pok&eacute;mon Checkup</strong> is the little step between turns where Burn and Poison damage lands and Sleep coins get flipped. New players routinely forget it exists; it&rsquo;s a genuinely common way to lose a game you should have won.</p>
+        <p>Two more things worth knowing: <strong>evolving a Pok&eacute;mon clears its Special Conditions too</strong>, and Burned and Poisoned can both be on the same Pok&eacute;mon at the same time as one of the turned-card conditions. So a Pok&eacute;mon can be Asleep, Burned <em>and</em> Poisoned at once &mdash; it just can&rsquo;t be Asleep and Paralyzed at once.</p>
+        </div>
+
+        <div class="terms-block" id="adv-evolution">
+        <h3>Evolution: the exceptions</h3>
+        <p>The Beginners Guide gives you the normal rule: a Pok&eacute;mon has to have been in play since the start of your turn, so you can&rsquo;t evolve something the turn you played it, and nobody evolves anything on turn 1.</p>
+        <p>That&rsquo;s the default. Cards are allowed to override it, and some do:</p>
+        <ul class="terms-list">
+          <li><strong>Rare Candy</strong> skips the middle step entirely &mdash; it takes a Basic straight to a Stage 2. It still can&rsquo;t be used on a Pok&eacute;mon you put into play that same turn.</li>
+          <li><strong>Forest of Vitality</strong> (Stadium, Mega Evolution 117 &mdash; also reprinted in Ascended Heroes and Perfect Order) reads: <em>&ldquo;Each player&rsquo;s Grass Pok&eacute;mon can evolve into Grass Pok&eacute;mon during the turn they play those Pok&eacute;mon, except during their first turn.&rdquo;</em> So a Grass deck running this can play a Basic and evolve it immediately &mdash; but not on turn 1, and it doesn&rsquo;t let Rare Candy break its own rule either. Note it says <em>each player&rsquo;s</em>: your opponent gets the same benefit while it&rsquo;s on the field.</li>
+        </ul>
+        <p>The general principle: <strong>a specific card beats the general rule.</strong> If a card says it can do something the rulebook says you can&rsquo;t, the card wins. That&rsquo;s true across the whole game, not just evolution.</p>
+        </div>
+
+        <div class="terms-block" id="adv-rotation">
         <h3>Standard format and rotation, explained simply</h3>
         <p>If you&rsquo;re buying singles or building a tournament-legal deck, you need to know about <strong>rotation</strong>. Every card released has a small letter printed on it &mdash; the regulation mark &mdash; usually near the artist credit or set symbol. Once a year, the oldest regulation marks get rotated out of the Standard format, so the format keeps refreshing instead of accumulating years of cards.</p>
         <p>The current rotation took effect this year &mdash; regulation mark <strong>G and everything older is no longer Standard-legal</strong>, and only cards marked <strong>H, I, and J</strong> are tournament-legal in Standard right now. Practically, that means anything from Twilight Masquerade onward is safe to build around, and anything from the original Scarlet &amp; Violet base set through Paradox Rift just rotated out. New sets keep adding new regulation marks as they release, and each stays legal until it&rsquo;s old enough to rotate out in turn.</p>
@@ -937,7 +1019,7 @@ input,select,textarea{font:inherit;color:inherit;}
         <p>If you&rsquo;re just playing casually with friends, none of this matters &mdash; play with whatever cards you own. It only bites you if you&rsquo;re building for an actual Standard tournament.</p>
         </div>
 
-        <div class="terms-block">
+        <div class="terms-block" id="adv-acespec">
         <h3>ACE SPEC cards</h3>
         <p>Some Trainer and Energy cards carry an <strong>ACE SPEC</strong> banner running diagonally down the side. Whatever it is &mdash; Item, Tool, or Energy &mdash; you can only run <strong>one ACE SPEC card in your entire deck</strong>, on top of the normal 4-copy limit. They exist because the effect is usually strong enough that the format wouldn&rsquo;t be balanced without that cap.</p>
         <p><strong>On rotation:</strong> ACE SPEC isn&rsquo;t its own block that rotates all at once &mdash; each ACE SPEC card rotates exactly like any other card, based on the regulation mark printed on it. The three below are all marked <strong>H</strong>, so if H rotates out around April next year as expected (see above), these three specific cards go with it &mdash; but newer ACE SPECs printed under I, J, or later marks won&rsquo;t be affected by that.</p>
@@ -948,16 +1030,55 @@ input,select,textarea{font:inherit;color:inherit;}
         </div>
         </div>
 
-        <div class="terms-block">
-        <h3>What&rsquo;s next</h3>
-        <p>That&rsquo;s genuinely enough to sit down and play a full game. Once you&rsquo;re comfortable with the basics, check out my <a href="#/meta">Meta Decks</a> page for what&rsquo;s actually winning right now, or <a href="#/mydecks">Jack&rsquo;s Decks</a> if you want to see what I personally play. And if you want to play an actual game with me &mdash; in person here in Singapore, or on Pok&eacute;mon TCG Live &mdash; head to <a href="#/play-with-jack">Play with Jack</a>.</p>
+        <div class="terms-block" id="adv-prizes">
+        <h3>Prize mapping</h3>
+        <p>You need six Prizes to win. Different Pok&eacute;mon are worth different amounts &mdash; a regular Pok&eacute;mon is 1, an ex is 2, a Mega is 3. <strong>Prize mapping</strong> is just working out, in advance, which knockouts add up to six.</p>
+        <p>Do the maths before you attack, not after. A few common shapes:</p>
+        <ul class="terms-list">
+          <li><strong>2&ndash;2&ndash;2</strong> &mdash; three knockouts on two-Prize Pok&eacute;mon and the game&rsquo;s over. The cleanest map, and the one most decks are built around.</li>
+          <li><strong>1&ndash;1&ndash;2&ndash;2</strong> &mdash; pick off two small Pok&eacute;mon first, then take two big ones. Slower, but it lets you attack whatever&rsquo;s actually in front of you.</li>
+          <li><strong>3&ndash;3</strong> &mdash; two Mega knockouts. Rare, but it happens.</li>
+        </ul>
+        <p>The reason this matters: it changes what you attack. If knocking out the big threat in front of you puts your opponent on exactly six, and you could instead knock out something small and set up a clean two-turn finish, the small one is often the right play. Deciding that <em>mid-attack</em> is how games get lost.</p>
+        <p>The flip side is the <strong>prize trade</strong> &mdash; what your opponent gets back. Attacking with a one-Prize Pok&eacute;mon into their two-Prize one is a good trade even if it takes an extra turn, because when they knock you out they only get one back.</p>
         </div>
 
-        <p class="news-refreshed">Written by Jack, cross-referenced against the official tournament rules and a handful of community rules guides &mdash; if anything here ever looks off, tell me and I&rsquo;ll fix it.</p>
+        <div class="terms-block" id="adv-sequencing">
+        <h3>Sequencing</h3>
+        <p>Same cards, same turn, different order &mdash; different outcome. That&rsquo;s sequencing, and it&rsquo;s probably the single biggest gap between a casual player and a good one.</p>
+        <p>Three rules of thumb cover most of it:</p>
+        <ul class="terms-list">
+          <li><strong>Draw before you search.</strong> Play your draw Supporter first, <em>then</em> your Ultra Ball. Once you&rsquo;ve seen the extra cards you know what you actually need &mdash; searching first means guessing.</li>
+          <li><strong>Commit last.</strong> Attach your Energy at the end of the turn, not the start. Don&rsquo;t bench a Pok&eacute;mon until you need it &mdash; on the Bench it&rsquo;s a target, in your hand it&rsquo;s information your opponent doesn&rsquo;t have.</li>
+          <li><strong>Disrupt before you reveal.</strong> If you&rsquo;re playing something that forces your opponent to make a choice, play it before you show them your full board, so they have to choose blind.</li>
+        </ul>
+        <p>The habit to build: before each card, ask <em>&ldquo;does playing this tell me something I don&rsquo;t know yet, or does it lock me in?&rdquo;</em> Do the first kind first.</p>
+        </div>
+
+        <div class="terms-block" id="adv-tournament">
+        <h3>Your first tournament</h3>
+        <p>If you&rsquo;re heading to a league night or a local event, a few things catch people out the first time:</p>
+        <ul class="terms-list">
+          <li><strong>Deck list.</strong> You write down all 60 cards and hand it in before you play. It stops anyone swapping decks mid-event, and once it&rsquo;s submitted, that&rsquo;s your deck for the day.</li>
+          <li><strong>Deck check.</strong> Judges can pull your deck and count it against your list. Your list has to match what&rsquo;s in your hands &mdash; a mismatch is where penalties come from, and they range from a warning up to a game loss depending on how serious it is.</li>
+          <li><strong>Sleeves.</strong> Every card in the deck needs identical sleeves, in good condition. Scuffed, bent or otherwise distinguishable sleeves can be treated as <strong>marked cards</strong>, which is taken seriously because it looks like cheating whether or not you meant it. Bring a spare pack.</li>
+          <li><strong>Shuffling and cutting.</strong> Shuffle properly, then offer your deck to your opponent to cut. Do it every time. It costs you nothing and it&rsquo;s the norm.</li>
+          <li><strong>Check your own legality.</strong> Nobody else is responsible for your deck being format-legal. Check the regulation marks yourself before you go &mdash; see the rotation section above.</li>
+        </ul>
+        <p>Beyond that, ask. Judges would far rather answer a question than issue a penalty, and every player at a local event was new once.</p>
+        </div>
+
+        <div class="terms-block">
+        <h3>Where to go from here</h3>
+        <p>Have a look at <a href="#/meta">Meta Decks</a> for what&rsquo;s actually winning right now, or <a href="#/mydecks">Jack&rsquo;s Decks</a> for what I play. If you want a game &mdash; in person in Singapore or on Pok&eacute;mon TCG Live &mdash; that&rsquo;s <a href="#/play-with-jack">Play with Jack</a>. And if you&rsquo;d rather learn in a room full of people who play, <a href="#/blacklabel">BlackLabel TCG</a> runs Gym nights.</p>
+        </div>
+
+        <p class="news-refreshed">Written by Jack, cross-referenced against the official Play! Pok&eacute;mon tournament rules, the Pok&eacute;mon Rulings Compendium and card text from Bulbapedia. If anything here looks off, tell me and I&rsquo;ll fix it.</p>
         </div>
       </article>
     </div>
   </div>
+
 
   <div id="view-meta" class="view-set" hidden>
     <div class="wrap set-missing">
@@ -1110,11 +1231,18 @@ input,select,textarea{font:inherit;color:inherit;}
         <h2>Terms &amp; Conditions</h2>
 
         <div class="terms-disclaimer">
-          <p class="terms-disclaimer-title">Read this first</p>
-          <p>Before you enquire or buy from me, I need you to know: I&rsquo;m not here to fuel your investments. I&rsquo;m here to help you collect the cards you want, at an extremely fair price, where I earn minimally. So please don&rsquo;t ask me for more details, more images, or whether a card can grade a 10 &mdash; I won&rsquo;t have the time to entertain that, and honestly, I don&rsquo;t want to either.</p>
-          <p>Most of what I&rsquo;m selling probably aren&rsquo;t grails, and they cost at most a low few hundred bucks. So please, for my sanity: you&rsquo;re welcome to still ask me about a specific card, but if I end up ignoring you, it&rsquo;s probably for one of the reasons above.</p>
-          <p>General rule of thumb &mdash; if you&rsquo;re in doubt, just treat <strong>ALL</strong> cards as binder condition, and assume nothing will grade a 10.</p>
-          <p class="terms-disclaimer-signoff">Okay, now you can read the rest of the terms. Kthxbye!</p>
+          <p class="terms-disclaimer-title">Read this first &mdash; it&rsquo;ll save us both time</p>
+          <p>I&rsquo;m not a shop. I&rsquo;m a hobbyist with a day job and a toddler, selling out of my own binder to other people who love these cards. Everything here is priced to be fair, not to make me money &mdash; the margin is deliberately thin, because the point is getting cards into the hands of people who&rsquo;ll enjoy them.</p>
+          <p>That&rsquo;s also why I&rsquo;m upfront about what I can&rsquo;t do. I&rsquo;m one person doing this around a full-time job, so there are a few things I&rsquo;ll usually say no to:</p>
+          <ul class="terms-list">
+            <li><strong>&ldquo;Can you send more photos / close-ups of the edges?&rdquo;</strong> For most cards, no. Photographing and re-photographing individual cards for every enquiry isn&rsquo;t something I have hours for. What&rsquo;s written in the listing is what I&rsquo;ve got.</li>
+            <li><strong>&ldquo;Do you think this would grade a 9 or a 10?&rdquo;</strong> I genuinely don&rsquo;t know, and I&rsquo;d rather not guess. I&rsquo;m not a grader, and a guess from me isn&rsquo;t worth anything to you.</li>
+            <li><strong>&ldquo;Can you hold this while I decide?&rdquo;</strong> Usually not for long. I&rsquo;m not running a reservation system out of my phone.</li>
+          </ul>
+          <p>So if I take a while to reply, or don&rsquo;t reply at all, it&rsquo;s almost always one of those three &mdash; or simply that I&rsquo;m at work or putting my kid to bed. It&rsquo;s never personal, and it&rsquo;s not me ignoring you because your order is small. Small orders are completely welcome.</p>
+          <p><strong>The one rule of thumb that matters:</strong> if you&rsquo;re unsure, assume every card is binder condition and assume nothing would grade a 10. If you&rsquo;re buying to flip or to grade, I&rsquo;m probably not the seller you want &mdash; and that&rsquo;s fine, no hard feelings either way.</p>
+          <p>But if you&rsquo;re after a card because you actually want the card? That&rsquo;s exactly who this is for. Ask away, and I&rsquo;ll help however I can.</p>
+          <p class="terms-disclaimer-signoff">Right &mdash; on with the actual terms. Kthxbye!</p>
         </div>
 
         <p class="muted">The short version: this is a personal binder, not a store. Here&rsquo;s exactly how it works.</p>
@@ -1176,7 +1304,8 @@ input,select,textarea{font:inherit;color:inherit;}
 
         <div class="terms-block">
           <h3>Authenticity &amp; sales</h3>
-          <p>Every card here is <strong>100% authentic, genuine Pok&eacute;mon TCG product</strong> &mdash; nothing sold here is a proxy, custom, or fake.</p>
+          <p><strong>Everything in the binder is genuine, official Pok&eacute;mon TCG product.</strong> No counterfeits, no reprints passed off as originals, no bootlegs &mdash; if it&rsquo;s listed as a real card, it is one.</p>
+          <p>If I ever list anything that <em>isn&rsquo;t</em> official product &mdash; a custom, a fan-made card, a playtest proxy, something a friend designed &mdash; it will say so plainly in the listing name and the remarks, and it will never be priced or described as the real thing. You will always know which one you&rsquo;re buying.</p>
           <p>All sales are final once you&rsquo;ve collected or received the item, so please double-check it against the listed condition, remarks, and flags before paying. If something arrives clearly different from what was listed (wrong card, or condition way off from what was described), message Jack and he&rsquo;ll sort it out &mdash; but a change of mind isn&rsquo;t grounds for a refund.</p>
         </div>
       </div>
@@ -2307,6 +2436,7 @@ input,select,textarea{font:inherit;color:inherit;}
     if(hash === 'giving-back') return {view:'givingback'};
     if(hash === 'terms') return {view:'terms'};
     if(hash === 'guide') return {view:'guide'};
+    if(hash === 'advanced') return {view:'advanced'};
     if(hash === 'meta') return {view:'meta'};
     if(hash === 'mydecks') return {view:'mydecks'};
     if(hash === 'play-with-jack') return {view:'playwithjack'};
@@ -2353,6 +2483,7 @@ input,select,textarea{font:inherit;color:inherit;}
     document.getElementById('view-givingback').hidden = r.view !== 'givingback';
     document.getElementById('view-terms').hidden = r.view !== 'terms';
     document.getElementById('view-guide').hidden = r.view !== 'guide';
+    document.getElementById('view-advanced').hidden = r.view !== 'advanced';
     document.getElementById('view-meta').hidden = r.view !== 'meta';
     document.getElementById('view-mydecks').hidden = r.view !== 'mydecks';
     document.getElementById('view-playwithjack').hidden = r.view !== 'playwithjack';
