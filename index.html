@@ -84,7 +84,18 @@ input,select,textarea{font:inherit;color:inherit;}
 .site-nav-links a:hover,.site-nav-links button:hover{color:var(--ink);border-color:var(--border);}
 .site-nav-links a.active,.site-nav-links button.active{color:var(--accent-ink);background:var(--accent);}
 .nav-dropdown{position:relative;}
-.nav-binder-panel{width:260px;padding:.5rem;display:flex;flex-direction:column;gap:.15rem;}
+/* These panels also carry .set-panel, which is defined further down the file with
+   width:min(560px,88vw) and padding:1rem. Equal specificity + later source order
+   means .set-panel wins, so every rule here that .set-panel also sets has to be
+   written with both classes to take effect. */
+.nav-binder-panel{display:flex;flex-direction:column;gap:.15rem;}
+.nav-binder-panel.set-panel{width:264px;padding:.45rem;}
+.nav-binder-panel.nav-panel-wide{width:302px;}
+/* The last dropdown sits at the right edge of the bar, so its panel has to
+   hang leftwards or it runs off the viewport. */
+.site-nav-links > .nav-dropdown:last-child .nav-binder-panel{left:auto;right:0;}
+.nav-group-label{margin:0;padding:.6rem .85rem .2rem;font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;font-weight:800;color:var(--ink-muted);opacity:.8;}
+.nav-group-label:first-child{padding-top:.25rem;}
 .nav-binder-link{display:flex;flex-direction:column;gap:.15rem;padding:.7rem .85rem;border-radius:7px;}
 .nav-binder-link:hover{background:var(--surface-2);}
 .nav-binder-link-title{font-weight:700;font-size:.82rem;line-height:1.3;color:var(--ink);}
@@ -102,7 +113,10 @@ input,select,textarea{font:inherit;color:inherit;}
   .site-nav-links a,.site-nav-links button{border-radius:8px;padding:.75rem .9rem;text-align:left;}
   .nav-dropdown{width:100%;}
   .nav-dropdown button{width:100%;}
-  .nav-binder-panel{position:static;width:100%;margin-top:.25rem;box-shadow:none;max-height:none;}
+  /* Two classes needed: plain .nav-binder-panel loses to .set-panel, which is
+     defined later in the file and would keep these panels absolutely positioned
+     (overlaying the rest of the menu) on phones. */
+  .nav-binder-panel.set-panel,.nav-binder-panel.nav-panel-wide{position:static;width:100%;margin-top:.25rem;box-shadow:none;max-height:none;border-radius:8px;padding:.35rem;}
   .nav-brand-text{display:none;}
   .cart-btn-long{display:none;}
   #cart-btn{padding:.6rem 1rem;}
@@ -700,6 +714,10 @@ input,select,textarea{font:inherit;color:inherit;}
               <span class="nav-binder-link-title">For Sale</span>
               <span class="nav-binder-link-desc">Everything Jack currently has listed</span>
             </a>
+            <a href="#/japan" class="nav-binder-link">
+              <span class="nav-binder-link-title">Japanese Cards</span>
+              <span class="nav-binder-link-desc">The Japanese side of the binder</span>
+            </a>
             <a href="#/mybinder" class="nav-binder-link">
               <span class="nav-binder-link-title">Jack&rsquo;s Personal Binder</span>
               <span class="nav-binder-link-desc">His own showcase &mdash; not for sale</span>
@@ -708,19 +726,8 @@ input,select,textarea{font:inherit;color:inherit;}
         </div>
         <div class="nav-dropdown">
           <button id="learn-nav-btn" type="button" aria-haspopup="true" aria-expanded="false">Play &amp; Learn &#9662;</button>
-          <div id="learn-nav-panel" class="set-panel nav-binder-panel" hidden>
-            <a href="#/learn" class="nav-binder-link">
-              <span class="nav-binder-link-title">All Guides</span>
-              <span class="nav-binder-link-desc">Everything I&rsquo;ve written, in order</span>
-            </a>
-            <a href="#/guide" class="nav-binder-link">
-              <span class="nav-binder-link-title">Beginners Guide</span>
-              <span class="nav-binder-link-desc">New to the TCG? Start here</span>
-            </a>
-            <a href="#/advanced" class="nav-binder-link">
-              <span class="nav-binder-link-title">Advanced Guide</span>
-              <span class="nav-binder-link-desc">Once the basics click &mdash; the next layer</span>
-            </a>
+          <div id="learn-nav-panel" class="set-panel nav-binder-panel nav-panel-wide" hidden>
+            <p class="nav-group-label">Tools</p>
             <a href="#/rotation" class="nav-binder-link">
               <span class="nav-binder-link-title">Rotation Checker</span>
               <span class="nav-binder-link-desc">Paste a decklist, see what rotates</span>
@@ -729,6 +736,20 @@ input,select,textarea{font:inherit;color:inherit;}
               <span class="nav-binder-link-title">Ask Jack</span>
               <span class="nav-binder-link-desc">Straight answers to the usual questions</span>
             </a>
+            <p class="nav-group-label">Guides</p>
+            <a href="#/guide" class="nav-binder-link">
+              <span class="nav-binder-link-title">Beginners Guide</span>
+              <span class="nav-binder-link-desc">New to the TCG? Start here</span>
+            </a>
+            <a href="#/advanced" class="nav-binder-link">
+              <span class="nav-binder-link-title">Advanced Guide</span>
+              <span class="nav-binder-link-desc">Once the basics click &mdash; the next layer</span>
+            </a>
+            <a href="#/learn" class="nav-binder-link">
+              <span class="nav-binder-link-title">All Guides &amp; Tools</span>
+              <span class="nav-binder-link-desc">Everything in one place</span>
+            </a>
+            <p class="nav-group-label">Play</p>
             <a href="#/meta" class="nav-binder-link">
               <span class="nav-binder-link-title">Meta Decks</span>
               <span class="nav-binder-link-desc">What&rsquo;s winning in Standard right now</span>
@@ -749,10 +770,27 @@ input,select,textarea{font:inherit;color:inherit;}
         </div>
         <a href="#/worlds2027">Worlds 2027</a>
         <a href="#/news">News</a>
-        <a href="#/donate">Donate</a>
-        <a href="#/giving-back">Giving Back</a>
-        <a href="#/about">About Jack</a>
-        <a href="#/collab">Work With Me</a>
+        <div class="nav-dropdown">
+          <button id="about-nav-btn" type="button" aria-haspopup="true" aria-expanded="false">About &#9662;</button>
+          <div id="about-nav-panel" class="set-panel nav-binder-panel" hidden>
+            <a href="#/about" class="nav-binder-link">
+              <span class="nav-binder-link-title">About Jack</span>
+              <span class="nav-binder-link-desc">Who runs this and why</span>
+            </a>
+            <a href="#/collab" class="nav-binder-link">
+              <span class="nav-binder-link-title">Work With Me</span>
+              <span class="nav-binder-link-desc">Shops, brands, organisers, press</span>
+            </a>
+            <a href="#/giving-back" class="nav-binder-link">
+              <span class="nav-binder-link-title">Giving Back</span>
+              <span class="nav-binder-link-desc">Free draws, and where spare cards go</span>
+            </a>
+            <a href="#/terms" class="nav-binder-link">
+              <span class="nav-binder-link-title">Terms &amp; Conditions</span>
+              <span class="nav-binder-link-desc">How buying from Jack actually works</span>
+            </a>
+          </div>
+        </div>
       </div>
       <span class="site-nav-spacer"></span>
       <div class="nav-actions">
@@ -965,35 +1003,30 @@ input,select,textarea{font:inherit;color:inherit;}
     </div>
   </div>
 
-  <div id="view-donate" class="view-set" hidden>
-    <div class="wrap set-missing">
-      <a href="#/" class="back-link">&larr; Home</a>
-      <div class="terms-page">
-        <h2>Donate Cards</h2>
-        <p class="muted">If you ever feel like passing cards on rather than binning them.</p>
-
-        <div class="terms-block">
-          <h3>Spare cards are welcome</h3>
-          <p>Jack accepts donations of cards. If you have any English, non-bulk cards you&rsquo;d like to give away, feel free to contact him &mdash; they either go into the binder or get passed on to someone learning the game.</p>
-          <p class="muted">Jack doesn&rsquo;t accept money here. Cards only, given freely, no strings and nothing expected in return.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div id="view-givingback" class="view-set" hidden>
     <div class="wrap set-missing">
       <a href="#/" class="back-link">&larr; Home</a>
-      <div class="terms-page">
+      <article class="terms-page article-page">
         <h2>Giving Back</h2>
-        <p class="muted">Free giveaways and lucky draws for the community.</p>
-        <div class="empty-state construction-state">
-          <div class="construction-icons" aria-hidden="true">&#x1F527; &#x1F527; &#x1F527;</div>
-          <h3>Under construction</h3>
-          <p>Jack hasn&rsquo;t nailed down how this&rsquo;ll work yet, but the idea is simple &mdash; giveaways and lucky draws, as a way to give back to the Pok&eacute;mon TCG community here. Check back soon!</p>
-          <p><strong>Always free to enter.</strong> Entry will never cost anything, and will never require buying a card or spending money with Jack &mdash; that&rsquo;s a promise, not a current limitation.</p>
+        <p class="muted">Free draws going out, spare cards coming in. Neither one involves money.</p>
+        <div class="article-body">
+
+        <div class="terms-block">
+        <h3>Giveaways and lucky draws</h3>
+        <p>I haven&rsquo;t nailed down exactly how this will run yet, but the idea is simple: give cards away to people in the Singapore Pok&eacute;mon community, particularly the ones just starting out.</p>
+        <p><strong>Always free to enter.</strong> Entry will never cost anything, and will never require buying a card or spending money with me &mdash; that&rsquo;s a promise, not a current limitation. If you ever see a draw claiming to be mine that asks you to purchase something first, it isn&rsquo;t mine.</p>
+        <p class="muted">Nothing running right now. It&rsquo;ll be announced here and on Telegram when there is.</p>
         </div>
-      </div>
+
+        <div class="terms-block">
+        <h3>Donating cards to me</h3>
+        <p>If you&rsquo;ve got English cards you&rsquo;d rather pass on than bin, I&rsquo;ll take them. They either go into the binder or get handed to someone learning the game &mdash; usually the second one, because a beginner holding a real deck does more for this hobby than another card in my folder.</p>
+        <p><strong>Cards only.</strong> I don&rsquo;t accept money here, and there&rsquo;s nothing on this site that would let you send any. Given freely, no strings, nothing expected in return &mdash; and no obligation on your side either.</p>
+        <p class="muted">Non-bulk English cards are the useful ones. If you&rsquo;re not sure whether something counts, just <a href="https://t.me/ItemSixHQ" target="_blank" rel="noopener">ask me</a>.</p>
+        </div>
+
+        </div>
+      </article>
     </div>
   </div>
 
@@ -2813,6 +2846,45 @@ input,select,textarea{font:inherit;color:inherit;}
     if(btn) btn.setAttribute('aria-expanded', 'false');
   }
 
+  /* Every top-level nav dropdown is listed here. Add a pair when a new one is
+     built and it inherits open/close, click-outside, Escape, and the rule that
+     opening one closes the others. */
+  var NAV_PANELS = [
+    {btn:'binder-nav-btn', panel:'binder-nav-panel'},
+    {btn:'learn-nav-btn',  panel:'learn-nav-panel'},
+    {btn:'about-nav-btn',  panel:'about-nav-panel'}
+  ];
+
+  function closeAllNavPanels(){
+    NAV_PANELS.forEach(function(np){
+      var pnl = document.getElementById(np.panel);
+      var b = document.getElementById(np.btn);
+      if(pnl) pnl.hidden = true;
+      if(b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function toggleNavPanelById(panelId){
+    var panel = document.getElementById(panelId);
+    if(!panel) return;
+    var opening = panel.hidden;
+    closeAllNavPanels();
+    if(opening){
+      panel.hidden = false;
+      var match = NAV_PANELS.filter(function(x){ return x.panel === panelId; })[0];
+      var btn = match && document.getElementById(match.btn);
+      if(btn) btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  function closeNavPanelsOnOutsideClick(e){
+    var inside = NAV_PANELS.some(function(np){
+      var pnl = document.getElementById(np.panel);
+      return (pnl && !pnl.hidden && pnl.contains(e.target)) || !!e.target.closest('#' + np.btn);
+    });
+    if(!inside) closeAllNavPanels();
+  }
+
   /* ---------------- Jack's Personal Binder ---------------- */
 
   var BINDER_DRAFT = null;
@@ -3154,7 +3226,7 @@ input,select,textarea{font:inherit;color:inherit;}
     if(hash === 'mybinder') return {view:'mybinder'};
     if(hash === 'news') return {view:'news'};
     if(hash === 'about') return {view:'about'};
-    if(hash === 'donate') return {view:'donate'};
+    if(hash === 'donate') return {view:'givingback'};   /* merged into Giving Back — kept so old links still work */
     if(hash === 'giving-back') return {view:'givingback'};
     if(hash === 'terms') return {view:'terms'};
     if(hash === 'guide') return {view:'guide'};
@@ -3206,7 +3278,6 @@ input,select,textarea{font:inherit;color:inherit;}
     document.getElementById('view-news').hidden = r.view !== 'news';
     document.getElementById('view-article').hidden = r.view !== 'article';
     document.getElementById('view-about').hidden = r.view !== 'about';
-    document.getElementById('view-donate').hidden = r.view !== 'donate';
     document.getElementById('view-givingback').hidden = r.view !== 'givingback';
     document.getElementById('view-terms').hidden = r.view !== 'terms';
     document.getElementById('view-guide').hidden = r.view !== 'guide';
@@ -3220,13 +3291,14 @@ input,select,textarea{font:inherit;color:inherit;}
     document.getElementById('view-mydecks').hidden = r.view !== 'mydecks';
     document.getElementById('view-playwithjack').hidden = r.view !== 'playwithjack';
     document.getElementById('view-blacklabel').hidden = r.view !== 'blacklabel';
+    /* Which top-level nav link should be highlighted for each view.
+       Add a line here whenever a new top-level page is added, or its
+       nav pill silently never highlights. */
+    var NAV_ACTIVE = {
+      news:'#/news', article:'#/news', worlds:'#/worlds2027'
+    };
     document.querySelectorAll('.site-nav-links > a').forEach(function(a){
-      var active = ((r.view === 'news' || r.view === 'article') && a.getAttribute('href') === '#/news')
-        || (r.view === 'about' && a.getAttribute('href') === '#/about')
-        || (r.view === 'donate' && a.getAttribute('href') === '#/donate')
-        || (r.view === 'givingback' && a.getAttribute('href') === '#/giving-back')
-        || (r.view === 'terms' && a.getAttribute('href') === '#/terms');
-      a.classList.toggle('active', active);
+      a.classList.toggle('active', NAV_ACTIVE[r.view] === a.getAttribute('href'));
     });
     var binderNavBtn = document.getElementById('binder-nav-btn');
     if(binderNavBtn){
@@ -3237,6 +3309,11 @@ input,select,textarea{font:inherit;color:inherit;}
     if(learnNavBtn){
       var learnViews = {guide:1, advanced:1, learn:1, rotation:1, ask:1, meta:1, mydecks:1, playwithjack:1, blacklabel:1};
       learnNavBtn.classList.toggle('active', !!learnViews[r.view]);
+    }
+    var aboutNavBtn = document.getElementById('about-nav-btn');
+    if(aboutNavBtn){
+      var aboutViews = {about:1, collab:1, givingback:1, terms:1};
+      aboutNavBtn.classList.toggle('active', !!aboutViews[r.view]);
     }
     if(r.view === 'catalog'){
       renderGrid();
@@ -3251,8 +3328,7 @@ input,select,textarea{font:inherit;color:inherit;}
     else if(r.view === 'home'){ renderNewsHome(); }
     else if(r.view === 'rotation'){ renderRotationIntro(); }
     closeSetPanel();
-    closeBinderNavPanel();
-    closeLearnNavPanel();
+    closeAllNavPanels();
     closeNavMenu();
     var heroEl = document.getElementById('site-header');
     if(heroEl) heroEl.hidden = r.view !== 'home';
@@ -3424,8 +3500,9 @@ input,select,textarea{font:inherit;color:inherit;}
     }
     if(e.target.closest('#set-browse-btn')){ toggleSetPanel(); return; }
     if(e.target.closest('.back-to-expansions')){ REOPEN_SET_PANEL = true; return; }
-    if(e.target.closest('#binder-nav-btn')){ toggleBinderNavPanel(); return; }
-    if(e.target.closest('#learn-nav-btn')){ toggleLearnNavPanel(); return; }
+    if(e.target.closest('#binder-nav-btn')){ toggleNavPanelById('binder-nav-panel'); return; }
+    if(e.target.closest('#learn-nav-btn')){ toggleNavPanelById('learn-nav-panel'); return; }
+    if(e.target.closest('#about-nav-btn')){ toggleNavPanelById('about-nav-panel'); return; }
     if(e.target.closest('#nav-toggle')){ toggleNavMenu(); return; }
 
     if(e.target.closest('#cart-btn')){ openCartDrawer(); return; }
@@ -3524,14 +3601,7 @@ input,select,textarea{font:inherit;color:inherit;}
     if(panel && !panel.hidden && !panel.contains(e.target) && !e.target.closest('#set-browse-btn')){
       panel.hidden = true;
     }
-    var bpanel = document.getElementById('binder-nav-panel');
-    if(bpanel && !bpanel.hidden && !bpanel.contains(e.target) && !e.target.closest('#binder-nav-btn')){
-      closeBinderNavPanel();
-    }
-    var lpanel = document.getElementById('learn-nav-panel');
-    if(lpanel && !lpanel.hidden && !lpanel.contains(e.target) && !e.target.closest('#learn-nav-btn')){
-      closeLearnNavPanel();
-    }
+    closeNavPanelsOnOutsideClick(e);
   });
 
   document.addEventListener('keydown', function(e){
@@ -3539,8 +3609,7 @@ input,select,textarea{font:inherit;color:inherit;}
       var cov = document.getElementById('cart-overlay'); if(cov && !cov.hidden) cov.hidden = true;
       closeLightbox();
       closeSetPanel();
-      closeBinderNavPanel();
-      closeLearnNavPanel();
+      closeAllNavPanels();
       closeNavMenu();
     }
     var lbOverlay = document.getElementById('lightbox-overlay');
