@@ -1277,11 +1277,31 @@ input,select,textarea{font:inherit;color:inherit;}
     return rows;
   }
 
+  /* The Sheet's Set column may carry a fuller title than the site's set list uses,
+     e.g. "Japanese Fossil: Mystery of the Fossils". Match and display on the part
+     before the colon so richer names in the Sheet don't orphan a set's page. */
+  function normaliseSetName(s){
+    return String(s || '').split(/[:\n\r]/)[0].replace(/\s+/g, ' ').trim();
+  }
+
+  /* Accepts TRUE / JP / YES / Y / 1 so the flag works however it's typed. */
+  function isFlagged(v){
+    return ['TRUE', 'JP', 'YES', 'Y', '1'].indexOf(String(v || '').trim().toUpperCase()) !== -1;
+  }
+
   function csvRowsToCards(rows){
     if(!rows.length) return [];
     var header = rows[0].map(function(h){ return h.trim(); });
     var idx = {};
     header.forEach(function(h, i){ idx[h] = i; });
+    /* The JP column's header cell is easy to leave blank. If there's no column
+       actually named JP, fall back to the last unnamed column in the header. */
+    var jpIdx = idx['JP'];
+    if(jpIdx === undefined){
+      for(var h = header.length - 1; h >= 0; h--){
+        if(header[h] === ''){ jpIdx = h; break; }
+      }
+    }
     var out = [];
     for(var r = 1; r < rows.length; r++){
       var row = rows[r];
@@ -1295,16 +1315,16 @@ input,select,textarea{font:inherit;color:inherit;}
       out.push({
         id: get('ID') || ('sheet-row-' + r),
         name: get('Name'),
-        set: get('Set'),
+        set: normaliseSetName(get('Set')),
         number: get('Number'),
         condition: get('Condition'),
         priceSGD: Number(get('PriceSGD')) || 0,
         image: get('ImageURL'),
         status: status,
-        jp: get('JP').toUpperCase() === 'TRUE',
-        swirls: get('Swirls').toUpperCase() === 'TRUE',
-        holoBleed: get('HoloBleed').toUpperCase() === 'TRUE',
-        misprint: get('Misprint').toUpperCase() === 'TRUE',
+        jp: isFlagged(jpIdx === undefined ? get('JP') : row[jpIdx]),
+        swirls: isFlagged(get('Swirls')),
+        holoBleed: isFlagged(get('HoloBleed')),
+        misprint: isFlagged(get('Misprint')),
         remarks: get('Remarks'),
         qty: Math.max(1, Number(get('Qty')) || 1),
         addedAt: String(r).padStart(6, '0')
@@ -1606,7 +1626,7 @@ input,select,textarea{font:inherit;color:inherit;}
     ['Japanese Fossil','Japanese Vintage (WotC Era)',1997],
     ['Japanese Jungle','Japanese Vintage (WotC Era)',1997],
     ['Japanese Neo Genesis','Japanese Vintage (WotC Era)',1999],
-    ['Japanese Gym 2','Japanese Vintage (WotC Era)',1998],
+    ['Japanese Gym Challenge 2','Japanese Vintage (WotC Era)',1998],
     ['Japanese Team Rocket','Japanese Vintage (WotC Era)',2000]
   ];
   var JP_SETS = JP_SET_ROWS.map(function(row){
