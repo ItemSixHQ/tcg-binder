@@ -2,6 +2,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ItemSixHQ</title>
+<meta id="meta-description" name="description" content="A Pokemon TCG binder, guides and trades in Singapore - run by one collector, not a shop. Browse cards, check what rotates out, or ask Jack a question.">
+<link rel="canonical" href="https://itemsixhq.github.io/tcg-binder/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ItemSixHQ">
+<meta property="og:title" content="ItemSixHQ - Pokemon TCG binder, guides and trades">
+<meta property="og:description" content="A Pokemon TCG binder, guides and trades in Singapore - run by one collector, not a shop.">
+<meta property="og:image" content="https://itemsixhq.github.io/tcg-binder/og-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://itemsixhq.github.io/tcg-binder/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ItemSixHQ - Pokemon TCG binder, guides and trades">
+<meta name="twitter:description" content="A Pokemon TCG binder, guides and trades in Singapore - run by one collector, not a shop.">
+<meta name="twitter:image" content="https://itemsixhq.github.io/tcg-binder/og-banner.png">
 <link id="app-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Press+Start+2P&display=swap">
 <style id="app-style">
 :root{
@@ -491,6 +505,15 @@ input,select,textarea{font:inherit;color:inherit;}
 .cart-total .mono{margin-left:.4rem;font-size:1.05rem;}
 .cart-contact-panel{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);}
 .cart-message-box{width:100%;padding:.75rem;border:1px solid var(--border);border-radius:7px;background:var(--bg);color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:.78rem;resize:vertical;}
+.notes-form{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-start;}
+.notes-form select{padding:.58rem .8rem;border:1px solid var(--border);border-radius:7px;background:var(--surface);color:var(--ink);}
+.notes-form textarea{flex:1 1 260px;min-width:220px;padding:.6rem .75rem;border:1px solid var(--border);border-radius:7px;background:var(--surface);color:var(--ink);font-family:inherit;font-size:.9rem;resize:vertical;min-height:2.6rem;}
+.note-item{border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;margin-bottom:.6rem;background:var(--surface);}
+.note-item-head{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-bottom:.35rem;}
+.note-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--accent);}
+.note-time{font-size:.72rem;color:var(--ink-muted);}
+.note-text{white-space:pre-wrap;font-size:.92rem;}
+.note-actions{margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap;}
 .cart-contact-links{display:flex;gap:.6rem;margin-top:.85rem;flex-wrap:wrap;}
 
 .terms-page{max-width:74ch;padding-bottom:2rem;}
@@ -735,13 +758,13 @@ input,select,textarea{font:inherit;color:inherit;}
         <div class="nav-dropdown">
           <button id="binder-nav-btn" type="button" aria-haspopup="true" aria-expanded="false">Browse The Binder &#9662;</button>
           <div id="binder-nav-panel" class="set-panel nav-binder-panel" hidden>
+            <a href="#/lets-trade" class="nav-binder-link">
+              <span class="nav-binder-link-title">Let&rsquo;s Trade</span>
+              <span class="nav-binder-link-desc">How trading works, and what I&rsquo;m after</span>
+            </a>
             <a href="#/catalog" class="nav-binder-link">
               <span class="nav-binder-link-title">The Binder</span>
               <span class="nav-binder-link-desc">Cards I&rsquo;ll trade or let go at a fair price</span>
-            </a>
-            <a href="#/hunting" class="nav-binder-link">
-              <span class="nav-binder-link-title">What I&rsquo;m Hunting</span>
-              <span class="nav-binder-link-desc">Cards I&rsquo;m after &mdash; trade offers welcome</span>
             </a>
             <a href="#/japan" class="nav-binder-link">
               <span class="nav-binder-link-title">Japanese Cards</span>
@@ -818,7 +841,7 @@ input,select,textarea{font:inherit;color:inherit;}
       </div>
       <span class="site-nav-spacer"></span>
       <div class="nav-actions">
-        <button id="cart-btn" class="pill ghost cart-btn" type="button"><span class="cart-btn-label"><span class="cart-btn-long">My </span>Trade List</span> <span id="cart-count" class="cart-count" hidden>0</span></button>
+        <button id="cart-btn" class="pill ghost cart-btn" type="button"><span class="cart-btn-label"><span class="cart-btn-long">My </span>List</span> <span id="cart-count" class="cart-count" hidden>0</span></button>
         <a class="nav-telegram-btn" href="https://t.me/ItemSixHQ" target="_blank" rel="noopener" aria-label="Message Jack on Telegram"><img src="data:image/png;base64,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" alt=""></a>
       </div>
     </div>
@@ -947,6 +970,7 @@ input,select,textarea{font:inherit;color:inherit;}
       <div class="catalog-head">
         <h2>The Binder</h2>
         <p>These are cards I own and don&rsquo;t mind parting with. <strong>Trade or buy &mdash; whichever suits you.</strong> Prices are what I think each card is honestly worth, taken from what copies have actually sold for, so we both know a swap is even. Tick anything you&rsquo;re interested in and send me the list.</p>
+        <p class="muted catalog-trade-hint">New here? <a href="#/lets-trade">See how trading works, and what I&rsquo;m after &rarr;</a></p>
       </div>
 
       <div id="toolbar" class="toolbar" hidden>
@@ -1415,11 +1439,21 @@ input,select,textarea{font:inherit;color:inherit;}
 
   <div id="view-hunting" class="view-set" hidden>
     <div class="wrap set-missing">
-      <a href="#/catalog" class="back-link">&larr; The Binder</a>
+      <a href="#/" class="back-link">&larr; Home</a>
       <article class="terms-page article-page">
-        <h2>What I&rsquo;m Hunting</h2>
-        <p class="muted">The other half of a binder. If you have any of this and want something of mine, let&rsquo;s talk.</p>
+        <h2>Let&rsquo;s Trade</h2>
+        <p class="muted">This whole site leans hobby-first: trade or buy, whichever suits you. Here&rsquo;s exactly how that works, and what I&rsquo;m after myself.</p>
         <div class="article-body">
+
+        <div class="terms-block">
+        <h3>How it works</h3>
+        <ul class="terms-list">
+          <li><strong>Browse what I have.</strong> <a href="#/catalog">The Binder</a> and <a href="#/japan">Japanese Cards</a> are everything I currently own and don&rsquo;t mind parting with. Add anything you like to your list.</li>
+          <li><strong>Decide trade or buy.</strong> Both work. Say which you&rsquo;d prefer when you send your list over &mdash; or ask, and I&rsquo;ll tell you honestly what I&rsquo;d rather have.</li>
+          <li><strong>If trading, check what I&rsquo;m after below.</strong> Got something on that list? Offer it against what you want from me and we&rsquo;ll work out if it&rsquo;s close.</li>
+          <li><strong>We value both sides the same way.</strong> Everything in my binder is priced from what copies have actually sold for. Do the same on your side and we&rsquo;ll both know quickly whether a swap is fair &mdash; any gap gets settled in cash, either direction.</li>
+        </ul>
+        </div>
 
         <div class="terms-block">
         <p>Everyone puts up what they&rsquo;re getting rid of. Far fewer people say what they actually want, which is strange, because that&rsquo;s the half that makes a trade happen.</p>
@@ -1446,9 +1480,8 @@ input,select,textarea{font:inherit;color:inherit;}
         </div>
 
         <div class="terms-block">
-        <h3>How a trade works with me</h3>
+        <h3>Ground rules</h3>
         <ul class="terms-list">
-          <li><strong>Value both sides openly.</strong> Every card in my binder has a number on it taken from what copies have actually sold for. Do the same on your side and we&rsquo;ll both know quickly whether it&rsquo;s fair.</li>
           <li><strong>Uneven is fine.</strong> If one side is short, we settle the difference in cash either way, or you throw in something small. No drama.</li>
           <li><strong>Condition gets stated up front.</strong> Mine are written on every listing. I&rsquo;d ask the same of you &mdash; a photo in decent light saves us both a conversation.</li>
           <li><strong>I&rsquo;ll talk you out of a bad one.</strong> If you&rsquo;re handing over more than you should, I&rsquo;m going to point it out. That has cost me trades and I&rsquo;d do it again.</li>
@@ -1456,6 +1489,44 @@ input,select,textarea{font:inherit;color:inherit;}
         <p>Singapore only for now, same as everything else &mdash; meet-ups or local mail.</p>
         <div class="cart-contact-links">
           <a class="pill" href="https://t.me/ItemSixHQ" target="_blank" rel="noopener">Offer me a trade on Telegram</a>
+        </div>
+        </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div id="view-streamnotes" class="view-set" hidden>
+    <div class="wrap set-missing">
+      <a href="#/" class="back-link">&larr; Home</a>
+      <article class="terms-page article-page">
+        <h2>Stream Notes</h2>
+        <p class="muted">Private scratch space for things worth remembering from a stream &mdash; not linked anywhere on the site, and only saved in this browser.</p>
+        <div class="article-body">
+
+        <div class="terms-block">
+        <form id="note-form" class="notes-form">
+          <select id="note-cat" aria-label="Note type">
+            <option value="idea">Content idea</option>
+            <option value="question">Question asked</option>
+            <option value="clip">Clip-worthy moment</option>
+            <option value="followup">Follow-up / to-do</option>
+          </select>
+          <textarea id="note-text" rows="2" placeholder="What happened, and why it&rsquo;s worth remembering&hellip;" aria-label="Note text"></textarea>
+          <button type="submit" class="btn-primary">Add note</button>
+        </form>
+        </div>
+
+        <div class="terms-block">
+        <div id="notes-empty" class="empty-state" hidden>
+          <h3>No notes yet</h3>
+          <p>Jot something down during or right after your next stream.</p>
+        </div>
+        <div id="notes-list"></div>
+        <div id="notes-actions" class="note-actions" hidden>
+          <button id="notes-copy-btn" class="pill ghost" type="button">Copy all as text</button>
+          <button id="notes-clear-btn" class="pill ghost" type="button">Clear all</button>
         </div>
         </div>
 
@@ -1914,8 +1985,8 @@ input,select,textarea{font:inherit;color:inherit;}
 
         <div class="terms-block">
           <h3>How to trade or buy something</h3>
-          <p>Found something you want? Click <strong>&ldquo;Add to my trade list&rdquo;</strong> on the listing. Once you&rsquo;re done browsing, open <strong>My Trade List</strong> and select <strong>&ldquo;Send Jack this list.&rdquo;</strong> You can contact Jack via Telegram DMs, or by joining his Discord server and either DM-ing him privately or asking in the Pok&eacute;mon text channel.</p>
-          <p>Once your message comes through, Jack will respond as soon as he can. <strong>Trades are genuinely welcome</strong> &mdash; if you&rsquo;d rather swap cards than pay for them, say so and he&rsquo;ll tell you honestly whether it works for him. Have a look at <a href="#/hunting">what he&rsquo;s hunting</a> first.</p>
+          <p>Found something you want? Click <strong>&ldquo;Add to my list&rdquo;</strong> on the listing. Once you&rsquo;re done browsing, open <strong>My List</strong> and select <strong>&ldquo;Send Jack this list.&rdquo;</strong> You can contact Jack via Telegram DMs, or by joining his Discord server and either DM-ing him privately or asking in the Pok&eacute;mon text channel.</p>
+          <p>Once your message comes through, Jack will respond as soon as he can. <strong>Trades are genuinely welcome</strong> &mdash; if you&rsquo;d rather swap cards than pay for them, say so and he&rsquo;ll tell you honestly whether it works for him. Have a look at <a href="#/lets-trade">Let&rsquo;s Trade</a> first.</p>
           <p>If you&rsquo;re buying rather than trading, payment is made via <strong>PayNow</strong> or <strong>PayLah!</strong> &mdash; Jack will send over a QR code along with your final order amount and item list before you pay.</p>
           <p>Jack has a day job and a young kid at home, so please be a little forgiving if he takes a bit longer than usual to reply &mdash; he&rsquo;ll always get back to you.</p>
         </div>
@@ -1984,7 +2055,7 @@ input,select,textarea{font:inherit;color:inherit;}
   <div id="cart-overlay" class="overlay" hidden>
     <div class="modal cart-modal">
       <button id="cart-close" class="modal-close" type="button" aria-label="Close">&times;</button>
-      <h2>My Trade List</h2>
+      <h2>My List</h2>
       <p class="muted">Nothing here charges you anything &mdash; it just builds a list you can send me. Happy to trade for it, or sell it, whichever you&rsquo;d rather.</p>
       <p class="cart-logistics muted">Singapore only for now &mdash; pick up at Tampines MRT or Upper Thomson MRT, or local SmartPac mail for $3. <a href="#/terms">Full details in the Terms</a>.</p>
       <div id="cart-list" class="cart-list"></div>
@@ -2540,7 +2611,7 @@ input,select,textarea{font:inherit;color:inherit;}
     var maxQty = card.qty || 1;
     if(maxQty <= 1){
       var inCart = isInCart(card.id);
-      return '<button class="cart-toggle-btn'+(inCart?' in-cart':'')+'" type="button" data-id="'+escapeHtml(card.id)+'">'+(inCart?'On your list ✓ — remove':'Add to my trade list')+'</button>';
+      return '<button class="cart-toggle-btn'+(inCart?' in-cart':'')+'" type="button" data-id="'+escapeHtml(card.id)+'">'+(inCart?'On your list ✓ — remove':'Add to my list')+'</button>';
     }
     var inCartQty = qtyInCart(card.id);
     var remaining = Math.max(0, maxQty - inCartQty);
@@ -3127,7 +3198,7 @@ input,select,textarea{font:inherit;color:inherit;}
   /* =========================================================================
      WANT LIST - cards Jack is actively chasing.
      Add or remove entries here; the "Specific cards I'm chasing" block on
-     #/hunting hides itself entirely when this list is empty, so it never shows
+     #/lets-trade hides itself entirely when this list is empty, so it never shows
      an empty section. `tag` is the little pill on the right - keep it short.
      ========================================================================= */
   var WANT_LIST = [
@@ -3490,6 +3561,163 @@ input,select,textarea{font:inherit;color:inherit;}
     });
   }
 
+  /* ---------------- Stream notes (private scratch page - not linked from nav) ----------------
+     Jack's own quick-capture tool for things worth remembering during or right
+     after a stream. Saved to this browser's localStorage only - there is no
+     server, no account, and no sync between devices. Reachable only by typing
+     #/stream-notes directly; nothing on the site links to it. */
+  var NOTE_CATS = { idea: 'Content idea', question: 'Question asked', clip: 'Clip-worthy', followup: 'Follow-up' };
+
+  function loadStreamNotes(){
+    try{
+      var raw = localStorage.getItem('itemsixhq_stream_notes');
+      var list = raw ? JSON.parse(raw) : [];
+      return Array.isArray(list) ? list : [];
+    }catch(e){ return []; }
+  }
+
+  function saveStreamNotes(list){
+    try{ localStorage.setItem('itemsixhq_stream_notes', JSON.stringify(list)); }catch(e){}
+  }
+
+  function renderStreamNotes(){
+    var listEl = document.getElementById('notes-list');
+    var emptyEl = document.getElementById('notes-empty');
+    var actionsEl = document.getElementById('notes-actions');
+    if(!listEl) return;
+    var notes = loadStreamNotes();
+    if(!notes.length){
+      listEl.innerHTML = '';
+      if(emptyEl) emptyEl.hidden = false;
+      if(actionsEl) actionsEl.hidden = true;
+      return;
+    }
+    if(emptyEl) emptyEl.hidden = true;
+    if(actionsEl) actionsEl.hidden = false;
+    listEl.innerHTML = notes.slice().reverse().map(function(n){
+      var d = new Date(n.ts);
+      var when = isNaN(d.getTime()) ? '' : d.toLocaleDateString(undefined,{month:'short',day:'numeric'}) + ' ' + d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+      return ''
+        + '<div class="note-item" data-id="'+escapeHtml(String(n.id))+'">'
+        +   '<div class="note-item-head">'
+        +     '<span class="note-cat">'+escapeHtml(NOTE_CATS[n.cat] || n.cat)+'</span>'
+        +     '<span class="note-time">'+escapeHtml(when)+'</span>'
+        +   '</div>'
+        +   '<div class="note-text">'+escapeHtml(n.text)+'</div>'
+        +   '<button class="link-btn note-remove-btn" type="button" data-id="'+escapeHtml(String(n.id))+'">Remove</button>'
+        + '</div>';
+    }).join('');
+  }
+
+  function addStreamNote(cat, text){
+    text = (text || '').trim();
+    if(!text) return;
+    var notes = loadStreamNotes();
+    notes.push({ id: Date.now() + '-' + Math.floor(Math.random()*1000), cat: cat, text: text, ts: Date.now() });
+    saveStreamNotes(notes);
+    renderStreamNotes();
+  }
+
+  function removeStreamNote(id){
+    var notes = loadStreamNotes().filter(function(n){ return String(n.id) !== String(id); });
+    saveStreamNotes(notes);
+    renderStreamNotes();
+  }
+
+  function streamNotesAsText(){
+    var notes = loadStreamNotes();
+    return notes.map(function(n){
+      var d = new Date(n.ts);
+      var when = isNaN(d.getTime()) ? '' : d.toLocaleDateString();
+      return '['+(NOTE_CATS[n.cat] || n.cat)+'] '+n.text+(when ? ' ('+when+')' : '');
+    }).join('\n');
+  }
+
+  function initStreamNotesTool(){
+    var form = document.getElementById('note-form');
+    var textEl = document.getElementById('note-text');
+    var catEl = document.getElementById('note-cat');
+    var listEl = document.getElementById('notes-list');
+    var copyBtn = document.getElementById('notes-copy-btn');
+    var clearBtn = document.getElementById('notes-clear-btn');
+    if(form) form.addEventListener('submit', function(e){
+      e.preventDefault();
+      addStreamNote(catEl ? catEl.value : 'idea', textEl ? textEl.value : '');
+      if(textEl){ textEl.value = ''; textEl.focus(); }
+    });
+    if(listEl) listEl.addEventListener('click', function(e){
+      var btn = e.target.closest('.note-remove-btn');
+      if(btn) removeStreamNote(btn.getAttribute('data-id'));
+    });
+    if(copyBtn) copyBtn.addEventListener('click', function(){
+      var text = streamNotesAsText();
+      if(!text) return;
+      var restoreLabel = copyBtn.textContent;
+      function flash(label){ copyBtn.textContent = label; setTimeout(function(){ copyBtn.textContent = restoreLabel; }, 1600); }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ flash('Copied!'); }, function(){ flash('Copy failed'); });
+      } else {
+        flash('Copy not supported here');
+      }
+    });
+    if(clearBtn) clearBtn.addEventListener('click', function(){
+      if(!loadStreamNotes().length) return;
+      if(window.confirm('Clear all stream notes? This can\'t be undone.')){
+        saveStreamNotes([]);
+        renderStreamNotes();
+      }
+    });
+  }
+
+  /* ---------------- per-page <title> and meta description ----------------
+     Link-preview bots (Discord, Telegram, iMessage, Twitter/X, WhatsApp) fetch
+     the raw HTML and never run this JS, so they always see the static <head>
+     tags - one description/image for the whole site, no matter which page is
+     shared. That's a hash-router limitation, not something fixable from here;
+     it would need real separate files per page. What this DOES do: give every
+     page its own browser-tab title, and update the description tag so a
+     search engine that renders the JS (Google does) can tell pages apart. */
+  var SITE_TITLE = 'ItemSixHQ';
+  var DEFAULT_DESCRIPTION = "A Pokemon TCG binder, guides and trades in Singapore - run by one collector, not a shop.";
+  var PAGE_META = {
+    home:         { title: null, description: DEFAULT_DESCRIPTION },
+    catalog:      { title: 'The Binder', description: "Cards Jack owns and doesn't mind parting with - trade or buy, priced from real sales." },
+    set:          { title: 'Browse By Set', description: DEFAULT_DESCRIPTION },
+    japan:        { title: 'Japanese Cards', description: 'Japanese-print Pokemon cards from the binder.' },
+    setjp:        { title: 'Japanese Cards', description: 'Japanese-print Pokemon cards from the binder.' },
+    mybinder:     { title: "Jack's Personal Binder", description: DEFAULT_DESCRIPTION },
+    news:         { title: 'News', description: 'Pokemon TCG news and set breakdowns, written and fact-checked by Jack.' },
+    about:        { title: 'About Jack', description: 'Who runs ItemSixHQ and why - musician, dad and Pokemon TCG collector in Singapore.' },
+    givingback:   { title: 'Giving Back', description: 'Free draws, and where spare cards go.' },
+    terms:        { title: 'Terms and Conditions', description: 'How buying and trading with Jack actually works.' },
+    guide:        { title: 'Beginners Guide', description: 'New to the Pokemon TCG? Start here.' },
+    advanced:     { title: 'Advanced Guide', description: 'Once the basics click - the next layer of the Pokemon TCG.' },
+    learn:        { title: 'Learn The Pokemon TCG', description: 'Guides, tools and ways to play - all free, all fact-checked.' },
+    hunting:      { title: "Let\u2019s Trade", description: "How trading works with Jack, and what he\u2019s after." },
+    rotation:     { title: 'Rotation Checker', description: 'Paste a decklist and see what rotates out under the next regulation change.' },
+    ask:          { title: 'Ask Jack', description: 'Straight answers to the questions Jack gets asked most.' },
+    collab:       { title: 'Work With Me', description: 'Shops, brands, organisers and press - how to reach Jack.' },
+    worlds:       { title: 'Worlds 2027', description: "Jack's hub for the 2027 Pokemon World Championships." },
+    meta:         { title: 'Meta Decks', description: "What's winning in Standard right now." },
+    mydecks:      { title: "Jack's Decks", description: DEFAULT_DESCRIPTION },
+    playwithjack: { title: 'Play With Jack', description: 'Arrange a game - in person or on Pokemon TCG Live.' },
+    blacklabel:   { title: 'Learn At BlackLabel TCG', description: "A friend's shop - not affiliated, just genuinely great." },
+    streamnotes:  { title: 'Stream Notes', description: DEFAULT_DESCRIPTION }
+  };
+
+  function updatePageMeta(r){
+    var meta = PAGE_META[r.view] || null;
+    if(r.view === 'article'){
+      var a = findArticle(r.slug);
+      meta = a ? { title: a.title, description: a.teaser || DEFAULT_DESCRIPTION } : { title: 'News', description: DEFAULT_DESCRIPTION };
+    }
+    var title = (meta && meta.title) ? meta.title + ' \u00b7 ' + SITE_TITLE : SITE_TITLE;
+    var description = (meta && meta.description) ? meta.description : DEFAULT_DESCRIPTION;
+    document.title = title;
+    var descTag = document.getElementById('meta-description');
+    if(descTag) descTag.setAttribute('content', description);
+  }
+
   function parseRoute(){
     var hash = location.hash.replace(/^#\/?/, '');
     if(!hash) return {view:'home'};
@@ -3504,7 +3732,9 @@ input,select,textarea{font:inherit;color:inherit;}
     if(hash === 'guide') return {view:'guide'};
     if(hash === 'advanced') return {view:'advanced'};
     if(hash === 'learn') return {view:'learn'};
-    if(hash === 'hunting') return {view:'hunting'};
+    if(hash === 'hunting') return {view:'hunting'};   /* old link - kept working */
+    if(hash === 'lets-trade') return {view:'hunting'};
+    if(hash === 'stream-notes') return {view:'streamnotes'};   /* private - not linked from nav */
     if(hash === 'rotation') return {view:'rotation'};
     if(hash === 'ask') return {view:'ask'};
     if(hash === 'collab') return {view:'collab'};
@@ -3542,6 +3772,7 @@ input,select,textarea{font:inherit;color:inherit;}
 
   function route(){
     var r = parseRoute();
+    updatePageMeta(r);
     document.getElementById('view-home').hidden = r.view !== 'home';
     document.getElementById('view-catalog').hidden = r.view !== 'catalog';
     document.getElementById('view-set').hidden = r.view !== 'set';
@@ -3556,6 +3787,7 @@ input,select,textarea{font:inherit;color:inherit;}
     document.getElementById('view-guide').hidden = r.view !== 'guide';
     document.getElementById('view-advanced').hidden = r.view !== 'advanced';
     document.getElementById('view-learn').hidden = r.view !== 'learn';
+    document.getElementById('view-streamnotes').hidden = r.view !== 'streamnotes';
     document.getElementById('view-hunting').hidden = r.view !== 'hunting';
     document.getElementById('view-rotation').hidden = r.view !== 'rotation';
     document.getElementById('view-ask').hidden = r.view !== 'ask';
@@ -3602,6 +3834,7 @@ input,select,textarea{font:inherit;color:inherit;}
     else if(r.view === 'home'){ renderNewsHome(); }
     else if(r.view === 'rotation'){ renderRotationIntro(); }
     else if(r.view === 'hunting'){ renderWantList(); }
+    else if(r.view === 'streamnotes'){ renderStreamNotes(); }
     closeSetPanel();
     closeAllNavPanels();
     closeNavMenu();
@@ -3918,6 +4151,7 @@ input,select,textarea{font:inherit;color:inherit;}
     updateCartBadge();
     initNavHeightVar();
     initRotationTool();
+    initStreamNotesTool();
     renderVideoStrip();
     renderPressClips();
     loadCardsFromSheet();
