@@ -102,8 +102,9 @@ input,select,textarea{font:inherit;color:inherit;}
    #/almanac) plus a small caret button (opens the panel for Generations etc).
    Scoped to .nav-dropdown-split so Browse The Binder / Play & Learn / About,
    which stay single-button triggers, are untouched. */
-.nav-dropdown.nav-dropdown-split{display:inline-flex;align-items:center;gap:.2rem;}
-.nav-dropdown-split #almanac-nav-caret{padding:.4rem .55rem;}
+.nav-dropdown.nav-dropdown-split{display:inline-flex;align-items:center;gap:0;}
+.nav-dropdown-split #almanac-nav-btn{border-radius:999px 0 0 999px;padding-right:.35rem;}
+.nav-dropdown-split #almanac-nav-caret{border-radius:0 999px 999px 0;padding:.4rem .8rem .4rem .35rem;}
 /* These panels also carry .set-panel, which is defined further down the file with
    width:min(560px,88vw) and padding:1rem. Equal specificity + later source order
    means .set-panel wins, so every rule here that .set-panel also sets has to be
@@ -157,9 +158,11 @@ input,select,textarea{font:inherit;color:inherit;}
   .site-nav-links a,.site-nav-links button{border-radius:8px;padding:.75rem .9rem;text-align:left;}
   .nav-dropdown{width:100%;}
   .nav-dropdown button{width:100%;}
-  .nav-dropdown.nav-dropdown-split{display:flex;}
+  .nav-dropdown.nav-dropdown-split{display:flex;gap:0;}
   .nav-dropdown.nav-dropdown-split a{flex:1 1 auto;width:auto;}
   .nav-dropdown.nav-dropdown-split button{width:auto;flex:0 0 auto;}
+  .nav-dropdown-split #almanac-nav-btn{border-radius:8px 0 0 8px;padding-right:.5rem;}
+  .nav-dropdown-split #almanac-nav-caret{border-radius:0 8px 8px 0;padding:.75rem .9rem .75rem .5rem;}
   /* Two classes needed: plain .nav-binder-panel loses to .set-panel, which is
      defined later in the file and would keep these panels absolutely positioned
      (overlaying the rest of the menu) on phones. */
@@ -4915,9 +4918,14 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       aboutNavBtn.classList.toggle('active', !!aboutViews[r.view]);
     }
     var almanacNavBtn = document.getElementById('almanac-nav-btn');
+    var almanacNavCaret = document.getElementById('almanac-nav-caret');
     if(almanacNavBtn){
       var almanacViews = {almanac:1, 'almanac-generations':1, 'almanac-gen':1};
-      almanacNavBtn.classList.toggle('active', !!almanacViews[r.view]);
+      var almanacIsActive = !!almanacViews[r.view];
+      almanacNavBtn.classList.toggle('active', almanacIsActive);
+      /* Caret mirrors the label's active state so the merged pill highlights
+         as one piece, not just its left half. */
+      if(almanacNavCaret) almanacNavCaret.classList.toggle('active', almanacIsActive);
     }
     if(r.view === 'catalog'){
       renderGrid();
