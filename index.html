@@ -4132,6 +4132,16 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       starters:['turtwig','chimchar','piplup'],
       dexInfo:'The Sinnoh Pokédex runs 1–210 in local numbering. National Dex #387–493 (107 species) debuted here.',
       geography:'Sits apart from the other mainland regions in the games’ broader geography, split into a northern and southern half by Mt. Coronet running down the middle.',
+      /* Section-intro "memory hook" lines, one per Full Guide section - moved
+         here from renderGenerationDetail() (Sept 2026 architecture pass) so
+         each region supplies its own hook instead of the renderer carrying
+         Sinnoh-specific prose. All four are optional - the renderer omits
+         the line entirely for a region that doesn't have one yet, rather
+         than falling back to this text. */
+      geographyHook:'If you remember one thing about Sinnoh’s geography: Mt. Coronet splits it in two, and almost everything else about the region follows from that.',
+      startersHook:'Grass, Fire, Water — the type triangle every generation opens with, and Sinnoh plays it completely straight.',
+      gymLeadersHook:'Eight leaders, eight types — and the running order below isn’t as fixed as you’d think.',
+      legendaryHook:'Two trios and a separate Mythical — Sinnoh’s legendaries are grouped by idea (time, space, emotion, creation), not by type.',
       gymLeaders:['roark','gardenia','fantina','maylene','wake','byron','candice','volkner'],
       eliteFour:['aaron','bertha','flint','lucian'],
       champion:'cynthia',
@@ -4496,15 +4506,25 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      feature-style layout (portrait beside text, not one more tile in the
      grid) specifically so it never reads as part of the trio. Generic over
      the region rather than hardcoded to Sinnoh/Arceus, so a future
-     region's mythicals pick this up automatically via `category:'mythical'`. */
-  function mythicalFeatureHTML(slug){
+     region's mythicals pick this up automatically via `category:'mythical'`.
+
+     Sept 2026 architecture pass - this "one legendary-tier Pokemon gets its
+     own spotlight instead of a grid tile" layout isn't actually Mythical-
+     specific, it's just what a legendary-tier Pokemon with no cluster to
+     sit in needs. Pulled the shared markup out into legendaryFeatureHTML()
+     below (role + eyebrow text are the only things that vary), so Mythicals
+     and solo Legendaries (a region's Mewtwo-shaped Pokemon - see
+     soloLegendaryFeatureHTML) reuse one component instead of two near-
+     identical ones. Arceus's markup/eyebrow text is byte-for-byte the same
+     as before this refactor. */
+  function legendaryFeatureHTML(slug, role, eyebrowHTML){
     var m = null;
     for(var i=0;i<LEGENDARIES.length;i++){ if(LEGENDARIES[i].slug === slug){ m = LEGENDARIES[i]; break; } }
     if(!m) return '';
     /* Same sprite treatment as legendaryClusterHTML() above - see that
        comment. Placeholders (no image.src yet) are unaffected. */
     var isSprite = !!(m.image && m.image.src);
-    var portrait = assetHTML('mythical', m.image, {
+    var portrait = assetHTML(role, m.image, {
       placeholderText:m.name,
       type:(m.type && m.type[0]) || null,
       extraClass: isSprite ? 'asset-sprite' : null,
@@ -4513,12 +4533,27 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     return '<div class="mythical-feature">'
       + portrait
       + '<div class="mythical-feature-body">'
-      +   '<span class="mythical-feature-eyebrow">Mythical Pok&eacute;mon &middot; linked to the mythology above, not a trio member</span>'
+      +   '<span class="mythical-feature-eyebrow">'+eyebrowHTML+'</span>'
       +   '<div class="legendary-name">'+escapeHtml(m.name)+'</div>'
       +   '<div>'+typesBadgesHTML(m.type)+'</div>'
       +   (m.summary ? '<p style="margin:.5rem 0 0;">'+escapeHtml(m.summary)+'</p>' : '')
       + '</div>'
       + '</div>';
+  }
+  function mythicalFeatureHTML(slug){
+    return legendaryFeatureHTML(slug, 'mythical', 'Mythical Pok&eacute;mon &middot; linked to the mythology above, not a trio member');
+  }
+  /* Solo legendary: a Legendary-tier Pokemon that belongs to neither a
+     cluster/trio nor category:'mythical' (Kanto's Mewtwo is the case that
+     surfaced this - see the Sept 2026 readiness audit). Reuses the exact
+     same feature-style layout as Mythicals via legendaryFeatureHTML() above,
+     but keeps the 'legendary' asset role (not 'mythical') so it carries the
+     same art treatment as clustered Legendaries, and its own generic eyebrow
+     label rather than Mythical's mythology-specific wording. No region
+     currently has a category:'solo' LEGENDARIES entry - this is dormant
+     until one does. */
+  function soloLegendaryFeatureHTML(slug){
+    return legendaryFeatureHTML(slug, 'legendary', 'Legendary Pok&eacute;mon &middot; stands on its own, not part of a trio or cluster');
   }
 
   /* status is a light lifecycle marker (introduced/changed/expanded/retired/
@@ -4640,9 +4675,20 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     html += next ? '<a href="#/almanac/gen/'+next.id+'">Gen '+escapeHtml(next.roman)+' &rarr;</a>' : '<span></span>';
     html += '</div>';
 
+    /* Sept 2026 architecture pass - the Legendary Pokemon section used to be
+       gated purely on region.legendaryClusters.length, which quietly assumed
+       every complete-tier region has at least one clustered trio. Mythicals
+       and solo legendaries (see soloLegendaryFeatureHTML below) are equally
+       valid ways for a region to have legendary-tier content, so the section
+       (and its jump-nav entry) now shows if ANY of the three are present -
+       this is what makes the section generic rather than cluster-only. */
+    var mythicals = region ? LEGENDARIES.filter(function(l){ return l.category === 'mythical' && l.region === region.slug; }) : [];
+    var soloLegendaries = region ? LEGENDARIES.filter(function(l){ return l.category === 'solo' && l.region === region.slug; }) : [];
+    var hasLegendaryContent = !!(region && ((region.legendaryClusters && region.legendaryClusters.length) || mythicals.length || soloLegendaries.length));
+
     var sections = [];
     if(region){ sections.push({id:'gen-sec-region', label:'Region'}, {id:'gen-sec-starters', label:'Starters'}, {id:'gen-sec-leaders', label:'Gym Leaders'}); }
-    if(region && region.legendaryClusters && region.legendaryClusters.length) sections.push({id:'gen-sec-legendary', label:'Legendary Pokémon'});
+    if(hasLegendaryContent) sections.push({id:'gen-sec-legendary', label:'Legendary Pokémon'});
     if(gen.mechanicsIntroduced && gen.mechanicsIntroduced.length) sections.push({id:'gen-sec-mechanics', label:'What Changed'});
     if(sections.length > 1) html += sectionJumpNavHTML(sections);
 
@@ -4651,32 +4697,36 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       /* Prompt 6 - Region previously opened straight into reference-style
          copy with no editorial hook (the Sept 2026 audit's own comparison
          to the Gym Leaders intro line below). One short, factually-safe
-         memory line, same treatment already used elsewhere on this page. */
-      html += '<p class="muted almanac-section-intro">If you remember one thing about Sinnoh&rsquo;s geography: Mt. Coronet splits it in two, and almost everything else about the region follows from that.</p>';
+         memory line, same treatment already used elsewhere on this page.
+         Sept 2026 architecture pass - this line (and the three below it)
+         used to be hardcoded Sinnoh prose; they now read from region.*Hook
+         data fields so a future region without a hook simply omits the
+         line instead of inheriting Sinnoh's wording. */
+      if(region.geographyHook) html += '<p class="muted almanac-section-intro">'+escapeHtml(region.geographyHook)+'</p>';
       html += '<p>'+escapeHtml(region.dexInfo||'')+'</p>';
       if(region.geography) html += '<p class="muted">'+escapeHtml(region.geography)+'</p>';
       if(region.alsoAppearsInNote) html += calloutHTML('Also appears in', 'callout-significance', region.alsoAppearsInNote);
 
       html += '<h4 id="gen-sec-starters" style="margin-top:1.3rem;">The Starters</h4>';
-      html += '<p class="muted almanac-section-intro">Grass, Fire, Water &mdash; the type triangle every generation opens with, and Sinnoh plays it completely straight.</p>';
+      if(region.startersHook) html += '<p class="muted almanac-section-intro">'+escapeHtml(region.startersHook)+'</p>';
       html += '<div class="starter-row">'+(region.starters||[]).map(starterCardHTML).join('')+'</div>';
 
       html += '<h4 id="gen-sec-leaders" style="margin-top:1.3rem;">Gym Leaders</h4>';
-      html += '<p class="muted almanac-section-intro">Eight leaders, eight types &mdash; and the running order below isn&rsquo;t as fixed as you&rsquo;d think.</p>';
+      if(region.gymLeadersHook) html += '<p class="muted almanac-section-intro">'+escapeHtml(region.gymLeadersHook)+'</p>';
       html += '<div class="leader-roster">'+(region.gymLeaders||[]).map(leaderCardHTML).join('')+'</div>';
 
       html += '<h4 style="margin-top:1.3rem;">Elite Four &amp; Champion</h4>';
       html += '<div class="leader-roster leader-roster-e4">'+(region.eliteFour||[]).map(leaderCardHTML).join('')+leaderCardHTML(region.champion)+'</div>';
 
-      if(region.legendaryClusters && region.legendaryClusters.length){
+      if(hasLegendaryContent){
         html += '<h4 id="gen-sec-legendary" style="margin-top:1.3rem;">The Legendary Pok&eacute;mon</h4>';
         /* Prompt 6 - short section-level memory hook (matches the Gym
            Leaders intro pattern above), plus it reinforces the "two trios
            and one separate Mythical" structure without repeating any
-           existing sentence verbatim. */
-        html += '<p class="muted almanac-section-intro">Two trios and a separate Mythical &mdash; Sinnoh&rsquo;s legendaries are grouped by idea (time, space, emotion, creation), not by type.</p>';
-        html += region.legendaryClusters.map(legendaryClusterHTML).join('');
-        var mythicals = LEGENDARIES.filter(function(l){ return l.category === 'mythical' && l.region === region.slug; });
+           existing sentence verbatim. Sept 2026 architecture pass - now
+           reads region.legendaryHook rather than hardcoded Sinnoh prose. */
+        if(region.legendaryHook) html += '<p class="muted almanac-section-intro">'+escapeHtml(region.legendaryHook)+'</p>';
+        if(region.legendaryClusters && region.legendaryClusters.length) html += region.legendaryClusters.map(legendaryClusterHTML).join('');
         /* Prompt 6 - the Arceus "Did you know?" fact used to render here,
            above the Creation Trio, before the reader had seen any
            Legendary card yet - it described Arceus while the very next
@@ -4686,6 +4736,13 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
            trios have already established the context. */
         html += calloutHTML('Did you know?', 'callout-funfact', gen.funFact);
         html += mythicals.map(function(m){ return mythicalFeatureHTML(m.slug); }).join('');
+        /* Sept 2026 architecture pass - solo legendaries (Legendary-tier
+           Pokemon that are neither a cluster member nor a Mythical, e.g. a
+           future region's Mewtwo) get the same feature-style spotlight as
+           Mythicals, immediately after them, via a distinct eyebrow label
+           only - see soloLegendaryFeatureHTML(). No-op today: no LEGENDARIES
+           entry currently has category:'solo'. */
+        html += soloLegendaries.map(function(m){ return soloLegendaryFeatureHTML(m.slug); }).join('');
       }
       html += '</div>';
     }
