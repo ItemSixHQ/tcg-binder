@@ -98,24 +98,13 @@ input,select,textarea{font:inherit;color:inherit;}
 .site-nav-links a:hover,.site-nav-links button:hover{color:var(--ink);border-color:var(--border);}
 .site-nav-links a.active,.site-nav-links button.active{color:var(--accent-ink);background:var(--accent);}
 .nav-dropdown{position:relative;}
-/* Standard pattern for a top-level nav item whose dropdown has a real, single
-   landing page of its own: the trigger splits into a real link (navigates
-   straight to that page) plus a small caret button (opens the panel for its
-   other links). Currently: Almanac (-> #/almanac) and About (-> #/about).
-   Browse The Binder and Play & Learn stay single-button triggers - neither
-   dropdown has one unambiguous "home" link (Browse The Binder deliberately
-   leads with Let's Trade over The Binder; Play & Learn has no single primary
-   destination among its Tools/Guides/Play links), so they're intentionally
-   left alone rather than forcing a landing page that doesn't exist. Scoped to
-   .nav-dropdown-split so those two are untouched. Each pair below (#X-nav-btn
-   / #X-nav-caret) is kept separate per item, mirroring the .nav-binder-panel/
-   .set-panel specificity lesson elsewhere in this file - safer than a single
-   shared rule that could regress one item while changing another. */
-.nav-dropdown.nav-dropdown-split{display:inline-flex;align-items:center;gap:0;}
-.nav-dropdown-split #almanac-nav-btn{border-radius:999px 0 0 999px;padding-right:.35rem;}
-.nav-dropdown-split #almanac-nav-caret{border-radius:0 999px 999px 0;padding:.4rem .8rem .4rem .35rem;}
-.nav-dropdown-split #about-nav-btn{border-radius:999px 0 0 999px;padding-right:.35rem;}
-.nav-dropdown-split #about-nav-caret{border-radius:0 999px 999px 0;padding:.4rem .8rem .4rem .35rem;}
+/* All four dropdown-bearing top-level nav items (Browse The Binder, Play &
+   Learn, Almanac, About) share one trigger pattern: a single combined
+   button/caret that opens the panel, never navigates directly. Almanac and
+   About used to split into a real link + separate caret button; that variant
+   (.nav-dropdown-split) was removed so all four behave identically. Each
+   dropdown's first panel item is its landing-page link (Almanac Home / About
+   ItemSixHQ), one click away inside the menu. */
 /* These panels also carry .set-panel, which is defined further down the file with
    width:min(560px,88vw) and padding:1rem. Equal specificity + later source order
    means .set-panel wins, so every rule here that .set-panel also sets has to be
@@ -169,13 +158,6 @@ input,select,textarea{font:inherit;color:inherit;}
   .site-nav-links a,.site-nav-links button{border-radius:8px;padding:.75rem .9rem;text-align:left;}
   .nav-dropdown{width:100%;}
   .nav-dropdown button{width:100%;}
-  .nav-dropdown.nav-dropdown-split{display:flex;gap:0;}
-  .nav-dropdown.nav-dropdown-split a{flex:1 1 auto;width:auto;}
-  .nav-dropdown.nav-dropdown-split button{width:auto;flex:0 0 auto;}
-  .nav-dropdown-split #almanac-nav-btn{border-radius:8px 0 0 8px;padding-right:.5rem;}
-  .nav-dropdown-split #almanac-nav-caret{border-radius:0 8px 8px 0;padding:.75rem .9rem .75rem .5rem;}
-  .nav-dropdown-split #about-nav-btn{border-radius:8px 0 0 8px;padding-right:.5rem;}
-  .nav-dropdown-split #about-nav-caret{border-radius:0 8px 8px 0;padding:.75rem .9rem .75rem .5rem;}
   /* Two classes needed: plain .nav-binder-panel loses to .set-panel, which is
      defined later in the file and would keep these panels absolutely positioned
      (overlaying the rest of the menu) on phones. */
@@ -1167,9 +1149,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             </a>
           </div>
         </div>
-        <div class="nav-dropdown nav-dropdown-split">
-          <a href="#/almanac" id="almanac-nav-btn">Almanac</a>
-          <button id="almanac-nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Show Almanac menu">&#9662;</button>
+        <div class="nav-dropdown">
+          <button id="almanac-nav-btn" type="button" aria-haspopup="true" aria-expanded="false">Almanac &#9662;</button>
           <div id="almanac-nav-panel" class="set-panel nav-binder-panel" hidden>
             <a href="#/almanac" class="nav-binder-link">
               <span class="nav-binder-link-title">Almanac Home</span>
@@ -1187,9 +1168,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         </div>
         <a href="#/worlds2027">Worlds 2027</a>
         <a href="#/news">News</a>
-        <div class="nav-dropdown nav-dropdown-split">
-          <a href="#/about" id="about-nav-btn">About</a>
-          <button id="about-nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Show About menu">&#9662;</button>
+        <div class="nav-dropdown">
+          <button id="about-nav-btn" type="button" aria-haspopup="true" aria-expanded="false">About &#9662;</button>
           <div id="about-nav-panel" class="set-panel nav-binder-panel" hidden>
             <a href="#/about" class="nav-binder-link">
               <span class="nav-binder-link-title">About ItemSixHQ</span>
@@ -3601,8 +3581,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   var NAV_PANELS = [
     {btn:'binder-nav-btn',  panel:'binder-nav-panel'},
     {btn:'learn-nav-btn',   panel:'learn-nav-panel'},
-    {btn:'almanac-nav-caret', panel:'almanac-nav-panel'},
-    {btn:'about-nav-caret', panel:'about-nav-panel'}
+    {btn:'almanac-nav-btn', panel:'almanac-nav-panel'},
+    {btn:'about-nav-btn', panel:'about-nav-panel'}
   ];
 
   function closeAllNavPanels(){
@@ -5286,24 +5266,14 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       learnNavBtn.classList.toggle('active', !!learnViews[r.view]);
     }
     var aboutNavBtn = document.getElementById('about-nav-btn');
-    var aboutNavCaret = document.getElementById('about-nav-caret');
     if(aboutNavBtn){
       var aboutViews = {about:1, collab:1, givingback:1, terms:1};
-      var aboutIsActive = !!aboutViews[r.view];
-      aboutNavBtn.classList.toggle('active', aboutIsActive);
-      /* Caret mirrors the label's active state so the merged pill highlights
-         as one piece, same treatment as the Almanac split control below. */
-      if(aboutNavCaret) aboutNavCaret.classList.toggle('active', aboutIsActive);
+      aboutNavBtn.classList.toggle('active', !!aboutViews[r.view]);
     }
     var almanacNavBtn = document.getElementById('almanac-nav-btn');
-    var almanacNavCaret = document.getElementById('almanac-nav-caret');
     if(almanacNavBtn){
       var almanacViews = {almanac:1, 'almanac-generations':1, 'almanac-gen':1};
-      var almanacIsActive = !!almanacViews[r.view];
-      almanacNavBtn.classList.toggle('active', almanacIsActive);
-      /* Caret mirrors the label's active state so the merged pill highlights
-         as one piece, not just its left half. */
-      if(almanacNavCaret) almanacNavCaret.classList.toggle('active', almanacIsActive);
+      almanacNavBtn.classList.toggle('active', !!almanacViews[r.view]);
     }
     if(r.view === 'catalog'){
       renderGrid();
@@ -5499,8 +5469,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     if(e.target.closest('.back-to-expansions')){ REOPEN_SET_PANEL = true; return; }
     if(e.target.closest('#binder-nav-btn')){ toggleNavPanelById('binder-nav-panel'); return; }
     if(e.target.closest('#learn-nav-btn')){ toggleNavPanelById('learn-nav-panel'); return; }
-    if(e.target.closest('#about-nav-caret')){ toggleNavPanelById('about-nav-panel'); return; }
-    if(e.target.closest('#almanac-nav-caret')){ toggleNavPanelById('almanac-nav-panel'); return; }
+    if(e.target.closest('#about-nav-btn')){ toggleNavPanelById('about-nav-panel'); return; }
+    if(e.target.closest('#almanac-nav-btn')){ toggleNavPanelById('almanac-nav-panel'); return; }
     if(e.target.closest('#nav-toggle')){ toggleNavMenu(); return; }
 
     if(e.target.closest('#cart-btn')){ openCartDrawer(); return; }
