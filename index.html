@@ -325,6 +325,7 @@ input,select,textarea{font:inherit;color:inherit;}
 .rot-tag-ok{color:#1f7a49;border-color:#2f9e5f;}
 .rot-tag-watch{color:#8a6a05;border-color:#c79a1e;}
 .rot-tag-out{color:#a3332c;border-color:#c2453d;}
+.rot-tag-reprint{color:#1f5f8a;border-color:#3f80ab;}
 .rot-note{margin:1.3rem 0 0;font-size:.82rem;color:var(--ink-muted);line-height:1.6;}
 .rot-updated{display:inline-block;margin:.5rem 0 0;font-size:.74rem;color:var(--ink-muted);}
 .rot-marks{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 0;}
@@ -969,6 +970,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 :root:not([data-theme="light"]) .rot-tag-ok{color:#7ee2a8;}
 :root:not([data-theme="light"]) .rot-tag-watch{color:#f0cf6a;}
 :root:not([data-theme="light"]) .rot-tag-out{color:#ff9d95;}
+:root:not([data-theme="light"]) .rot-tag-reprint{color:#8ec9ff;}
 
 :root:not([data-theme="light"]) .worlds-band{border-radius:0;border-width:3px;}
   :root:not([data-theme="light"]) .admin-row{border-width:3px;border-radius:0;}
@@ -1019,6 +1021,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 :root[data-theme="dark"] .rot-tag-ok{color:#7ee2a8;}
 :root[data-theme="dark"] .rot-tag-watch{color:#f0cf6a;}
 :root[data-theme="dark"] .rot-tag-out{color:#ff9d95;}
+:root[data-theme="dark"] .rot-tag-reprint{color:#8ec9ff;}
 
 :root[data-theme="dark"] .worlds-band{border-radius:0;border-width:3px;}
 :root[data-theme="dark"] .admin-row{border-width:3px;border-radius:0;}
@@ -2097,6 +2100,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <li><strong>Legal</strong> &mdash; fine to play in Standard today, and not first in line to rotate.</li>
           <li><strong>Rotates next</strong> &mdash; legal right now, but it&rsquo;s the oldest mark still standing. When the next rotation happens, this is what goes. Don&rsquo;t build a new deck around these if you&rsquo;re planning to play competitively for the next year.</li>
           <li><strong>Not legal</strong> &mdash; already rotated out of Standard. Still perfectly good for Expanded, for casual games, and for your binder.</li>
+          <li><strong>Reprinted under a current mark</strong> &mdash; your printing carries an old, rotated mark, but the exact same card (same name, same text) has been reprinted under a mark that&rsquo;s legal today, so it&rsquo;s legal too. This only applies to specific verified pairs, not every card that shares a name with something newer.</li>
           <li><strong>Check the card</strong> &mdash; promos and a few odd printings don&rsquo;t share one mark across the whole set. Look at the actual card in your hand.</li>
         </ul>
         </div>
@@ -3877,6 +3881,34 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     perCard: { SVP:1, MEP:1 }
   };
 
+  /* Verified old-printing -> current-printing reprint pairs. A rotated-mark
+     printing here is Standard-legal because a later printing with identical
+     card text exists at a currently-legal regulation mark. Keyed by the
+     SET+NUM of the OLD printing. Keep this list small and only add an entry
+     once the text match has been independently verified — never infer
+     equivalence from card name or set membership alone. */
+  var ROT_REPRINTS = {
+    'SVI|196': { code: 'MEG', num: '131', name: 'Ultra Ball' },
+    'SVI|191': { code: 'MEG', num: '175', name: 'Rare Candy' }
+  };
+
+  function rotReprintKey(code, num){
+    return String(code || '').toUpperCase() + '|' + String(num || '').toUpperCase();
+  }
+
+  /* Returns the reprint record for entry if one is mapped AND that reprint's
+     own regulation mark is currently legal — otherwise null. Checking the
+     mark here (instead of hard-coding "legal") means an entry in
+     ROT_REPRINTS quietly stops applying the moment its own reprint rotates
+     out, so this table never needs manual pruning at rotation time. */
+  function rotReprintFor(entry){
+    var r = ROT_REPRINTS[rotReprintKey(entry.code, entry.num)];
+    if(!r) return null;
+    var mark = ROTATION.sets[r.code];
+    if(!mark || ROTATION.legalMarks.indexOf(mark) === -1) return null;
+    return r;
+  }
+
   var ROT_EXAMPLE = [
     'Pokémon: 12',
     '3 Charizard ex OBF 125',
@@ -3926,7 +3958,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     if(ROTATION.perCard[entry.code]) return 'check';
     var mark = ROTATION.sets[entry.code];
     if(!mark) return 'unknown';
-    if(ROTATION.legalMarks.indexOf(mark) === -1) return 'out';
+    if(ROTATION.legalMarks.indexOf(mark) === -1){
+      return rotReprintFor(entry) ? 'reprint' : 'out';
+    }
     return mark === ROTATION.rotatesNext ? 'watch' : 'ok';
   }
 
@@ -3979,7 +4013,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       return;
     }
 
-    var buckets = {ok:[], watch:[], out:[], check:[], unknown:[], unreadable:[]};
+    var buckets = {ok:[], watch:[], out:[], reprint:[], check:[], unknown:[], unreadable:[]};
     var total = 0, counts = {};
     for(i = 0; i < entries.length; i++){
       e = entries[i];
@@ -4032,6 +4066,11 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     }));
     html += rotGroup('Legal now, rotates next', buckets.watch.map(function(x){
       return rotRow(x, 'mark ' + ROTATION.rotatesNext, 'rot-tag-watch');
+    }));
+    html += rotGroup('Legal — reprinted under a current mark', buckets.reprint.map(function(x){
+      var r = rotReprintFor(x);
+      var tag = r ? 'reprinted as ' + r.code + ' ' + r.num : 'legal';
+      return rotRow(x, tag, 'rot-tag-reprint');
     }));
     html += rotGroup('Check the card itself', buckets.check.map(function(x){
       return rotRow(x, 'promo', 'rot-tag-watch');
