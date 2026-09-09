@@ -2,19 +2,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ItemSixHQ</title>
-<meta id="meta-description" name="description" content="An independent Pokemon project from Singapore - guides, a growing Almanac, and a binder of cards to trade. Run by one person, fact-checked throughout.">
+<meta id="meta-description" name="description" content="An independent Pokemon project from Singapore - guides, a growing Almanac, Pokemon TCG, news, Worlds 2027 and more. Written and run by one person.">
 <link rel="canonical" href="https://itemsixhq.github.io/tcg-binder/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ItemSixHQ">
-<meta property="og:title" content="ItemSixHQ - Pokemon guides, Almanac & TCG binder from Singapore">
-<meta property="og:description" content="An independent Pokemon project from Singapore - guides, a growing Almanac, and a binder of cards to trade. Run by one person, fact-checked throughout.">
+<meta property="og:title" content="ItemSixHQ - Pokemon guides, Almanac & more from Singapore">
+<meta property="og:description" content="An independent Pokemon project from Singapore - guides, a growing Almanac, Pokemon TCG, news, Worlds 2027 and more. Written and run by one person.">
 <meta property="og:image" content="https://itemsixhq.github.io/tcg-binder/og-banner.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://itemsixhq.github.io/tcg-binder/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ItemSixHQ - Pokemon guides, Almanac & TCG binder from Singapore">
-<meta name="twitter:description" content="An independent Pokemon project from Singapore - guides, a growing Almanac, and a binder of cards to trade. Run by one person, fact-checked throughout.">
+<meta name="twitter:title" content="ItemSixHQ - Pokemon guides, Almanac & more from Singapore">
+<meta name="twitter:description" content="An independent Pokemon project from Singapore - guides, a growing Almanac, Pokemon TCG, news, Worlds 2027 and more. Written and run by one person.">
 <meta name="twitter:image" content="https://itemsixhq.github.io/tcg-binder/og-banner.png">
 <link id="app-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Press+Start+2P&display=swap">
 <style id="app-style">
@@ -565,6 +565,33 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
 .about-identity-brand{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;}
 .about-identity-brand h2{margin-bottom:0;}
 .about-identity-logo{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 0 0 1px var(--border);}
+
+/* About page Jack Pass (Sept 2026): compact "What I make" card grid -
+   deliberately smaller/plainer than the homepage destination cards
+   (surface-2, no photos, no kicker/CTA) so the two never compete. */
+.about-make-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.85rem;margin:1rem 0 0;}
+.about-make-card{display:flex;flex-direction:column;gap:.4rem;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem;}
+.about-make-title{font-weight:700;color:var(--accent);font-size:.92rem;text-decoration:none;}
+.about-make-title:hover{text-decoration:underline;}
+.about-make-desc{margin:0;font-size:.83rem;color:var(--ink-muted);line-height:1.55;}
+.about-make-desc a{color:var(--accent);font-weight:600;}
+.about-make-desc a:hover{text-decoration:underline;}
+
+/* Groups thematically-related story sections (naming lore; personal life;
+   the site's individual parts) into one visually-connected block, so the
+   page reads as a few chapters rather than one long uninterrupted stack
+   of identical headings. */
+.about-cluster{background:var(--surface-2);border-radius:12px;padding:1.6rem 1.5rem 1.75rem;margin-top:1.75rem;}
+.about-cluster .terms-block{margin-top:1.5rem;}
+.about-cluster .terms-block:first-child{margin-top:0;}
+
+/* A short standalone emphasis line - used sparingly, only where the copy
+   itself is already written as a one-line beat ("My home.", "The people."). */
+.about-pullout{font-size:1.2rem;font-weight:700;color:var(--ink);margin:1rem 0;}
+
+@media (max-width:640px){
+  .about-cluster{padding:1.3rem 1.15rem 1.5rem;}
+}
 .condition-legend{display:grid;gap:.55rem;margin:1rem 0 0;}
 .condition-legend div{display:flex;gap:.6rem;align-items:baseline;}
 .condition-legend dt{font-family:'IBM Plex Mono';font-weight:600;color:var(--ink);width:2.6rem;flex-shrink:0;}
@@ -1128,6 +1155,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   :root:not([data-theme="light"]) .deck-card-placeholder{border-radius:0;border-width:2px;}
   :root:not([data-theme="light"]) .regmark-card{border-radius:0;border-width:2px;}
   :root:not([data-theme="light"]) .regmark-photos img{border-radius:0;border-width:2px;}
+  :root:not([data-theme="light"]) .about-make-card{border-radius:0;border-width:2px;}
 }
   :root[data-theme="dark"] .site-nav{border-bottom-width:3px;}
 :root[data-theme="dark"] .site-header{border-bottom-width:3px;}
@@ -1178,6 +1206,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 :root[data-theme="dark"] .deck-card-placeholder{border-radius:0;border-width:2px;}
 :root[data-theme="dark"] .regmark-card{border-radius:0;border-width:2px;}
 :root[data-theme="dark"] .regmark-photos img{border-radius:0;border-width:2px;}
+:root[data-theme="dark"] .about-make-card{border-radius:0;border-width:2px;}
 
 
 /* ---- translucent "see-through" shell: glass panels + glossy plastic buttons ---- */
@@ -1604,7 +1633,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
               <img class="about-identity-logo" alt="ItemSixHQ logo">
               <h2>About ItemSixHQ</h2>
             </div>
-            <p><strong>ItemSixHQ</strong> is an independent Pok&eacute;mon project I run out of Singapore &mdash; the Almanac, the guides, the tools, the news write-ups, and my own binder all live here. It&rsquo;s one person, working at night. There is no company behind it and nobody pays me to do it.</p>
+            <p><strong>ItemSixHQ</strong> is what happens when a Pok&eacute;mon-loving dad from Singapore decides he should probably put all the stuff in his head somewhere useful before he forgets it.</p>
+            <p>The Almanac, guides, tools, news, and my own TCG collection all live here. It&rsquo;s just me, usually working on it after putting my kid to bed. (If he sleeps.)</p>
+            <p>I made it because it helps me. Hopefully it helps you too.</p>
             <div class="about-links">
               <a class="pill ghost" href="https://youtube.com/@ItemSixHQ" target="_blank" rel="noopener">YouTube</a>
               <a class="pill ghost" href="https://tiktok.com/@ItemSixHQ" target="_blank" rel="noopener">TikTok</a>
@@ -1619,91 +1650,128 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <div class="terms-block">
           <h3>Why I built this</h3>
           <p>I genuinely wanted to start a YouTube channel and be one of the few Singapore-based creators making Pok&eacute;mon content from the heart.</p>
-          <p>I&rsquo;m Jackson &mdash; the person actually behind it. I live in Singapore, I have a day job and a toddler, and I write about Pok&eacute;mon in the hours that are left over.</p>
-          <p>I write mainly for players in Singapore and the wider region, because almost everything written about this game in English is written for somewhere else.</p>
+          <p>I&rsquo;m Jackson &mdash; the person actually behind all of this. I live in Singapore, I have a day job, a toddler, and apparently decided that the sensible use of the remaining hours in my day was to build a Pok&eacute;mon website.</p>
+          <p>I write mainly for people in Singapore and this part of the world. Not because nobody overseas makes good Pok&eacute;mon content &mdash; there&rsquo;s loads of it &mdash; but because nearly all of it was written for somewhere else.</p>
+          <p>So I made the thing I kept wishing existed here.</p>
           </div>
 
           <div class="terms-block">
           <h3>Why I write for this part of the world</h3>
-          <p>Nearly all English-language Pok&eacute;mon TCG coverage is made in North America. That&rsquo;s not a complaint &mdash; it&rsquo;s just where the audience has been. But it means a player in Singapore, Malaysia, Indonesia or the Philippines reads guides where the prices are in the wrong currency, the shops are on the wrong continent, the release dates don&rsquo;t match, and the advice about &ldquo;your local league&rdquo; assumes a scene that works nothing like ours.</p>
-          <p>In August 2027 the World Championships come to Singapore. For a lot of players in this region it will be the first time the biggest event in the game has been anywhere they could realistically get to.</p>
-          <p>I&rsquo;d like the English-language guide to that to come from someone who actually lives here.</p>
+          <p>A huge amount of English-language Pok&eacute;mon coverage comes from North America. That&rsquo;s not a complaint. It&rsquo;s just where a lot of the audience and creators are.</p>
+          <p>But if you&rsquo;re in Singapore, Malaysia, Indonesia or the Philippines, you get used to reading guides where the prices are in the wrong currency, the shops are on the wrong continent, release timing doesn&rsquo;t always match, and &ldquo;your local league&rdquo; can mean something quite different from what it means here.</p>
+          <p>I wanted ItemSixHQ to be useful without making people in this part of the world mentally translate everything first.</p>
+          <p>And in August 2027, the Pok&eacute;mon World Championships are coming to Singapore.</p>
+          <p class="about-pullout">My home.</p>
+          <p>I&rsquo;d really like one of the useful English-language guides to that event to come from someone who actually lives here.</p>
           </div>
 
           <div class="terms-block">
           <h3>What I make</h3>
-
-          <p class="qa-cat">Learn</p>
-          <ul class="terms-list">
-            <li><a href="#/almanac">The Almanac</a> &mdash; a growing, generation-by-generation Pok&eacute;mon knowledge hub, written to actually stick rather than read like a wiki entry.</li>
-            <li><a href="#/guide">A beginners guide</a> and an <a href="#/advanced">advanced guide</a> &mdash; free, fact-checked against official rulings, written for someone who has never played a card game.</li>
-          </ul>
-
-          <p class="qa-cat">Play</p>
-          <ul class="terms-list">
-            <li><a href="#/rotation">A rotation checker</a> &mdash; paste a decklist, find out what&rsquo;s about to stop being legal. Free, no sign-up, nothing stored.</li>
-            <li><a href="#/ask">Ask Jack</a> &mdash; the questions I actually get asked, answered honestly, including the ones where the answer is &ldquo;don&rsquo;t buy it&rdquo;.</li>
-          </ul>
-
-          <p class="qa-cat">Collect</p>
-          <ul class="terms-list">
-            <li><a href="#/catalog">The binder</a> &mdash; cards from my own collection, priced off what they&rsquo;ve actually sold for. Trade or buy, whichever suits you.</li>
-          </ul>
-
-          <p class="qa-cat">Follow</p>
-          <ul class="terms-list">
-            <li><a href="#/news">News write-ups</a> in my own words rather than reposted press releases.</li>
-            <li><a href="#/worlds2027">A running guide to Worlds 2027</a> for anyone travelling to Singapore for it.</li>
-          </ul>
+          <div class="about-make-grid">
+            <div class="about-make-card">
+              <a class="about-make-title" href="#/almanac">The Almanac</a>
+              <p class="about-make-desc">A growing, generation-by-generation Pok&eacute;mon knowledge hub. Partly because I want it to help other people, partly because I absolutely do not remember which town every Gym Leader lives in.</p>
+            </div>
+            <div class="about-make-card">
+              <a class="about-make-title" href="#/guide">Learn the TCG</a>
+              <p class="about-make-desc">Beginner and <a href="#/advanced">advanced</a> guides, fact-checked against official rulings. I only started taking competitive play properly seriously in 2026, so some of this is me learning it properly right alongside you.</p>
+            </div>
+            <div class="about-make-card">
+              <a class="about-make-title" href="#/rotation">Tools</a>
+              <p class="about-make-desc">Things like the Rotation Checker: paste in a decklist and find out what&rsquo;s legal. No account, no nonsense.</p>
+            </div>
+            <div class="about-make-card">
+              <a class="about-make-title" href="#/ask">Ask Jack</a>
+              <p class="about-make-desc">Questions people actually ask me, including the ones where the answer is basically, &ldquo;please do not spend your money on that.&rdquo;</p>
+            </div>
+            <div class="about-make-card">
+              <a class="about-make-title" href="#/catalog">The Binder</a>
+              <p class="about-make-desc">My own Pok&eacute;mon TCG collection. Some of it stays with me, some of it I&rsquo;m happy to trade or sell. It exists because showing someone several thousand physical cards individually is not a reasonable human activity.</p>
+            </div>
+            <div class="about-make-card">
+              <a class="about-make-title" href="#/news">News &amp; Worlds 2027</a>
+              <p class="about-make-desc">My own take on Pok&eacute;mon news, plus a growing <a href="#/worlds2027">Singapore local&rsquo;s guide to Worlds</a> as we get closer.</p>
+            </div>
+          </div>
           </div>
 
+          <div class="about-cluster">
           <div class="terms-block">
           <h3>Why &ldquo;ItemSix&rdquo;?</h3>
-          <p>The name comes from one of the fondest memories I have of the original Game Boy games &mdash; Red, Blue and Yellow. Yellow was my favourite of the three, but Red and Blue gave me MissingNo., which is the whole reason my logo looks the way it does.</p>
-          <p>I wanted a name that didn&rsquo;t start or end with &ldquo;Pok&eacute;&rdquo; or &ldquo;TCG&rdquo;. No shade to anyone who uses those &mdash; I just wanted something different. Enter ItemSix.</p>
-          <p>As a kid, did you ever do the MissingNo. glitch on Cinnabar Island to duplicate the sixth item in your inventory? I did, and it&rsquo;s one of my fondest memories of those games. A close second is the old &ldquo;Mew under the truck&rdquo; rumour &mdash; I nearly named the site after that instead, but that&rsquo;s a story for another day.</p>
+          <p>The name comes from one of my favourite memories of the original Game Boy games &mdash; Red, Blue and Yellow.</p>
+          <p>Yellow was my favourite of the three, but Red and Blue gave me MissingNo.</p>
+          <p>If you were there: yes, that MissingNo.</p>
+          <p>The Cinnabar Island glitch could duplicate the sixth item in your inventory. I did it as a kid, because obviously I did, and years later that memory ended up giving this entire project its name.</p>
+          <p>I also wanted something that didn&rsquo;t begin or end in &ldquo;Pok&eacute;&rdquo; or &ldquo;TCG&rdquo;. No shade. There are just&hellip; quite a lot of us.</p>
+          <p>A close second was the old &ldquo;Mew under the truck&rdquo; rumour. ItemSix won. Probably for the best.</p>
           </div>
 
           <div class="terms-block">
           <h3>Why &ldquo;HQ&rdquo;?</h3>
-          <p>ItemSix on its own felt a little empty. HQ &mdash; headquarters &mdash; wasn&rsquo;t as cheesy as I expected it to be, and it had a ring to it. So: ItemSixHQ.</p>
+          <p>ItemSix on its own felt a little empty.</p>
+          <p>HQ &mdash; headquarters &mdash; wasn&rsquo;t as cheesy as I expected it to be, and it had a ring to it.</p>
+          <p>So: ItemSixHQ.</p>
+          <p>That&rsquo;s it. There isn&rsquo;t a secret second MissingNo. glitch behind this bit.</p>
           </div>
 
           <div class="terms-block">
           <h3>The logo</h3>
-          <p>A good friend, Rain &mdash; RaiNx333 &mdash; designed it. It&rsquo;s reminiscent of MissingNo., pixelated, leaning on the old Game Boy Color palette &mdash; the purple version &mdash; with a bit of a pastel edge to it. I asked him to keep the number 6 apparent despite the pixels, and I think he did a fantastic job.</p>
+          <p>A good friend of mine, Rain &mdash; RaiNx333 &mdash; designed it.</p>
+          <p>It&rsquo;s a nod to MissingNo.: pixelated, built around the purple-ish Game Boy Color palette, with a slightly softer pastel edge. My one important request was that you could still make out the number 6 through all the glitchiness.</p>
+          <p>Somehow, he managed it.</p>
+          </div>
           </div>
 
+          <div class="about-cluster">
           <div class="terms-block">
           <h3>Coming back to Pok&eacute;mon</h3>
           <p>I don&rsquo;t think of myself as an expert on Pok&eacute;mon lore, the games, or the TCG. I&rsquo;m a dad in my late 30s who&rsquo;s loved this hobby since I was a kid. Like a lot of people my age, I took a break from it growing up &mdash; Pok&eacute;mon got &ldquo;uncool&rdquo; somewhere in my teens and early adulthood. Coming back to it now is partly me correcting that, and making up for lost time.</p>
-          <p>It also really helps that my wife is into Pok&eacute;mon too. She&rsquo;s not as Mossdeep into it as I am, but she&rsquo;s pretty in-tune and knowledgeable, and it gives us a thing to bond over. We often go to Pok&eacute;mon-centric events together and it makes for nice family outings.</p>
+          <p>It also really helps that my wife is into Pok&eacute;mon too. She&rsquo;s not quite as <s>moss</s>deep into it as I am, but she knows her stuff, and it gives us something we genuinely enjoy together &mdash; including the odd Pok&eacute;mon-centric event we still make it out to as a family.</p>
           </div>
 
           <div class="terms-block">
           <h3>Outside Pok&eacute;mon</h3>
-          <p>I&rsquo;m also a singer-songwriter, and I manage operations at a music school by day. None of that is separate from this &mdash; it&rsquo;s why the writing here reads the way it does. I don&rsquo;t have time to pad anything out, and I have no interest in selling anyone something they don&rsquo;t need. This isn&rsquo;t a full-time operation, and I&rsquo;m not going to pretend otherwise.</p>
+          <p>I&rsquo;m also a singer-songwriter, and by day I manage operations at a music school.</p>
+          <p>Which means ItemSixHQ gets built around work, music, family, and whatever else life has decided to throw at me that week.</p>
+          <p>I&rsquo;m not a full-time Pok&eacute;mon creator, and I don&rsquo;t particularly want to pretend I am. I&rsquo;d rather make something useful when I have something worth saying than manufacture content because a calendar says I&rsquo;m supposed to.</p>
+          </div>
           </div>
 
+          <div class="about-cluster">
           <div class="terms-block">
           <h3>Why the Almanac exists</h3>
-          <p>Mainly because I wanted an easy way for myself, and for my friends, to learn or relearn each generation of Pok&eacute;mon. There are nine generations right now, with a tenth on the way in 2027 &mdash; so it&rsquo;s useful for people my age coming back to the hobby, for people new to it, and eventually for future fans. My toddler, Ollie, is part of why the idea means something to me. Really, I just wanted a good place where people &mdash; me included &mdash; could come back and actually learn this stuff.</p>
+          <p>The Almanac is probably the clearest example of why ItemSixHQ exists.</p>
+          <p>I love Pok&eacute;mon. I also absolutely do not have a magic memory for which town every Gym Leader lives in, what generation introduced what, or where half the Legendaries actually come from.</p>
+          <p>So I wanted one place where I could learn it, relearn it, and send my friends when one of us inevitably forgets something.</p>
+          <p>There are nine generations right now, with a tenth on the way in 2027. That makes it useful for people my age coming back to Pok&eacute;mon, people discovering it now, and hopefully people who haven&rsquo;t discovered it yet.</p>
+          <p>My toddler, Ollie, is part of why that last bit means something to me.</p>
+          <p>Really, I made the Almanac because it helps me.</p>
+          <p>I hope one day it helps him too.</p>
           </div>
 
           <div class="terms-block">
           <h3>Why the Pok&eacute;mon TCG part exists</h3>
-          <p>Besides the games and the anime, TCG is where I&rsquo;ve picked up the most knowledge. I&rsquo;ve bought and traded cards over the years like most people do, but the most fun part has actually been playing &mdash; and relearning how the game works. I played a bit as a kid but never really understood it, and a lot&rsquo;s changed between 1996 and 2026. Once I&rsquo;d relearned it myself, I wanted to help other people do the same &mdash; in my experience it&rsquo;s one of the easier trading card games to pick up, which is why there&rsquo;s a section here on how to play, what&rsquo;s doing well competitively, and what&rsquo;s actually legal to use.</p>
+          <p>TCG is probably the strongest of my Pok&eacute;mon knowledge areas, alongside the games and the anime. I&rsquo;ve bought and traded cards over the years like most people do, but honestly, playing has always been the fun part.</p>
+          <p>I played a little as a kid without really understanding what I was doing, and a lot&rsquo;s changed between 1996 and 2026 &mdash; which I found out the hard way once I started relearning it properly. I only started taking competitive play seriously in 2026, and I&rsquo;m still catching up on things like sequencing and, occasionally, remembering what my own cards do.</p>
+          <p>Once I&rsquo;d relearned it myself, I wanted to help other people do the same. It&rsquo;s a genuinely approachable card game once someone walks you through it, which is why there&rsquo;s a section here on how to play, what&rsquo;s doing well competitively, and what&rsquo;s actually legal to use.</p>
           </div>
 
           <div class="terms-block">
           <h3>Why the digital binder exists</h3>
-          <p>I also wanted a way to actually show people my collection. I&rsquo;ve got thousands of cards I&rsquo;m happy to trade away, and there&rsquo;s no realistic way to do that without a physical shop &mdash; which is about the last thing I want ItemSixHQ to become. So instead there&rsquo;s <a href="#/catalog">a digital binder</a>: you can filter what&rsquo;s in it, add cards to a trade pile, and message me on Telegram or Discord to sort out the rest.</p>
+          <p>I also wanted a way to actually show people my collection. I&rsquo;ve got thousands of cards, plenty of which I&rsquo;m happy to trade away, and some of which I&rsquo;ll sell &mdash; showing someone several thousand physical cards one at a time isn&rsquo;t a reasonable human activity, and running an actual shop is about the last thing I want ItemSixHQ to become. So instead there&rsquo;s <a href="#/catalog">a digital binder</a>: you can filter what&rsquo;s in it, build a trade or want list, and message me on Telegram or Discord to sort out the rest.</p>
           <p>Trading and selling are part of the hobby to me &mdash; they&rsquo;re not the reason any of this exists.</p>
+          </div>
           </div>
 
           <div class="terms-block">
           <h3>Community first</h3>
-          <p>What I actually want is to build a community first, and a brand second, and see where that takes me. If that sounds like your kind of thing, reach out &mdash; <a href="https://t.me/ItemSixHQ" target="_blank" rel="noopener">Telegram</a>&rsquo;s fastest, or <a href="mailto:itemsixhq@gmail.com">itemsixhq@gmail.com</a>.</p>
+          <p>This is the part I care about most.</p>
+          <p>I already know how much fun Pok&eacute;mon becomes when there are actual people attached to it. I&rsquo;ve built a lovely little community through streaming, made friends through this hobby, and I&rsquo;d like ItemSixHQ to become another place where that can happen.</p>
+          <p>If this site ever becomes known for one thing, I hope it&rsquo;s the people around it.</p>
+          <p>Not card prices. Not pulls. Not whatever everybody&rsquo;s trying to flip this week.</p>
+          <p class="about-pullout">The people.</p>
+          <p>Everything else can grow from there.</p>
+          <p>If that sounds like your kind of thing, reach out &mdash; <a href="https://t.me/ItemSixHQ" target="_blank" rel="noopener">Telegram</a>&rsquo;s fastest, or <a href="mailto:itemsixhq@gmail.com">email</a>.</p>
           </div>
 
           </div>
@@ -5459,7 +5527,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      page its own browser-tab title, and update the description tag so a
      search engine that renders the JS (Google does) can tell pages apart. */
   var SITE_TITLE = 'ItemSixHQ';
-  var DEFAULT_DESCRIPTION = "An independent Pokemon project from Singapore - guides, a growing Almanac, and a binder of cards to trade.";
+  var DEFAULT_DESCRIPTION = "An independent Pokemon project from Singapore - guides, a growing Almanac, Pokemon TCG, news, Worlds 2027 and more. Written and run by one person.";
   var PAGE_META = {
     home:         { title: null, description: DEFAULT_DESCRIPTION },
     catalog:      { title: 'The Binder', description: "Cards Jack owns and doesn't mind parting with - trade or buy, priced from real sales." },
