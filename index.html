@@ -4511,11 +4511,44 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       rememberThis:'Quick test: if you’re not sure whether a move is Physical or Special, you’re already thinking in post-Gen IV terms — before this generation, the type told you the answer automatically.',
       mechanicsIntroduced:['physical-special-split'],
       jackNote:'Gen IV’s one I genuinely enjoy, even though it’s the generation I know least well compared to Gen I and II. Writing the Almanac is basically how I’ve been catching up.' },
+    /* Production Pass 01 — Unova, verified 10 Sept 2026. BW chronology;
+       sequel differences live in existing region/leader note fields.
+       Sources for Strategy QA (no external assets added):
+       https://bulbapedia.bulbagarden.net/wiki/Unova
+       https://bulbapedia.bulbagarden.net/wiki/Unova_League
+       https://bulbapedia.bulbagarden.net/wiki/Striaton_Gym
+       https://bulbapedia.bulbagarden.net/wiki/Opelucid_Gym
+       https://bulbapedia.bulbagarden.net/wiki/Alder
+       https://bulbapedia.bulbagarden.net/wiki/Burgh
+       https://bulbapedia.bulbagarden.net/wiki/Brycen
+       https://pokemondb.net/black-white/gymleaders-elitefour
+       https://pokemondb.net/black-white-2/gymleaders-elitefour
+       https://bulbapedia.bulbagarden.net/wiki/Pokémon_Black_2_and_White_2
+       https://bulbapedia.bulbagarden.net/wiki/Tao_trio
+       https://bulbapedia.bulbagarden.net/wiki/Swords_of_Justice
+       https://bulbapedia.bulbagarden.net/wiki/Forces_of_Nature
+       https://bulbapedia.bulbagarden.net/wiki/Mythical_Pokémon
+       https://pokemondb.net/pokedex/victini
+       https://pokemondb.net/pokedex/keldeo
+       https://pokemondb.net/pokedex/meloetta
+       https://pokemondb.net/pokedex/genesect
+       https://pokemondb.net/pokedex/kyurem
+       https://pokemondb.net/pokedex/cobalion
+       https://pokemondb.net/pokedex/terrakion
+       https://pokemondb.net/pokedex/virizion
+       https://bulbapedia.bulbagarden.net/wiki/Season_(game_mechanic)
+       https://bulbapedia.bulbagarden.net/wiki/Triple_Battle
+       https://bulbapedia.bulbagarden.net/wiki/Rotation_Battle
+       https://bulbapedia.bulbagarden.net/wiki/TM
+       */
     { id:5, roman:'V',    name:'Unova',  primaryRegion:'unova',  debutYear:2010,
-      status:'reference', dexRange:[494,649], newSpeciesCount:156,
+      status:'complete', dexRange:[494,649], newSpeciesCount:156,
       games:['Black','White','Black 2','White 2'],
       starters:['snivy','tepig','oshawott'],
-      summary:'Black, White, and their direct sequels Black 2 and White 2. The most new Pokémon of any generation, in a region modelled on New York rather than Japan.' },
+      summary:'Black, White, and their direct sequels Black 2 and White 2. The most new Pokémon of any generation, in a region modelled on New York rather than Japan.',
+      significance:'Black and White build their main adventure around newly introduced Pokémon, making Unova a fresh starting point even for returning players. Black 2 and White 2 then revisit it two years later with a new protagonist, new routes through the region and a changed League.',
+      mechanicsIntroduced:['unova-seasons','unova-battle-formats','unova-reusable-tms'],
+      rememberThis:'Black and White are the starting journey. Black 2 and White 2 are sequels, not remakes: the region is familiar, but its Gym journey and Champion have changed.' },
     { id:6, roman:'VI',   name:'Kalos',  primaryRegion:'kalos',  debutYear:2013,
       status:'reference', dexRange:[650,721], newSpeciesCount:72,
       games:['X','Y'],
@@ -4617,7 +4650,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       eliteFour:['lorelei','bruno','agatha','lance'],
       champion:'blue',
       legendaryClusters:['kanto-legendary-birds']
-    }
+    },
+    {"slug":"unova","name":"Unova","primaryGeneration":5,"image":{"src":null,"alt":"Unova region map"},"games":[{"name":"Black","generation":5},{"name":"White","generation":5},{"name":"Black 2","generation":5},{"name":"White 2","generation":5}],"starters":["snivy","tepig","oshawott"],"dexInfo":"Generation V introduced 156 species, National Pokédex #494–649. Black and White centre their main journey on this new roster; Black 2 and White 2 expand the regional selection to include familiar Pokémon from earlier generations.","geographyHook":"Unova puts a busy waterfront city, huge bridges and ancient ruins on the same journey.","geography":"Inspired by the New York area, Unova pairs Castelia’s skyline with the desert and buried ruins north of it. Nimbasa is a hub for entertainment and the Battle Subway, while places such as Dragonspiral Tower connect the modern region to its older legends.","alsoAppearsInNote":"Black 2 and White 2 take place two years after Black and White. You start in Aspertia City rather than Nuvema Town, explore newly accessible areas and follow a changed Gym lineup. Both pairs belong to Generation V.","startersHook":"Snivy, Tepig and Oshawott return for both pairs of games. In Black and White, your choice also decides which Striaton Gym Leader you face.","gymLeadersHook":"Black and White are the main journey below: eight Gym stops, not eleven badges. Striaton has three possible opponents and Opelucid has two version alternatives; you battle one at each stop. In Black 2 and White 2 the order is Cheren (Normal, Aspertia), Roxie (Poison, Virbank), Burgh, Elesa, Clay, Skyla, Drayden, then Marlon (Water, Humilau). Striaton, Lenora and Brycen are no longer part of that badge journey.","gymLeaders":["cilan","chili","cress","lenora","burgh","elesa","clay","skyla","brycen","drayden","iris"],"gymStops":[{"title":"Gym 1 — Striaton","note":"One opponent, one Trio Badge. Your starter determines the Leader.","alternatives":[{"leader":"cilan","condition":"Oshawott → Cilan"},{"leader":"chili","condition":"Snivy → Chili"},{"leader":"cress","condition":"Tepig → Cress"}]},"lenora","burgh","elesa","clay","skyla","brycen",{"title":"Gym 8 — Opelucid","note":"One opponent, one Legend Badge. Your game determines the Leader.","alternatives":[{"leader":"drayden","condition":"Black → Drayden"},{"leader":"iris","condition":"White → Iris"}]}],"eliteFour":["shauntal","grimsley","caitlin","marshal"],"champion":"alder","legendaryHook":"Three connected Legendary groups, plus four Mythical Pokémon. Keldeo belongs to the Swords of Justice story but remains Mythical; it has its own feature below the Legendary groups.","legendaryClusters":["unova-dragons","unova-swords-of-justice","unova-forces-of-nature"]}
   ];
 
   var GYM_LEADERS = [
@@ -4677,13 +4711,32 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     { slug:'agatha', name:'Agatha', role:'eliteFour', region:'kanto', type:'ghost', order:3, signaturePokemon:['Gengar'], image:{ src:null, alt:'Agatha artwork' } },
     { slug:'lance', name:'Lance', role:'eliteFour', region:'kanto', type:'dragon', order:4, signaturePokemon:['Dragonite'], image:{ src:null, alt:'Lance artwork' } },
     { slug:'blue', name:'Blue', role:'champion', region:'kanto', type:'varied', signaturePokemon:['Pidgeot','Alakazam','Rhydon'], image:{ src:null, alt:'Blue artwork' },
-      note:'Named “Blue” by default, but — like the player character — that name can be changed at the start of the game. He’s also the region’s first rival, not just its final battle; Pidgeot, Alakazam and Rhydon are the only three Pokémon he always has, and the other three change depending on which starter you picked.' }
+      note:'Named “Blue” by default, but — like the player character — that name can be changed at the start of the game. He’s also the region’s first rival, not just its final battle; Pidgeot, Alakazam and Rhydon are the only three Pokémon he always has, and the other three change depending on which starter you picked.' },
+    {"slug":"cilan","name":"Cilan","role":"gymLeader","region":"unova","type":"grass","city":"Striaton City","badge":"Trio Badge","signaturePokemon":["Pansage"],"note":"Gym 1 — the opponent if you chose Oshawott. Cilan, Chili and Cress are alternatives for one badge, not three consecutive battles.","image":{"src":null,"alt":"Cilan artwork"},"badgeImage":{"src":null,"alt":"Trio Badge"},"versions":[{"game":"Black & White","order":1}]},
+    {"slug":"chili","name":"Chili","role":"gymLeader","region":"unova","type":"fire","city":"Striaton City","badge":"Trio Badge","signaturePokemon":["Pansear"],"note":"Gym 1 — the opponent if you chose Snivy. His Fire specialist gives your Grass starter a type disadvantage.","image":{"src":null,"alt":"Chili artwork"},"badgeImage":{"src":null,"alt":"Trio Badge"},"versions":[{"game":"Black & White","order":1}]},
+    {"slug":"cress","name":"Cress","role":"gymLeader","region":"unova","type":"water","city":"Striaton City","badge":"Trio Badge","signaturePokemon":["Panpour"],"note":"Gym 1 — the opponent if you chose Tepig. Each starter faces the brother whose specialist has the type advantage.","image":{"src":null,"alt":"Cress artwork"},"badgeImage":{"src":null,"alt":"Trio Badge"},"versions":[{"game":"Black & White","order":1}]},
+    {"slug":"lenora","name":"Lenora","role":"gymLeader","region":"unova","type":"normal","city":"Nacrene City","badge":"Basic Badge","signaturePokemon":["Watchog"],"note":"Gym 2 in Black and White. The sequels move the Normal-type badge challenge to Cheren in Aspertia City.","image":{"src":null,"alt":"Lenora artwork"},"badgeImage":{"src":null,"alt":"Basic Badge"},"versions":[{"game":"Black & White","order":2}]},
+    {"slug":"burgh","name":"Burgh","role":"gymLeader","region":"unova","type":"bug","city":"Castelia City","badge":"Insect Badge","signaturePokemon":["Leavanny"],"note":"Gym 3 in both pairs of games. Castelia’s Gym Leader is also an artist, with Bug Pokémon as his speciality.","image":{"src":null,"alt":"Burgh artwork"},"badgeImage":{"src":null,"alt":"Insect Badge"},"versions":[{"game":"Black & White","order":3}]},
+    {"slug":"elesa","name":"Elesa","role":"gymLeader","region":"unova","type":"electric","city":"Nimbasa City","badge":"Bolt Badge","signaturePokemon":["Zebstrika"],"note":"Gym 4 in both pairs of games. In Black and White, two Emolga accompany her Zebstrika.","image":{"src":null,"alt":"Elesa artwork"},"badgeImage":{"src":null,"alt":"Bolt Badge"},"versions":[{"game":"Black & White","order":4}]},
+    {"slug":"clay","name":"Clay","role":"gymLeader","region":"unova","type":"ground","city":"Driftveil City","badge":"Quake Badge","signaturePokemon":["Excadrill"],"note":"Gym 5 in both pairs of games. His Black and White team pairs Excadrill with Krokorok and Palpitoad.","image":{"src":null,"alt":"Clay artwork"},"badgeImage":{"src":null,"alt":"Quake Badge"},"versions":[{"game":"Black & White","order":5}]},
+    {"slug":"skyla","name":"Skyla","role":"gymLeader","region":"unova","type":"flying","city":"Mistralton City","badge":"Jet Badge","signaturePokemon":["Swanna"],"note":"Gym 6 in both pairs of games. Swanna anchors her Black and White team alongside Swoobat and Unfezant.","image":{"src":null,"alt":"Skyla artwork"},"badgeImage":{"src":null,"alt":"Jet Badge"},"versions":[{"game":"Black & White","order":6}]},
+    {"slug":"brycen","name":"Brycen","role":"gymLeader","region":"unova","type":"ice","city":"Icirrus City","badge":"Freeze Badge","signaturePokemon":["Beartic"],"note":"Gym 7 in Black and White. He returns to acting in the sequels, where Icirrus is no longer a badge stop.","image":{"src":null,"alt":"Brycen artwork"},"badgeImage":{"src":null,"alt":"Freeze Badge"},"versions":[{"game":"Black & White","order":7}]},
+    {"slug":"drayden","name":"Drayden","role":"gymLeader","region":"unova","type":"dragon","city":"Opelucid City","badge":"Legend Badge","signaturePokemon":["Haxorus"],"note":"Gym 8 in Black only; White has Iris instead. In Black 2 and White 2, Drayden runs Opelucid’s Gym in both versions as Gym 7.","image":{"src":null,"alt":"Drayden artwork"},"badgeImage":{"src":null,"alt":"Legend Badge"},"versions":[{"game":"Black","order":8}]},
+    {"slug":"iris","name":"Iris","role":"gymLeader","region":"unova","type":"dragon","city":"Opelucid City","badge":"Legend Badge","signaturePokemon":["Haxorus"],"note":"Gym 8 in White only; Black has Drayden instead. In Black 2 and White 2, Iris becomes Champion, with a mixed team including three Dragon types and Haxorus as her ace.","image":{"src":null,"alt":"Iris artwork"},"badgeImage":{"src":null,"alt":"Legend Badge"},"versions":[{"game":"White","order":8}]},
+    {"slug":"shauntal","name":"Shauntal","role":"eliteFour","region":"unova","type":"ghost","signaturePokemon":["Chandelure"],"note":"One of four Elite Four members you may challenge in any order. The same four specialists return in Black 2 and White 2.","image":{"src":null,"alt":"Shauntal artwork"}},
+    {"slug":"grimsley","name":"Grimsley","role":"eliteFour","region":"unova","type":"dark","signaturePokemon":["Bisharp"],"note":"Dark specialist in both pairs of games. His place in this list is not a required battle order.","image":{"src":null,"alt":"Grimsley artwork"}},
+    {"slug":"caitlin","name":"Caitlin","role":"eliteFour","region":"unova","type":"psychic","signaturePokemon":["Gothitelle"],"note":"Psychic specialist in both pairs of games. Gothitelle is her highest-level Pokémon in the first Black and White League challenge.","image":{"src":null,"alt":"Caitlin artwork"}},
+    {"slug":"marshal","name":"Marshal","role":"eliteFour","region":"unova","type":"fighting","signaturePokemon":["Mienshao"],"note":"Fighting specialist in both pairs of games. Mienshao is his highest-level Pokémon in the first Black and White League challenge.","image":{"src":null,"alt":"Marshal artwork"}},
+    {"slug":"alder","name":"Alder","role":"champion","region":"unova","type":"varied","signaturePokemon":["Volcarona"],"image":{"src":null,"alt":"Alder artwork"},"note":"Black and White’s Champion, but not your first League finale: N defeats him before you arrive, and the story leads into battles with N and Ghetsis. You can challenge Alder after the credits. In Black 2 and White 2, Iris is Champion instead; Alder is a former Champion you can battle later in Floccesy Town."}
   ];
 
   var LEGENDARY_CLUSTERS = {
     'sinnoh-creation-trio':   { label:'The Creation Trio', blurb:'Time, space and antimatter — the three forces Sinnoh mythology says everything else was built from.' },
     'sinnoh-lake-trio':       { label:'The Lake Guardian Trio', blurb:'Knowledge, emotion and willpower — said to make up the human spirit, each guarded by one of Sinnoh’s three lakes.' },
-    'kanto-legendary-birds':  { label:'The Legendary Birds', blurb:'Ice, Electric and Fire — three Legendary birds, each said to rule one extreme of Kanto’s weather, caught only once each per game.' }
+    'kanto-legendary-birds':  { label:'The Legendary Birds', blurb:'Ice, Electric and Fire — three Legendary birds, each said to rule one extreme of Kanto’s weather, caught only once each per game.' },
+    "unova-dragons": {"label":"The Legendary Dragons of Unova","blurb":"Reshiram, Zekrom and Kyurem connect the two pairs of games. Unova’s legends link Reshiram and Zekrom to one original dragon split over truth and ideals; the sequels describe Kyurem as what remained."},
+    "unova-swords-of-justice": {"label":"The Swords of Justice","blurb":"Cobalion, Terrakion and Virizion are Legendary protectors of Pokémon. Their younger companion Keldeo shares the group’s story, but is classified as Mythical and appears separately below."},
+    "unova-forces-of-nature": {"label":"The Forces of Nature — Generation V","blurb":"Tornadus, Thundurus and Landorus are the original three. Their Therian Formes arrived with the Black 2 / White 2 era and Pokémon Dream Radar. Enamorus joined this group in Generation VIII, so it is not part of Unova’s debut roster."}
   };
 
   var LEGENDARIES = [
@@ -4724,14 +4777,30 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       summary:'Created from Mew’s genetic material by scientists on Cinnabar Island, built to be the most powerful Pokémon possible. In the games’ own account the experiment turned violent, wrecked the lab, and Mewtwo disappeared into Cerulean Cave.',
       jackNote:'Mewtwo’s one of my all-time favourites.', image:{ src:null, alt:'Mewtwo' } },
     { slug:'mew', name:'Mew', type:['psychic'], primaryGeneration:1, region:'kanto', category:'mythical', cluster:null, relatedTo:['mewtwo'],
-      summary:'Kanto’s Mythical Pokémon, and the genetic basis the games use to explain Mewtwo’s creation. Its original Red and Blue entry says nothing about this — the idea that Mew carries the genetic code of every Pokémon species only shows up in later Pokédex entries, and even there it’s framed as an implication rather than a confirmed fact: that Mew might be some kind of common ancestor, not proof that it is one.', image:{ src:null, alt:'Mew' } }
+      summary:'Kanto’s Mythical Pokémon, and the genetic basis the games use to explain Mewtwo’s creation. Its original Red and Blue entry says nothing about this — the idea that Mew carries the genetic code of every Pokémon species only shows up in later Pokédex entries, and even there it’s framed as an implication rather than a confirmed fact: that Mew might be some kind of common ancestor, not proof that it is one.', image:{ src:null, alt:'Mew' } },
+    {"slug":"reshiram","name":"Reshiram","type":["dragon","fire"],"primaryGeneration":5,"region":"unova","cluster":"unova-dragons","relatedTo":["zekrom","kyurem"],"summary":"The dragon associated with truth. In Black, the player awakens Reshiram while N has Zekrom; White reverses those roles. In White 2, Kyurem absorbs Reshiram to become White Kyurem.","image":{"src":null,"alt":"Reshiram"},"domain":"Truth"},
+    {"slug":"zekrom","name":"Zekrom","type":["dragon","electric"],"primaryGeneration":5,"region":"unova","cluster":"unova-dragons","relatedTo":["reshiram","kyurem"],"summary":"The dragon associated with ideals. It is the player’s dragon in White and N’s in Black. Black 2 brings it into Kyurem’s story: their fusion produces Black Kyurem.","image":{"src":null,"alt":"Zekrom"},"domain":"Ideals"},
+    {"slug":"kyurem","name":"Kyurem","type":["dragon","ice"],"primaryGeneration":5,"region":"unova","cluster":"unova-dragons","relatedTo":["reshiram","zekrom"],"summary":"Found at Giant Chasm in Black and White’s post-game. The sequels bring it into the main story, with the DNA Splicers joining it to Zekrom or Reshiram. Black Kyurem and White Kyurem both remain Dragon/Ice types.","image":{"src":null,"alt":"Kyurem"},"domain":"The remaining dragon"},
+    {"slug":"cobalion","name":"Cobalion","type":["steel","fighting"],"primaryGeneration":5,"region":"unova","cluster":"unova-swords-of-justice","relatedTo":["terrakion","virizion","keldeo"],"summary":"The composed leader of the Legendary trio. Unova’s account links these three to protecting Pokémon from human conflict; Cobalion is also one of Keldeo’s mentors.","image":{"src":null,"alt":"Cobalion"},"domain":"Leadership"},
+    {"slug":"terrakion","name":"Terrakion","type":["rock","fighting"],"primaryGeneration":5,"region":"unova","cluster":"unova-swords-of-justice","relatedTo":["cobalion","virizion","keldeo"],"summary":"The group’s physical powerhouse. Its Pokédex accounts describe it breaking through a castle wall to protect Pokémon, giving the trio’s protective role a very literal force behind it.","image":{"src":null,"alt":"Terrakion"},"domain":"Strength"},
+    {"slug":"virizion","name":"Virizion","type":["grass","fighting"],"primaryGeneration":5,"region":"unova","cluster":"unova-swords-of-justice","relatedTo":["cobalion","terrakion","keldeo"],"summary":"The swift member of the trio, described as moving around opponents and using its horns like blades. Alongside Cobalion and Terrakion, it is connected to Keldeo’s training.","image":{"src":null,"alt":"Virizion"},"domain":"Agility"},
+    {"slug":"tornadus","name":"Tornadus","type":["flying"],"primaryGeneration":5,"region":"unova","cluster":"unova-forces-of-nature","relatedTo":["thundurus","landorus"],"summary":"The wind-bringing Legendary that roams Unova in Black. Its counterpart in White is Thundurus. The pair’s destructive storms are part of the local story told at Abundant Shrine.","image":{"src":null,"alt":"Tornadus"},"domain":"Wind"},
+    {"slug":"thundurus","name":"Thundurus","type":["electric","flying"],"primaryGeneration":5,"region":"unova","cluster":"unova-forces-of-nature","relatedTo":["tornadus","landorus"],"summary":"The thunderstorm counterpart, roaming in White rather than Black. Tornadus and Thundurus are separate species, not version-dependent forms of one Pokémon.","image":{"src":null,"alt":"Thundurus"},"domain":"Thunder"},
+    {"slug":"landorus","name":"Landorus","type":["ground","flying"],"primaryGeneration":5,"region":"unova","cluster":"unova-forces-of-nature","relatedTo":["tornadus","thundurus"],"summary":"Honoured at Abundant Shrine. Local folklore credits it with stopping Tornadus and Thundurus from ravaging the land. In Black and White, bringing both of those Pokémon in your party lets you encounter it.","image":{"src":null,"alt":"Landorus"},"domain":"Abundant land"},
+    {"slug":"victini","name":"Victini","type":["psychic","fire"],"primaryGeneration":5,"region":"unova","cluster":null,"relatedTo":[],"summary":"The Mythical Pokémon associated with victory, with the unusual regional Pokédex number #000. Its original Black and White encounter at Liberty Garden required the event-distributed Liberty Pass; it was not an ordinary stop on the badge journey.","image":{"src":null,"alt":"Victini"},"category":"mythical"},
+    {"slug":"keldeo","name":"Keldeo","type":["water","fighting"],"primaryGeneration":5,"region":"unova","cluster":null,"relatedTo":["cobalion","terrakion","virizion"],"summary":"The Mythical fourth member of the Swords of Justice, trained by Cobalion, Terrakion and Virizion. Black 2 and White 2 introduced its Resolute Form, taken while it knows Secret Sword. Both forms remain Water/Fighting; joining this group does not change its Mythical classification.","image":{"src":null,"alt":"Keldeo"},"category":"mythical"},
+    {"slug":"meloetta","name":"Meloetta","type":["normal","psychic"],"primaryGeneration":5,"region":"unova","cluster":null,"relatedTo":[],"summary":"A Mythical Pokémon built around song and dance. The types shown here belong to Aria Forme. Using Relic Song in battle changes it to the Normal/Fighting Pirouette Forme, so the form matters when reading its typing.","image":{"src":null,"alt":"Meloetta"},"category":"mythical"},
+    {"slug":"genesect","name":"Genesect","type":["bug","steel"],"primaryGeneration":5,"region":"unova","cluster":null,"relatedTo":[],"summary":"An ancient Pokémon modified by Team Plasma, with a cannon mounted on its back. Its Drives change the type of Techno Blast, not Genesect’s own Bug/Steel typing. It is Mythical, not another member of Unova’s Legendary trios.","image":{"src":null,"alt":"Genesect"},"category":"mythical"}
   ];
 
   var MECHANICS = [
     { slug:'physical-special-split', label:'The Physical/Special Split', introducedGeneration:4, status:'introduced',
       before:'A move’s category was decided purely by its elemental type — every Fire move was Special, every Normal move was Physical, no matter what the move actually did.',
       after:'Every move was individually classified as Physical or Special, independent of its type.',
-      significance:'This is why a Fire-type can throw a punch today. Before Gen IV, a physical Fire-type attacker had no good physical Fire moves to use — the type itself was locked to Special no matter how the team was built.' }
+      significance:'This is why a Fire-type can throw a punch today. Before Gen IV, a physical Fire-type attacker had no good physical Fire moves to use — the type itself was locked to Special no matter how the team was built.' },
+    {"slug":"unova-seasons","label":"A Region That Changes with the Seasons","introducedGeneration":5,"status":"introduced","before":"Earlier games used time of day, but did not have Unova’s four-season calendar.","after":"Black, White and their sequels cycle through spring, summer, autumn and winter, advancing one season per real-world month. Scenery, some encounters and access to certain areas change; Deerling and Sawsbuck have seasonal forms.","significance":"A familiar route can be worth revisiting. Winter snow can open paths that were out of reach before; the change is more than a different colour palette."},
+    {"slug":"unova-battle-formats","label":"Triple and Rotation Battles","introducedGeneration":5,"status":"introduced","before":"Single and Double Battles already offered one or two Pokémon per side.","after":"Triple Battles put three Pokémon per side in play, with position affecting which targets many moves can reach. Rotation Battles also field three, but only the front Pokémon acts; you can rotate and attack on the same turn.","significance":"Both formats debuted in Black and White. Triples ask where a Pokémon should stand; Rotations ask which of your three should face the opponent’s next move. These are battle formats, not the TCG’s annual card rotation."},
+    {"slug":"unova-reusable-tms","label":"Reusable TMs","introducedGeneration":5,"status":"changed","before":"Through Generation IV, using a TM consumed that copy.","after":"Generation V lets you reuse a TM to teach its move to multiple compatible Pokémon without consuming it.","significance":"Finding a useful TM becomes a lasting option for your team, rather than a one-off decision about who deserves the only copy. This describes Generation V; later games do not all keep that rule."}
   ];
 
   function findGeneration(id){
@@ -4989,6 +5058,27 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       + '</div>';
   }
 
+  /* Optional version/starter alternatives share one Gym-stop card.
+     Ordinary Leader slugs keep their existing card output unchanged. */
+  function gymStopHTML(stop){
+    if(typeof stop === 'string') return leaderCardHTML(stop);
+    return '<div class="leader-card leader-card-leader gym-stop-alternatives">'
+      + '<div class="leader-card-body">'
+      + '<h5 class="leader-card-name">'+escapeHtml(stop.title)+'</h5>'
+      + '<p class="leader-card-note">'+escapeHtml(stop.note)+'</p>'
+      + stop.alternatives.map(function(alternative){
+          var l = findLeader(alternative.leader);
+          if(!l) return '';
+          return '<section class="gym-stop-alternative">'
+            + '<h6 class="leader-card-name">'+escapeHtml(alternative.condition)+'</h6>'
+            + typeBadgeHTML(l.type)
+            + (l.signaturePokemon ? '<div class="leader-card-meta">Signature: '+escapeHtml(l.signaturePokemon.join(', '))+'</div>' : '')
+            + (l.note ? '<p class="leader-card-note">'+escapeHtml(l.note)+'</p>' : '')
+            + '</section>';
+        }).join('')
+      + '</div></div>';
+  }
+
   function legendaryClusterHTML(clusterId){
     var meta = LEGENDARY_CLUSTERS[clusterId];
     var members = LEGENDARIES.filter(function(l){ return l.cluster === clusterId; });
@@ -5239,7 +5329,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
       html += '<h4 id="gen-sec-leaders" style="margin-top:1.3rem;">Gym Leaders</h4>';
       if(region.gymLeadersHook) html += '<p class="muted almanac-section-intro">'+escapeHtml(region.gymLeadersHook)+'</p>';
-      html += '<div class="leader-roster">'+(region.gymLeaders||[]).map(leaderCardHTML).join('')+'</div>';
+      html += '<div class="leader-roster">'+(region.gymStops||region.gymLeaders||[]).map(gymStopHTML).join('')+'</div>';
 
       html += '<h4 style="margin-top:1.3rem;">Elite Four &amp; Champion</h4>';
       html += '<div class="leader-roster leader-roster-e4">'+(region.eliteFour||[]).map(leaderCardHTML).join('')+leaderCardHTML(region.champion)+'</div>';
