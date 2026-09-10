@@ -867,6 +867,18 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   .leader-card-champion .leader-card-visual{flex:0 0 260px;margin-bottom:0;}
   .leader-card-champion .leader-card-body{flex:1 1 auto;min-width:0;}
 }
+/* Sept 2026 - grouped Gym stops (Striaton, Opelucid) span the full roster
+   row like the Champion card above, then lay their alternatives out as a
+   row of their own compact cards - reusing the exact same leader-card /
+   leader-card-visual / leader-card-body language every ordinary Gym
+   Leader already uses, instead of the plain text list this replaces.
+   Scoped entirely to these three new selectors, so every other
+   leader-card (Kanto, Sinnoh, Elite Four, Champion, the plain Unova
+   stops) is completely unaffected. */
+.gym-stop-alternatives{grid-column:1 / -1;background:var(--surface-2);}
+.gym-stop-alternatives-head{padding-bottom:0;}
+.gym-stop-alternatives-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.65rem;padding:0 .85rem .85rem;}
+.gym-stop-alternative-condition{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--accent-strong);margin:0 0 .3rem;}
 
 .legendary-cluster{border:1px dashed var(--border);border-radius:10px;padding:.8rem;margin-bottom:.9rem;}
 .legendary-cluster-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-muted);font-weight:700;}
@@ -5058,25 +5070,41 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       + '</div>';
   }
 
-  /* Optional version/starter alternatives share one Gym-stop card.
-     Ordinary Leader slugs keep their existing card output unchanged. */
+  /* Optional version/starter alternatives share one Gym-stop card. It
+     spans the full roster row (like the Champion card) and lays each
+     alternative out as its own compact card reusing the exact same
+     leader-card-visual/leader-card-body language as an ordinary Gym
+     Leader - portrait/placeholder role, name, type, signature Pokemon,
+     note - instead of the plain text list this replaces. The condition
+     (e.g. "Oshawott -> Cilan") becomes a small overline label above the
+     name rather than standing in for it. Ordinary Leader slugs keep
+     their existing leaderCardHTML output completely unchanged, and
+     leaderCardHTML itself is untouched by this change. */
   function gymStopHTML(stop){
     if(typeof stop === 'string') return leaderCardHTML(stop);
     return '<div class="leader-card leader-card-leader gym-stop-alternatives">'
-      + '<div class="leader-card-body">'
-      + '<h5 class="leader-card-name">'+escapeHtml(stop.title)+'</h5>'
-      + '<p class="leader-card-note">'+escapeHtml(stop.note)+'</p>'
+      + '<div class="leader-card-body gym-stop-alternatives-head">'
+      +   '<h5 class="leader-card-name">'+escapeHtml(stop.title)+'</h5>'
+      +   '<p class="leader-card-note">'+escapeHtml(stop.note)+'</p>'
+      + '</div>'
+      + '<div class="gym-stop-alternatives-grid">'
       + stop.alternatives.map(function(alternative){
           var l = findLeader(alternative.leader);
           if(!l) return '';
-          return '<section class="gym-stop-alternative">'
-            + '<h6 class="leader-card-name">'+escapeHtml(alternative.condition)+'</h6>'
-            + typeBadgeHTML(l.type)
-            + (l.signaturePokemon ? '<div class="leader-card-meta">Signature: '+escapeHtml(l.signaturePokemon.join(', '))+'</div>' : '')
-            + (l.note ? '<p class="leader-card-note">'+escapeHtml(l.note)+'</p>' : '')
-            + '</section>';
+          var typeHTML = (l.type && l.type !== 'varied') ? typeBadgeHTML(l.type) : '<span class="muted" style="font-size:.7rem;">Mixed team</span>';
+          var portrait = assetHTML('leader', l.image, { placeholderText:l.name, type:(l.type && l.type !== 'varied') ? l.type : null });
+          return '<div class="leader-card gym-stop-alternative">'
+            + '<div class="leader-card-visual">'+portrait+'</div>'
+            + '<div class="leader-card-body">'
+            +   '<p class="gym-stop-alternative-condition">'+escapeHtml(alternative.condition)+'</p>'
+            +   '<div class="leader-card-head"><span class="leader-card-name">'+escapeHtml(l.name)+'</span>'+typeHTML+'</div>'
+            +   (l.signaturePokemon ? '<div class="leader-card-meta">Signature: '+escapeHtml(l.signaturePokemon.join(', '))+'</div>' : '')
+            +   (l.note ? '<p class="leader-card-note">'+escapeHtml(l.note)+'</p>' : '')
+            + '</div>'
+            + '</div>';
         }).join('')
-      + '</div></div>';
+      + '</div>'
+      + '</div>';
   }
 
   function legendaryClusterHTML(clusterId){
