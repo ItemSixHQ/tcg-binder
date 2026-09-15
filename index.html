@@ -1082,6 +1082,44 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .gen-tile-dots{display:flex;justify-content:center;gap:.3rem;margin-top:.55rem;}
 .gen-tile-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
 
+/* ---------------- Red Version V1 / Explore landing (Sept 2026) ----------------
+   A new destination page, not a Homepage or Almanac redesign - reuses the
+   Almanac's own .gen-grid/.gen-tile and the Homepage's .dest-card family
+   verbatim (see the markup for #view-explore) rather than inventing new
+   card components, and carries only restrained Red accents (a top rule
+   plus a couple of tinted labels) so it reads as this Version's own
+   destination without fighting the permanent purple shell around it. */
+#view-explore{padding-top:2.25rem;}
+.explore-hub{padding-bottom:3rem;}
+.explore-hero{max-width:62ch;margin-bottom:2.2rem;}
+.explore-hero .eyebrow{color:var(--version-red);}
+.explore-hero h2{margin:0 0 .5rem;}
+.explore-hero-sub{font-size:1.02rem;}
+
+.explore-almanac-feature{margin:0 0 2.6rem;padding:1.6rem 1.7rem;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--version-red);border-radius:14px;}
+.explore-almanac-feature .eyebrow{color:var(--version-red);}
+.explore-almanac-feature h3{margin:0 0 .5rem;font-size:1.5rem;}
+.explore-almanac-sub{max-width:62ch;margin-bottom:1.3rem;}
+.explore-almanac-link{margin:1rem 0 0;}
+.explore-almanac-feature .dest-card-cta{color:var(--version-red);}
+@media (max-width:640px){
+  .explore-almanac-feature{padding:1.25rem 1.2rem;}
+}
+
+.explore-alt-ways{margin:0 0 2.6rem;}
+.explore-alt-ways h3{margin:0 0 1rem;}
+.explore-dest-grid .dest-card-body{padding:1.15rem 1.25rem;gap:.55rem;}
+.explore-dest-grid .dest-card-title{font-size:1.02rem;}
+
+.explore-starting-points{margin:0 0 1rem;padding:1.3rem 1.4rem;background:var(--surface-2);border-radius:12px;}
+.explore-starting-points h3{margin:0 0 .35rem;}
+.explore-starting-points-sub{margin-bottom:1.1rem;}
+.explore-questions{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.65rem;}
+.explore-questions li{font-size:.92rem;line-height:1.5;}
+.explore-questions a{color:var(--version-red);font-weight:600;text-decoration:none;}
+.explore-questions a:hover,.explore-questions a:focus-visible{text-decoration:underline;}
+.explore-question-future{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.55rem;color:var(--ink-muted);}
+
 .gen-games-line{font-size:.88rem;margin:.6rem 0;}
 .gen-games-label{font-size:.66rem;text-transform:uppercase;letter-spacing:.03em;font-weight:700;color:var(--ink-muted);margin-right:.4rem;}
 .almanac-reference-note{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid var(--border);font-size:.88rem;}
@@ -1889,7 +1927,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
       <section class="version-paths" aria-label="Explore or Play">
         <div class="version-paths-grid">
-          <a href="#/almanac" class="version-path version-path-red" data-select-version="red">
+          <a href="#/explore" class="version-path version-path-red" data-select-version="red">
             <span class="version-path-status"><span class="version-path-light" aria-hidden="true"></span><span class="version-path-selected-text">Selected</span></span>
             <span class="version-path-kicker">Red Version &middot; Explore</span>
             <span class="version-path-title">Pok&eacute;mon, regions &amp; lore</span>
@@ -2761,6 +2799,92 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   <div id="view-almanac-gen" hidden>
     <main class="wrap almanac-hub">
       <div id="almanac-gen-content"></div>
+    </main>
+  </div>
+
+  <!-- Red Version V1 / Explore landing (Sept 2026). A new destination, not
+       a Homepage redesign: turns Red Version from a visual Homepage mode
+       into a real content architecture. Purple shell/nav is untouched
+       (#site-header/hero stays hidden on every non-home route exactly as
+       before - see route()); this page gets its own small, restrained Red
+       identity instead of recreating the Homepage hero. The Almanac is
+       kept the dominant feature (its own bordered/red-topped section,
+       real generation tiles reusing GENERATIONS/genTileHTML - see
+       renderExploreView()); the four "explore another way" destinations
+       and the question-led list below are deliberately honest about not
+       being built out yet - non-link "Growing" cards (same pattern as the
+       Homepage's Pokemon GO dest-card-soon card) and future-topic tags
+       rather than dead links or invented content. Two of the five
+       starting-point questions link out for real (Sinnoh's Gym Leaders/
+       Champion and Legendary Pokemon sections already answer them); the
+       rest are labelled future topics rather than faked. -->
+  <div id="view-explore" hidden>
+    <main class="wrap almanac-hub explore-hub">
+
+      <div class="explore-hero">
+        <p class="eyebrow">Red Version &middot; Explore</p>
+        <h2>Explore the Pok&eacute;mon world.</h2>
+        <p class="muted explore-hero-sub">Regions, Pok&eacute;mon, people, places and the things that make each generation different.</p>
+      </div>
+
+      <section class="explore-almanac-feature" aria-label="The Almanac">
+        <p class="eyebrow">The ItemSixHQ Almanac</p>
+        <h3>Start with a generation.</h3>
+        <p class="muted explore-almanac-sub">The primary way into the Pok&eacute;mon world &mdash; nine generations, Kanto through Paldea. A few go deep today; every other generation still has its own real reference page, with more depth coming one generation at a time.</p>
+        <div id="explore-gen-grid" class="gen-grid"></div>
+        <p class="muted explore-almanac-link"><a class="dest-card-cta" href="#/almanac">Visit the Almanac hub &rarr;</a></p>
+      </section>
+
+      <section class="explore-alt-ways" aria-label="Explore another way">
+        <h3>Or just start somewhere interesting.</h3>
+        <div class="dest-tier dest-tier-mid explore-dest-grid">
+          <div class="dest-card dest-card-md dest-card-soon">
+            <span class="dest-card-body">
+              <span class="dest-card-kicker">Pok&eacute;mon</span>
+              <span class="dest-card-title">Pok&eacute;mon</span>
+              <span class="dest-card-desc">From old favourites to Pok&eacute;mon you&rsquo;ve somehow forgotten exist.</span>
+              <span class="dest-card-badge">Growing</span>
+            </span>
+          </div>
+          <div class="dest-card dest-card-md dest-card-soon">
+            <span class="dest-card-body">
+              <span class="dest-card-kicker">People &amp; places</span>
+              <span class="dest-card-title">People &amp; Places</span>
+              <span class="dest-card-desc">The Trainers, characters and places that make each region what it is.</span>
+              <span class="dest-card-badge">Growing</span>
+            </span>
+          </div>
+          <div class="dest-card dest-card-md dest-card-soon">
+            <span class="dest-card-body">
+              <span class="dest-card-kicker">Lore &amp; history</span>
+              <span class="dest-card-title">Lore &amp; History</span>
+              <span class="dest-card-desc">The stories behind the stuff we usually just accept and move on from.</span>
+              <span class="dest-card-badge">Growing</span>
+            </span>
+          </div>
+          <div class="dest-card dest-card-md dest-card-soon">
+            <span class="dest-card-body">
+              <span class="dest-card-kicker">Mechanics &amp; phenomena</span>
+              <span class="dest-card-title">Mechanics &amp; Phenomena</span>
+              <span class="dest-card-desc">Mega Evolution. Regional forms. Terastallization. And the other things Pok&eacute;mon keeps doing to Pok&eacute;mon.</span>
+              <span class="dest-card-badge">Growing</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="explore-starting-points" aria-label="Not sure where to start?">
+        <h3>Not sure where to start?</h3>
+        <p class="muted explore-starting-points-sub">You don&rsquo;t have to browse by category. Sometimes it&rsquo;s easier to start with a question.</p>
+        <ul class="explore-questions">
+          <li><a href="#/almanac/gen/4">Why was Giratina banished? &rarr;</a></li>
+          <li><a href="#/almanac/gen/4">Who are the strongest Trainers in Sinnoh? &rarr;</a></li>
+          <li><span class="explore-question-future">What exactly is a Shiny Pok&eacute;mon?<span class="dest-card-badge">Future topic</span></span></li>
+          <li><span class="explore-question-future">How does Mega Evolution actually work?<span class="dest-card-badge">Future topic</span></span></li>
+          <li><span class="explore-question-future">What&rsquo;s different between Kanto in Gen I and Gen II?<span class="dest-card-badge">Future topic</span></span></li>
+        </ul>
+      </section>
+
     </main>
   </div>
 
@@ -5685,6 +5809,23 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     if(stripEl) stripEl.innerHTML = GENERATIONS.map(compactGenPillHTML).join('');
   }
 
+  /* Red Version V1 - Explore landing (Sept 2026). Deliberately thin: the
+     only dynamic piece is the "start with a generation" grid, and it
+     reuses GENERATIONS + genTileHTML() byte-for-byte - the exact same
+     data and card renderer the Generations overview page already uses
+     (see renderGenerationsOverview() above), so a generation's real
+     status ('complete' deep-dive vs 'reference' quick page) is always
+     represented honestly here too, with zero duplicated content and
+     nothing to fall out of sync as the Almanac grows. Everything else on
+     this page (the four "explore another way" cards, the question-led
+     list) is static markup in the view-explore block below - there is no
+     content here to generate, only real destinations to link and
+     honestly-not-yet-real ones to label as growing rather than fake. */
+  function renderExploreView(){
+    var gridEl = document.getElementById('explore-gen-grid');
+    if(gridEl) gridEl.innerHTML = GENERATIONS.map(genTileHTML).join('');
+  }
+
   function renderGenerationsOverview(){
     var gridEl = document.getElementById('almanac-generations-grid');
     if(gridEl) gridEl.innerHTML = GENERATIONS.map(genTileHTML).join('');
@@ -6143,7 +6284,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     about:'purple', collab:'purple', givingback:'purple', terms:'purple',
     streamnotes:'purple',   /* private/unlinked, kept global in treatment */
     /* Red / Explore */
-    almanac:'red', 'almanac-generations':'red', 'almanac-gen':'red',
+    almanac:'red', 'almanac-generations':'red', 'almanac-gen':'red', explore:'red',
     /* Blue / Play */
     learn:'blue', guide:'blue', advanced:'blue', rotation:'blue', ask:'blue',
     meta:'blue', mydecks:'blue', playwithjack:'blue', blacklabel:'blue'
@@ -6353,7 +6494,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     blacklabel:   { title: 'Learn At BlackLabel TCG', description: "A friend's shop - not affiliated, just genuinely great." },
     streamnotes:  { title: 'Stream Notes', description: DEFAULT_DESCRIPTION },
     almanac:             { title: 'The Almanac', description: 'A Pokemon knowledge hub - generations, regions, legendaries and more, explained so they stick.' },
-    'almanac-generations': { title: 'Generations - The Almanac', description: 'Every Pokemon generation, in order, with what each one actually changed.' }
+    'almanac-generations': { title: 'Generations - The Almanac', description: 'Every Pokemon generation, in order, with what each one actually changed.' },
+    explore:             { title: 'Red Version - Explore', description: 'Explore the Pokemon world - regions, generations, Pokemon, people and the stories behind them, starting with the Almanac.' }
   };
 
   function updatePageMeta(r){
@@ -6391,6 +6533,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     if(hash === 'lets-trade') return {view:'hunting'};
     if(hash === 'stream-notes') return {view:'streamnotes'};   /* private - not linked from nav */
     if(hash === 'almanac') return {view:'almanac'};
+    if(hash === 'explore') return {view:'explore'};
     if(hash === 'almanac/generations') return {view:'almanac-generations'};
     var agm = hash.match(/^almanac\/gen\/(\d+)$/);
     if(agm) return {view:'almanac-gen', genId: parseInt(agm[1], 10)};
@@ -6462,6 +6605,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     document.getElementById('view-playwithjack').hidden = r.view !== 'playwithjack';
     document.getElementById('view-blacklabel').hidden = r.view !== 'blacklabel';
     document.getElementById('view-almanac').hidden = r.view !== 'almanac';
+    document.getElementById('view-explore').hidden = r.view !== 'explore';
     document.getElementById('view-almanac-generations').hidden = r.view !== 'almanac-generations';
     document.getElementById('view-almanac-gen').hidden = r.view !== 'almanac-gen';
     /* Which top-level nav link should be highlighted for each view.
@@ -6508,6 +6652,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     else if(r.view === 'hunting'){ renderWantList(); }
     else if(r.view === 'streamnotes'){ renderStreamNotes(); }
     else if(r.view === 'almanac'){ renderAlmanacHub(); }
+    else if(r.view === 'explore'){ renderExploreView(); }
     else if(r.view === 'almanac-generations'){ renderGenerationsOverview(); }
     else if(r.view === 'almanac-gen'){ renderGenerationDetail(r.genId); }
     closeSetPanel();
