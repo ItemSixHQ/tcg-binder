@@ -1202,6 +1202,19 @@ html[data-version="green"] .home-version-card-blue{opacity:.88;}
 #search-input{flex:1;min-width:200px;}
 .result-count{margin-left:auto;color:var(--ink-muted);font-size:.83rem;}
 
+/* Bulk Binder toolbar (Sept 2026, Batch 1). Reuses the .toolbar/.result-count
+   classes verbatim (sticky bar, spacing, dark-mode input/select overrides
+   all already apply automatically), but the curated Binder's own sizing
+   rules are ID-scoped to #search-input specifically (see above) and don't
+   cascade to a differently-ID'd input, so Bulk Binder gets its own small
+   equivalent here rather than reusing or renaming #search-input's rule. */
+.bulk-search-input{flex:1;min-width:200px;}
+.bulk-set-select{min-width:150px;}
+@media (max-width:760px){
+  .toolbar .bulk-search-input{flex:1 1 100%;min-width:0;}
+}
+.bulk-binder-intro{max-width:62ch;margin:.5rem 0 0;}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:1.5rem;padding:1.25rem 1.1rem 2rem;background-image:radial-gradient(var(--border) 1px, transparent 1px);background-size:26px 26px;border-radius:16px;}
 
 .pager{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;padding-bottom:3.5rem;}
@@ -1218,6 +1231,15 @@ html[data-version="green"] .home-version-card-blue{opacity:.88;}
 @media (prefers-reduced-motion:reduce){.card-tile{animation:none;}.card-tile:hover{transform:none;}}
 .card-tile .art{aspect-ratio:5/7;background:var(--surface-2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:zoom-in;}
 .card-tile .art img{width:100%;height:100%;object-fit:cover;}
+/* Bulk Binder's own minimal no-image fallback (Sept 2026, Batch 1) - kept
+   separate from the curated Binder's placeholderArtHTML()/.placeholder-art
+   system (that one derives a per-card colour from card.set via --ph-hue,
+   coupled to the curated Binder's own field shape) rather than reusing or
+   adapting it, per the isolation requirement. Never actually renders in
+   Batch 1 since there are zero printings, but is correct for whenever a
+   real printing record is missing an image URL later. */
+.art-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.art-placeholder::before{content:'';width:38px;height:38px;border-radius:8px;border:2px dashed var(--border);}
 .placeholder-mono{font-family:'Jost';font-weight:600;font-size:1.9rem;color:var(--ink-muted);opacity:.4;}
 .placeholder-mono.small{font-size:1rem;}
 .placeholder-art{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;background:linear-gradient(155deg, hsl(var(--ph-hue) 34% 93%), hsl(calc(var(--ph-hue) + 24) 26% 86%));}
@@ -1553,6 +1575,16 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .explore-alt-icon-green{background:rgba(var(--version-green-rgb),.14);color:var(--version-green);}
 .dest-card-md.dest-card-soon{display:flex;flex-direction:column;}
 .explore-growing-dot{width:6px;height:6px;border-radius:50%;background:var(--version-red);flex-shrink:0;}
+
+/* Bulk Binder "Being built" badge (Sept 2026, Batch 1). Same visual recipe
+   as .explore-growing-badge/.explore-growing-dot above, but green-toned
+   and on its own class rather than reusing that Red-hardcoded pair - this
+   badge sits on a REAL clickable dest-card (#/bulk-binder is a real route
+   with a real, honest empty state), not a disabled .dest-card-soon one, so
+   it's kept as its own isolated class rather than risking a shared class
+   later growing red/green special-casing inside it. */
+.bulk-binder-badge{align-self:flex-start;margin-top:.2rem;display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--version-green);background:rgba(var(--version-green-rgb),.09);border:1px solid rgba(var(--version-green-rgb),.3);border-radius:999px;padding:.25rem .65rem .25rem .55rem;}
+.bulk-binder-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--version-green);flex-shrink:0;}
 
 .explore-starting-points{margin:0 0 1rem;padding:1.7rem 1.8rem;background:var(--surface-2);border-left:3px solid var(--version-red);border-radius:12px;}
 .explore-starting-points h3{margin:0 0 .4rem;font-size:1.3rem;}
@@ -4187,6 +4219,70 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         </div>
       </section>
 
+      <!-- Bulk Binder entry point (Sept 2026, Batch 1). Deliberately its own
+           section, not folded into "More from the Binder" above - Bulk
+           Binder is a separate product (the ordinary cards Jack owns in
+           quantity, once Card Ingest exists to catalogue them) from the
+           curated Binder/Let's Trade/Japan trio, which is why it gets its
+           own framing copy and its own honest "being built" badge rather
+           than sharing the "two more real pages" line above. It's still a
+           real, clickable link to a real (if currently empty) page - see
+           .bulk-binder-badge's own comment for why that's a different
+           treatment from the fully-disabled .dest-card-soon pattern used
+           for pages that don't exist at all yet. -->
+      <section class="explore-alt-ways" aria-label="Bulk Binder">
+        <h3>The rest of the collection.</h3>
+        <p class="muted explore-alt-ways-sub">Not the curated stuff above &mdash; the ordinary Pok&eacute;mon cards I own in bulk. A proper searchable catalogue is coming; it&rsquo;s not live yet.</p>
+        <div class="dest-tier dest-tier-mid explore-dest-grid">
+          <a class="dest-card dest-card-md" href="#/bulk-binder">
+            <span class="explore-alt-icon explore-alt-icon-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="2"/><path d="M3.5 9.5h17M8 5.5v-1M16 5.5v-1"/></svg></span>
+            <span class="dest-card-body">
+              <span class="dest-card-kicker">Searchable catalogue</span>
+              <span class="dest-card-title">Bulk Binder</span>
+              <span class="dest-card-desc">Every ordinary card I physically own, in quantity &mdash; separate from the curated Binder above.</span>
+              <span class="bulk-binder-badge"><span class="bulk-binder-badge-dot" aria-hidden="true"></span>Being built</span>
+              <span class="dest-card-cta">Take a look &rarr;</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Bulk Binder (Sept 2026, Batch 1 - foundation only, no real inventory
+       yet). Separate route, separate state, separate render/filter/paging
+       functions from the curated Binder's #/catalog (STATE/UI/renderGrid/
+       applyFilters/cardTileHTML) - nothing here shares code or data with
+       those, by design (see the project doc's approved architecture:
+       "Existing Binder = curated collection. Bulk Binder = large
+       searchable catalogue of ordinary inventory. Keep data state,
+       loading, filtering, pagination and rendering isolated.").
+
+       Card Ingest (Jack's private cataloguing app) does not exist/export
+       data yet, so BULK_STATE.printings is always empty right now - this
+       ships the real architecture (fetch a small manifest, real bounded
+       pagination, honest loading/empty/error states) with zero invented
+       inventory. See loadBulkBinderManifest()/renderBulkBinderView()'s own
+       comments for the full data contract and state machine. -->
+  <div id="view-bulk-binder" hidden>
+    <main class="wrap bulk-binder-page">
+      <a href="#/collect" class="back-link">&larr; Green Version &middot; Binder</a>
+      <p class="eyebrow">Green Version &middot; Bulk Binder</p>
+      <h2>The rest of the collection.</h2>
+      <p class="muted bulk-binder-intro">Every ordinary Pok&eacute;mon card I physically own, not just the curated stuff in the Binder &mdash; the plan is a proper searchable catalogue: search by name, browse by set, see how many copies I&rsquo;ve got. It&rsquo;s separate from the Binder on purpose &mdash; that one&rsquo;s curated, this one&rsquo;s just&hellip; everything else.</p>
+
+      <div id="bulk-toolbar" class="toolbar" hidden>
+        <input id="bulk-search-input" class="bulk-search-input" type="search" placeholder="Search by name, set, or card number&hellip;" aria-label="Search Bulk Binder">
+        <select id="bulk-set-filter" class="bulk-set-select" aria-label="Filter by set">
+          <option value="all">All sets</option>
+        </select>
+        <span id="bulk-result-count" class="result-count mono"></span>
+      </div>
+
+      <div id="bulk-status"></div>
+      <div id="bulk-grid" class="grid" hidden></div>
+      <nav id="bulk-pager" class="pager" hidden aria-label="Bulk Binder pages"></nav>
     </main>
   </div>
 
@@ -38871,7 +38967,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     meta:'blue', mydecks:'blue', playwithjack:'blue', blacklabel:'blue', play:'blue',
     'play-games':'blue', 'play-games-detail':'blue',
     /* Green / Binder & trade */
-    collect:'green', catalog:'green', japan:'green', mybinder:'green', set:'green', setjp:'green', hunting:'green'
+    collect:'green', catalog:'green', japan:'green', mybinder:'green', set:'green', setjp:'green', hunting:'green',
+    'bulk-binder':'green'
   };
   /* Resolves a parsed view name to the attribute value exposed on <html>.
      The one explicit purple->global conversion the correction brief asked
@@ -39225,7 +39322,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     explore:             { title: 'Red Version - Explore', description: 'Explore the Pokemon world - regions, generations, Pokemon, people and the stories behind them, starting with the Almanac.' },
     play:                { title: 'Blue Version - Play', description: 'Play Pokemon - cards, games and practical guides for actually playing, starting with the Pokemon TCG.' },
     'play-games':        { title: 'Video Games - Play', description: 'Every mainline Pokemon generation, Kanto to Paldea, plus the Legends sub-series - what came out, when, and why it mattered.' },
-    collect:             { title: 'Green Version - Binder', description: "Browse Jack's Pokemon TCG binder, how trading works, and the Japanese side of the collection." }
+    collect:             { title: 'Green Version - Binder', description: "Browse Jack's Pokemon TCG binder, how trading works, and the Japanese side of the collection." },
+    'bulk-binder':       { title: 'Bulk Binder - Green Version', description: "A searchable catalogue of the ordinary Pokemon cards Jack owns in bulk, separate from the curated Binder." }
   };
 
   /* SEO pass (Sept 2026): canonical/og:url/og:title/og:description/twitter:title/
@@ -39341,6 +39439,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     if(hash === 'play/games') return {view:'play-games'};
     var pgm = hash.match(/^play\/games\/gen\/(\d+)$/);
     if(pgm) return {view:'play-games-detail', seriesId: parseInt(pgm[1], 10)};
+    if(hash === 'bulk-binder') return {view:'bulk-binder'};
     if(hash === 'rotation') return {view:'rotation'};
     if(hash === 'ask') return {view:'ask'};
     if(hash === 'collab') return {view:'collab'};
@@ -39419,6 +39518,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     document.getElementById('view-almanac-myths').hidden = r.view !== 'almanac-myths';
     document.getElementById('view-play-games').hidden = r.view !== 'play-games';
     document.getElementById('view-play-games-detail').hidden = r.view !== 'play-games-detail';
+    document.getElementById('view-bulk-binder').hidden = r.view !== 'bulk-binder';
     /* Which top-level nav link should be highlighted for each view.
        Add a line here whenever a new top-level page is added, or its
        nav pill silently never highlights. */
@@ -39487,6 +39587,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     else if(r.view === 'almanac-myths'){ renderMythsRumours(); }
     else if(r.view === 'play-games'){ renderVideoGamesHub(); }
     else if(r.view === 'play-games-detail'){ renderVideoGameDetail(r.seriesId); }
+    else if(r.view === 'bulk-binder'){ renderBulkBinderView(); }
     closeSetPanel();
     closeAllNavPanels();
     closeNavMenu();
@@ -39635,11 +39736,254 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     return (STATE.cards || []).find(function(c){ return c.id === id; });
   }
 
+  /* ================================================================
+     BULK BINDER (Sept 2026, Batch 1 - foundation only)
+     ================================================================
+     Approved architecture (see the project's Bulk Binder inspection +
+     approval docs): a completely separate product from the curated
+     Binder at #/catalog. Deliberately does NOT share STATE, UI,
+     renderGrid, applyFilters, getFilteredSortedTiles, cardTileHTML,
+     PAGE_SIZE, or the Google Sheet loader with the code above - a bug or
+     future change on one side can never leak into the other. Everything
+     below is new, isolated, and only touches the new #bulk-* DOM ids and
+     the new #/bulk-binder route registered elsewhere in parseRoute()/
+     route()/ROUTE_VERSION_CLASS/PAGE_META.
+
+     PUBLIC DATA CONTRACT (Batch 1, deliberately small - extend later only
+     when a real feature needs more):
+       data/bulk/manifest.json:
+         { schemaVersion: 1, generatedAt: string|null,
+           totalPrintings: number, totalQuantity: number,
+           sets: [ { id, name, count, chunk } ] }
+       data/bulk/sets/<id>.json (one per manifest.sets[].chunk, not created
+       yet - nothing is published, so this array stays empty in Batch 1):
+         [ { id, name, setId, setName, number, lang, variant, qty, image } ]
+       "id" is a stable PRINTING identifier (one row per printing Jack
+       holds, already aggregated by Card Ingest - see qty), never a private
+       CARD_INSTANCE id. No status/location/recognition/acquisition/pricing
+       fields are part of this contract - Card Ingest keeps those private.
+
+     Card Ingest does not exist/export data yet. BULK_STATE.printings is
+     therefore always empty right now, by design - this ships real
+     architecture (a tiny manifest fetch, genuinely bounded pagination,
+     honest loading/empty/error states), not a fake dataset. */
+
+  var BULK_PAGE_SIZE = 24;
+  var BULK_MANIFEST_URL = 'data/bulk/manifest.json';
+  var BULK_STATE = { status:'idle', manifest:null, printings:[], setsPopulated:false };
+  var BULK_UI = { search:'', setId:'all', page:1 };
+
+  /* Fetched once per page-load (not once per visit to the route) - cached
+     in BULK_STATE after the first successful/failed attempt, same "don't
+     refetch on every navigation" behaviour a visitor would expect, and
+     cheap either way since the manifest is tiny. A hard refresh always
+     re-runs this from 'idle', which is exactly the "browser refresh while
+     on #/bulk-binder" case this needs to handle correctly. */
+  function loadBulkBinderManifest(){
+    BULK_STATE.status = 'loading';
+    fetch(BULK_MANIFEST_URL, {cache:'no-store'})
+      .then(function(res){
+        if(!res.ok) throw new Error('manifest fetch failed: ' + res.status);
+        return res.json();
+      })
+      .then(function(manifest){
+        BULK_STATE.manifest = manifest;
+        /* Batch 1: manifest.sets is always [] (nothing published yet), so
+           there is nothing to fetch chunks for. Once Card Ingest ships a
+           real export with real set chunks, this is the one place a
+           later batch adds "fetch each listed chunk (or only the
+           selected set's chunk, on demand) and concat into
+           BULK_STATE.printings" - the fetch-manifest-first, honest-empty-
+           state-if-nothing-published shape does not change. */
+        BULK_STATE.printings = [];
+        BULK_STATE.status = 'ready';
+        renderBulkBinderView();
+      })
+      .catch(function(err){
+        console.error('Bulk Binder: could not load catalogue data.', err);
+        BULK_STATE.status = 'error';
+        renderBulkBinderView();
+      });
+  }
+
+  function bulkPrintingTileHTML(p){
+    var art = p.image
+      ? '<img src="'+escapeHtml(p.image)+'" alt="'+escapeHtml(p.name||'')+'" loading="lazy">'
+      : '<div class="art-placeholder" aria-hidden="true"></div>';
+    return ''
+      + '<article class="card-tile" data-id="'+escapeHtml(p.id||'')+'">'
+      +   '<div class="art">'+art+'</div>'
+      +   '<div class="info">'
+      +     '<div class="name">'+escapeHtml(p.name||'')+'</div>'
+      +     '<div class="set mono">'+escapeHtml(p.setName||'')+(p.number ? ' &middot; #'+escapeHtml(p.number) : '')+'</div>'
+      +     '<div class="meta-row">'
+      +       (p.variant ? '<span class="condition-chip">'+escapeHtml(p.variant)+'</span>' : '<span></span>')
+      +       (p.qty > 1 ? '<span class="qty-chip" title="'+p.qty+' copies">&times;'+p.qty+'</span>' : '')
+      +     '</div>'
+      +   '</div>'
+      + '</article>';
+  }
+
+  /* Filters/sorts the already-loaded-into-memory printings array - never
+     DOM nodes (contrast with the curated Binder's getFilteredSortedTiles,
+     which queries .card-tile elements already in the DOM). This is what
+     keeps the DOM bounded: only the current page's slice, computed below,
+     ever gets turned into real elements. */
+  function bulkFilteredPrintings(){
+    var q = (BULK_UI.search || '').trim().toLowerCase();
+    var setId = BULK_UI.setId;
+    return (BULK_STATE.printings || []).filter(function(p){
+      var matchesQ = !q
+        || (p.name||'').toLowerCase().indexOf(q) !== -1
+        || (p.setName||'').toLowerCase().indexOf(q) !== -1
+        || (p.number||'').toLowerCase().indexOf(q) !== -1;
+      var matchesSet = setId === 'all' || p.setId === setId;
+      return matchesQ && matchesSet;
+    });
+  }
+
+  function bulkRenderPager(totalPages){
+    var pagerEl = document.getElementById('bulk-pager');
+    if(!pagerEl) return;
+    if(totalPages <= 1){ pagerEl.hidden = true; pagerEl.innerHTML = ''; return; }
+    var page = BULK_UI.page;
+    var pagesToShow = [];
+    for(var p = 1; p <= totalPages; p++){
+      if(p === 1 || p === totalPages || Math.abs(p - page) <= 1) pagesToShow.push(p);
+    }
+    var html = '<button class="pill ghost pager-btn" type="button" data-page="' + (page - 1) + '"' + (page <= 1 ? ' disabled' : '') + '>&larr; Prev</button>';
+    html += '<div class="pager-pages">';
+    var last = 0;
+    pagesToShow.forEach(function(p){
+      if(last && p - last > 1) html += '<span class="pager-ellipsis">&hellip;</span>';
+      html += '<button class="pager-page' + (p === page ? ' active' : '') + '" type="button" data-page="' + p + '"' + (p === page ? ' aria-current="page"' : '') + '>' + p + '</button>';
+      last = p;
+    });
+    html += '</div>';
+    html += '<button class="pill ghost pager-btn" type="button" data-page="' + (page + 1) + '"' + (page >= totalPages ? ' disabled' : '') + '>Next &rarr;</button>';
+    pagerEl.hidden = false;
+    pagerEl.innerHTML = html;
+  }
+
+  /* Builds DOM for the current page's slice ONLY - re-run on every search/
+     filter/page change, always replacing #bulk-grid's innerHTML with just
+     that slice (never all matches at once, never a hide-via-CSS pass over
+     a bigger pre-rendered set). This is the one deliberate behavioural
+     difference from the curated Binder's own renderGrid/applyFilters. */
+  function renderBulkBinderResults(){
+    var matches = bulkFilteredPrintings();
+    var totalPages = Math.max(1, Math.ceil(matches.length / BULK_PAGE_SIZE));
+    if(BULK_UI.page > totalPages) BULK_UI.page = totalPages;
+    if(BULK_UI.page < 1) BULK_UI.page = 1;
+    var start = (BULK_UI.page - 1) * BULK_PAGE_SIZE;
+    var pageSlice = matches.slice(start, start + BULK_PAGE_SIZE);
+
+    var gridEl = document.getElementById('bulk-grid');
+    var statusEl = document.getElementById('bulk-status');
+    if(matches.length === 0){
+      gridEl.hidden = true;
+      gridEl.innerHTML = '';
+      document.getElementById('bulk-pager').hidden = true;
+      document.getElementById('bulk-pager').innerHTML = '';
+      var q = (BULK_UI.search || '').trim();
+      statusEl.hidden = false;
+      statusEl.innerHTML = '<div class="empty-state">'
+        + '<h3>No cards match that</h3>'
+        + '<p>' + (q ? 'Nothing matches &ldquo;'+escapeHtml(q)+'&rdquo;.' : 'Nothing matches those filters.') + ' Try a different spelling, or search by set name instead.</p>'
+        + '</div>';
+    } else {
+      statusEl.hidden = true;
+      statusEl.innerHTML = '';
+      gridEl.hidden = false;
+      gridEl.innerHTML = pageSlice.map(bulkPrintingTileHTML).join('');
+    }
+
+    var countEl = document.getElementById('bulk-result-count');
+    if(countEl){
+      if(matches.length === 0){ countEl.textContent = '0 cards'; }
+      else {
+        var from = start + 1;
+        var to = Math.min(start + BULK_PAGE_SIZE, matches.length);
+        countEl.textContent = 'Showing ' + from + '–' + to + ' of ' + matches.length + (matches.length === 1 ? ' card' : ' cards');
+      }
+    }
+    bulkRenderPager(totalPages);
+  }
+
+  function bulkGoToPage(p){
+    BULK_UI.page = p;
+    renderBulkBinderResults();
+    var toolbarEl = document.getElementById('bulk-toolbar');
+    if(toolbarEl) toolbarEl.scrollIntoView({block:'start', behavior:'smooth'});
+  }
+
+  /* Populated once, from manifest.sets, the first time real data is ready -
+     harmless no-op in Batch 1 since manifest.sets is always []. Guarded by
+     setsPopulated so a route revisit doesn't keep re-adding <option>s. */
+  function populateBulkSetFilter(){
+    if(BULK_STATE.setsPopulated) return;
+    var selectEl = document.getElementById('bulk-set-filter');
+    if(!selectEl || !BULK_STATE.manifest || !BULK_STATE.manifest.sets) return;
+    BULK_STATE.manifest.sets.forEach(function(s){
+      var opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = s.name + (s.count ? ' (' + s.count + ')' : '');
+      selectEl.appendChild(opt);
+    });
+    BULK_STATE.setsPopulated = true;
+  }
+
+  /* Route entry point (called from route() when r.view === 'bulk-binder').
+     State machine: idle -> loading -> ready|error. 'ready' with zero total
+     printings is NOT the same as 'error' - one is "the catalogue is being
+     prepared, come back later" (expected, honest, Batch-1-normal), the
+     other is "something actually broke" (network/hosting problem) - see
+     Jackson's approval notes, point 4. Toolbar/grid/pager only ever show
+     once there is at least one real printing to search through; showing a
+     search box that can never return anything would be misleading. */
+  function renderBulkBinderView(){
+    if(BULK_STATE.status === 'idle'){
+      loadBulkBinderManifest();
+      return; /* loadBulkBinderManifest() calls this function again when done */
+    }
+    var statusEl = document.getElementById('bulk-status');
+    var toolbarEl = document.getElementById('bulk-toolbar');
+    var gridEl = document.getElementById('bulk-grid');
+    var pagerEl = document.getElementById('bulk-pager');
+    if(!statusEl || !toolbarEl || !gridEl || !pagerEl) return;
+
+    if(BULK_STATE.status === 'loading'){
+      statusEl.hidden = false;
+      statusEl.innerHTML = '<div class="empty-state loading-state"><div class="loading-spinner" aria-hidden="true"></div><p>Loading the catalogue&hellip;</p></div>';
+      toolbarEl.hidden = true; gridEl.hidden = true; gridEl.innerHTML = ''; pagerEl.hidden = true; pagerEl.innerHTML = '';
+      return;
+    }
+    if(BULK_STATE.status === 'error'){
+      statusEl.hidden = false;
+      statusEl.innerHTML = '<div class="empty-state"><h3>Couldn&rsquo;t load the catalogue</h3><p>Something went wrong loading Bulk Binder&rsquo;s data. Try refreshing in a bit &mdash; if it keeps happening, let Jack know.</p></div>';
+      toolbarEl.hidden = true; gridEl.hidden = true; gridEl.innerHTML = ''; pagerEl.hidden = true; pagerEl.innerHTML = '';
+      return;
+    }
+    /* status === 'ready' */
+    if(!BULK_STATE.printings.length){
+      statusEl.hidden = false;
+      statusEl.innerHTML = '<div class="empty-state"><h3>The catalogue&rsquo;s still being built</h3><p>This is where the rest of my Pok&eacute;mon cards will show up &mdash; the ordinary ones I own in bulk, not the curated stuff in the Binder. I&rsquo;m still building the tool that scans and catalogues them. Once real cards are in, you&rsquo;ll be able to search by name, set, or card number right here.</p></div>';
+      toolbarEl.hidden = true; gridEl.hidden = true; gridEl.innerHTML = ''; pagerEl.hidden = true; pagerEl.innerHTML = '';
+      return;
+    }
+    statusEl.hidden = true;
+    statusEl.innerHTML = '';
+    toolbarEl.hidden = false;
+    populateBulkSetFilter();
+    renderBulkBinderResults();
+  }
+
 
   /* ---------------- events ---------------- */
 
   document.addEventListener('input', function(e){
     if(e.target.id === 'search-input'){ UI.search = e.target.value; applyFilters(true); }
+    if(e.target.id === 'bulk-search-input'){ BULK_UI.search = e.target.value; BULK_UI.page = 1; renderBulkBinderResults(); }
     if(e.target.classList.contains('binder-label-input')){
       if(BINDER_DRAFT) BINDER_DRAFT[Number(e.target.dataset.index)] = e.target.value;
     }
@@ -39658,6 +40002,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   document.addEventListener('change', function(e){
     if(e.target.id === 'status-filter'){ UI.status = e.target.value; applyFilters(true); }
     if(e.target.id === 'sort-select'){ UI.sort = e.target.value; applyFilters(true); }
+    if(e.target.id === 'bulk-set-filter'){ BULK_UI.setId = e.target.value; BULK_UI.page = 1; renderBulkBinderResults(); }
   });
 
   document.addEventListener('click', function(e){
@@ -39674,6 +40019,11 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     var pagerBtn = e.target.closest('#pager button[data-page]');
     if(pagerBtn && !pagerBtn.disabled && !pagerBtn.classList.contains('active')){
       goToPage(Number(pagerBtn.dataset.page));
+      return;
+    }
+    var bulkPagerBtn = e.target.closest('#bulk-pager button[data-page]');
+    if(bulkPagerBtn && !bulkPagerBtn.disabled && !bulkPagerBtn.classList.contains('active')){
+      bulkGoToPage(Number(bulkPagerBtn.dataset.page));
       return;
     }
     if(e.target.closest('#set-browse-btn')){ toggleSetPanel(); return; }
