@@ -1084,13 +1084,42 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
    percentage-height <img> inside this nested flex layout doesn't reliably
    respect aspect-ratio here (confirmed - the box grew to the image's own
    intrinsic ratio instead of 4:3 until this was changed to a fixed height).*/
-.home-version-window.dest-card-visual-photo{padding:0;}
+.home-version-window.dest-card-visual-photo{padding:0;position:relative;overflow:hidden;}
 .home-version-window .dest-card-photo{border-radius:5px;filter:brightness(.68) contrast(1.15) saturate(1.12) sepia(.1);}
 .home-version-card-red .dest-card-photo{object-position:50% 15%;}
 .home-version-card-blue .dest-card-photo{object-position:50% 35%;}
-.home-pokedex-link{margin:.75rem 0 0;text-align:center;font-size:.88rem;color:var(--ink-muted);}
-.home-pokedex-link a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
-.home-pokedex-link a:hover,.home-pokedex-link a:focus-visible{color:var(--version-red);}
+/* Photo standardisation pass (Sept 2026): Jack flagged the three window
+   photos as looking "out of place together" once the redundant selector
+   above them was removed and they became the very first real content on
+   the page - a note held up against a wall (Red), colourful cards under
+   gym lighting (Blue) and a colourful binder page (Green) don't share a
+   colour cast even with the same brightness/contrast/saturate/sepia
+   recipe above, because that recipe can't invent colour a photo doesn't
+   have. Rather than re-crop/replace Jack's real photos (against the
+   site's standing rule against filling photo gaps with anything but
+   Jack's own images), each window gets a translucent, mix-blend-mode:color
+   wash in its own Version colour on top of the existing filtered photo -
+   a duotone treatment, same idea as tinted film over a photo. This
+   preserves each photo's own light/dark detail while pulling all three
+   into one consistent "tinted cartridge window" family, and doubles as
+   a second, more literal read of the cartridge-shell colour motif already
+   used for the border/ridge/notch around each window. */
+.home-version-window.dest-card-visual-photo::after{content:'';position:absolute;inset:0;mix-blend-mode:color;pointer-events:none;}
+.home-version-card-red .home-version-window::after{background:var(--version-red);opacity:.55;}
+.home-version-card-blue .home-version-window::after{background:var(--version-blue);opacity:.4;}
+.home-version-card-green .home-version-window::after{background:var(--version-green);opacity:.4;}
+/* "Jump to Pokédex" utility link (Sept 2026 declutter follow-up): used to be
+   a bare underlined text line sitting in open space right under the card
+   grid - read as shoved-in/afterthought once that grid became the very
+   next thing on the page. Same small-pill treatment as .pill.ghost
+   elsewhere on the site (its own class, not a shared one, so this can't
+   affect the header/nav pills), plus a small Pokédex-ish icon and more
+   top breathing room, so it reads as an intentional secondary way in
+   rather than an orphaned line of text. */
+.home-pokedex-link{margin:1.7rem 0 0;text-align:center;}
+.home-pokedex-link a{display:inline-flex;align-items:center;gap:.55rem;padding:.6rem 1.2rem;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.85rem;font-weight:600;text-decoration:none;transition:border-color .15s,color .15s,box-shadow .15s,transform .15s;}
+.home-pokedex-link a svg{width:16px;height:16px;flex-shrink:0;}
+.home-pokedex-link a:hover,.home-pokedex-link a:focus-visible{border-color:var(--version-red);color:var(--version-red);box-shadow:0 4px 12px rgba(0,0,0,.1);transform:translateY(-1px);}
 :root:not([data-theme="light"]) .home-version-window{box-shadow:0 2px 6px rgba(0,0,0,.45), inset 0 0 0 3px rgba(255,255,255,.16);}
 
 .home-version-card .dest-card-body{padding:0 1rem 1.1rem;gap:.35rem;}
@@ -2775,7 +2804,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             </span>
           </a>
         </div>
-        <p class="home-pokedex-link"><a href="#/pokedex">Looking for a specific Pok&eacute;mon? Jump straight to the Pok&eacute;dex &rarr;</a></p>
+        <p class="home-pokedex-link"><a href="#/pokedex"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h6.2M14.8 12H21" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Looking for a specific Pok&eacute;mon? Jump straight to the Pok&eacute;dex &rarr;</a></p>
       </section>
 
       <section class="jack-binder-channel" aria-label="Jack, the Binder, and the channel">
