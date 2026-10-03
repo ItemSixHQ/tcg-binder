@@ -1085,7 +1085,7 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
    respect aspect-ratio here (confirmed - the box grew to the image's own
    intrinsic ratio instead of 4:3 until this was changed to a fixed height).*/
 .home-version-window.dest-card-visual-photo{padding:0;position:relative;overflow:hidden;}
-.home-version-window .dest-card-photo{border-radius:5px;filter:brightness(.68) contrast(1.15) saturate(1.12) sepia(.1);}
+.home-version-window .dest-card-photo{border-radius:5px;filter:brightness(.92) contrast(1.06) saturate(1.04);}
 .home-version-card-red .dest-card-photo{object-position:50% 15%;}
 .home-version-card-blue .dest-card-photo{object-position:50% 35%;}
 /* Photo standardisation pass (Sept 2026): Jack flagged the three window
@@ -1103,11 +1103,19 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
    preserves each photo's own light/dark detail while pulling all three
    into one consistent "tinted cartridge window" family, and doubles as
    a second, more literal read of the cartridge-shell colour motif already
-   used for the border/ridge/notch around each window. */
+   used for the border/ridge/notch around each window.
+
+   Toned down (Oct 2026): Jack flagged the result as unnaturally washed
+   out once live - brightness(.68)+sepia(.1) plus a .55/.4/.4-opacity
+   colour wash was too heavy a stack. Lightened the base filter
+   (brightness .92, contrast 1.06, saturate 1.04, sepia dropped entirely)
+   and cut the overlay opacities roughly in half (.22/.16/.16) so the
+   tint reads as a subtle cartridge-window cast rather than a dominant
+   color filter over the photo. */
 .home-version-window.dest-card-visual-photo::after{content:'';position:absolute;inset:0;mix-blend-mode:color;pointer-events:none;}
-.home-version-card-red .home-version-window::after{background:var(--version-red);opacity:.55;}
-.home-version-card-blue .home-version-window::after{background:var(--version-blue);opacity:.4;}
-.home-version-card-green .home-version-window::after{background:var(--version-green);opacity:.4;}
+.home-version-card-red .home-version-window::after{background:var(--version-red);opacity:.22;}
+.home-version-card-blue .home-version-window::after{background:var(--version-blue);opacity:.16;}
+.home-version-card-green .home-version-window::after{background:var(--version-green);opacity:.16;}
 /* "Jump to Pokédex" utility link (Sept 2026 declutter follow-up): used to be
    a bare underlined text line sitting in open space right under the card
    grid - read as shoved-in/afterthought once that grid became the very
@@ -3105,7 +3113,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <p>The Cinnabar Island glitch could duplicate the sixth item in your inventory. I did it as a kid, because obviously I did, and years later that memory ended up giving this entire project its name.</p>
           <p>I also wanted something that didn&rsquo;t begin or end in &ldquo;Pok&eacute;&rdquo; or &ldquo;TCG&rdquo;. No shade. There are just&hellip; quite a lot of us.</p>
           <p>A close second was the old &ldquo;Mew under the truck&rdquo; rumour. ItemSix won. Probably for the best.</p>
-          <div class="content-img-placeholder" style="aspect-ratio:16/9;" title="Photo: the actual childhood Game Boy and Red/Blue/Yellow cartridges the ItemSix name comes from"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>The actual Game Boy &amp; cartridges, if I can dig them out</span></div>
+          <img class="content-img-photo" src="images/jack-missingno-origin.jpg" alt="The &quot;Wild MISSINGNO. appeared!&quot; glitch screen that gave ItemSix its name" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;border-radius:12px;display:block;">
           </div>
 
           <div class="terms-block">
@@ -3129,7 +3137,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <h3>Coming back to Pok&eacute;mon</h3>
           <p>I don&rsquo;t think of myself as an expert on Pok&eacute;mon lore, the games, or the TCG. I&rsquo;m a dad in my late 30s who&rsquo;s loved this hobby since I was a kid. Like a lot of people my age, I took a break from it growing up &mdash; Pok&eacute;mon got &ldquo;uncool&rdquo; somewhere in my teens and early adulthood. Coming back to it now is partly me correcting that, and making up for lost time.</p>
           <p>It also really helps that my wife is into Pok&eacute;mon too. She&rsquo;s not quite as <s>moss</s>deep into it as I am, but she knows her stuff, and it gives us something we genuinely enjoy together &mdash; including the odd Pok&eacute;mon-centric event we still make it out to as a family.</p>
-          <div class="content-img-placeholder" style="aspect-ratio:16/9;" title="Photo: a Pok&eacute;mon-centric event or moment with the family"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>A family moment, if you&rsquo;d like to share one</span></div>
+          <img class="content-img-photo" src="images/jack-family-moment.jpg" alt="Jackson face-to-face with his toddler son" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;object-position:50% 25%;border-radius:12px;display:block;">
           </div>
 
           <div class="terms-block">
@@ -3549,7 +3557,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <li><strong>Shuffling and cutting.</strong> Shuffle properly, then offer your deck to your opponent to cut. Do it every time. It costs you nothing and it&rsquo;s the norm.</li>
           <li><strong>Check your own legality.</strong> Nobody else is responsible for your deck being format-legal. Check the regulation marks yourself before you go &mdash; see the rotation section above.</li>
         </ul>
-        <div class="content-img-placeholder" style="aspect-ratio:16/9;" title="Photo: what an actual league night / local tournament looks like"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>A real league night or local event in progress</span></div>
+        <img class="content-img-photo" src="images/jack-tcg-group-blacklabel.jpg" alt="Jack (highlighted) playing in a group TCG session at a BlackLabel gym event, other players' faces blurred for privacy" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;border-radius:12px;display:block;">
         <p>Beyond that, ask. Judges would far rather answer a question than issue a penalty, and every player at a local event was new once.</p>
         </div>
 
@@ -3577,7 +3585,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <h3>Who I am</h3>
         <p>I&rsquo;m Jackson &mdash; Singaporean, a dad, an operations manager by day, a singer-songwriter the rest of the time, and a Pok&eacute;mon TCG obsessive for as long as I can remember. ItemSixHQ is where all of that meets.</p>
         <p>I run this alone, at night, after my kid&rsquo;s asleep. Nobody pays me to. Everything on this site &mdash; the guides, the news write-ups, the card photography, the site itself &mdash; exists because I wanted it to exist and nobody else had made it.</p>
-        <div class="content-img-placeholder" style="aspect-ratio:16/9;" title="Photo of Jackson - a face to put to the person a shop, brand or organiser would be working with"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>A photo of the person behind ItemSixHQ</span></div>
+        <img class="content-img-photo" src="images/jack-portrait.jpg" alt="Jackson, the person behind ItemSixHQ" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;object-position:50% 20%;border-radius:12px;display:block;">
         </div>
 
         <div class="terms-block">
@@ -3988,7 +3996,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             <h3>Learn. Play. Get better?</h3>
             <p class="muted play-tcg-sub">Everything below connects straight to the real guides and tools already on this site &mdash; nothing here is new or duplicated, just organised as a path.</p>
           </div>
-          <div class="pillar-header-media content-img-placeholder" style="aspect-ratio:1/1;" title="Square photo &mdash; Jack playing the TCG, or a generic photo of the TCG being played"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Jack playing the TCG (or a generic in-play photo)</span></div>
+          <img class="pillar-header-media content-img-photo" src="images/jack-binder-tcg-pillar.jpg" alt="Jack&rsquo;s hand holding open a binder page of Pok&eacute;mon TCG cards" style="aspect-ratio:1/1;width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;">
         </div>
 
         <p class="pillar-bridge-quote">The card game I actually play and collect. Beginners Guide if you&rsquo;re new, Meta Decks if you&rsquo;re not, Rotation Checker if you just want to know what&rsquo;s still legal before you argue with a judge about it.</p>
@@ -4090,7 +4098,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             <h3>Beyond the cartridge.</h3>
             <p class="muted play-tcg-sub">Released July 6, 2016 by Niantic (with The Pok&eacute;mon Company and Nintendo), GO took the core &ldquo;catch stuff&rdquo; loop, bolted on GPS and your phone camera, and turned the entire outside world into the tall grass. Whatever else you think about it, it got more non-fans catching Pok&eacute;mon than any mainline game ever has.</p>
           </div>
-          <div class="pillar-header-media content-img-placeholder" style="aspect-ratio:1/1;" title="Square photo &mdash; Jack out playing GO, or a generic phone-in-hand GO screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5A7 7 0 0 1 19 9.5C19 14.7 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="9.5" r="2" fill="none" stroke="currentColor" stroke-width="1.3"/></svg><span>Jack playing GO (or a generic phone/GO photo)</span></div>
+          <img class="pillar-header-media content-img-photo" src="images/img-843fd92ef46cce45.jpg" alt="Jack&rsquo;s Level 64 Pok&eacute;mon GO account, mid-catch" style="aspect-ratio:1/1;width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;">
         </div>
         <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>I still remember when this thing launched &mdash; the entire world briefly agreed on something, and that something was walking to a church at 1am because a rare spawn was there. Simpler times.</div>
         <p><strong>How it actually works, briefly</strong></p>
