@@ -1526,7 +1526,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .collect-hub .explore-hero-sub,.collect-hub .explore-hero .callout-jacknote{max-width:46rem;}
 .collect-media{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:1rem;align-items:stretch;margin-top:1.2rem;}
 .collect-media figure{margin:0;display:flex;flex-direction:column;}
-.collect-media img{width:100%;height:100%;min-height:0;object-fit:cover;border-radius:12px;display:block;}
+.collect-media img{width:100%;height:100%;min-height:0;object-fit:cover;border-radius:16px;display:block;}
 .collect-media figcaption{font-size:.82rem;margin-top:.5rem;color:var(--muted);}
 .collect-media .collect-media-photo img{aspect-ratio:auto;flex:1;}
 @media(max-width:700px){.collect-media{grid-template-columns:1fr;}.collect-media .collect-media-card{max-width:260px;margin:0 auto;}}
@@ -1537,10 +1537,13 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .collect-cta-sub{display:block;margin-top:.4rem;font-size:1rem;opacity:.88;}
 .collect-cta-go{font-weight:700;font-size:1.05rem;white-space:nowrap;border:2px solid currentColor;border-radius:999px;padding:.7rem 1.3rem;}
 @media(max-width:700px){.collect-cta{grid-template-columns:1fr;text-align:center;padding:1.6rem 1.2rem;justify-items:center;}.collect-cta-title{font-size:1.6rem;}}
-.collect-how{margin:0 0 2.4rem;padding:1.4rem 1.6rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
-.collect-how h3{margin:0 0 .8rem;font-size:1.2rem;}
-.collect-how ol{margin:0 0 .9rem;padding-left:1.2rem;}
-.collect-how li{margin:.25rem 0;}
+.collect-how{margin:0 0 2.4rem;padding:2rem 2.2rem;background:rgba(var(--version-yellow-rgb),.09);border:2px solid rgba(var(--version-yellow-rgb),.55);border-radius:16px;}
+.collect-how h3{margin:0 0 1.1rem;font-family:'Fredoka',system-ui,sans-serif;font-weight:600;font-size:1.6rem;line-height:1.15;}
+.collect-how ol{margin:0 0 1.3rem;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;counter-reset:step;}
+.collect-how li{margin:0;display:flex;gap:.8rem;align-items:flex-start;counter-increment:step;font-size:1rem;}
+.collect-how li::before{content:counter(step);flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--version-yellow);color:var(--version-yellow-ink);font-weight:700;display:flex;align-items:center;justify-content:center;}
+.collect-how .dest-card-cta{color:var(--version-yellow-text);}
+@media(max-width:700px){.collect-how{padding:1.6rem 1.2rem;}.collect-how ol{grid-template-columns:1fr;}}
 .cart-btn-icon{width:20px;height:auto;margin-right:.35rem;image-rendering:pixelated;vertical-align:middle;}
 .cart-title{display:flex;align-items:center;gap:.6rem;}
 .cart-title-icon{width:44px;height:auto;image-rendering:pixelated;}
@@ -1649,6 +1652,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
    smaller/subordinate tools row underneath - not a grid of nine, and
    nothing here is Explore's markup recoloured. */
 #view-play{padding-top:2.25rem;}
+#view-collect{padding-top:2.25rem;}   /* same top spacing as Red (#view-explore) and Blue (#view-play) */
 .play-hub{padding-bottom:3rem;}
 .play-hero{max-width:62ch;margin-bottom:2.2rem;}
 #play-pillar-tcg,#play-pillar-games,#play-pillar-go{scroll-margin-top:calc(var(--nav-h,64px) + 12px);}
@@ -3201,9 +3205,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
           <div class="terms-block" id="about-how-made">
           <h3>How this site is made</h3>
-          <p>I built the website with AI coding help (Claude). That&rsquo;s the vibecoding part, and I&rsquo;d rather say it plainly than have you wonder.</p>
-          <p>The ideas are mine, including the three Versions. The photos and drawings are mine too: unless an image is credited, I took the photo or drew it by hand myself. There are no AI-generated or stock images on this site. The exception is official Pok&eacute;mon sprites and artwork, which are credited as &copy; Nintendo / Creatures Inc. / GAME FREAK / The Pok&eacute;mon Company.</p>
-          <p>The writing is mine as well, though AI helps me with grammar, structure and first drafts, the way an editor would. Some older pages were drafted with more AI help than I&rsquo;d like, and I&rsquo;m rewriting them in my own voice as I go. If something reads like a robot wrote it, tell me and I&rsquo;ll fix it.</p>
+          <p>Besides vibecoding the website (with Claude), nothing here is AI generated or stolen. If I used a source from elsewhere, I credited it.</p>
+          <p>No generated images. Unless it&rsquo;s credited, every image is a photo I took or something I drew by hand myself. The only exception is official Pok&eacute;mon sprites and artwork, which are &copy; Nintendo / Creatures Inc. / GAME FREAK / The Pok&eacute;mon Company and credited as such.</p>
+          <p>The words and the ideas are mine. AI helps fix my grammar and structure, but who doesn&rsquo;t? A few older pages leaned on AI more than I&rsquo;d like, and I&rsquo;m rewriting them in my own voice as I go. The 3 Versions you see? I birthed those from my weird brain. I doubt any AI could think of this, tbh.</p>
           </div>
 
           <div class="about-cluster">
@@ -4304,11 +4308,11 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       <div class="explore-hero">
         <p class="eyebrow">Yellow Version &middot; Jolteon&rsquo;s Binder</p>
         <h2>Welcome to Jolteon&rsquo;s Binder.</h2>
-        <p class="muted explore-hero-sub">You can find my ever-growing Pok&eacute;mon TCG collection here (seriously, it&rsquo;s like Galactus, but with cards). These are cards I&rsquo;m willing to trade or let go of at a fair price. Mostly singles, maybe the odd slab here and there, and perhaps some &ldquo;bespoke&rdquo; cards in the future? (See the hand-drawn Espeon VMAX for reference.)</p>
+        <p class="muted explore-hero-sub">You can find my ever-growing Pok&eacute;mon TCG collection here (seriously, it&rsquo;s like Galactus, but with cards). These are cards I&rsquo;m willing to trade or let go of at a fair price. Mostly singles, maybe the odd slab here and there, and perhaps some &ldquo;bespoke&rdquo; cards in the future?</p>
         <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>Apart from the vintages, almost everything here is priced at the average of what it&rsquo;s currently going for. If something looks off, please tell me! I&rsquo;d rather fix it than make an awkward trade.</div>
         <div class="collect-media">
           <figure class="collect-media-photo"><img src="images/jack-collect-gambler-binder.jpg" alt="Jack peeking over a zip binder full of first edition Gambler Trainer cards" decoding="async"></figure>
-          <figure class="collect-media-card"><img src="images/jack-espeon-vmax-bespoke.jpg" alt="A hand-drawn, colour-pencil Espeon VMAX card on white paper" loading="lazy" decoding="async"><figcaption>A &ldquo;bespoke&rdquo; Espeon VMAX, drawn by me.</figcaption></figure>
+          <figure class="collect-media-card"><img src="images/jack-espeon-vmax-bespoke.jpg" alt="A hand-drawn, colour-pencil Espeon VMAX card on white paper" loading="lazy" decoding="async"><figcaption>A bespoke card, not for sale&hellip;yet</figcaption></figure>
         </div>
       </div>
 
@@ -7982,7 +7986,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     function filter(){
       var q=input.value.trim().toLowerCase().replace(/^#/,'');
       var matches=POKEDEX_ENTRIES.filter(function(p){return !q || p.name.toLowerCase().includes(q) || (/^\d+$/.test(q) && p.number===Number(q));});
-      document.getElementById('pokedex-count').textContent=matches.length+' of '+POKEDEX_ENTRIES.length+' pilot entries';
+      document.getElementById('pokedex-count').textContent=matches.length+' of '+POKEDEX_ENTRIES.length+' entries';
       if(!matches.length){
         document.getElementById('pokedex-results').innerHTML='<p>No match in this pilot. Try another name or number.</p>';
         return;
