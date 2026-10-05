@@ -2586,6 +2586,13 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .pokedex-page h2{font-size:1.3rem;margin:0 0 .65rem;}
 .pokedex-kicker{color:var(--version-red);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
 .pokedex-intro{max-width:65ch;}
+.press-glance{margin:1rem 0 1.4rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;display:grid;gap:.55rem;}
+.press-glance div{display:grid;grid-template-columns:7rem 1fr;gap:.8rem;align-items:baseline;}
+.press-glance dt{font-weight:700;margin:0;}
+.press-glance dd{margin:0;}
+.press-glance .press-glance-asof{display:block;font-size:.85rem;color:var(--muted);}
+@media(max-width:600px){.press-glance div{grid-template-columns:1fr;gap:.1rem;}}
+.pokedex-only{display:flex;align-items:center;gap:.5rem;margin:-.4rem 0 1rem;font-size:.95rem;cursor:pointer;}
 .pokedex-search{display:block;width:100%;min-height:48px;margin:.5rem 0 1rem;padding:.75rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;}
 .pokedex-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;}
 .pokedex-tile,.pokedex-section{padding:1.35rem;border:1px solid var(--border);border-radius:14px;background:var(--surface);}
@@ -3210,6 +3217,14 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <p>The words and the ideas are mine. AI helps fix my grammar and structure, but who doesn&rsquo;t? A few older pages leaned on AI more than I&rsquo;d like, and I&rsquo;m rewriting them in my own voice as I go. The 3 Versions you see? I birthed those from my weird brain. I doubt any AI could think of this, tbh.</p>
           </div>
 
+          <div class="terms-block" id="about-privacy-credits">
+          <h3>Privacy, credits and rights holders</h3>
+          <p><strong>Privacy.</strong> There are no accounts, ads or analytics on this site, and nothing you do here is sent to me. Your basket, your chosen Version and a few display settings are saved in your own browser only. Clear your browser data and they&rsquo;re gone. If you message me on Telegram, Discord or email, I see what you send there, and those services have their own privacy policies.</p>
+          <p>To load, the page does pull a few things from other services: fonts from Google Fonts, the card list from a Google Sheet I maintain, and video thumbnails from YouTube. Like any website, those services can see your IP address when they serve you, and the host keeps ordinary server logs.</p>
+          <p><strong>Credits.</strong> Pok&eacute;mon names, card images, sprites and artwork belong to Nintendo, Creatures Inc., GAME FREAK and The Pok&eacute;mon Company. Pok&eacute;dex sprites and basic data (types, height and weight) come from the <a href="https://pokeapi.co" target="_blank" rel="noopener">PokeAPI</a> project. Photos and drawings that aren&rsquo;t credited are mine.</p>
+          <p><strong>If something here is yours.</strong> If you own something shown on this site and want it credited differently or taken down, email <a href="mailto:itemsixhq@gmail.com">itemsixhq@gmail.com</a> and I&rsquo;ll deal with it promptly.</p>
+          </div>
+
           <div class="about-cluster">
           <div class="terms-block">
           <h3>Why the Almanac exists</h3>
@@ -3741,6 +3756,14 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <div class="terms-block">
         <h3>Press, media and event coverage</h3>
         <p>If you&rsquo;re assessing me for a media or creator pass, this section is for you.</p>
+        <dl class="press-glance" aria-label="Reach at a glance">
+          <div><dt>YouTube</dt><dd>@ItemSixHQ &middot; 409 subscribers &middot; 58 videos</dd></div>
+          <div><dt>Twitch</dt><dd>JackForgetsLyrics &middot; 1.4K followers &middot; about 20 concurrent viewers, Tue / Wed / Thu</dd></div>
+          <div><dt>Based in</dt><dd>Singapore. No travel or visa needed for anything held here.</dd></div>
+          <div><dt>Contact</dt><dd>itemsixhq@gmail.com &middot; usually a reply within 2&ndash;3 days</dd></div>
+          <div class="press-glance-asof">Figures as of October 2026; I update them when they move.</div>
+        </dl>
+        <!-- TODO (Jack): add TikTok followers, Instagram followers, where your audience is (Singapore vs rest of SEA vs elsewhere), and your sponsorship disclosure line, then add them as extra <div><dt>..</dt><dd>..</dd></div> rows above. Left out on purpose until they're real numbers. -->
         <p><strong>What I publish.</strong> Written guides and rules explainers, a free deck-legality tool, news write-ups in my own words, and a running visitor guide to Worlds 2027 in Singapore. Everything on this site is free, and none of it is behind a sign-up.</p>
         <p><strong>Who I write for.</strong> Players in Singapore and Southeast Asia, and beginners anywhere. English-language coverage of this game is overwhelmingly North American, and a player here reads guides with the wrong currency, the wrong shops and the wrong release calendar. That gap is the entire reason this site exists.</p>
         <p><strong>What I&rsquo;d cover at an event.</strong> Written coverage aimed at first-time attendees and at regional players &mdash; how to actually navigate the event, what the format looked like, who from this part of the world made a run at it, and what a newcomer should take away from it. Filmed coverage as well, where that makes sense.</p>
@@ -3938,7 +3961,6 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <h2>Welcome to the Almanac.</h2>
         <p class="muted explore-hero-sub">This is the lore side of the house &mdash; regions, Pok&eacute;mon, the people who run gyms, and the stuff that makes this whole universe hang together instead of just being 1,025+ pocket monsters in a trenchcoat.</p>
         <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>Fair warning: I will talk about gym leader lore with the same unnecessary intensity other people reserve for fantasy football. I&rsquo;m aware this is a lot. I&rsquo;m going to do it anyway.</div>
-        <div class="content-img-placeholder" style="aspect-ratio:21/9;" title="Red-toned hero photo &mdash; Oak/Kanto-style desk composition, echoing the homepage treatment in the Red palette"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Red-toned hero photo &mdash; Oak/Kanto-style desk composition</span></div>
       </div>
 
       <div class="explore-features-row">
@@ -3947,8 +3969,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <div class="explore-almanac-intro">
             <p class="eyebrow">Featured &middot; The ItemSixHQ Pok&eacute;dex</p>
             <h3>A real, fact-checked Pok&eacute;dex.</h3>
-            <p class="muted explore-almanac-sub">Not a Wikipedia mirror, not auto-generated flavour text. Every entry here has been checked against the original games and cross-referenced against at least one other source before it went up.</p>
-            <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>&ldquo;Blank is better than a guess&rdquo; is the actual rule I gave whoever&rsquo;s writing these &mdash; mostly because I really don&rsquo;t want to be the reason you get a fact wrong at trivia night. If we don&rsquo;t know something for sure, you&rsquo;ll see a gap, not a guess.</div>
+            <p class="muted explore-almanac-sub">Not a Wikipedia mirror, not auto-generated flavour text. Every researched entry here has been checked against the original games and cross-referenced against at least one other source before it went up. The rest are basics only (sprite, type, size) until I get to them.</p>
+            <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>&ldquo;Blank is better than a guess&rdquo; is my rule for every entry here &mdash; mostly because I really don&rsquo;t want to be the reason you get a fact wrong at trivia night. If I don&rsquo;t know something for sure, you&rsquo;ll see a gap, not a guess.</div>
           </div>
           <div>
             <!-- Pokédex device illustration (Sept 2026). Jack didn't like the
@@ -3981,7 +4003,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      theme-aware CSS vars) on purpose, matching the pokedex-preview-
      caption/glitch-tile precedent already established: a physical
      device's screen looks the same regardless of site theme. -->
-<div class="pokedex-device" style="aspect-ratio:1920/1080;"><div class="pokedex-device-screen pokedex-device-screen-main"><svg viewBox="0 0 1171 867" preserveAspectRatio="none" role="img" aria-labelledby="pdxdev-main-title" xmlns="http://www.w3.org/2000/svg"><title id="pdxdev-main-title">Pok&#233;dex entry preview: MissingNo., National Dex #0000</title><defs><pattern id="pdxGrid" width="58" height="58" patternUnits="userSpaceOnUse"><path d="M58 0 0 0 0 58" fill="none" stroke="#E3DCC8" stroke-width="1"/></pattern></defs><rect width="1171" height="867" fill="#F7F5EC"/><rect x="0" y="90" width="1171" height="777" fill="url(#pdxGrid)"/><rect width="1171" height="90" fill="#C0392B"/><polygon points="70,25 70,65 38,45" fill="#fff"/><polygon points="1101,25 1101,65 1133,45" fill="#fff"/><text x="585" y="57" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="28" fill="#fff">POK&#201;DEX ENTRY</text><image x="60" y="150" width="278.57" height="650" href="images/img-4eb462f61e194b0e.webp" preserveAspectRatio="xMidYMid meet"/><rect x="560" y="150" width="551" height="170" rx="4" fill="#fff" stroke="#201C1A" stroke-width="4"/><path d="M562 152h547v66a4 4 0 0 1-4 4H566a4 4 0 0 1-4-4z" fill="#C0392B"/><circle cx="585" cy="185" r="14" fill="#fff" stroke="#201C1A" stroke-width="2"/><path d="M571 185h28" stroke="#201C1A" stroke-width="2"/><circle cx="585" cy="185" r="4" fill="#fff" stroke="#201C1A" stroke-width="2"/><text x="612" y="193" font-family="'Press Start 2P',ui-monospace,monospace" font-size="24" fill="#fff">#0000 MissingNo.</text><text x="580" y="256" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#5B5648">??? POK&#201;MON</text><rect x="560" y="340" width="130" height="130" rx="4" fill="#fff" stroke="#201C1A" stroke-width="4"/><text x="625" y="437" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="66" fill="#201C1A">?</text><rect x="706" y="345" width="195" height="58" rx="29" fill="#D8D3C6" stroke="#201C1A" stroke-width="3"/><text x="803" y="382" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="15" fill="#201C1A">UNKNOWN</text><rect x="911" y="345" width="195" height="58" rx="29" fill="#8E86B5" stroke="#201C1A" stroke-width="3"/><text x="1008" y="382" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="15" fill="#fff">GLITCH</text><rect x="560" y="485" width="551" height="145" rx="4" fill="#fff" stroke="#201C1A" stroke-width="3"/><rect x="563" y="489" width="6" height="137" fill="#C0392B"/><text x="600" y="541" font-family="'Press Start 2P',ui-monospace,monospace" font-size="21" fill="#201C1A">HEIGHT   ???</text><line x1="600" y1="559" x2="1080" y2="559" stroke="#C9C2AE" stroke-width="2" stroke-dasharray="4,6"/><text x="600" y="601" font-family="'Press Start 2P',ui-monospace,monospace" font-size="21" fill="#201C1A">WEIGHT   ???</text><rect x="560" y="645" width="551" height="155" rx="4" fill="#fff" stroke="#C0392B" stroke-width="5"/><text x="590" y="703" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#3A1418">No official entry, but Jack</text><text x="590" y="738" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#3A1418">spent way too long at</text><text x="590" y="773" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#3A1418">Cinnabar Island as a kid.</text></svg></div><div class="pokedex-device-screen pokedex-device-screen-secondary"><svg viewBox="0 0 452 328" role="img" aria-labelledby="pdxdev-sec-title" xmlns="http://www.w3.org/2000/svg"><title id="pdxdev-sec-title">52 Pok&#233;dex entries logged so far</title><rect width="452" height="328" fill="#F7F5EC"/><rect x="0" y="0" width="452" height="46" fill="#C0392B"/><text x="226" y="31" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="18" fill="#fff">DEX STATUS</text><rect x="126" y="86" width="200" height="130" rx="6" fill="#fff" stroke="#201C1A" stroke-width="4"/><text x="226" y="178" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="72" fill="#201C1A">52</text><text x="226" y="262" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="17" fill="#5B5648">ENTRIES LOGGED</text></svg></div><img class="pokedex-device-frame" src="images/img-d52e0aaa56b64fbc.webp" alt="Hand-drawn illustration of an open red Pok&eacute;dex, screens showing a live entry preview" loading="lazy" width="1920" height="1080"></div><p class="muted pokedex-preview-caption">No official Pokédex description exists for MissingNo. — it's a glitch, not a real entry. Jack's own line: it's the actual reason this site is called ItemSixHQ, and yes, encountering it really does duplicate your sixth item slot.</p>
+<div class="pokedex-device" style="aspect-ratio:1920/1080;"><div class="pokedex-device-screen pokedex-device-screen-main"><svg viewBox="0 0 1171 867" preserveAspectRatio="none" role="img" aria-labelledby="pdxdev-main-title" xmlns="http://www.w3.org/2000/svg"><title id="pdxdev-main-title">Pok&#233;dex entry preview: MissingNo., National Dex #0000</title><defs><pattern id="pdxGrid" width="58" height="58" patternUnits="userSpaceOnUse"><path d="M58 0 0 0 0 58" fill="none" stroke="#E3DCC8" stroke-width="1"/></pattern></defs><rect width="1171" height="867" fill="#F7F5EC"/><rect x="0" y="90" width="1171" height="777" fill="url(#pdxGrid)"/><rect width="1171" height="90" fill="#C0392B"/><polygon points="70,25 70,65 38,45" fill="#fff"/><polygon points="1101,25 1101,65 1133,45" fill="#fff"/><text x="585" y="57" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="28" fill="#fff">POK&#201;DEX ENTRY</text><image x="60" y="150" width="278.57" height="650" href="images/img-4eb462f61e194b0e.webp" preserveAspectRatio="xMidYMid meet"/><rect x="560" y="150" width="551" height="170" rx="4" fill="#fff" stroke="#201C1A" stroke-width="4"/><path d="M562 152h547v66a4 4 0 0 1-4 4H566a4 4 0 0 1-4-4z" fill="#C0392B"/><circle cx="585" cy="185" r="14" fill="#fff" stroke="#201C1A" stroke-width="2"/><path d="M571 185h28" stroke="#201C1A" stroke-width="2"/><circle cx="585" cy="185" r="4" fill="#fff" stroke="#201C1A" stroke-width="2"/><text x="612" y="193" font-family="'Press Start 2P',ui-monospace,monospace" font-size="24" fill="#fff">#0000 MissingNo.</text><text x="580" y="256" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#5B5648">??? POK&#201;MON</text><rect x="560" y="340" width="130" height="130" rx="4" fill="#fff" stroke="#201C1A" stroke-width="4"/><text x="625" y="437" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="66" fill="#201C1A">?</text><rect x="706" y="345" width="195" height="58" rx="29" fill="#D8D3C6" stroke="#201C1A" stroke-width="3"/><text x="803" y="382" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="15" fill="#201C1A">UNKNOWN</text><rect x="911" y="345" width="195" height="58" rx="29" fill="#8E86B5" stroke="#201C1A" stroke-width="3"/><text x="1008" y="382" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="15" fill="#fff">GLITCH</text><rect x="560" y="485" width="551" height="145" rx="4" fill="#fff" stroke="#201C1A" stroke-width="3"/><rect x="563" y="489" width="6" height="137" fill="#C0392B"/><text x="600" y="541" font-family="'Press Start 2P',ui-monospace,monospace" font-size="21" fill="#201C1A">HEIGHT   ???</text><line x1="600" y1="559" x2="1080" y2="559" stroke="#C9C2AE" stroke-width="2" stroke-dasharray="4,6"/><text x="600" y="601" font-family="'Press Start 2P',ui-monospace,monospace" font-size="21" fill="#201C1A">WEIGHT   ???</text><rect x="560" y="645" width="551" height="155" rx="4" fill="#fff" stroke="#C0392B" stroke-width="5"/><text x="590" y="703" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#3A1418">No official entry, but Jack</text><text x="590" y="738" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#3A1418">spent way too long at</text><text x="590" y="773" font-family="'Press Start 2P',ui-monospace,monospace" font-size="19" fill="#3A1418">Cinnabar Island as a kid.</text></svg></div><div class="pokedex-device-screen pokedex-device-screen-secondary"><svg viewBox="0 0 452 328" role="img" aria-labelledby="pdxdev-sec-title" xmlns="http://www.w3.org/2000/svg"><title id="pdxdev-sec-title">63 of 1,025 Pok&#233;dex entries fully researched so far</title><rect width="452" height="328" fill="#F7F5EC"/><rect x="0" y="0" width="452" height="46" fill="#C0392B"/><text x="226" y="31" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="18" fill="#fff">DEX STATUS</text><rect x="126" y="86" width="200" height="130" rx="6" fill="#fff" stroke="#201C1A" stroke-width="4"/><text x="226" y="178" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="72" fill="#201C1A">63</text><text x="226" y="262" text-anchor="middle" font-family="'Press Start 2P',ui-monospace,monospace" font-size="17" fill="#5B5648">RESEARCHED</text></svg></div><img class="pokedex-device-frame" src="images/img-d52e0aaa56b64fbc.webp" alt="Hand-drawn illustration of an open red Pok&eacute;dex, screens showing a live entry preview" loading="lazy" width="1920" height="1080"></div><p class="muted pokedex-preview-caption">No official Pokédex description exists for MissingNo. — it's a glitch, not a real entry. Jack's own line: it's the actual reason this site is called ItemSixHQ, and yes, encountering it really does duplicate your sixth item slot.</p>
           </div>
         </div>
         <p class="muted explore-almanac-link"><a class="dest-card-cta" href="#/pokedex">Browse the Pok&eacute;dex &rarr;</a></p>
@@ -3990,7 +4012,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       <section class="explore-almanac-feature" aria-label="The Almanac">
         <div class="explore-almanac-body">
           <div class="explore-almanac-intro">
-            <div class="pillar-header-media content-img-placeholder" style="aspect-ratio:1/1;" title="Square photo &mdash; a generic region-map or guidebook-style image for the Almanac"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 5.5v13M16 5.5v13" fill="none" stroke="currentColor" stroke-width="1.3"/></svg><span>Almanac imagery</span></div>
+            
             <p class="eyebrow">The ItemSixHQ Almanac</p>
             <h3>Start with a generation.</h3>
             <p class="muted explore-almanac-sub">The primary way into the Pok&eacute;mon world &mdash; nine generations, Kanto through Paldea. A few go deep today; every other generation still has its own real reference page, with more depth coming one generation at a time.</p>
@@ -4194,7 +4216,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             <h3>The mainline (and not-so-mainline) story.</h3>
             <p class="muted play-tcg-sub">Nine generations, a small pile of remakes, and one spin-off that recently swapped the classic turn-based battles for real-time combat. Here&rsquo;s the actual shape of it &mdash; now broken into its own page per generation instead of one long scroll.</p>
           </div>
-          <div class="pillar-header-media content-img-placeholder" style="aspect-ratio:1/1;" title="Square photo &mdash; a shelf of mainline game boxes/cartridges, or a generic console/Poké Ball photo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6.5" width="19" height="11" rx="5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 9.5v5M5.5 12h5" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="15.5" cy="10.5" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg><span>Mainline games photo</span></div>
+          
         </div>
         <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>Fun fact: I did not grow up with all of these. I am filling in gaps the same as some of you. We&rsquo;re doing this together.</div>
         <a href="#/play/games" class="play-decks-spotlight">
@@ -4987,6 +5009,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     <div class="footer-links">
       <a href="#/terms" class="link-btn">Terms &amp; Conditions</a>
       <a href="#/about" class="link-btn">About &amp; how this site is made</a>
+      <a href="#/about" class="link-btn">Privacy &amp; credits</a>
     </div>
     <p class="footer-disclaimer">ItemSixHQ is an independent, unofficial Pok&eacute;mon fan project and is not affiliated with, endorsed by, or sponsored by Nintendo, Creatures Inc., Game Freak, or The Pok&eacute;mon Company. All card names, images, and trademarks belong to their respective owners.</p>
   </footer>
@@ -7950,6 +7973,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       root.innerHTML='<a href="#/explore">&larr; Red Version &middot; Explore</a><h1>Pok&eacute;dex</h1><p>Couldn&rsquo;t load the Pok&eacute;dex data just now. Please refresh and try again.</p>';
     });
   }
+  function pokedexResearched(p){return !!(p&&p.dexEntry&&p.dexEntry.text);}
   function renderPokedexNow(number){
     var root=document.getElementById('pokedex-content');
     if(number!==undefined){
@@ -7967,7 +7991,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       }
       return;
     }
-    root.innerHTML='<a href="#/explore">← Red Version · Explore</a><p class="pokedex-kicker">Red Version · Explore</p><h1>Pokédex Entries</h1><p class="pokedex-intro">You don’t have to know everything about Pokémon to love Pokémon. Start with a name, a number, or something you didn’t know.</p><p class="muted">A growing reference: '+POKEDEX_ENTRIES.length+' entries so far, with sprites in for almost all of them. Some have the full research pass (dex text, fun facts, anime appearances); others have the basics only for now while I work through the rest.</p>'+pokedexJumpToHTML()+'<label for="pokedex-search">Find a Pokémon by name or National Pokédex number</label><input id="pokedex-search" class="pokedex-search" type="search" autocomplete="off" placeholder="Try Pikachu or 25" aria-controls="pokedex-results"><p id="pokedex-count" role="status" aria-live="polite"></p><div id="pokedex-results" class="pokedex-grid"></div>';
+    root.innerHTML='<a href="#/explore">← Red Version · Explore</a><p class="pokedex-kicker">Red Version · Explore</p><h1>Pokédex Entries</h1><p class="pokedex-intro">You don’t have to know everything about Pokémon to love Pokémon. Start with a name, a number, or something you didn’t know.</p><p class="muted">All 1,025 species are listed, with sprites. '+POKEDEX_ENTRIES.filter(function(p){return p.number>0&&pokedexResearched(p);}).length+' have the full research pass so far (dex text, fun facts, anime appearances); the rest show the basics only while I work through them, a batch at a time.</p>'+pokedexJumpToHTML()+'<label for="pokedex-search">Find a Pokémon by name or National Pokédex number</label><input id="pokedex-search" class="pokedex-search" type="search" autocomplete="off" placeholder="Try Pikachu or 25" aria-controls="pokedex-results"><label class="pokedex-only"><input type="checkbox" id="pokedex-researched"> Show researched entries only</label><p id="pokedex-count" role="status" aria-live="polite"></p><div id="pokedex-results" class="pokedex-grid"></div>';
     var input=document.getElementById('pokedex-search');
     function pokedexTileHTML(p){
       var cover=p.images&&p.images.cover&&p.images.cover.src;
@@ -7985,7 +8009,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     }
     function filter(){
       var q=input.value.trim().toLowerCase().replace(/^#/,'');
-      var matches=POKEDEX_ENTRIES.filter(function(p){return !q || p.name.toLowerCase().includes(q) || (/^\d+$/.test(q) && p.number===Number(q));});
+      var onlyR=document.getElementById('pokedex-researched').checked;
+      var matches=POKEDEX_ENTRIES.filter(function(p){return (!onlyR || pokedexResearched(p)) && (!q || p.name.toLowerCase().includes(q) || (/^\d+$/.test(q) && p.number===Number(q)));});
       document.getElementById('pokedex-count').textContent=matches.length+' of '+POKEDEX_ENTRIES.length+' entries';
       if(!matches.length){
         document.getElementById('pokedex-results').innerHTML='<p>No match in this pilot. Try another name or number.</p>';
@@ -8004,7 +8029,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       if(lastGen!==null) html+=pokedexJumpToHTML(true);
       document.getElementById('pokedex-results').innerHTML=html;
     }
-    input.addEventListener('input',filter);filter();
+    input.addEventListener('input',filter);document.getElementById('pokedex-researched').addEventListener('change',filter);filter();
   }
 
   function renderExploreView(){
