@@ -88,9 +88,10 @@
      hue from --good (#2E7D53, a teal-leaning green already used for
      in-stock/available status) so the two never get mistaken for each
      other. */
-  --version-green:#4C7A2E;
-  --version-green-ink:#FFFFFF;
-  --version-green-rgb:76,122,46;
+  --version-yellow:#E3B72A;
+  --version-yellow-ink:#241C02;
+  --version-yellow-rgb:227,183,42;
+  --version-yellow-text:#7A5C00;
   /* Correction pass (Sept 2026) - the permanent ItemSixHQ Purple shell
      identity token. Constant regardless of which Version is selected;
      only data-theme switches its value (see both dark blocks below). */
@@ -131,12 +132,10 @@
     --version-blue:#6C93F5;
     --version-blue-ink:#0D1B33;
     --version-blue-rgb:108,147,245;
-    --version-green:#8AC168;
-    --version-green-ink:#13230D;
-    --version-green-rgb:138,193,104;
     --version-yellow:#E8C547;
     --version-yellow-ink:#241C02;
     --version-yellow-rgb:232,197,71;
+    --version-yellow-text:#E8C547;
     /* Dark mode already reads as purple through --border - reuse it
        rather than invent a second purple that could drift out of sync. */
     --shell-accent:var(--border);
@@ -151,7 +150,7 @@
      readable dark purple they already are. */
   :root:not([data-theme="light"])[data-version="red"]{--env-page-bg:#26191D;}
   :root:not([data-theme="light"])[data-version="blue"]{--env-page-bg:#171B29;}
-  :root:not([data-theme="light"])[data-version="green"]{--env-page-bg:#1A2417;}
+  :root:not([data-theme="light"])[data-version="yellow"]{--env-page-bg:#262313;}
 }
 :root[data-theme="dark"]{
   --bg:#1C1926;
@@ -175,12 +174,10 @@
   --version-blue:#6C93F5;
   --version-blue-ink:#0D1B33;
   --version-blue-rgb:108,147,245;
-  --version-green:#8AC168;
-  --version-green-ink:#13230D;
-  --version-green-rgb:138,193,104;
   --version-yellow:#E8C547;
   --version-yellow-ink:#241C02;
   --version-yellow-rgb:232,197,71;
+  --version-yellow-text:#E8C547;
   --shell-accent:var(--border);
 }
 /* Nav + Version Environment pass (Sept 2026) - same dark --env-page-bg
@@ -191,7 +188,7 @@
    are). */
 :root[data-theme="dark"][data-version="red"]{--env-page-bg:#26191D;}
 :root[data-theme="dark"][data-version="blue"]{--env-page-bg:#171B29;}
-:root[data-theme="dark"][data-version="green"]{--env-page-bg:#1A2417;}
+:root[data-theme="dark"][data-version="yellow"]{--env-page-bg:#262313;}
 *,*::before,*::after{box-sizing:border-box;}
 html{color-scheme:light dark;}
 /* Nav + Version Environment pass (Sept 2026): background now reads the
@@ -657,7 +654,7 @@ html[data-version="blue"]{--env-accent:var(--version-blue);--env-accent-ink:var(
    start now. */
 html[data-version="red"]{--env-page-bg:#F9DED2;}
 html[data-version="blue"]{--env-page-bg:#D9E7FB;}
-html[data-version="green"]{--env-page-bg:#E3EFD9;}
+html[data-version="yellow"]{--env-page-bg:#FAF0C6;}
 #site-header,#view-home{transition:background-color .2s ease,background-image .2s ease;}
 html[data-version] #site-header{background-image:radial-gradient(1200px 520px at 12% 0%, rgba(var(--env-accent-rgb),.28), transparent 66%);}
 html[data-version] #view-home{background-image:radial-gradient(1300px 900px at 88% 0%, rgba(var(--env-accent-rgb),.18), transparent 62%),radial-gradient(900px 600px at 8% 40%, rgba(var(--env-accent-rgb),.10), transparent 60%);background-repeat:no-repeat;}
@@ -707,22 +704,22 @@ html[data-version] #view-home .go-feature.dest-card-soon{border-color:rgba(var(-
 .version-path-title{font-size:1.05rem;font-weight:600;color:var(--ink);}
 .version-path-red:hover,.version-path-red:focus-visible{border-color:var(--version-red);}
 .version-path-blue:hover,.version-path-blue:focus-visible{border-color:var(--version-blue);}
-.version-path-green:hover,.version-path-green:focus-visible{border-color:var(--version-green);}
+.version-path-yellow:hover,.version-path-yellow:focus-visible{border-color:var(--version-yellow-text);}
 html[data-version="red"] .version-path-red{box-shadow:inset 0 0 0 3px var(--version-red),0 6px 16px -10px var(--version-red);border-color:var(--version-red);}
 html[data-version="red"] .version-path-red .version-path-status{display:flex;}
 html[data-version="red"] .version-path-red .version-path-light{background:var(--version-red);box-shadow:0 0 4px 1px var(--version-red);}
 html[data-version="red"] .version-path-red .version-path-selected-text{color:var(--version-red);}
-html[data-version="red"] .version-path-blue,html[data-version="red"] .version-path-green{opacity:.86;}
+html[data-version="red"] .version-path-blue,html[data-version="red"] .version-path-yellow{opacity:.86;}
 html[data-version="blue"] .version-path-blue{box-shadow:inset 0 0 0 3px var(--version-blue),0 6px 16px -10px var(--version-blue);border-color:var(--version-blue);}
 html[data-version="blue"] .version-path-blue .version-path-status{display:flex;}
 html[data-version="blue"] .version-path-blue .version-path-light{background:var(--version-blue);box-shadow:0 0 4px 1px var(--version-blue);}
 html[data-version="blue"] .version-path-blue .version-path-selected-text{color:var(--version-blue);}
-html[data-version="blue"] .version-path-red,html[data-version="blue"] .version-path-green{opacity:.86;}
-html[data-version="green"] .version-path-green{box-shadow:inset 0 0 0 3px var(--version-green),0 6px 16px -10px var(--version-green);border-color:var(--version-green);}
-html[data-version="green"] .version-path-green .version-path-status{display:flex;}
-html[data-version="green"] .version-path-green .version-path-light{background:var(--version-green);box-shadow:0 0 4px 1px var(--version-green);}
-html[data-version="green"] .version-path-green .version-path-selected-text{color:var(--version-green);}
-html[data-version="green"] .version-path-red,html[data-version="green"] .version-path-blue{opacity:.86;}
+html[data-version="blue"] .version-path-red,html[data-version="blue"] .version-path-yellow{opacity:.86;}
+html[data-version="yellow"] .version-path-yellow{box-shadow:inset 0 0 0 3px var(--version-yellow),0 6px 16px -10px var(--version-yellow);border-color:var(--version-yellow-text);}
+html[data-version="yellow"] .version-path-yellow .version-path-status{display:flex;}
+html[data-version="yellow"] .version-path-yellow .version-path-light{background:var(--version-yellow);box-shadow:0 0 4px 1px var(--version-yellow);}
+html[data-version="yellow"] .version-path-yellow .version-path-selected-text{color:var(--version-yellow-text);}
+html[data-version="yellow"] .version-path-red,html[data-version="yellow"] .version-path-blue{opacity:.86;}
 @media (prefers-reduced-motion:reduce){ .version-path{transition:none;} }
 
 /* Jack / Binder / Channel grouping - just a layout wrapper; the Binder and
@@ -1069,7 +1066,7 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
 .home-version-card{position:relative;display:flex;flex-direction:column;}
 .home-version-card-red{background:linear-gradient(165deg, color-mix(in srgb, var(--version-red) 75%, white) 0%, var(--version-red) 40%, color-mix(in srgb, var(--version-red) 80%, black) 100%);}
 .home-version-card-blue{background:linear-gradient(165deg, color-mix(in srgb, var(--version-blue) 75%, white) 0%, var(--version-blue) 40%, color-mix(in srgb, var(--version-blue) 80%, black) 100%);}
-.home-version-card-green{background:linear-gradient(165deg, color-mix(in srgb, var(--version-green) 75%, white) 0%, var(--version-green) 40%, color-mix(in srgb, var(--version-green) 80%, black) 100%);}
+.home-version-card-yellow{background:linear-gradient(165deg, color-mix(in srgb, var(--version-yellow) 75%, white) 0%, var(--version-yellow) 40%, color-mix(in srgb, var(--version-yellow) 80%, black) 100%);}
 
 /* Ridged top plate - a few raised stripes standing in for a cartridge's
    embossed grip/label bar. Texture only, no wordmark. */
@@ -1115,7 +1112,7 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
 .home-version-window.dest-card-visual-photo::after{content:'';position:absolute;inset:0;mix-blend-mode:color;pointer-events:none;}
 .home-version-card-red .home-version-window::after{background:var(--version-red);opacity:.22;}
 .home-version-card-blue .home-version-window::after{background:var(--version-blue);opacity:.16;}
-.home-version-card-green .home-version-window::after{background:var(--version-green);opacity:.16;}
+.home-version-card-yellow .home-version-window::after{background:var(--version-yellow);opacity:.16;}
 /* "Jump to Pokédex" utility link (Sept 2026 declutter follow-up): used to be
    a bare underlined text line sitting in open space right under the card
    grid - read as shoved-in/afterthought once that grid became the very
@@ -1152,15 +1149,22 @@ html[data-version] #view-home .home-version-card .dest-card-cta{color:#fff;}
 .home-version-card .version-path-status{position:absolute;top:.6rem;left:.8rem;display:none;align-items:center;gap:.35rem;z-index:1;}
 .home-version-card .version-path-light{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:#fff;box-shadow:0 0 4px 1px rgba(255,255,255,.7);}
 .home-version-card .version-path-selected-text{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4);}
+/* Yellow card: the gradient is light, so text/chrome use dark ink instead of the white the Red/Blue cards use. */
+#view-home .home-version-card-yellow .dest-card-kicker{color:rgba(36,28,2,.86);}
+#view-home .home-version-card-yellow .dest-card-title{color:#241C02;text-shadow:none;}
+#view-home .home-version-card-yellow .dest-card-desc{color:rgba(36,28,2,.88);}
+html[data-version] #view-home .home-version-card-yellow .dest-card-cta{color:#241C02;}
+.home-version-card-yellow .version-path-selected-text{color:#241C02;text-shadow:none;}
+
 html[data-version="red"] .home-version-card-red .version-path-status,
 html[data-version="blue"] .home-version-card-blue .version-path-status,
-html[data-version="green"] .home-version-card-green .version-path-status{display:flex;}
+html[data-version="yellow"] .home-version-card-yellow .version-path-status{display:flex;}
 html[data-version="red"] .home-version-card-blue,
-html[data-version="red"] .home-version-card-green,
+html[data-version="red"] .home-version-card-yellow,
 html[data-version="blue"] .home-version-card-red,
-html[data-version="blue"] .home-version-card-green,
-html[data-version="green"] .home-version-card-red,
-html[data-version="green"] .home-version-card-blue{opacity:.88;}
+html[data-version="blue"] .home-version-card-yellow,
+html[data-version="yellow"] .home-version-card-red,
+html[data-version="yellow"] .home-version-card-blue{opacity:.88;}
 @media (prefers-reduced-motion:reduce){ .home-version-card{transition:none;} }
 
 /* News card (Sept 2026) - fills the third slot in the Jack/Worlds trio
@@ -1500,21 +1504,44 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
    Red's colour on Green's own page. Same fixed-identity pattern Red and
    Blue already use (their own page keeps their own colour regardless of
    selected Version) - Green just never got its half of it added. */
-.collect-hub .explore-hero .eyebrow{color:var(--version-green);}
+.collect-hub .explore-hero .eyebrow{color:var(--version-yellow-text);}
 .explore-hero h2{margin:0 0 .5rem;}
 .explore-hero-sub{font-size:1.02rem;}
 /* Font trial (Sept 2026): Jackson felt the hero titles read too sharp/confident in Jost. Trying Fredoka (rounded, friendlier) scoped to JUST these two hero headlines, not the sitewide h1/h2/h3 rule - easy to revert or extend site-wide once he's seen it for real (webfonts can't be previewed from this sandbox, so this needs eyes-on in an actual browser). */
 .explore-hero h2,.play-hero h2{font-family:'Fredoka',system-ui,sans-serif;font-weight:600;}
 
 .explore-almanac-feature{margin:0 0 2.6rem;padding:2.2rem 2.3rem;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--version-red);border-radius:14px;}
-.collect-hub .explore-almanac-feature{border-top-color:var(--version-green);}
+.collect-hub .explore-almanac-feature{border-top-color:var(--version-yellow-text);}
 .explore-almanac-feature .eyebrow{color:var(--version-red);}
-.collect-hub .explore-almanac-feature .eyebrow{color:var(--version-green);}
+.collect-hub .explore-almanac-feature .eyebrow{color:var(--version-yellow-text);}
 .explore-almanac-feature h3{margin:0 0 .6rem;font-size:1.65rem;}
 .explore-almanac-sub{margin-bottom:0;}
 .explore-almanac-link{margin:1.5rem 0 0;}
 .explore-almanac-feature .dest-card-cta{color:var(--version-red);}
-.collect-hub .explore-almanac-feature .dest-card-cta{color:var(--version-green);}
+.collect-hub .explore-almanac-feature .dest-card-cta{color:var(--version-yellow-text);}
+/* Jolteon's Binder hub (Oct 2026 rework): hero media row, one big CTA, one compact trading strip. */
+.collect-hub .explore-hero{max-width:none;}
+.collect-hub .explore-hero-sub,.collect-hub .explore-hero .callout-jacknote{max-width:46rem;}
+.collect-media{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:1rem;align-items:stretch;margin-top:1.2rem;}
+.collect-media figure{margin:0;display:flex;flex-direction:column;}
+.collect-media img{width:100%;height:100%;min-height:0;object-fit:cover;border-radius:12px;display:block;}
+.collect-media figcaption{font-size:.82rem;margin-top:.5rem;color:var(--muted);}
+.collect-media .collect-media-photo img{aspect-ratio:auto;flex:1;}
+@media(max-width:700px){.collect-media{grid-template-columns:1fr;}.collect-media .collect-media-card{max-width:260px;margin:0 auto;}}
+.collect-cta{display:grid;grid-template-columns:auto 1fr auto;gap:1.4rem;align-items:center;margin:0 0 2.2rem;padding:2rem 2.2rem;min-height:170px;background:var(--version-yellow);color:var(--version-yellow-ink);border-radius:16px;text-decoration:none;box-shadow:0 10px 28px -14px rgba(var(--version-yellow-rgb),.9);transition:transform .15s ease,box-shadow .15s ease;}
+.collect-cta:hover,.collect-cta:focus-visible{transform:translateY(-2px);box-shadow:0 14px 32px -12px rgba(var(--version-yellow-rgb),1);}
+.collect-cta-sprite{width:96px;height:auto;image-rendering:pixelated;display:block;}
+.collect-cta-title{display:block;font-family:'Fredoka',system-ui,sans-serif;font-weight:600;font-size:2rem;line-height:1.15;}
+.collect-cta-sub{display:block;margin-top:.4rem;font-size:1rem;opacity:.88;}
+.collect-cta-go{font-weight:700;font-size:1.05rem;white-space:nowrap;border:2px solid currentColor;border-radius:999px;padding:.7rem 1.3rem;}
+@media(max-width:700px){.collect-cta{grid-template-columns:1fr;text-align:center;padding:1.6rem 1.2rem;justify-items:center;}.collect-cta-title{font-size:1.6rem;}}
+.collect-how{margin:0 0 2.4rem;padding:1.4rem 1.6rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
+.collect-how h3{margin:0 0 .8rem;font-size:1.2rem;}
+.collect-how ol{margin:0 0 .9rem;padding-left:1.2rem;}
+.collect-how li{margin:.25rem 0;}
+.cart-btn-icon{width:20px;height:auto;margin-right:.35rem;image-rendering:pixelated;vertical-align:middle;}
+.cart-title{display:flex;align-items:center;gap:.6rem;}
+.cart-title-icon{width:44px;height:auto;image-rendering:pixelated;}
 /* Correction pass (Sept 2026): Strategy QA found the desktop Almanac
    composition read as "a compact generation database/grid placed inside
    an oversized container" - the panel spanned the full content width with
@@ -1580,7 +1607,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .explore-growing-badge{align-self:flex-start;margin-top:.2rem;display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--version-red);background:rgba(var(--version-red-rgb),.09);border:1px solid rgba(var(--version-red-rgb),.3);border-radius:999px;padding:.25rem .65rem .25rem .55rem;}
 .explore-alt-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:rgba(var(--version-red-rgb),.12);color:var(--version-red);margin:1.1rem 1.15rem 0;}
 .explore-alt-icon svg{width:17px;height:17px;}
-.explore-alt-icon-green{background:rgba(var(--version-green-rgb),.14);color:var(--version-green);}
+.explore-alt-icon-yellow{background:rgba(var(--version-yellow-rgb),.14);color:var(--version-yellow-text);}
 .dest-card-md.dest-card-soon{display:flex;flex-direction:column;}
 .explore-growing-dot{width:6px;height:6px;border-radius:50%;background:var(--version-red);flex-shrink:0;}
 
@@ -1591,8 +1618,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
    with a real, honest empty state), not a disabled .dest-card-soon one, so
    it's kept as its own isolated class rather than risking a shared class
    later growing red/green special-casing inside it. */
-.bulk-binder-badge{align-self:flex-start;margin-top:.2rem;display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--version-green);background:rgba(var(--version-green-rgb),.09);border:1px solid rgba(var(--version-green-rgb),.3);border-radius:999px;padding:.25rem .65rem .25rem .55rem;}
-.bulk-binder-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--version-green);flex-shrink:0;}
+.bulk-binder-badge{align-self:flex-start;margin-top:.2rem;display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--version-yellow-text);background:rgba(var(--version-yellow-rgb),.09);border:1px solid rgba(var(--version-yellow-rgb),.3);border-radius:999px;padding:.25rem .65rem .25rem .55rem;}
+.bulk-binder-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--version-yellow);flex-shrink:0;}
 
 .explore-starting-points{margin:0 0 1rem;padding:1.7rem 1.8rem;background:var(--surface-2);border-left:3px solid var(--version-red);border-radius:12px;}
 .explore-starting-points h3{margin:0 0 .4rem;font-size:1.3rem;}
@@ -2527,7 +2554,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
    or otherwise made more prominent than the other two cards in this trio -
    "not featured like Red/Blue, not buried either" was the brief. */
 .dest-card-tag{display:inline-block;align-self:flex-start;padding:.15rem .55rem;border-radius:999px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem;}
-.home-binder-card:hover,.home-binder-card:focus-visible{border-color:var(--version-green);}
+.home-binder-card:hover,.home-binder-card:focus-visible{border-color:var(--version-yellow-text);}
 .home-destination-trio .home-jack-card .dest-card-photo{object-position:50% 38%;}
 .home-destination-trio .dest-card-body{flex:1;padding:1.1rem 1.15rem;gap:.3rem;}
 .home-destination-trio .dest-card-title{font-size:1.1rem;}
@@ -2607,7 +2634,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <!-- Populated by renderVersionSelector() from VERSION_REGISTRY at boot -
              see initVersionSelector(). Kept as an empty, correctly-labelled
              radiogroup here rather than hand-duplicated per-Version markup. -->
-        <div class="version-select version-select-mobile" role="radiogroup" aria-label="Choose a Version: Red, Blue or Green"></div>
+        <div class="version-select version-select-mobile" role="radiogroup" aria-label="Choose a Version: Red, Blue or Yellow"></div>
         <!-- Nav + Version Environment pass (Sept 2026): selected-Version contextual
              entrance, immediately associated with the mobile selector above it.
              Label/href are driven by SELECTED_VERSION (updateVersionEntranceLinks(),
@@ -2647,14 +2674,10 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
               <span class="nav-binder-link-title">Blue Version &middot; Play</span>
               <span class="nav-binder-link-desc">Pok&eacute;mon TCG &amp; Games</span>
             </a>
-            <a href="#/collect" class="nav-binder-link" data-select-version="green">
-              <span class="nav-binder-link-title">Green Version &middot; Binder</span>
+            <a href="#/collect" class="nav-binder-link" data-select-version="yellow">
+              <span class="nav-binder-link-title">Yellow Version &middot; Jolteon&rsquo;s Binder</span>
               <span class="nav-binder-link-desc">Trade with me here</span>
             </a>
-            <span class="nav-binder-link nav-binder-link-soon" aria-disabled="true">
-              <span class="nav-binder-link-title">Yellow Version</span>
-              <span class="nav-binder-link-desc">Coming soon</span>
-            </span>
             <!-- Jack's Personal Binder (#/mybinder) is still out of this dropdown
                  until it has content in it - the page still works, it just isn't
                  advertised yet. Jack's Decks (#/mydecks) now has real content (the
@@ -2745,7 +2768,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
              redundant. .nav-actions has no flex-wrap, so this never wraps onto a
              second line at desktop widths and never disturbs My List/Telegram. -->
         <a href="#/explore" class="version-entrance version-entrance-nav" id="version-entrance-nav">Explore &rarr;</a>
-        <button id="cart-btn" class="pill ghost cart-btn" type="button"><span class="cart-btn-label"><span class="cart-btn-long">My </span>List</span> <span id="cart-count" class="cart-count" hidden>0</span></button>
+        <button id="cart-btn" class="pill ghost cart-btn" type="button"><img class="cart-btn-icon" src="images/jolteon-basket.png" alt="" width="20" height="22" decoding="async"><span class="cart-btn-label"><span class="cart-btn-long">Jolteon&rsquo;s </span>Basket</span> <span id="cart-count" class="cart-count" hidden>0</span></button>
         <a class="nav-telegram-btn" href="https://t.me/ItemSixHQ" target="_blank" rel="noopener" aria-label="Message Jack on Telegram"><img src="images/img-b98494267a763a59.png" alt=""></a>
       </div>
     </div>
@@ -2822,7 +2845,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
            Collection" card's copy/photo verbatim (moved up from the trio
            below, not duplicated) per Jack's explicit instruction. -->
 
-      <section class="home-version-section" aria-label="Choose a Version: Red, Blue or Green">
+      <section class="home-version-section" aria-label="Choose a Version: Red, Blue or Yellow">
         <div class="home-version-grid">
           <a href="#/explore" class="dest-card home-version-card home-version-card-red" data-select-version="red">
             <span class="version-path-status"><span class="version-path-light" aria-hidden="true"></span><span class="version-path-selected-text">Selected</span></span>
@@ -2852,7 +2875,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
               <span class="dest-card-cta">Play &amp; Learn hub &rarr;</span>
             </span>
           </a>
-          <a href="#/collect" class="dest-card home-version-card home-version-card-green" data-select-version="green">
+          <a href="#/collect" class="dest-card home-version-card home-version-card-yellow" data-select-version="yellow">
             <span class="version-path-status"><span class="version-path-light" aria-hidden="true"></span><span class="version-path-selected-text">Selected</span></span>
             <span class="home-version-ridge" aria-hidden="true"></span>
             <span class="dest-card-visual dest-card-visual-photo home-version-window">
@@ -2860,17 +2883,17 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             </span>
             <span class="home-version-notch" aria-hidden="true"></span>
             <span class="dest-card-body">
-              <span class="dest-card-kicker">Green Version &middot; Binder</span>
+              <span class="dest-card-kicker">Yellow Version &middot; Jolteon&rsquo;s Binder</span>
               <span class="dest-card-title">Trade with me here</span>
               <span class="dest-card-desc">My Pok&eacute;mon TCG collection, all in one place. Probably too many cards in general. Come trade with me. It&rsquo;s called Trading Card Game, right?</span>
-              <span class="dest-card-cta">Browse the Binder &rarr;</span>
+              <span class="dest-card-cta">Browse Jolteon&rsquo;s Binder &rarr;</span>
             </span>
           </a>
         </div>
         <p class="home-pokedex-link"><a href="#/pokedex"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h6.2M14.8 12H21" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Looking for a specific Pok&eacute;mon? Jump straight to the Pok&eacute;dex &rarr;</a></p>
       </section>
 
-      <section class="jack-binder-channel" aria-label="Jack, the Binder, and the channel">
+      <section class="jack-binder-channel" aria-label="Jack, Jolteon's Binder, and the channel">
         <div class="dest-tier home-destination-trio">
           <a class="dest-card home-destination-card home-news-card" href="#/news">
             <span class="dest-card-visual dest-card-visual-photo home-news-visual">
@@ -2983,8 +3006,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   <div id="view-catalog" hidden>
     <main class="wrap" id="catalog">
       <div class="catalog-head">
-        <h2>The Binder</h2>
-        <p>These are cards I own and don&rsquo;t mind parting with. <strong>Trade or buy &mdash; whichever suits you.</strong> Prices are what I think each card is honestly worth, taken from what copies have actually sold for, so we both know a swap is even. Tick anything you&rsquo;re interested in and send me the list.</p>
+        <h2>Jolteon&rsquo;s Binder</h2>
+        <p>These are cards I own and don&rsquo;t mind parting with. <strong>Trade or buy, whichever suits you.</strong> Prices are based on the average of what each card is currently going for, with the vintages being the exception. Add anything you&rsquo;re interested in to Jolteon&rsquo;s Basket and send it over.</p>
         <p class="muted catalog-trade-hint">New here? <a href="#/lets-trade">See how trading works, and what I&rsquo;m after &rarr;</a></p>
       </div>
 
@@ -3084,7 +3107,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <p>I built this website because I genuinely love the IP. Not just the TCG, but Pok&eacute;mon GO, Red, Blue, Yellow, all of it. I also built it because I&rsquo;ll be honest: for someone who calls himself a big Pok&eacute;mon fan, my knowledge is all over the place. I remember this, but not that, and I&rsquo;m sure a lot of you are in the same <s>boat</s> S.S. Anne.</p>
           <p>Shoutout to my good friend <a href="https://open.spotify.com/artist/3k0Pk0z45RWJR7ZJxWKSM2?si=re6iglisQoq7poHEBvRqlg" target="_blank" rel="noopener">Lanvoine</a>, who jio&rsquo;d* me to a Pok&eacute;mon trivia night. I clutched a few answers, but mostly I realised how much I&rsquo;d forgotten, or never knew, about a franchise I claim to love. Who knew, for instance, that Swampert, base Speed stat of 60, somehow still gets called &ldquo;the jet ski of the ocean&rdquo;?</p>
           <p class="muted" style="font-size:.9rem;"><strong>*jio</strong> <em>(Singlish, verb)</em>: to invite someone along. Usually casual, usually last minute, and very hard to say no to. <em>&ldquo;Eh, I jio you for supper later, can?&rdquo;</em></p>
-          <p>I also just really love the TCG itself: collecting it, playing it, trading it. That&rsquo;s where the <a href="#/catalog">Binder</a> comes in. After amassing thousands of cards over the years, there&rsquo;s plenty I genuinely don&rsquo;t mind parting with.</p>
+          <p>I also just really love the TCG itself: collecting it, playing it, trading it. That&rsquo;s where <a href="#/catalog">Jolteon&rsquo;s Binder</a> comes in. After amassing thousands of cards over the years, there&rsquo;s plenty I genuinely don&rsquo;t mind parting with.</p>
           <p>I know how that can look: cards up for trade, some of it technically for sale, and the whole thing starts to smell like a shop. It isn&rsquo;t one. You won&rsquo;t find me listed on Carousell or anywhere else. I just don&rsquo;t see the harm in recouping a little of what I&rsquo;ve spent along the way, the same as anyone clearing out a shelf of games they&rsquo;re done with.</p>
           <p>I&rsquo;m Jackson, the person actually behind all of this. I live in Singapore, I have a day job and a toddler, and at some point decided the best use of whatever hours were left in my day was building a Pok&eacute;mon website.</p>
           <p>I write mainly for people in Singapore and this part of the world. That&rsquo;s not because there isn&rsquo;t good Pok&eacute;mon content overseas, there&rsquo;s plenty, but because almost all of it was written with somewhere else in mind. So I made the thing I kept wishing existed here.</p>
@@ -3120,7 +3143,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
               <p class="about-make-desc">Questions people actually ask me, including the ones where the answer is basically, &ldquo;please do not spend your money on that.&rdquo;</p>
             </div>
             <div class="about-make-card">
-              <a class="about-make-title" href="#/catalog">The Binder</a>
+              <a class="about-make-title" href="#/catalog">Jolteon&rsquo;s Binder</a>
               <p class="about-make-desc">My own Pok&eacute;mon TCG collection. Some of it stays with me, some of it I&rsquo;m happy to trade or sell. It exists because showing someone several thousand physical cards individually is not a reasonable human activity.</p>
             </div>
             <div class="about-make-card">
@@ -3172,6 +3195,13 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <p>Which means ItemSixHQ gets built around work, music, family, and whatever else life has decided to throw at me that week.</p>
           <p>I&rsquo;m not a full-time Pok&eacute;mon creator, and I don&rsquo;t particularly want to pretend I am. I&rsquo;d rather make something useful when I have something worth saying than manufacture content because a calendar says I&rsquo;m supposed to.</p>
           </div>
+          </div>
+
+          <div class="terms-block" id="about-how-made">
+          <h3>How this site is made</h3>
+          <p>I built the website with AI coding help (Claude). That&rsquo;s the vibecoding part, and I&rsquo;d rather say it plainly than have you wonder.</p>
+          <p>The ideas are mine, including the three Versions. The photos and drawings are mine too: unless an image is credited, I took the photo or drew it by hand myself. There are no AI-generated or stock images on this site. The exception is official Pok&eacute;mon sprites and artwork, which are credited as &copy; Nintendo / Creatures Inc. / GAME FREAK / The Pok&eacute;mon Company.</p>
+          <p>The writing is mine as well, though AI helps me with grammar, structure and first drafts, the way an editor would. Some older pages were drafted with more AI help than I&rsquo;d like, and I&rsquo;m rewriting them in my own voice as I go. If something reads like a robot wrote it, tell me and I&rsquo;ll fix it.</p>
           </div>
 
           <div class="about-cluster">
@@ -3747,36 +3777,36 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       <a href="#/" class="back-link">&larr; Home</a>
       <article class="terms-page article-page">
         <h2>Let&rsquo;s Trade</h2>
-        <p class="muted">This whole site leans hobby-first: trade or buy, whichever suits you. Here&rsquo;s exactly how that works, and what I&rsquo;m after myself.</p>
         <figure class="photo-fig" style="max-width:none;margin:1rem 0 1.4rem;"><img src="images/jack-trade-weedle-for-charmander.jpg" alt="Two people mid-trade: one holds a hand-drawn Weedle card on white paper, the other holds a PSA 10 graded Charmander" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;" decoding="async"><figcaption style="font-size:.9rem;margin-top:.6rem;">Above is an example of a very fair trade: a bespoke, extremely well hand-drawn Weedle card for a PSA 10 Charmander.</figcaption></figure>
         <div class="article-body">
 
         <div class="terms-block">
         <h3>How it works</h3>
         <ul class="terms-list">
-          <li><strong>Browse what I have.</strong> <a href="#/catalog">The Binder</a> and <a href="#/japan">Japanese Cards</a> are everything I currently own and don&rsquo;t mind parting with. Add anything you like to your list.</li>
-          <li><strong>Decide trade or buy.</strong> Both work. Say which you&rsquo;d prefer when you send your list over &mdash; or ask, and I&rsquo;ll tell you honestly what I&rsquo;d rather have.</li>
+          <li><strong>Browse what I have.</strong> Every card you see in <a href="#/catalog">Jolteon&rsquo;s Binder</a> is up for trade or sale. Add anything you like to Jolteon&rsquo;s Basket!</li>
+          <li><strong>Trade or buy.</strong> Both work! Just let me know what you have in mind. I&rsquo;m almost never into Japanese cards, so you&rsquo;re welcome to offer them, but more often than not I&rsquo;ll have to say no.</li>
           <li><strong>If trading, check what I&rsquo;m after below.</strong> Got something on that list? Offer it against what you want from me and we&rsquo;ll work out if it&rsquo;s close.</li>
-          <li><strong>We value both sides the same way.</strong> Everything in my binder is priced from what copies have actually sold for. Do the same on your side and we&rsquo;ll both know quickly whether a swap is fair &mdash; any gap gets settled in cash, either direction.</li>
+          <li><strong>We use the same numbers.</strong> Cards in Jolteon&rsquo;s Binder are priced from what they&rsquo;re currently going for. I check yours against the same numbers, so you can see exactly how I got there. Happy to show my working.</li>
+          <li><strong>A small trade margin.</strong> I may not offer the full value for your cards. I&rsquo;ll usually take them at around 92-95% of the going rate, which helps keep this hobby going for me. (Don&rsquo;t worry, I&rsquo;m not going to 70% you lol.)</li>
         </ul>
         </div>
 
         <div class="terms-block">
         <p>Everyone puts up what they&rsquo;re getting rid of. Far fewer people say what they actually want, which is strange, because that&rsquo;s the half that makes a trade happen.</p>
-        <p>So: here&rsquo;s what I&rsquo;m after. If you&rsquo;ve got something on this list, look through <a href="#/catalog">the binder</a> and tell me what you&rsquo;d want for it. I&rsquo;ll be straightforward about whether it works &mdash; and if I think you&rsquo;re giving up too much, I&rsquo;ll say that too.</p>
+        <p>So here&rsquo;s what I&rsquo;m after. If you&rsquo;ve got something on this list, look through <a href="#/catalog">Jolteon&rsquo;s Binder</a> and tell me what you&rsquo;d want for it. I&rsquo;ll be straightforward about whether it works.</p>
         </div>
 
         <div class="terms-block">
         <h3>Always interested</h3>
         <ul class="want-list">
-          <li class="want-row"><span class="want-name">Japanese prints</span><span class="want-tag">standing</span>
-            <span class="want-note">Particularly older Gym-era cards. Better print quality, better art, and the part of the hobby I enjoy most.</span></li>
-          <li class="want-row"><span class="want-name">Cards with a clean swirl</span><span class="want-tag">standing</span>
-            <span class="want-note">The little galaxy in the foil. I like them for what they are, not for a premium &mdash; and I&rsquo;ll tell you honestly if I don&rsquo;t think yours carries one.</span></li>
-          <li class="want-row"><span class="want-name">Bulk commons and uncommons</span><span class="want-tag">giving away</span>
-            <span class="want-note">Not for the binder. These go straight to people learning the game &mdash; see <a href="#/giving-back">Giving Back</a>. If you&rsquo;re about to bin a shoebox of these, send them here instead.</span></li>
-          <li class="want-row"><span class="want-name">Playable Standard staples</span><span class="want-tag">for decks</span>
-            <span class="want-note">Search cards, draw supporters, anything on a current regulation mark. Condition matters much less to me here &mdash; played is fine if it shuffles.</span></li>
+          <li class="want-row"><span class="want-name">FAs, AAs, IRs, SIRs</span><span class="want-tag">standing</span>
+            <span class="want-note">Full Arts, Alternate Arts, Illustration Rares and Special Illustration Rares. If the art is the whole point of the card, I&rsquo;m probably interested.</span></li>
+          <li class="want-row"><span class="want-name">Vintages</span><span class="want-tag">standing</span>
+            <span class="want-note">Old-school cards are always welcome. Fair warning though: I&rsquo;m not really made of money, so if you have a vintage worth thousands, I doubt I can afford it.</span></li>
+          <li class="want-row"><span class="want-name">Bulk</span><span class="want-tag">standing</span>
+            <span class="want-note">Vintage bulk, old-series cards (yellow border) and Scarlet &amp; Violet bulk can all be considered! They won&rsquo;t be worth much, though.</span></li>
+          <li class="want-row"><span class="want-name">Playable Standard Staples</span><span class="want-tag">for decks</span>
+            <span class="want-note">Search cards, draw supporters, anything on a current regulation mark. Condition matters much less to me here. Played is fine if it shuffles.</span></li>
         </ul>
         </div>
 
@@ -3788,11 +3818,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <div class="terms-block">
         <h3>Ground rules</h3>
         <ul class="terms-list">
-          <li><strong>Uneven is fine.</strong> If one side is short, we settle the difference in cash either way, or you throw in something small. No drama.</li>
-          <li><strong>Condition gets stated up front.</strong> Mine are written on every listing. I&rsquo;d ask the same of you &mdash; a photo in decent light saves us both a conversation.</li>
-          <li><strong>I&rsquo;ll talk you out of a bad one.</strong> If you&rsquo;re handing over more than you should, I&rsquo;m going to point it out. That has cost me trades and I&rsquo;d do it again.</li>
+          <li><strong>Condition gets stated up front.</strong> Mine are written on every listing. I&rsquo;d ask the same of you: a photo in decent light saves us both a conversation.</li>
         </ul>
-        <p>Singapore only for now, same as everything else &mdash; meet-ups or local mail.</p>
+        <p>Singapore only for now, same as everything else. Meet-ups or local mail.</p>
         <div class="cart-contact-links">
           <a class="pill" href="https://t.me/ItemSixHQ" target="_blank" rel="noopener">Offer me a trade on Telegram</a>
         </div>
@@ -4272,80 +4300,36 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     <main class="wrap almanac-hub explore-hub collect-hub">
 
       <div class="explore-hero">
-        <p class="eyebrow">Green Version &middot; Binder</p>
-        <h2>Welcome to the Binder.</h2>
-        <p class="muted explore-hero-sub">My actual Pok&eacute;mon TCG collection &mdash; cards I own, cards I&rsquo;ll trade, and cards I&rsquo;m letting go of at a fair price. Singles, Japanese prints, and the odd thing I probably should have listed months ago.</p>
-        <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>Everything here is priced from what copies have actually sold for, not what I wish they were worth. If something looks off, tell me &mdash; I&rsquo;d rather fix a price than make an awkward trade.</div>
-        <img class="content-img-photo" src="images/jack-collect-gambler-binder.jpg" alt="Jack peeking over a zip binder full of first edition Gambler Trainer cards" style="aspect-ratio:21/9;width:100%;height:auto;object-fit:cover;object-position:50% 50%;border-radius:12px;display:block;" decoding="async">
+        <p class="eyebrow">Yellow Version &middot; Jolteon&rsquo;s Binder</p>
+        <h2>Welcome to Jolteon&rsquo;s Binder.</h2>
+        <p class="muted explore-hero-sub">You can find my ever-growing Pok&eacute;mon TCG collection here (seriously, it&rsquo;s like Galactus, but with cards). These are cards I&rsquo;m willing to trade or let go of at a fair price. Mostly singles, maybe the odd slab here and there, and perhaps some &ldquo;bespoke&rdquo; cards in the future? (See the hand-drawn Espeon VMAX for reference.)</p>
+        <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>Apart from the vintages, almost everything here is priced at the average of what it&rsquo;s currently going for. If something looks off, please tell me! I&rsquo;d rather fix it than make an awkward trade.</div>
+        <div class="collect-media">
+          <figure class="collect-media-photo"><img src="images/jack-collect-gambler-binder.jpg" alt="Jack peeking over a zip binder full of first edition Gambler Trainer cards" decoding="async"></figure>
+          <figure class="collect-media-card"><img src="images/jack-espeon-vmax-bespoke.jpg" alt="A hand-drawn, colour-pencil Espeon VMAX card on white paper" loading="lazy" decoding="async"><figcaption>A &ldquo;bespoke&rdquo; Espeon VMAX, drawn by me.</figcaption></figure>
+        </div>
       </div>
 
-      <section class="explore-almanac-feature" aria-label="The Binder">
-        <div class="explore-almanac-body">
-          <div class="explore-almanac-intro">
-            <p class="eyebrow">Featured &middot; The Binder</p>
-            <h3>Browse what&rsquo;s available.</h3>
-            <p class="muted explore-almanac-sub">Every card I&rsquo;ll trade or sell, in one searchable list &mdash; condition, price and status all shown up front. New here? Read how trading actually works before you tick anything.</p>
-          </div>
-          <div>
-            <img class="content-img-photo" src="images/img-81017ed354fec486.jpg" alt="Jackson holding his Pokémon TCG binder open, showing a page of sleeved cards" style="aspect-ratio:4/3;width:100%;height:auto;object-fit:cover;border-radius:12px;display:block;">
-          </div>
-        </div>
-        <p class="muted explore-almanac-link"><a class="dest-card-cta" href="#/catalog">Browse the Binder &rarr;</a></p>
+      <a class="collect-cta" href="#/catalog">
+        <img class="collect-cta-sprite" src="images/jolteon-sprite.png" alt="" decoding="async">
+        <span>
+          <span class="collect-cta-title">Browse Jolteon&rsquo;s Binder</span>
+          <span class="collect-cta-sub">Every card I&rsquo;ll trade or sell, in one searchable list. Condition, price and status are all shown up front.</span>
+        </span>
+        <span class="collect-cta-go" aria-hidden="true">Open the Binder &rarr;</span>
+      </a>
+
+      <section class="collect-how" aria-label="How trading works">
+        <h3>Trading in a nutshell</h3>
+        <ol>
+          <li>Browse Jolteon&rsquo;s Binder. Everything in it is up for trade or sale.</li>
+          <li>Add what you like to Jolteon&rsquo;s Basket.</li>
+          <li>Send me the basket and tell me whether you&rsquo;d like to trade or buy.</li>
+        </ol>
+        <a class="dest-card-cta" href="#/lets-trade">Full details, and what I&rsquo;m after, in Let&rsquo;s Trade &rarr;</a>
       </section>
 
-      <section class="explore-alt-ways" aria-label="More from the Binder">
-        <h3>Trading, and the Japanese side of the binder.</h3>
-        <p class="muted explore-alt-ways-sub">Two more real pages, not just teasers &mdash; how trading actually works, and the Japanese-print cards that live alongside the English ones.</p>
-        <div class="dest-tier dest-tier-mid explore-dest-grid">
-          <a class="dest-card dest-card-md" href="#/lets-trade">
-            <span class="explore-alt-icon explore-alt-icon-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13M13 4l4 4-4 4"/><path d="M20 16H7M11 20l-4-4 4-4"/></svg></span>
-            <span class="dest-card-body">
-              <span class="dest-card-kicker">How it works</span>
-              <span class="dest-card-title">Let&rsquo;s Trade</span>
-              <span class="dest-card-desc">How trading works, and what I&rsquo;m after.</span>
-              <span class="dest-card-cta">See how trading works &rarr;</span>
-            </span>
-          </a>
-          <a class="dest-card dest-card-md" href="#/japan">
-            <span class="explore-alt-icon explore-alt-icon-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.6 5.6 3.6 9s-1.2 6.5-3.6 9c-2.4-2.5-3.6-5.6-3.6-9S9.6 5.5 12 3Z"/></svg></span>
-            <span class="dest-card-body">
-              <span class="dest-card-kicker">Japanese prints</span>
-              <span class="dest-card-title">Japanese Cards</span>
-              <span class="dest-card-desc">The Japanese side of the binder.</span>
-              <span class="dest-card-cta">Browse Japanese cards &rarr;</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-      <!-- Bulk Binder entry point (Sept 2026, Batch 1). Deliberately its own
-           section, not folded into "More from the Binder" above - Bulk
-           Binder is a separate product (the ordinary cards Jack owns in
-           quantity, once Card Ingest exists to catalogue them) from the
-           curated Binder/Let's Trade/Japan trio, which is why it gets its
-           own framing copy and its own honest "being built" badge rather
-           than sharing the "two more real pages" line above. It's still a
-           real, clickable link to a real (if currently empty) page - see
-           .bulk-binder-badge's own comment for why that's a different
-           treatment from the fully-disabled .dest-card-soon pattern used
-           for pages that don't exist at all yet. -->
-      <section class="explore-alt-ways" aria-label="Bulk Binder">
-        <h3>The rest of the collection.</h3>
-        <p class="muted explore-alt-ways-sub">Not the curated stuff above &mdash; the ordinary Pok&eacute;mon cards I own in bulk. A proper searchable catalogue is coming; it&rsquo;s not live yet.</p>
-        <div class="dest-tier dest-tier-mid explore-dest-grid">
-          <a class="dest-card dest-card-md" href="#/bulk-binder">
-            <span class="explore-alt-icon explore-alt-icon-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="2"/><path d="M3.5 9.5h17M8 5.5v-1M16 5.5v-1"/></svg></span>
-            <span class="dest-card-body">
-              <span class="dest-card-kicker">Searchable catalogue</span>
-              <span class="dest-card-title">Bulk Binder</span>
-              <span class="dest-card-desc">Every ordinary card I physically own, in quantity &mdash; separate from the curated Binder above.</span>
-              <span class="bulk-binder-badge"><span class="bulk-binder-badge-dot" aria-hidden="true"></span>Being built</span>
-              <span class="dest-card-cta">Take a look &rarr;</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
+      <!-- Bulk Binder teaser removed from this hub (Oct 2026) until the catalogue exists; #/bulk-binder still works at its direct URL. -->
     </main>
   </div>
 
@@ -4366,8 +4350,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
        comments for the full data contract and state machine. -->
   <div id="view-bulk-binder" hidden>
     <main class="wrap bulk-binder-page">
-      <a href="#/collect" class="back-link">&larr; Green Version &middot; Binder</a>
-      <p class="eyebrow">Green Version &middot; Bulk Binder</p>
+      <a href="#/collect" class="back-link">&larr; Yellow Version &middot; Jolteon&rsquo;s Binder</a>
+      <p class="eyebrow">Yellow Version &middot; Bulk Binder</p>
       <h2>The rest of the collection.</h2>
       <p class="muted bulk-binder-intro">Every ordinary Pok&eacute;mon card I physically own, not just the curated stuff in the Binder &mdash; the plan is a proper searchable catalogue: search by name, browse by set, see how many copies I&rsquo;ve got. It&rsquo;s separate from the Binder on purpose &mdash; that one&rsquo;s curated, this one&rsquo;s just&hellip; everything else.</p>
 
@@ -4933,7 +4917,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
         <div class="terms-block">
           <h3>How to trade or buy something</h3>
-          <p>Found something you want? Click <strong>&ldquo;Add to my list&rdquo;</strong> on the listing. Once you&rsquo;re done browsing, open <strong>My List</strong> and select <strong>&ldquo;Send Jack this list.&rdquo;</strong> You can contact Jack via Telegram DMs, or by joining his Discord server and either DM-ing him privately or asking in the Pok&eacute;mon text channel.</p>
+          <p>Found something you want? Click <strong>&ldquo;Add to Jolteon&rsquo;s basket&rdquo;</strong> on the listing. Once you&rsquo;re done browsing, open <strong>Jolteon&rsquo;s Basket</strong> and select <strong>&ldquo;Send Jack this basket.&rdquo;</strong> You can contact Jack via Telegram DMs, or by joining his Discord server and either DM-ing him privately or asking in the Pok&eacute;mon text channel.</p>
           <p>Once your message comes through, Jack will respond as soon as he can. <strong>Trades are genuinely welcome</strong> &mdash; if you&rsquo;d rather swap cards than pay for them, say so and he&rsquo;ll tell you honestly whether it works for him. Have a look at <a href="#/lets-trade">Let&rsquo;s Trade</a> first.</p>
           <p>If you&rsquo;re buying rather than trading, payment is made via <strong>PayNow</strong> or <strong>PayLah!</strong> &mdash; Jack will send over a QR code along with your final order amount and item list before you pay.</p>
           <p>Jack has a day job and a young kid at home, so please be a little forgiving if he takes a bit longer than usual to reply &mdash; he&rsquo;ll always get back to you.</p>
@@ -4950,8 +4934,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         </div>
 
         <div class="terms-block">
-          <h3>Sending your list</h3>
-          <p>Your whole list, and its links, is copied automatically when you hit &ldquo;Send Jack this list&rdquo; &mdash; simply paste it into the chat and he&rsquo;ll respond as soon as he can.</p>
+          <h3>Sending your basket</h3>
+          <p>Your whole basket, and its links, is copied automatically when you hit &ldquo;Send Jack this basket.&rdquo; Simply paste it into the chat and he&rsquo;ll respond as soon as he can.</p>
         </div>
 
         <div class="terms-block">
@@ -4996,6 +4980,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     <p>&copy; <span id="year"></span> Jackson &middot; ItemSixHQ</p>
     <div class="footer-links">
       <a href="#/terms" class="link-btn">Terms &amp; Conditions</a>
+      <a href="#/about" class="link-btn">About &amp; how this site is made</a>
     </div>
     <p class="footer-disclaimer">ItemSixHQ is an independent, unofficial Pok&eacute;mon fan project and is not affiliated with, endorsed by, or sponsored by Nintendo, Creatures Inc., Game Freak, or The Pok&eacute;mon Company. All card names, images, and trademarks belong to their respective owners.</p>
   </footer>
@@ -5003,20 +4988,20 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   <div id="cart-overlay" class="overlay" hidden>
     <div class="modal cart-modal">
       <button id="cart-close" class="modal-close" type="button" aria-label="Close">&times;</button>
-      <h2>My List</h2>
-      <p class="muted">Nothing here charges you anything &mdash; it just builds a list you can send me. Happy to trade for it, or sell it, whichever you&rsquo;d rather.</p>
-      <p class="cart-logistics muted">Singapore only for now &mdash; pick up at Tampines MRT or Upper Thomson MRT, or local SmartPac mail for $3. <a href="#/terms">Full details in the Terms</a>.</p>
+      <h2 class="cart-title"><img class="cart-title-icon" src="images/jolteon-basket.png" alt="" width="44" height="51" decoding="async">Jolteon&rsquo;s Basket</h2>
+      <p class="muted">Nothing here charges you anything. It just builds a basket you can send me. Happy to trade for it or sell it, whichever you&rsquo;d rather.</p>
+      <p class="cart-logistics muted">Singapore only for now. Pick up at Tampines MRT or Upper Thomson MRT, or local SmartPac mail for $3. <a href="#/terms">Full details in the Terms</a>.</p>
       <div id="cart-list" class="cart-list"></div>
       <div id="cart-empty" class="empty-state" hidden>
-        <h3>Nothing on your list yet</h3>
-        <p>Browse the binder and tick anything you&rsquo;d like to trade for or buy.</p>
+        <h3>Jolteon&rsquo;s Basket is empty</h3>
+        <p>Browse Jolteon&rsquo;s Binder and add anything you&rsquo;d like to trade for or buy.</p>
       </div>
       <div id="cart-footer" class="cart-footer" hidden>
         <div class="cart-total">Value <span id="cart-total-amt" class="mono"></span></div>
-        <button id="cart-contact-btn" class="btn-primary" type="button">Send Jack this list &rarr;</button>
+        <button id="cart-contact-btn" class="btn-primary" type="button">Send Jack this basket &rarr;</button>
       </div>
       <div id="cart-contact-panel" class="cart-contact-panel" hidden>
-        <p id="cart-copy-note" class="muted">Your list is copied &mdash; paste it into a message and send it over:</p>
+        <p id="cart-copy-note" class="muted">Your basket is copied. Paste it into a message and send it over:</p>
         <textarea id="cart-message" class="cart-message-box" rows="8" readonly></textarea>
         <div class="cart-contact-links">
           <a class="pill" href="https://t.me/ItemSixHQ" target="_blank" rel="noopener">Message on Telegram</a>
@@ -5577,14 +5562,14 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     var maxQty = card.qty || 1;
     if(maxQty <= 1){
       var inCart = isInCart(card.id);
-      return '<button class="cart-toggle-btn'+(inCart?' in-cart':'')+'" type="button" data-id="'+escapeHtml(card.id)+'">'+(inCart?'On your list ✓ — remove':'Add to my list')+'</button>';
+      return '<button class="cart-toggle-btn'+(inCart?' in-cart':'')+'" type="button" data-id="'+escapeHtml(card.id)+'">'+(inCart?'In Jolteon\u2019s basket ✓ remove':'Add to Jolteon\u2019s basket')+'</button>';
     }
     var inCartQty = qtyInCart(card.id);
     var remaining = Math.max(0, maxQty - inCartQty);
     if(remaining <= 0){
       return ''
         + '<div class="qty-add-row all-in-cart">'
-        +   '<span class="qty-in-cart-note">All '+maxQty+' on your list</span>'
+        +   '<span class="qty-in-cart-note">All '+maxQty+' in Jolteon\u2019s basket</span>'
         +   '<button class="link-btn qty-clear-btn" type="button" data-id="'+escapeHtml(card.id)+'">remove</button>'
         + '</div>';
     }
@@ -5595,8 +5580,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       +     '<span class="qty-val">1</span>'
       +     '<button type="button" class="qty-inc" aria-label="Increase quantity">+</button>'
       +   '</div>'
-      +   '<button class="cart-toggle-btn qty-add-btn" type="button" data-id="'+escapeHtml(card.id)+'">Add to list</button>'
-      + (inCartQty > 0 ? '<span class="qty-in-cart-note">'+inCartQty+' on your list</span>' : '')
+      +   '<button class="cart-toggle-btn qty-add-btn" type="button" data-id="'+escapeHtml(card.id)+'">Add to basket</button>'
+      + (inCartQty > 0 ? '<span class="qty-in-cart-note">'+inCartQty+' in Jolteon\u2019s basket</span>' : '')
       + '</div>';
   }
 
@@ -5992,7 +5977,6 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       + note
       + '<div id="set-groups">'
       +   groups
-      +   '<a class="set-chip japan-chip" href="#/japan"><span class="set-badge japan-badge">JP</span><span>Japanese<small>' + JP_SETS.length + ' expansions</small></span></a>'
       + '</div>';
   }
 
@@ -39067,8 +39051,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     meta:'blue', mydecks:'blue', playwithjack:'blue', blacklabel:'blue', play:'blue',
     'play-games':'blue', 'play-games-detail':'blue',
     /* Green / Binder & trade */
-    collect:'green', catalog:'green', japan:'green', mybinder:'green', set:'green', setjp:'green', hunting:'green',
-    'bulk-binder':'green'
+    collect:'yellow', catalog:'yellow', japan:'yellow', mybinder:'yellow', set:'yellow', setjp:'yellow', hunting:'yellow',
+    'bulk-binder':'yellow'
   };
   /* Resolves a parsed view name to the attribute value exposed on <html>.
      The one explicit purple->global conversion the correction brief asked
@@ -39078,7 +39062,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      alongside 'red'/'blue' as of the Green identity pass (Sept 2026). */
   function routeVersionAttr(view){
     var cls = ROUTE_VERSION_CLASS[view];
-    if(cls === 'red' || cls === 'blue' || cls === 'green') return cls;
+    if(cls === 'red' || cls === 'blue' || cls === 'yellow') return cls;
     return 'global';
   }
 
@@ -39121,7 +39105,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   var VERSION_REGISTRY = {
     red:   { id:'red',   order:0, label:'Red',   role:'Explore', tagline:'Pok\u00e9dex, regions & lore',       icon:VERSION_ICON_EXPLORE, accentVar:'--version-red',   inkVar:'--version-red-ink',   rgbVar:'--version-red-rgb',   landingRoute:'#/explore' },
     blue:  { id:'blue',  order:1, label:'Blue',  role:'Play',    tagline:'TCG rules, decks & games',        icon:VERSION_ICON_PLAY,    accentVar:'--version-blue',  inkVar:'--version-blue-ink',  rgbVar:'--version-blue-rgb',  landingRoute:'#/play' },
-    green: { id:'green', order:2, label:'Green', role:'Binder',  tagline:'Trade & browse the collection',   icon:VERSION_ICON_BINDER,  accentVar:'--version-green', inkVar:'--version-green-ink', rgbVar:'--version-green-rgb', landingRoute:'#/collect' }
+    yellow: { id:'yellow', order:2, label:'Yellow', role:'Jolteon\u2019s Binder',  tagline:'Trade & browse the collection',   icon:VERSION_ICON_BINDER,  accentVar:'--version-yellow', inkVar:'--version-yellow-ink', rgbVar:'--version-yellow-rgb', landingRoute:'#/collect' }
   };
   /* Yellow Version redesign (Sept 2026): Yellow is shown on the two full
      selector instances (.version-select-primary, .version-select-mobile)
@@ -39135,9 +39119,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      renderVersionSelector(). Promoting Yellow later means moving its entry
      up into VERSION_REGISTRY (plus building its landing page and content),
      not touching this rendering code. */
-  var UPCOMING_VERSIONS = [
-    { id:'yellow', label:'Yellow', role:'?', tagline:'Something new is brewing', icon:VERSION_ICON_SOON, accentVar:'--version-yellow', inkVar:'--version-yellow-ink', rgbVar:'--version-yellow-rgb' }
-  ];
+  var UPCOMING_VERSIONS = [];   /* Yellow is now the live third Version (Oct 2026); nothing is teased at the moment. */
   var VERSION_ORDER = Object.keys(VERSION_REGISTRY).sort(function(a,b){
     return VERSION_REGISTRY[a].order - VERSION_REGISTRY[b].order;
   });
@@ -39209,8 +39191,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      always wins on this element specifically, without having to exclude
      .nav-version-switch-dot from that generic loop. */
   function updateNavVersionSwitch(){
-    var onGreenRoute = ROUTE_VERSION_CLASS[parseRoute().view] === 'green';
-    var current = onGreenRoute ? 'green' : SELECTED_VERSION;
+    var onGreenRoute = ROUTE_VERSION_CLASS[parseRoute().view] === 'yellow';
+    var current = onGreenRoute ? 'yellow' : SELECTED_VERSION;
     document.querySelectorAll('.nav-version-switch-dot').forEach(function(el){
       if(el.getAttribute('data-select-version') === current) el.setAttribute('aria-current', 'true');
       else el.removeAttribute('aria-current');
@@ -39394,10 +39376,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     pokedex: {title:'Pokédex Entries', description:'A growing Pokémon reference: facts, game context and sources.'},
     'pokedex-entry': {title:'Pokédex Entry', description:'Pokémon facts, game context and sources from ItemSixHQ.'},
     home:         { title: null, description: DEFAULT_DESCRIPTION },
-    catalog:      { title: 'The Binder', description: "Cards Jack owns and doesn't mind parting with - trade or buy, priced from real sales." },
+    catalog:      { title: "Jolteon's Binder", description: "Cards Jack owns and doesn't mind parting with - trade or buy, priced from what they're currently going for." },
     set:          { title: 'Browse By Set', description: DEFAULT_DESCRIPTION },
-    japan:        { title: 'Japanese Cards', description: 'Japanese-print Pokemon cards from the binder.' },
-    setjp:        { title: 'Japanese Cards', description: 'Japanese-print Pokemon cards from the binder.' },
     mybinder:     { title: "Jack's Personal Binder", description: DEFAULT_DESCRIPTION },
     news:         { title: 'News', description: 'Pokemon news, set breakdowns and community updates, written and fact-checked by Jack.' },
     about:        { title: 'About ItemSixHQ', description: 'Why ItemSixHQ exists, where the name came from, and who runs it - an independent Pokemon project from Singapore.' },
@@ -39422,8 +39402,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     explore:             { title: 'Red Version - Explore', description: 'Explore the Pokemon world - regions, generations, Pokemon, people and the stories behind them, starting with the Almanac.' },
     play:                { title: 'Blue Version - Play', description: 'Play Pokemon - cards, games and practical guides for actually playing, starting with the Pokemon TCG.' },
     'play-games':        { title: 'Video Games - Play', description: 'Every mainline Pokemon generation, Kanto to Paldea, plus the Legends sub-series - what came out, when, and why it mattered.' },
-    collect:             { title: 'Green Version - Binder', description: "Browse Jack's Pokemon TCG binder, how trading works, and the Japanese side of the collection." },
-    'bulk-binder':       { title: 'Bulk Binder - Green Version', description: "A searchable catalogue of the ordinary Pokemon cards Jack owns in bulk, separate from the curated Binder." }
+    collect:             { title: "Yellow Version - Jolteon's Binder", description: "Browse Jack's Pokemon TCG collection, Jolteon's Binder, and see how trading works." },
+    'bulk-binder':       { title: 'Bulk Binder - Yellow Version', description: "A searchable catalogue of the ordinary Pokemon cards Jack owns in bulk, separate from the curated Binder." }
   };
 
   /* SEO pass (Sept 2026): canonical/og:url/og:title/og:description/twitter:title/
@@ -39512,7 +39492,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     var hash = location.hash.replace(/^#\/?/, '');
     if(!hash) return {view:'home'};
     if(hash === 'catalog') return {view:'catalog'};
-    if(hash === 'japan') return {view:'japan'};
+    if(hash === 'japan') return {view:'catalog'};   /* Japanese cards are no longer a subject here; old links land on the binder */
     if(hash === 'mybinder') return {view:'mybinder'};
     if(hash === 'news') return {view:'news'};
     if(hash === 'about') return {view:'about'};
@@ -39555,7 +39535,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     var m = hash.match(/^set\/(.+)$/);
     if(m) return {view:'set', id:decodeURIComponent(m[1])};
     var jm = hash.match(/^set-jp\/(.+)$/);
-    if(jm) return {view:'setjp', id:decodeURIComponent(jm[1])};
+    if(jm) return {view:'catalog'};
     return {view:'home'};
   }
 
@@ -39639,7 +39619,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     var versionNavBtn = document.getElementById('version-nav-btn');
     if(versionNavBtn){
       var routeVerCls = ROUTE_VERSION_CLASS[r.view];
-      var onVersionRoute = routeVerCls === 'red' || routeVerCls === 'blue' || routeVerCls === 'green';
+      var onVersionRoute = routeVerCls === 'red' || routeVerCls === 'blue' || routeVerCls === 'yellow';
       versionNavBtn.classList.toggle('active', onVersionRoute);
       if(onVersionRoute){
         versionNavBtn.style.setProperty('--v-accent', 'var(--version-'+routeVerCls+')');
@@ -39759,7 +39739,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   }
 
   function buildCartMessage(uniqueIds){
-    var lines = ["Hi Jackson! I'm interested in these from your binder:", ''];   /* trade or buy - the closing line says so */
+    var lines = ["Hi Jackson! I'm interested in these from Jolteon's Binder:", ''];   /* trade or buy - the closing line says so */
     var total = 0;
     var n = 0;
     uniqueIds.forEach(function(id){
@@ -39827,7 +39807,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     }
     var note = document.getElementById('cart-copy-note');
     if(note) note.textContent = copied
-      ? 'Your list is copied — just paste it into a message and send it over:'
+      ? 'Your basket is copied. Just paste it into a message and send it over:'
       : 'Couldn’t auto-copy — tap the box below, select all, and copy it manually:';
   }
 
