@@ -2113,6 +2113,29 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   .guide-flow{flex-direction:column;}
   .guide-flow-arrow{transform:rotate(90deg);padding:.15rem 0;align-self:center;}
 }
+/* Oct 2026 - Jack's own tabletop + GO photos (Guide setup, coin/dice, playmat,
+   ability markers; Play > GO day-one proof). Reuses existing tokens only. */
+.photo-fig{margin:.7rem 0 1rem;max-width:560px;}
+.photo-fig img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,.16);}
+.photo-fig figcaption{font-size:.78rem;color:var(--ink-muted);margin-top:.45rem;line-height:1.4;}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.8rem 0 1.1rem;}
+.photo-pair .photo-fig{margin:0;max-width:none;}
+.photo-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:.8rem 0 1.1rem;}
+.photo-trio .photo-fig{margin:0;max-width:none;}
+.go-proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:.8rem 0 1.1rem;}
+.go-proof-grid .photo-fig{margin:0;max-width:none;}
+.go-proof-grid .photo-fig img{aspect-ratio:4/5;object-fit:cover;}
+.zone-legend{margin:.6rem 0 1.1rem;padding-left:0;list-style:none;color:var(--ink-muted);}
+.zone-legend li{margin-bottom:.4rem;display:flex;gap:.6rem;align-items:baseline;}
+.zone-legend .zn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.72rem;font-weight:700;}
+.zone-legend strong{color:var(--ink);}
+@media (max-width:700px){
+  .photo-trio{grid-template-columns:1fr;}
+  .go-proof-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:420px){
+  .photo-pair{grid-template-columns:1fr;}
+}
 .guide-decision-q{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;text-align:center;font-size:.86rem;margin-bottom:.5rem;}
 .guide-decision-branches{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;}
 .guide-decision-branch{border-radius:8px;padding:.65rem .8rem;border:1px solid var(--border);background:var(--surface-2);}
@@ -2940,7 +2963,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             <span class="dest-card-body">
                 <span class="dest-card-kicker">Beyond the TCG</span>
                 <span class="dest-card-title">Pok&eacute;mon GO</span>
-                <span class="dest-card-desc">I&rsquo;ve been catching Pok&eacute;mon since launch day in 2016. I&rsquo;m Level 64 now. Eventually, I&rsquo;ll write some of that down too.</span>
+                <span class="dest-card-desc">I&rsquo;ve been catching Pok&eacute;mon since launch day in Singapore, 6 August 2016. I&rsquo;m Level 64 now. Eventually, I&rsquo;ll write some of that down too.</span>
                 <span class="dest-card-badge">Coming soon</span>
             </span>
         </div>
@@ -3260,18 +3283,43 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         </div>
 
         <div class="terms-block">
+        <h3>The playmat: where everything goes</h3>
+        <p>You don&rsquo;t need a playmat to play. A bare table works fine. But a mat does make it obvious where each pile belongs, which helps a lot when you&rsquo;re new. This is mine, with the five spots numbered.</p>
+        <figure class="photo-fig" style="max-width:720px;"><img src="images/jack-tcg-playmat-labelled.jpg" alt="A Pok&eacute;mon TCG playmat with five zones numbered: Prize cards, Active spot, Bench, Deck, and Discard pile" loading="lazy" decoding="async"><figcaption>One mat, five zones. Yours may look different, but the same five spots are there.</figcaption></figure>
+        <ul class="zone-legend">
+          <li><span class="zn">1</span><span><strong>Prize cards.</strong> 6 cards, set aside face-down at the start. Each time you knock out an opponent&rsquo;s Pok&eacute;mon, you take Prize cards into your hand.</span></li>
+          <li><span class="zn">2</span><span><strong>Active spot.</strong> The one Pok&eacute;mon that&rsquo;s in the fight right now. It attacks, and it takes the hits.</span></li>
+          <li><span class="zn">3</span><span><strong>Bench.</strong> Up to 5 Pok&eacute;mon waiting their turn. They can&rsquo;t attack from here, but they&rsquo;re your backup.</span></li>
+          <li><span class="zn">4</span><span><strong>Deck.</strong> Your 60 cards, face-down. You always draw from the top.</span></li>
+          <li><span class="zn">5</span><span><strong>Discard pile (Trash).</strong> Used cards and knocked-out Pok&eacute;mon go here, face-up. Your opponent is allowed to look.</span></li>
+        </ul>
+        </div>
+
+        <div class="terms-block">
         <h3>Setting up</h3>
         <div class="editorial-callout callout-remember">
           <span class="editorial-callout-label">TL;DR</span>
-          Shuffle, draw 7 (mulligan if you&rsquo;ve got no Basic Pok&eacute;mon in hand), set your Active Pok&eacute;mon and Bench face-down, flip everything up, set aside 6 Prize cards, then decide who goes first.
+          Shuffle and offer a cut, draw 7 (mulligan if you have no Basic Pok&eacute;mon), place your Active and Bench face-down, set 6 Prize cards face-down, decide who goes first, fist bump, then flip everything face-up and play.
         </div>
-        <p>Before a game starts, players usually give each other a friendly fist bump &mdash; a small sign of respect. It&rsquo;s not an official rule and nobody will stop you skipping it. But do skip it, and you&rsquo;ll be the only one who did.</p>
         <ol class="terms-list">
-          <li><strong>Shuffle your deck.</strong> Offer it to your opponent to &ldquo;cut&rdquo; every time you shuffle &mdash; it&rsquo;s entirely up to them whether they take you up on it.</li>
-          <li><strong>Draw 7 cards.</strong> You need at least one Basic Pok&eacute;mon somewhere in that hand. If you don&rsquo;t have one, that&rsquo;s a <strong>mulligan</strong>: reveal your hand to your opponent to prove it, shuffle it back into your deck, and draw a fresh 7. Keep doing this until you draw a Basic. <span class="muted">(Some hands really do fight you on this.)</span> Once both hands are set up, your opponent gets to draw one extra card for every mulligan you took &mdash; unless they also had to mulligan, in which case it cancels out and nobody draws extra.</li>
-          <li><strong>Set your Active Pok&eacute;mon.</strong> Place a Basic Pok&eacute;mon face-down as your Active Pok&eacute;mon (the one doing the fighting) &mdash; you can also place more Basics face-down on your Bench, up to 5.</li>
-          <li><strong>Flip everything face-up.</strong> Once both players are ready, set aside your 6 Prize cards. You&rsquo;re in.</li>
-          <li><strong>Decide who goes first.</strong> However you like &mdash; coin flip, rock-paper-scissors, doesn&rsquo;t matter.</li>
+          <li><strong>Shuffle your deck and offer it to your opponent to cut.</strong> Do this every time you shuffle. It&rsquo;s entirely up to them whether they take you up on it.
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-1-shuffle.jpg" alt="Shuffling a sleeved Pok&eacute;mon TCG deck over the playmat" loading="lazy" decoding="async"><figcaption>Shuffle first.</figcaption></figure>
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-2-cut.jpg" alt="Placing a shuffled deck on the table and offering it to the opponent to cut" loading="lazy" decoding="async"><figcaption>Then set it down and offer the cut.</figcaption></figure>
+          </li>
+          <li><strong>Draw 7 cards.</strong> You need at least one Basic Pok&eacute;mon somewhere in that hand. If you don&rsquo;t have one, that&rsquo;s a <strong>mulligan</strong>: reveal your hand to your opponent to prove it, shuffle it back into your deck, and draw a fresh 7. Keep going until you draw a Basic. <span class="muted">(Some hands really do fight you on this.)</span> Once both hands are set up, your opponent draws one extra card for every mulligan you took, unless they also mulliganed, in which case it cancels out and nobody draws extra.
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-3-draw7.jpg" alt="A hand of seven Pok&eacute;mon cards fanned out over the playmat" loading="lazy" decoding="async"><figcaption>Seven cards, and a Basic Pok&eacute;mon in there somewhere.</figcaption></figure>
+          </li>
+          <li><strong>Place your Active Pok&eacute;mon and Bench face-down.</strong> Pick a Basic Pok&eacute;mon as your Active Pok&eacute;mon (the one doing the fighting). You can also put more Basics on your Bench, up to 5. All face-down for now.
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-4-basics-facedown.jpg" alt="One face-down card in the Active spot and two face-down cards on the Bench" loading="lazy" decoding="async"><figcaption>One Active, two on the Bench, all face-down so your opponent can&rsquo;t see them yet.</figcaption></figure>
+          </li>
+          <li><strong>Set 6 Prize cards.</strong> Take the top 6 cards of your deck and place them face-down in your Prize area. You don&rsquo;t look at them.
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-5-prizes.jpg" alt="Six face-down Prize cards laid out in two columns on the Prize area of the playmat" loading="lazy" decoding="async"><figcaption>Six Prizes, face-down, on the left.</figcaption></figure>
+          </li>
+          <li><strong>Decide who goes first.</strong> A coin flip is the usual way (see <a href="#guide-coin-dice">Coin flips and dice</a> below). Rock-paper-scissors is fine too. As long as you both agree before turn 1, nobody&rsquo;s going to argue.</li>
+          <li><strong>Fist bump, then flip everything face-up.</strong> Players usually give each other a fist bump as a small sign of respect. It&rsquo;s not an official rule and nobody will stop you skipping it, but you&rsquo;d be the only one who did. Then both players flip their Active Pok&eacute;mon and Bench face-up, and the game begins.
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-6-fistbump.jpg" alt="Two fists meeting in a fist bump over the playmat" loading="lazy" decoding="async"><figcaption>The fist bump.</figcaption></figure>
+            <figure class="photo-fig"><img src="images/jack-tcg-setup-7-begin.jpg" alt="The Active Pok&eacute;mon and Bench flipped face-up, with the Prize cards still face-down" loading="lazy" decoding="async"><figcaption>Everything flipped face-up. Game on.</figcaption></figure>
+          </li>
         </ol>
         <figure class="guide-diagram">
           <div class="guide-flow">
@@ -3279,14 +3327,31 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             <div class="guide-flow-arrow" aria-hidden="true">&rarr;</div>
             <div class="guide-flow-step"><span class="guide-flow-step-num">2</span><p>Draw 7 <span class="muted">(mulligan if no Basic)</span></p></div>
             <div class="guide-flow-arrow" aria-hidden="true">&rarr;</div>
-            <div class="guide-flow-step"><span class="guide-flow-step-num">3</span><p>Set Active + Bench, face-down</p></div>
+            <div class="guide-flow-step"><span class="guide-flow-step-num">3</span><p>Active + Bench, face-down</p></div>
             <div class="guide-flow-arrow" aria-hidden="true">&rarr;</div>
-            <div class="guide-flow-step"><span class="guide-flow-step-num">4</span><p>Flip up, set 6 Prizes</p></div>
+            <div class="guide-flow-step"><span class="guide-flow-step-num">4</span><p>Set 6 Prizes, face-down</p></div>
             <div class="guide-flow-arrow" aria-hidden="true">&rarr;</div>
             <div class="guide-flow-step"><span class="guide-flow-step-num">5</span><p>Decide who goes first</p></div>
+            <div class="guide-flow-arrow" aria-hidden="true">&rarr;</div>
+            <div class="guide-flow-step"><span class="guide-flow-step-num">6</span><p>Fist bump, flip up, play</p></div>
           </div>
-          <figcaption>The five setup steps, in order.</figcaption>
+          <figcaption>The six setup steps, in order.</figcaption>
         </figure>
+        </div>
+
+        <div class="terms-block" id="guide-coin-dice">
+        <h3>Coin flips and dice</h3>
+        <p>Coin flips come up all the time: deciding who goes first, and then mid-game whenever a card or a Special Condition says &ldquo;flip a coin.&rdquo; Heads or tails matters, so it helps to know which is which.</p>
+        <div class="photo-pair">
+          <figure class="photo-fig"><img src="images/jack-tcg-coin-heads.jpg" alt="A teal Pok&eacute;mon TCG coin showing the Pok&eacute;mon side, held in a palm" loading="lazy" decoding="async"><figcaption><strong>Heads:</strong> the side with the Pok&eacute;mon on it.</figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-tcg-coin-tails.jpg" alt="A black Pok&eacute;mon TCG coin showing the Pok&eacute; Ball logo side, held in a palm" loading="lazy" decoding="async"><figcaption><strong>Tails:</strong> the side with the logo.</figcaption></figure>
+        </div>
+        <p class="muted">That&rsquo;s how I treat my coins. As far as I know there&rsquo;s no official rule tying heads to one particular side, so if you&rsquo;re ever unsure, just say which is which before you flip.</p>
+        <p>No coin handy? Roll a die instead. <strong>Even is heads, odd is tails.</strong></p>
+        <div class="photo-pair">
+          <figure class="photo-fig"><img src="images/jack-tcg-dice-even.jpg" alt="A translucent green die held between fingers, showing the 2 face" loading="lazy" decoding="async"><figcaption>Rolled a 2. Even, so heads.</figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-tcg-dice-odd.jpg" alt="A translucent green die held between fingers, showing the 3 face" loading="lazy" decoding="async"><figcaption>Rolled a 3. Odd, so tails.</figcaption></figure>
+        </div>
         </div>
 
         <div class="terms-block">
@@ -3318,6 +3383,21 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <li>Retreat your Active Pok&eacute;mon once, paying its Retreat Cost</li>
         </ul>
         <p><strong>3. Attack.</strong> Pick an attack your Active Pok&eacute;mon has enough Energy for, resolve it, and your turn ends. One attack per turn, and once you attack, that&rsquo;s it.</p>
+        </div>
+
+        <div class="terms-block" id="guide-ability-used">
+        <h3>Showing you&rsquo;ve used an Ability</h3>
+        <p>A lot of Abilities say &ldquo;once during your turn.&rdquo; Nobody&rsquo;s going to remember for you whether you already used it this turn, so players mark it on the table. Here&rsquo;s the same Psyduck, three ways.</p>
+        <div class="photo-pair">
+          <figure class="photo-fig"><img src="images/jack-tcg-ability-unused.jpg" alt="A Psyduck card sitting upright on the playmat, Ability not yet used" loading="lazy" decoding="async"><figcaption>Upright: Ability not used yet.</figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-tcg-ability-turned.jpg" alt="The same Psyduck card turned at a slight angle to show its Ability has been used" loading="lazy" decoding="async"><figcaption><strong>Turn it a little</strong> once you&rsquo;ve used it.</figcaption></figure>
+        </div>
+        <div class="photo-pair">
+          <figure class="photo-fig"><img src="images/jack-tcg-ability-coin.jpg" alt="A coin placed on top of the Psyduck card to show its Ability has been used" loading="lazy" decoding="async"><figcaption><strong>Or put a coin on top.</strong></figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-tcg-ability-marker.jpg" alt="An Ability Used marker placed on top of the Psyduck card" loading="lazy" decoding="async"><figcaption><strong>Or an &ldquo;Ability Used&rdquo; marker.</strong> These exist, but they&rsquo;re rare.</figcaption></figure>
+        </div>
+        <p>Whichever you pick, reset it when your turn ends so it&rsquo;s clean for next turn. One catch with turning the card: some Special Conditions are also shown by turning the card (the <a href="#/advanced">Advanced Guide</a> has the full list), so keep the angle small and tell your opponent what you&rsquo;re doing.</p>
+        <figure class="photo-fig"><img src="images/jack-tcg-ability-marker-case.jpg" alt="A deck box next to a small yellow case holding Ability Used markers" loading="lazy" decoding="async"><figcaption>Where I keep mine: a small case of markers sitting next to my deck box.</figcaption></figure>
         </div>
 
         <div class="terms-block">
@@ -3668,6 +3748,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       <article class="terms-page article-page">
         <h2>Let&rsquo;s Trade</h2>
         <p class="muted">This whole site leans hobby-first: trade or buy, whichever suits you. Here&rsquo;s exactly how that works, and what I&rsquo;m after myself.</p>
+        <figure class="photo-fig" style="max-width:none;margin:1rem 0 1.4rem;"><img src="images/jack-trade-weedle-for-charmander.jpg" alt="Two people mid-trade: one holds a hand-drawn Weedle card on white paper, the other holds a PSA 10 graded Charmander" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;" decoding="async"><figcaption style="font-size:.9rem;margin-top:.6rem;">Above is an example of a very fair trade: a bespoke, extremely well hand-drawn Weedle card for a PSA 10 Charmander.</figcaption></figure>
         <div class="article-body">
 
         <div class="terms-block">
@@ -3678,7 +3759,6 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <li><strong>If trading, check what I&rsquo;m after below.</strong> Got something on that list? Offer it against what you want from me and we&rsquo;ll work out if it&rsquo;s close.</li>
           <li><strong>We value both sides the same way.</strong> Everything in my binder is priced from what copies have actually sold for. Do the same on your side and we&rsquo;ll both know quickly whether a swap is fair &mdash; any gap gets settled in cash, either direction.</li>
         </ul>
-        <div class="content-img-placeholder" style="aspect-ratio:16/9;" title="Photo: what an actual trade/meetup with Jack looks like"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="10.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 16.5 9.5 12l3 2.7 3.2-3.7 4.8 5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>What an actual trade/meetup looks like</span></div>
         </div>
 
         <div class="terms-block">
@@ -4099,11 +4179,20 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <div class="pillar-header-text">
             <p class="eyebrow">Pillar 3 &middot; Pok&eacute;mon GO</p>
             <h3>Beyond the cartridge.</h3>
-            <p class="muted play-tcg-sub">Released July 6, 2016 by Niantic (with The Pok&eacute;mon Company and Nintendo), GO took the core &ldquo;catch stuff&rdquo; loop, bolted on GPS and your phone camera, and turned the entire outside world into the tall grass. Whatever else you think about it, it got more non-fans catching Pok&eacute;mon than any mainline game ever has.</p>
+            <p class="muted play-tcg-sub">Released July 6, 2016 by Niantic (with The Pok&eacute;mon Company and Nintendo), GO reached Singapore on August 6 that year. It took the core &ldquo;catch stuff&rdquo; loop, bolted on GPS and your phone camera, and turned the entire outside world into the tall grass. Whatever else you think about it, it got more non-fans catching Pok&eacute;mon than any mainline game ever has.</p>
           </div>
           <img class="pillar-header-media content-img-photo" src="images/img-843fd92ef46cce45.jpg" alt="Jack&rsquo;s Level 64 Pok&eacute;mon GO account, mid-catch" style="aspect-ratio:1/1;width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;">
         </div>
         <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>I still remember when this thing launched &mdash; the entire world briefly agreed on something, and that something was walking to a church at 1am because a rare spawn was there. Simpler times.</div>
+        <p><strong>Day-one proof</strong></p>
+        <p>Anyone can say they were there from the start, so here&rsquo;s the account. My start date is 06/08/2016, which is 6 August 2016, the day GO launched in Singapore. The first Pok&eacute;mon I ever caught is still on my account. I nicknamed it &ldquo;The First,&rdquo; and it was caught in Singapore the same day.</p>
+        <div class="go-proof-grid">
+          <figure class="photo-fig"><img src="images/jack-go-first-pokemon.jpg" alt="Pok&eacute;mon GO screenshot of a Pok&eacute;mon nicknamed The First, with a 2016 caught badge" loading="lazy" decoding="async"><figcaption>The First, still on my account.</figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-go-caught-date.jpg" alt="Pok&eacute;mon GO screenshot showing the Pok&eacute;mon was caught in Singapore on 06/08/2016" loading="lazy" decoding="async"><figcaption>Caught in Singapore, 06/08/2016.</figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-go-trainer-stats.jpg" alt="Pok&eacute;mon GO trainer profile showing Level 64, total activity, and a start date of 06/08/2016" loading="lazy" decoding="async"><figcaption>Trainer profile. Start date: 06/08/2016.</figcaption></figure>
+          <figure class="photo-fig"><img src="images/jack-go-trainer-buddy.jpg" alt="Pok&eacute;mon GO trainer screen at Level 64 with the buddy Pok&eacute;mon standing next to the trainer" loading="lazy" decoding="async"><figcaption>Level 64 now, with my buddy.</figcaption></figure>
+        </div>
+        <p class="muted" style="font-size:.85rem;">Stats as of October 2026: 59,854 Pok&eacute;mon caught, 36,969 Pok&eacute;Stops visited, 7,749 km walked.</p>
         <p><strong>How it actually works, briefly</strong></p>
         <div class="go-mechanics-grid">
           <div class="go-mechanic-card">
@@ -4187,7 +4276,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <h2>Welcome to the Binder.</h2>
         <p class="muted explore-hero-sub">My actual Pok&eacute;mon TCG collection &mdash; cards I own, cards I&rsquo;ll trade, and cards I&rsquo;m letting go of at a fair price. Singles, Japanese prints, and the odd thing I probably should have listed months ago.</p>
         <div class="editorial-callout callout-jacknote"><span class="editorial-callout-label">Jack note</span>Everything here is priced from what copies have actually sold for, not what I wish they were worth. If something looks off, tell me &mdash; I&rsquo;d rather fix a price than make an awkward trade.</div>
-        <div class="content-img-placeholder" style="aspect-ratio:21/9;" title="Green-toned hero photo &mdash; binder pages / card sleeves, echoing the Homepage treatment in the Green palette"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m4.5 16 4.5-4.5 3 3 4-5.5 5.5 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+        <img class="content-img-photo" src="images/jack-collect-gambler-binder.jpg" alt="Jack peeking over a zip binder full of first edition Gambler Trainer cards" style="aspect-ratio:21/9;width:100%;height:auto;object-fit:cover;object-position:50% 50%;border-radius:12px;display:block;" decoding="async">
       </div>
 
       <section class="explore-almanac-feature" aria-label="The Binder">
