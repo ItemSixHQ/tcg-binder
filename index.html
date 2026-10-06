@@ -2314,6 +2314,23 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 @media (max-width:520px){.article-body .terms-block h3{font-size:.68rem;line-height:1.95;}}
 .terms-block p{color:var(--ink-muted);}
 .terms-block strong{color:var(--ink);}
+.route-card{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);}
+.route-card h4{margin:0 0 .7rem;font-size:.95rem;}
+.route-steps{list-style:none;margin:0;padding:0;}
+.route-steps li{position:relative;display:flex;gap:.8rem;align-items:flex-start;padding-bottom:1rem;}
+.route-steps li:last-child{padding-bottom:0;}
+.route-steps li::before{content:"";position:absolute;left:1.35rem;top:1.9rem;bottom:.1rem;width:4px;margin-left:-2px;background:var(--rail,var(--border));border-radius:2px;}
+.route-steps li:last-child::before{display:none;}
+.route-steps li:has(.ewl)::before{--rail:#009645;}
+.route-steps li:has(.dtl)::before{--rail:#005EC4;}
+.route-steps li>div{flex:1;min-width:0;line-height:1.4;}
+.route-steps li>div span{display:block;font-size:.85rem;color:var(--ink-muted);margin-top:.1rem;}
+.stn-chip{flex:0 0 auto;min-width:2.7rem;text-align:center;padding:.18rem .4rem;border-radius:6px;font-size:.78rem;font-weight:700;color:#fff;background:#555;letter-spacing:.02em;}
+.stn-chip.ewl{background:#009645;}
+.stn-chip.dtl{background:#005EC4;}
+.stn-chip.ccl{background:#B8730A;}
+.stn-chip.dest{background:#15171A;box-shadow:0 0 0 2px #FFD84A;}
+.stn-chip.inline{display:inline-block;min-width:0;vertical-align:baseline;}
 .terms-list{margin:.6rem 0 1.1rem;padding-left:1.2rem;color:var(--ink-muted);}
 .terms-list:last-child{margin-bottom:0;}
 .terms-list li{margin-bottom:.45rem;}
@@ -4665,6 +4682,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       <article class="terms-page article-page">
         <h2>Worlds 2027, Singapore</h2>
         <p class="muted">The Pok&eacute;mon World Championships are coming to my home city. This page is my running guide for anyone travelling in for it &mdash; and it&rsquo;ll keep growing as real details get announced.</p>
+        <p>I&rsquo;m Jack, and Singapore is my home. I&rsquo;m not a travel guide, so you won&rsquo;t find the usual tourist list here. This is what I&rsquo;d tell a friend flying in for Worlds: how to get around, where I&rsquo;d eat, and the little quirks nobody warns you about.</p>
         <p class="muted">This is my own independent coverage of Worlds 2027 &mdash; ItemSixHQ is not affiliated with, endorsed by, or accredited by The Pok&eacute;mon Company.</p>
         <div class="article-body">
 
@@ -4698,21 +4716,85 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
         <div class="terms-block">
         <h3>If you&rsquo;re flying in &mdash; Singapore basics</h3>
-        <p>This part I <em>can</em> help with now, because it doesn&rsquo;t depend on any announcement.</p>
+        <p>This part I <em>can</em> help with now, because it doesn&rsquo;t depend on any announcement. A few of these are things most visitors only find out by getting them wrong.</p>
         <ul class="terms-list">
           <li><strong>August weather.</strong> Hot and humid, roughly 26&ndash;32&deg;C, with sudden heavy downpours that stop as fast as they start. Bring a light rain layer, not a coat. Everything indoors is aggressively air-conditioned, so a light long-sleeve for inside is genuinely sensible.</li>
-          <li><strong>Getting around.</strong> The MRT is clean, cheap and goes almost everywhere. You can tap in with a contactless bank card or your phone &mdash; no need to buy a transit card.</li>
-          <li><strong>Language.</strong> English is an official language and is what you&rsquo;ll be spoken to in. You do not need to prepare anything.</li>
-          <li><strong>Cards and cash.</strong> Cards are accepted nearly everywhere. Local payments run on PayNow, which needs a Singapore bank account &mdash; so carry a bit of cash for hawker centres and smaller shops.</li>
-          <li><strong>Food.</strong> Eat at hawker centres. It&rsquo;s the best food in the country and it&rsquo;s cheap. This is the single most common thing visitors get wrong.</li>
-          <li><strong>Choping a seat.</strong> At a hawker centre, locals save a table by leaving something small on it &mdash; a packet of tissues, an umbrella, a lanyard &mdash; before going off to order. It&rsquo;s called &ldquo;choping&rdquo; a seat, and everyone respects it. Feel free to do the same &mdash; nobody will touch it.</li>
+          <li><strong>Your credit card is your train ticket.</strong> You can ride our buses and trains by tapping a contactless (wave) credit or debit card, or a phone wallet. Visa, Mastercard and American Express all work, and so do cards from overseas. No transit card to buy, no queue at the ticket machine. Tap at the gantry when you enter <em>and</em> when you leave (on buses, when you board and when you get off), and use the same card or phone both times. Your bank may add a foreign transaction fee, so it&rsquo;s worth a quick check before you fly.</li>
+          <li><strong>That tissue packet is not lost and found.</strong> If you see a packet of tissues, a lanyard, car keys or even a mobile phone sitting on a table at a hawker centre, leave it alone. It&rsquo;s not lost property, it&rsquo;s not yours to take, and it&rsquo;s not your table to sit at. That table has been <strong>choped</strong>. &ldquo;Chope&rdquo; is Singlish for &ldquo;reserved&rdquo;: we claim a seat by leaving something on it, then go off to order food. Nobody will touch it, so feel free to chope a table yourself.</li>
+          <li><strong>Yes, most of us speak English.</strong> Contrary to popular belief, English is the language we use most in Singapore, and you&rsquo;ll be fine almost everywhere. The older generation can be hit and miss, though, and so can some staff who are foreigners themselves. If you&rsquo;re at an old-school hawker stall or a heartland shop, keep in mind that the aunty or uncle might not follow English well. You can usually tell once you start talking: slow down, point at the menu, smile, and it works out.</li>
+          <li><strong>Vaping is illegal.</strong> Please leave yours at home. Vapes are banned in Singapore, and travellers found with one can be <a href="https://www.moh.gov.sg/newsroom/moh-and-hsa-continue-to-step-up-enforcement-and-crackdown-on-e-vaporisers-offences/" target="_blank" rel="noopener">fined</a>.</li>
+          <li><strong>Smoking.</strong> A lot of places prohibit it even outdoors, so check the signs. And please don&rsquo;t walk and smoke, everyone hates that.</li>
+          <li><strong>No eating or drinking on public transport.</strong> That means the MRT and buses. Exceptions can be made for medical reasons or if you&rsquo;re really feeling faint.</li>
+          <li><strong>Tap water is drinkable.</strong> PUB says it&rsquo;s <a href="https://www.pub.gov.sg/Public/WaterLoop/Water-Quality" target="_blank" rel="noopener">safe straight from the tap</a>.</li>
+          <li><strong>Cards and cash.</strong> Cards are accepted nearly everywhere. Local payments run on PayNow, which needs a Singapore bank account, so carry a bit of cash for hawker centres and smaller shops.</li>
+          <li><strong>Food.</strong> Eat at hawker centres. It&rsquo;s the best food in the country and it&rsquo;s cheap. This is the single most common thing visitors get wrong. When you&rsquo;re done, return your tray and clear your own table: it&rsquo;s an <a href="https://www.nea.gov.sg/media/news/news/index/mandatory-for-diners-to-return-dirty-trays-crockery-and-clean-table-litter-at-hawker-centres-coffeeshops-and-food-courts" target="_blank" rel="noopener">enforced rule</a>, not just good manners.</li>
         </ul>
-        <p class="muted">Now that the venue&rsquo;s confirmed, I&rsquo;ll be adding proper venue-area recommendations &mdash; food, hotels, where to get singles, where people actually play &mdash; as I put them together.</p>
+        <p class="muted">More venue-area recommendations, like where to get singles and things to do when you have a few hours free, will follow as I put them together.</p>
+        </div>
+
+        <div class="terms-block" id="worlds-getting-there">
+        <h3>Getting to Singapore EXPO by MRT</h3>
+        <p>The EXPO has its own station, simply called <strong>Expo</strong>. It sits right next to the venue and it&rsquo;s the end of the line for two different MRT lines, which is where people get confused. Here are the three ways you&rsquo;re most likely to arrive.</p>
+
+        <div class="route-card">
+          <h4>From the city, hotels around Bugis, Lavender, City Hall</h4>
+          <ol class="route-steps">
+            <li><span class="stn-chip ewl">EW13</span><div><strong>City Hall</strong> (or any station on the East-West Line)<span>Take the green East-West Line eastbound.</span></div></li>
+            <li><span class="stn-chip ewl">EW4</span><div><strong>Tanah Merah</strong><span>Change here. The Changi Airport branch is a shuttle, so follow the signs for the train to Changi Airport.</span></div></li>
+            <li><span class="stn-chip dest">CG1</span><div><strong>Expo</strong><span>One stop after Tanah Merah. Get off here for the venue.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="route-card">
+          <h4>From Changi Airport</h4>
+          <ol class="route-steps">
+            <li><span class="stn-chip ewl">CG2</span><div><strong>Changi Airport</strong><span>Follow the signs to the MRT.</span></div></li>
+            <li><span class="stn-chip dest">CG1</span><div><strong>Expo</strong><span>One stop, no change.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="route-card">
+          <h4>From Tampines or the east, on the Downtown Line</h4>
+          <ol class="route-steps">
+            <li><span class="stn-chip dtl">DT32</span><div><strong>Tampines</strong><span>Take the blue Downtown Line towards Expo.</span></div></li>
+            <li><span class="stn-chip dtl">DT34</span><div><strong>Upper Changi</strong><span>The last stop before Expo.</span></div></li>
+            <li><span class="stn-chip dest">DT35</span><div><strong>Expo</strong><span>The Downtown Line ends here. It also runs through Little India, Bugis and Chinatown, but that&rsquo;s a longer ride from the city, so most people are quicker on the East-West Line.</span></div></li>
+          </ol>
+        </div>
+
+        <ul class="terms-list">
+          <li><strong>Mind the last trains.</strong> The last train to Changi Airport leaves Tanah Merah before the last eastbound train from the city arrives, so don&rsquo;t cut it fine on a late night. Service changes happen, so check <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html" target="_blank" rel="noopener">LTA&rsquo;s rail network page</a> before you travel.</li>
+          <li><strong>If Championship Sunday moves to the Singapore Indoor Stadium</strong> (reported, not confirmed), the nearest station is Stadium on the Circle Line (<span class="stn-chip ccl inline">CC6</span>). I&rsquo;ll update this once it&rsquo;s official.</li>
+          <li><strong>The full map.</strong> The official MRT system map is published by the Land Transport Authority (&copy; LTA) and you can <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html" target="_blank" rel="noopener">view or download the latest copy on LTA&rsquo;s website</a>. I haven&rsquo;t reproduced it here because LTA asks for written permission first.</li>
+        </ul>
+        </div>
+
+<div class="terms-block" id="worlds-eat">
+        <h3>Where to eat near the EXPO</h3>
+        <p>I&rsquo;m not going to recommend the typical tourist places, because you can find those guides all over the internet and on YouTube. Instead, I&rsquo;ll give you practical suggestions and maybe a road less travelled.</p>
+        <p>There&rsquo;s a huge food court right next to the Expo halls. Unless you only have time to be at Worlds and then catch your flight straight after, I wouldn&rsquo;t recommend it. The food is mediocre, most of the stalls are usually closed, and the prices can be insane. I can&rsquo;t complain about the bar there though, lol.</p>
+        <p>The Expo area is also a little confusing to navigate, and you may walk in circles. With it being Worlds, I think there will be plenty of ushers and signs, but just in case there aren&rsquo;t, feel free to ask any of us, even if we look like the world owes us* a PSA 10 Charizard VMAX Promo from the UPC.</p>
+        <p class="muted">*Most of us have an RBF, don&rsquo;t randomly greet strangers and can look unapproachable. Trust me, just approach us. Nine times out of ten, we&rsquo;re more than happy to help and chat. We&rsquo;re just not great at breaking the ice. So there&rsquo;s another quirk that might help you understand Singapore, haha.</p>
+        <p>Now, some practical suggestions on where to eat.</p>
+        <p>You&rsquo;re very near Changi Airport, just one MRT stop away on the East-West Line (EWL). If you don&rsquo;t want to venture too far, maybe because you aren&rsquo;t here for long, <a href="https://jewelchangiairport.com/en/shop/pokemon-center-singapore.html" target="_blank" rel="noopener">Jewel</a> is a fantastic place to find good food. It&rsquo;s obviously not the cheapest, but hey, our one and only Pok&eacute;mon Center is there too, on Level 4.</p>
+        <p>If you don&rsquo;t mind venturing further, take the Downtown Line (DT) to Tampines* (DT32/EW2). Get off and you&rsquo;ll have three shopping malls and a heartland hub to choose from: Tampines 1, Tampines Mall, Century Square and <a href="https://www.pa.gov.sg/our-network/our-tampines-hub" target="_blank" rel="noopener">Our Tampines Hub</a>.</p>
+        <p>If you&rsquo;re following a halal diet, we have more options than you&rsquo;d expect. Most of our fast food chains, like McDonald&rsquo;s, KFC and Burger King, are halal. Just look out for the halal certificate, which is usually displayed prominently. Kosher food is unfortunately less common. I think it exists at a few specific places, but I can&rsquo;t recommend one.</p>
+        <p>For the gym rats: if you&rsquo;re an Anytime Fitness member, there are several branches around Tampines, including one at Blk 506 Tampines Central 1 and one at 7 Tampines Grande. Check the walk on Google Maps first, since some are a bit of a walk from the malls.</p>
+        <p>Tampines is a major residential area in the east of Singapore, and a good balance of modern Singapore and history.</p>
+        <p class="muted">*Pronounced Tam-pa-nees, not Tamp-pines.</p>
+        <p>If you have the time and the gusto to travel further, take the EWL from Expo (changing at Tanah Merah) to Paya Lebar, then switch to the Circle Line (CC) and go to Stadium (CC6). This brings you to the Singapore Indoor Stadium and <a href="https://capitaland.com/sg/en/lease/mall-listing/kallang-wave-mall.html" target="_blank" rel="noopener">Kallang Wave Mall</a>. If you love Pok&eacute;mon GO, the track around the Stadium is a perfect place to circle around, get your steps in and catch some Singapore Pok&eacute;mon. Please be mindful that it&rsquo;s a jogging track, so you might be in people&rsquo;s way. We Singaporeans are friendly but mostly reserved and keep to ourselves. Sometimes, though, we don&rsquo;t mind sharing our thoughts out loud when something gets in our way, lol.</p>
+        </div>
+
+        <div class="terms-block" id="worlds-stay">
+        <h3>Where to stay</h3>
+        <p>I&rsquo;m not the right person to tell you where to stay. I&rsquo;m local, so I obviously don&rsquo;t visit hotels much. There are plenty of travel guides that recommend where to stay, but here&rsquo;s a guide to a different kind of lodging, if you want to explore something different: <a href="https://thetravelintern.com/staycation-in-singapore-hotels/" target="_blank" rel="noopener nofollow">Staycation in Singapore hotels</a>.</p>
+        <p class="muted">That link is someone else&rsquo;s blog, and it earns affiliate commissions from its booking links. I don&rsquo;t get anything from it.</p>
         </div>
 
         <div class="terms-block">
         <h3>Where to play while you&rsquo;re here</h3>
         <p>Singapore has a small but genuinely welcoming TCG scene. If you want a game outside the tournament, the friendliest starting point I know is <a href="#/blacklabel">BlackLabel TCG</a> &mdash; a shop I have no affiliation with, run by a friend, with official Gym nights on Fridays and Saturdays.</p>
+        <p>I only ever visit BlackLabel TCG, since it&rsquo;s my friend&rsquo;s shop. It&rsquo;s a little hard to get to though, so if you&rsquo;re a tourist, I&rsquo;d recommend taking a Grab, Zig or Gojek. That brings me to the transport apps. I&rsquo;m not a travel guide, so all I&rsquo;ll say is that most Singaporeans have four main ride-hailing apps: Grab, Zig by Comfort, Gojek and Tada. Some of us (when we&rsquo;re not feeling the richest) cross-check prices across all four apps and try to book the cheapest ride. Keyword: try. You&rsquo;re not guaranteed a ride from the cheapest app, because if you can have multiple apps, so can the drivers.</p>
         <p>And if you want a game with me specifically: <a href="#/play-with-jack">that&rsquo;s here</a>. I&rsquo;ll happily meet a visitor for a match and point you at good food afterwards.</p>
         </div>
 
