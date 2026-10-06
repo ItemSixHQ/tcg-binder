@@ -56,6 +56,7 @@
 <style id="app-style">
 :root{
   --bg:#FAFAF8;
+  --link:#1A5FB4;
   --surface:#FFFFFF;
   --surface-2:#F2F2EF;
   --ink:#15171A;
@@ -115,6 +116,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#1C1926;
+    --link:#8CC7EC;
     --surface:#262130;
     --surface-2:#332B42;
     --ink:#EDE7F6;
@@ -157,6 +159,7 @@
 }
 :root[data-theme="dark"]{
   --bg:#1C1926;
+  --link:#8CC7EC;
   --surface:#262130;
   --surface-2:#332B42;
   --ink:#EDE7F6;
@@ -2314,6 +2317,26 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 @media (max-width:520px){.article-body .terms-block h3{font-size:.68rem;line-height:1.95;}}
 .terms-block p{color:var(--ink-muted);}
 .terms-block strong{color:var(--ink);}
+/* Inline links inside written content: global a{} strips colour and underline, so give prose links a visible style */
+.terms-page p a:not(.pill):not(.btn):not(.back-link):not(.dest-card),
+.terms-page li a:not(.pill):not(.btn):not(.back-link):not(.dest-card),
+.terms-page dd a:not(.pill):not(.btn):not(.back-link):not(.dest-card),
+.about-make-desc a,
+.home-version-section p a,
+.home-videos p a,
+.catalog-head p a,
+.almanac-section p a{color:var(--link);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;font-weight:600;}
+.terms-page p a:not(.pill):not(.btn):not(.back-link):not(.dest-card):hover,
+.terms-page li a:not(.pill):not(.btn):not(.back-link):not(.dest-card):hover,
+.terms-page dd a:not(.pill):not(.btn):not(.back-link):not(.dest-card):hover,
+.about-make-desc a:hover,
+.home-version-section p a:hover,
+.home-videos p a:hover,
+.catalog-head p a:hover,
+.almanac-section p a:hover{text-decoration-thickness:2.5px;opacity:.85;}
+.worlds-part{margin:2.6rem 0 .6rem;padding-top:1rem;border-top:2px solid var(--border);}
+.worlds-jump{margin-top:1rem;}
+.terms-block h4.worlds-sub{margin:1.2rem 0 .3rem;font-size:.95rem;font-weight:700;color:var(--ink);}
 .route-card{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);}
 .route-card h4{margin:0 0 .7rem;font-size:.95rem;}
 .route-steps{list-style:none;margin:0;padding:0;}
@@ -4685,8 +4708,18 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <p>I&rsquo;m Jack, and Singapore is my home. I&rsquo;m not a travel guide, so you won&rsquo;t find the usual tourist list here. This is what I&rsquo;d tell a friend flying in for Worlds: how to get around, where I&rsquo;d eat, and the little quirks nobody warns you about.</p>
         <p class="muted">This is my own independent coverage of Worlds 2027 &mdash; ItemSixHQ is not affiliated with, endorsed by, or accredited by The Pok&eacute;mon Company.</p>
         <div class="article-body">
+        <div class="gen-section-nav worlds-jump" aria-label="Jump to a section">
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-tournament">The tournament</button>
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-basics">Before you land</button>
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-getting-there">Getting there</button>
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-eat">Where to eat</button>
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-do">Things to do</button>
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-stay">Where to stay</button>
+          <button type="button" class="gen-section-nav-btn" data-target="worlds-play">Where to play</button>
+        </div>
 
-        <div class="terms-block">
+        <p class="eyebrow worlds-part">Part 1 &middot; The tournament</p>
+        <div class="terms-block" id="worlds-tournament">
         <h3>What&rsquo;s confirmed</h3>
         <dl class="condition-legend wide-terms">
           <div><dt>Dates</dt><dd><strong>13&ndash;15 August 2027.</strong> Announced by Pok&eacute;mon at the closing ceremony of Worlds 2026 in San Francisco, on 30 August 2026.</dd></div>
@@ -4694,7 +4727,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <div><dt>Venue</dt><dd><strong>Singapore EXPO.</strong> The main tournament venue is confirmed.</dd></div>
         </dl>
         <img class="content-img-photo" src="images/img-374baa9b5a3a0ac2.webp" alt="Pok&eacute;mon World Championships 2027 Singapore announcement" style="aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;border-radius:12px;display:block;">
-        <p class="muted" style="margin-top:.4rem;font-size:.8rem;">Using the official Worlds 2027 Singapore announcement image for now &mdash; I&rsquo;ll swap in an actual venue photo once I have one.</p>
+        <p class="muted" style="margin-top:.4rem;font-size:.8rem;">Image: the official Worlds 2027 Singapore announcement.</p>
         </div>
 
         <div class="terms-block">
@@ -4714,22 +4747,25 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <p>If you see any of the above stated confidently somewhere else right now, it&rsquo;s a guess.</p>
         </div>
 
-        <div class="terms-block">
-        <h3>If you&rsquo;re flying in &mdash; Singapore basics</h3>
+        <p class="eyebrow worlds-part">Part 2 &middot; Visiting Singapore, from a local</p>
+        <div class="terms-block" id="worlds-basics">
+        <h3>Before you land: the basics</h3>
         <p>This part I <em>can</em> help with now, because it doesn&rsquo;t depend on any announcement. A few of these are things most visitors only find out by getting them wrong.</p>
+        <h4 class="worlds-sub">How things work</h4>
         <ul class="terms-list">
           <li><strong>August weather.</strong> Hot and humid, roughly 26&ndash;32&deg;C, with sudden heavy downpours that stop as fast as they start. Bring a light rain layer, not a coat. Everything indoors is aggressively air-conditioned, so a light long-sleeve for inside is genuinely sensible.</li>
           <li><strong>Your credit card is your train ticket.</strong> You can ride our buses and trains by tapping a contactless (wave) credit or debit card, or a phone wallet. Visa, Mastercard and American Express all work, and so do cards from overseas. No transit card to buy, no queue at the ticket machine. Tap at the gantry when you enter <em>and</em> when you leave (on buses, when you board and when you get off), and use the same card or phone both times. Your bank may add a foreign transaction fee, so it&rsquo;s worth a quick check before you fly.</li>
-          <li><strong>That tissue packet is not lost and found.</strong> If you see a packet of tissues, a lanyard, car keys or even a mobile phone sitting on a table at a hawker centre, leave it alone. It&rsquo;s not lost property, it&rsquo;s not yours to take, and it&rsquo;s not your table to sit at. That table has been <strong>choped</strong>. &ldquo;Chope&rdquo; is Singlish for &ldquo;reserved&rdquo;: we claim a seat by leaving something on it, then go off to order food. Nobody will touch it, so feel free to chope a table yourself.</li>
+          <li><strong>Cards and cash.</strong> Cards are accepted nearly everywhere. Local payments run on PayNow, which needs a Singapore bank account, so carry a bit of cash for hawker centres and smaller shops.</li>
           <li><strong>Yes, most of us speak English.</strong> Contrary to popular belief, English is the language we use most in Singapore, and you&rsquo;ll be fine almost everywhere. The older generation can be hit and miss, though, and so can some staff who are foreigners themselves. If you&rsquo;re at an old-school hawker stall or a heartland shop, keep in mind that the aunty or uncle might not follow English well. You can usually tell once you start talking: slow down, point at the menu, smile, and it works out.</li>
+          <li><strong>Tap water is drinkable.</strong> PUB says it&rsquo;s <a href="https://www.pub.gov.sg/Public/WaterLoop/Water-Quality" target="_blank" rel="noopener">safe straight from the tap</a>.</li>
+        </ul>
+        <h4 class="worlds-sub">Rules and etiquette</h4>
+        <ul class="terms-list">
+          <li><strong>That tissue packet is not lost and found.</strong> If you see a packet of tissues, a lanyard, car keys or even a mobile phone sitting on a table at a hawker centre, leave it alone. It&rsquo;s not lost property, it&rsquo;s not yours to take, and it&rsquo;s not your table to sit at. That table has been <strong>choped</strong>. &ldquo;Chope&rdquo; is Singlish for &ldquo;reserved&rdquo;: we claim a seat by leaving something on it, then go off to order food. Nobody will touch it, so feel free to chope a table yourself.</li>
           <li><strong>Vaping is illegal.</strong> Please leave yours at home. Vapes are banned in Singapore, and travellers found with one can be <a href="https://www.moh.gov.sg/newsroom/moh-and-hsa-continue-to-step-up-enforcement-and-crackdown-on-e-vaporisers-offences/" target="_blank" rel="noopener">fined</a>.</li>
           <li><strong>Smoking.</strong> A lot of places prohibit it even outdoors, so check the signs. And please don&rsquo;t walk and smoke, everyone hates that.</li>
           <li><strong>No eating or drinking on public transport.</strong> That means the MRT and buses. Exceptions can be made for medical reasons or if you&rsquo;re really feeling faint.</li>
-          <li><strong>Tap water is drinkable.</strong> PUB says it&rsquo;s <a href="https://www.pub.gov.sg/Public/WaterLoop/Water-Quality" target="_blank" rel="noopener">safe straight from the tap</a>.</li>
-          <li><strong>Cards and cash.</strong> Cards are accepted nearly everywhere. Local payments run on PayNow, which needs a Singapore bank account, so carry a bit of cash for hawker centres and smaller shops.</li>
-          <li><strong>Food.</strong> Eat at hawker centres. It&rsquo;s the best food in the country and it&rsquo;s cheap. This is the single most common thing visitors get wrong. When you&rsquo;re done, return your tray and clear your own table: it&rsquo;s an <a href="https://www.nea.gov.sg/media/news/news/index/mandatory-for-diners-to-return-dirty-trays-crockery-and-clean-table-litter-at-hawker-centres-coffeeshops-and-food-courts" target="_blank" rel="noopener">enforced rule</a>, not just good manners.</li>
         </ul>
-        <p class="muted">More venue-area recommendations, like where to get singles and things to do when you have a few hours free, will follow as I put them together.</p>
         </div>
 
         <div class="terms-block" id="worlds-getting-there">
@@ -4764,37 +4800,61 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
         <ul class="terms-list">
           <li><strong>Mind the last trains.</strong> The last train to Changi Airport leaves Tanah Merah before the last eastbound train from the city arrives, so don&rsquo;t cut it fine on a late night. Service changes happen, so check <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html" target="_blank" rel="noopener">LTA&rsquo;s rail network page</a> before you travel.</li>
+          <li><strong>The official map.</strong> The MRT system map is published by the Land Transport Authority (&copy; LTA). You can <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html" target="_blank" rel="noopener">view or download the latest copy on LTA&rsquo;s website</a>.</li>
           <li><strong>If Championship Sunday moves to the Singapore Indoor Stadium</strong> (reported, not confirmed), the nearest station is Stadium on the Circle Line (<span class="stn-chip ccl inline">CC6</span>). I&rsquo;ll update this once it&rsquo;s official.</li>
-          <li><strong>The full map.</strong> The official MRT system map is published by the Land Transport Authority (&copy; LTA) and you can <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html" target="_blank" rel="noopener">view or download the latest copy on LTA&rsquo;s website</a>. I haven&rsquo;t reproduced it here because LTA asks for written permission first.</li>
         </ul>
+
+        <h4 class="worlds-sub">Finding your way around the EXPO</h4>
+        <p>The Expo area is a little confusing to navigate, and you may walk in circles. With it being Worlds, I think there will be plenty of ushers and signs, but just in case there aren&rsquo;t, feel free to ask any of us, even if we look like the world owes us a Moonbreon card. Trust me, we&rsquo;re approachable.</p>
+
+        <h4 class="worlds-sub">Taxis and ride-hailing apps</h4>
+        <p>I&rsquo;m not a travel guide, so all I&rsquo;ll say is that most Singaporeans have four main ride-hailing apps: Grab, Zig by Comfort, Gojek and Tada. Some of us (when we&rsquo;re not feeling the richest) cross-check prices across all four apps and try to book the cheapest ride. Keyword: try. You&rsquo;re not guaranteed a ride from the cheapest app, because if you can have multiple apps, so can the drivers.</p>
         </div>
 
-<div class="terms-block" id="worlds-eat">
-        <h3>Where to eat near the EXPO</h3>
+        <div class="terms-block" id="worlds-eat">
+        <h3>Where to eat</h3>
         <p>I&rsquo;m not going to recommend the typical tourist places, because you can find those guides all over the internet and on YouTube. Instead, I&rsquo;ll give you practical suggestions and maybe a road less travelled.</p>
+
+        <h4 class="worlds-sub">Start with a hawker centre</h4>
+        <p>Eat at hawker centres. It&rsquo;s the best food in the country and it&rsquo;s cheap. This is the single most common thing visitors get wrong. When you&rsquo;re done, return your tray and clear your own table: it&rsquo;s an <a href="https://www.nea.gov.sg/media/news/news/index/mandatory-for-diners-to-return-dirty-trays-crockery-and-clean-table-litter-at-hawker-centres-coffeeshops-and-food-courts" target="_blank" rel="noopener">enforced rule</a>, not just good manners.</p>
+
+        <h4 class="worlds-sub">The food court next to the Expo halls</h4>
         <p>There&rsquo;s a huge food court right next to the Expo halls. Unless you only have time to be at Worlds and then catch your flight straight after, I wouldn&rsquo;t recommend it. The food is mediocre, most of the stalls are usually closed, and the prices can be insane. I can&rsquo;t complain about the bar there though, lol.</p>
-        <p>The Expo area is also a little confusing to navigate, and you may walk in circles. With it being Worlds, I think there will be plenty of ushers and signs, but just in case there aren&rsquo;t, feel free to ask any of us, even if we look like the world owes us* a PSA 10 Charizard VMAX Promo from the UPC.</p>
-        <p class="muted">*Most of us have an RBF, don&rsquo;t randomly greet strangers and can look unapproachable. Trust me, just approach us. Nine times out of ten, we&rsquo;re more than happy to help and chat. We&rsquo;re just not great at breaking the ice. So there&rsquo;s another quirk that might help you understand Singapore, haha.</p>
-        <p>Now, some practical suggestions on where to eat.</p>
+
+        <h4 class="worlds-sub">One MRT stop away: Jewel</h4>
         <p>You&rsquo;re very near Changi Airport, just one MRT stop away on the East-West Line (EWL). If you don&rsquo;t want to venture too far, maybe because you aren&rsquo;t here for long, <a href="https://jewelchangiairport.com/en/shop/pokemon-center-singapore.html" target="_blank" rel="noopener">Jewel</a> is a fantastic place to find good food. It&rsquo;s obviously not the cheapest, but hey, our one and only Pok&eacute;mon Center is there too, on Level 4.</p>
+
+        <h4 class="worlds-sub">A bit further out: Tampines</h4>
         <p>If you don&rsquo;t mind venturing further, take the Downtown Line (DT) to Tampines* (DT32/EW2). Get off and you&rsquo;ll have three shopping malls and a heartland hub to choose from: Tampines 1, Tampines Mall, Century Square and <a href="https://www.pa.gov.sg/our-network/our-tampines-hub" target="_blank" rel="noopener">Our Tampines Hub</a>.</p>
-        <p>If you&rsquo;re following a halal diet, we have more options than you&rsquo;d expect. Most of our fast food chains, like McDonald&rsquo;s, KFC and Burger King, are halal. Just look out for the halal certificate, which is usually displayed prominently. Kosher food is unfortunately less common. I think it exists at a few specific places, but I can&rsquo;t recommend one.</p>
-        <p>For the gym rats: if you&rsquo;re an Anytime Fitness member, there are several branches around Tampines, including one at Blk 506 Tampines Central 1 and one at 7 Tampines Grande. Check the walk on Google Maps first, since some are a bit of a walk from the malls.</p>
         <p>Tampines is a major residential area in the east of Singapore, and a good balance of modern Singapore and history.</p>
         <p class="muted">*Pronounced Tam-pa-nees, not Tamp-pines.</p>
+
+        <h4 class="worlds-sub">Halal and kosher</h4>
+        <p>If you&rsquo;re following a halal diet, we have more options than you&rsquo;d expect. Most of our fast food chains, like McDonald&rsquo;s, KFC and Burger King, are halal. Just look out for the halal certificate, which is usually displayed prominently. Kosher food is unfortunately less common. I think it exists at a few specific places, but I can&rsquo;t recommend one.</p>
+        </div>
+
+        <div class="terms-block" id="worlds-do">
+        <h3>Things to do when you have a few hours</h3>
+
+        <h4 class="worlds-sub">Pok&eacute;mon GO at the Stadium</h4>
         <p>If you have the time and the gusto to travel further, take the EWL from Expo (changing at Tanah Merah) to Paya Lebar, then switch to the Circle Line (CC) and go to Stadium (CC6). This brings you to the Singapore Indoor Stadium and <a href="https://capitaland.com/sg/en/lease/mall-listing/kallang-wave-mall.html" target="_blank" rel="noopener">Kallang Wave Mall</a>. If you love Pok&eacute;mon GO, the track around the Stadium is a perfect place to circle around, get your steps in and catch some Singapore Pok&eacute;mon. Please be mindful that it&rsquo;s a jogging track, so you might be in people&rsquo;s way. We Singaporeans are friendly but mostly reserved and keep to ourselves. Sometimes, though, we don&rsquo;t mind sharing our thoughts out loud when something gets in our way, lol.</p>
+
+        <h4 class="worlds-sub">For the gym rats</h4>
+        <p>If you&rsquo;re an Anytime Fitness member, there are several branches around Tampines, including one at Blk 506 Tampines Central 1 and one at 7 Tampines Grande. Check the walk on Google Maps first, since some are a bit of a walk from the malls.</p>
+
+        <p class="muted">More venue-area recommendations, like where to get singles, will follow as I put them together.</p>
         </div>
 
         <div class="terms-block" id="worlds-stay">
         <h3>Where to stay</h3>
-        <p>I&rsquo;m not the right person to tell you where to stay. I&rsquo;m local, so I obviously don&rsquo;t visit hotels much. There are plenty of travel guides that recommend where to stay, but here&rsquo;s a guide to a different kind of lodging, if you want to explore something different: <a href="https://thetravelintern.com/staycation-in-singapore-hotels/" target="_blank" rel="noopener nofollow">Staycation in Singapore hotels</a>.</p>
+        <p>I&rsquo;m not the right person to tell you where to stay. I&rsquo;m local, so I obviously don&rsquo;t visit hotels much. There are plenty of travel guides that recommend where to stay, but here&rsquo;s a guide to a different kind of lodging, if you want to explore something different: <a href="https://thetravelintern.com/staycation-in-singapore-hotels/" target="_blank" rel="noopener nofollow">Staycation in Singapore hotels by The Travel Intern (thetravelintern.com)</a>.</p>
         <p class="muted">That link is someone else&rsquo;s blog, and it earns affiliate commissions from its booking links. I don&rsquo;t get anything from it.</p>
         </div>
 
-        <div class="terms-block">
+        <div class="terms-block" id="worlds-play">
         <h3>Where to play while you&rsquo;re here</h3>
         <p>Singapore has a small but genuinely welcoming TCG scene. If you want a game outside the tournament, the friendliest starting point I know is <a href="#/blacklabel">BlackLabel TCG</a> &mdash; a shop I have no affiliation with, run by a friend, with official Gym nights on Fridays and Saturdays.</p>
-        <p>I only ever visit BlackLabel TCG, since it&rsquo;s my friend&rsquo;s shop. It&rsquo;s a little hard to get to though, so if you&rsquo;re a tourist, I&rsquo;d recommend taking a Grab, Zig or Gojek. That brings me to the transport apps. I&rsquo;m not a travel guide, so all I&rsquo;ll say is that most Singaporeans have four main ride-hailing apps: Grab, Zig by Comfort, Gojek and Tada. Some of us (when we&rsquo;re not feeling the richest) cross-check prices across all four apps and try to book the cheapest ride. Keyword: try. You&rsquo;re not guaranteed a ride from the cheapest app, because if you can have multiple apps, so can the drivers.</p>
+        <p>I only ever visit BlackLabel TCG, since it&rsquo;s my friend&rsquo;s shop. It&rsquo;s a little hard to get to though, so if you&rsquo;re a tourist, I&rsquo;d recommend taking a Grab, Zig or Gojek (more on those under Getting to Singapore EXPO).</p>
         <p>And if you want a game with me specifically: <a href="#/play-with-jack">that&rsquo;s here</a>. I&rsquo;ll happily meet a visitor for a match and point you at good food afterwards.</p>
         </div>
 
