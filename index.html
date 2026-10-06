@@ -844,6 +844,7 @@ html[data-version="yellow"] .version-path-red,html[data-version="yellow"] .versi
 .pill:hover{opacity:.82;}
 .pill.ghost{background:transparent;color:var(--ink);border-color:var(--border);}
 .pill.ghost:hover{opacity:1;background:var(--surface-2);}
+.pokedex-section a.pokedex-fact-btn{color:var(--ink);}
 .pill-icon{width:18px;height:18px;flex-shrink:0;object-fit:contain;display:block;}
 .nav-telegram-btn{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;line-height:0;opacity:.88;transition:opacity .15s,transform .15s;}
 .nav-telegram-btn:hover{opacity:1;transform:translateY(-1px);}
@@ -3213,9 +3214,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
           <div class="terms-block" id="about-how-made">
           <h3>How this site is made</h3>
-          <p>Besides vibecoding the website (with Claude), nothing here is AI generated or stolen. If I used a source from elsewhere, I credited it.</p>
+          <p>Besides vibecoding the website (with Claude), nothing here is stolen. If I used a source from elsewhere, I credited it.</p>
           <p>No generated images. Unless it&rsquo;s credited, every image is a photo I took or something I drew by hand myself. The only exception is official Pok&eacute;mon sprites and artwork, which are &copy; Nintendo / Creatures Inc. / GAME FREAK / The Pok&eacute;mon Company and credited as such.</p>
-          <p>The words and the ideas are mine. AI helps fix my grammar and structure, but who doesn&rsquo;t? A few older pages leaned on AI more than I&rsquo;d like, and I&rsquo;m rewriting them in my own voice as I go. The 3 Versions you see? I birthed those from my weird brain. I doubt any AI could think of this, tbh.</p>
+          <p>The ideas and the writing are mine, and I&rsquo;m still rewriting a few older pages in my own voice. The one exception is the Pok&eacute;dex: its facts (the dex text, where to find each Pok&eacute;mon, its first anime appearance) are pulled from the official games, Bulbapedia and Pok&eacute;mon Database, compiled with Claude&rsquo;s help, and every entry lists its sources. The 3 Versions you see? I birthed those from my weird brain. I doubt any AI could think of this, tbh.</p>
           </div>
 
           <div class="terms-block" id="about-privacy-credits">
@@ -7963,7 +7964,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       +'<section class="pokedex-facts" aria-label="Basic facts"><dl class="pokedex-measures"><div><dt>Type</dt><dd>'+escapeHtml((p.types||[]).join(' / ')||'Not recorded')+'</dd></div><div><dt>Category</dt><dd>'+escapeHtml(p.category||'Not recorded')+'</dd></div><div><dt>Generation</dt><dd>'+escapeHtml(p.generation==null?'Not recorded':String(p.generation))+'</dd></div><div><dt>Height</dt><dd>'+(p.heightDm==null?'Not recorded':(p.heightDm/10).toFixed(1)+' m')+'</dd></div><div><dt>Weight</dt><dd>'+(p.weightHg==null?'Not recorded':(p.weightHg/10).toFixed(1)+' kg')+'</dd></div></dl>'+pokedexReferencesHTML(p,p.coreSourceIds)+'</section>'
       +'<section class="pokedex-section pokedex-from"><h2>From the Pokédex</h2>'+(p.dexEntry?(p.dexEntry.mode==='official'?'<p class="pokedex-caption">'+escapeHtml(p.dexEntry.game)+'</p><p class="pokedex-summary-label">Official Pokédex entry</p><p class="pokedex-official-quote">“'+escapeHtml(p.dexEntry.text)+'”</p>':'<p class="pokedex-caption">'+escapeHtml(p.dexEntry.game)+'</p><p class="pokedex-summary-label">ItemSixHQ summary</p><p>'+escapeHtml(p.dexEntry.text)+'</p><p class="pokedex-caption">Based on '+escapeHtml(p.name)+'’s in-game Pokédex entry in '+escapeHtml(p.dexEntry.game)+'. This is a paraphrase, not an official quotation.</p>')+pokedexReferencesHTML(p,p.dexEntry.sourceIds):'<p class="muted">A game-labelled summary is still being researched.</p>')+'</section>'
       +'<div class="pokedex-history"><section class="pokedex-section pokedex-game"><h2>First Game Appearance</h2>'+gameHTML+'</section><section class="pokedex-section pokedex-anime"><h2>Anime Debut</h2>'+pokedexAnimeHTML(p)+'</section></div>'
-      +'<section class="pokedex-section pokedex-fun"><h2>Fun Fact'+(fact && fact.category?' <span class="pokedex-fact-category">· '+escapeHtml(fact.category)+'</span>':'')+'</h2>'+(factReady?(fact.timeSensitive?'<p class="pokedex-caption">As of '+escapeHtml(fact.asOf)+'</p>':'')+'<p>'+escapeHtml(fact.text)+'</p>'+pokedexReferencesHTML(p,fact.sourceIds):'<p class="muted">A verified fact is still being researched.</p>')+'</section>'
+      +'<section class="pokedex-section pokedex-fun"><h2>Fun Fact'+(fact && fact.category?' <span class="pokedex-fact-category">· '+escapeHtml(fact.category)+'</span>':'')+'</h2>'+(factReady?(fact.timeSensitive?'<p class="pokedex-caption">As of '+escapeHtml(fact.asOf)+'</p>':'')+'<p>'+escapeHtml(fact.text)+'</p>'+pokedexReferencesHTML(p,fact.sourceIds):'<p>I don’t have a fun fact about '+escapeHtml(p.name)+' yet.</p><p class="muted">Got one? Send it over and, if it checks out, I’ll put it up here.</p><p>'+pokedexFactLinkHTML(p,true)+'</p>')+(factReady?'<p class="muted pokedex-fact-invite">Know another one? '+pokedexFactLinkHTML(p,false)+'</p>':'')+'</section>'
       +calloutHTML('Jack fact','callout-jacknote',p.jackNote)
       +'<section class="pokedex-related-section"><h2>Related exploration</h2><nav class="pokedex-related" aria-label="Related Pokémon reference">'+(generation?'<a href="#/almanac/gen/'+p.generation+'">Explore '+escapeHtml(generation.name)+' in the Almanac →</a>':'')+related+more+'</nav></section>'+sourcesCreditsHTML(p.sources||[])
       +pokedexPrevNextHTML(p,true);
@@ -7981,6 +7982,11 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       if(token !== pokedexRenderToken) return;
       root.innerHTML='<a href="#/explore">&larr; Red Version &middot; Explore</a><h1>Pok&eacute;dex</h1><p>Couldn&rsquo;t load the Pok&eacute;dex data just now. Please refresh and try again.</p>';
     });
+  }
+  function pokedexFactLinkHTML(p,asButton){
+    var msg='Hey Jack, I have a fun fact about '+p.name+' (Pokédex #'+dexNumber(p.number)+'): ';
+    var href='https://t.me/ItemSixHQ?text='+encodeURIComponent(msg);
+    return asButton?'<a class="pill ghost pokedex-fact-btn" href="'+href+'" target="_blank" rel="noopener"><img class="pill-icon" src="images/icon-telegram.svg" alt="" width="18" height="18" decoding="async">Send a fun fact on Telegram</a>':'<a href="'+href+'" target="_blank" rel="noopener">Send it to me on Telegram</a>.';
   }
   function pokedexResearched(p){return !!(p&&p.dexEntry&&p.dexEntry.text);}
   function renderPokedexNow(number){
