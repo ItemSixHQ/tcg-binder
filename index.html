@@ -4715,6 +4715,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <p class="muted">The Pok&eacute;mon World Championships are coming to my home city. This page is my running guide for anyone travelling in for it &mdash; and it&rsquo;ll keep growing as real details get announced.</p>
         <p>I&rsquo;m Jack, and Singapore is my home. I&rsquo;m not a travel guide, so you won&rsquo;t find the usual tourist list here. This is what I&rsquo;d tell a friend flying in for Worlds: how to get around, where I&rsquo;d eat, and the little quirks nobody warns you about.</p>
         <p class="muted">This is my own independent coverage of Worlds 2027 &mdash; ItemSixHQ is not affiliated with, endorsed by, or accredited by The Pok&eacute;mon Company.</p>
+        <p class="muted">Covering, organising or sponsoring something around Worlds? <a href="#/collab">Here&rsquo;s who I am and how to reach me</a>.</p>
         <div class="article-body">
         <div class="gen-section-nav worlds-jump" aria-label="Jump to a section">
           <button type="button" class="gen-section-nav-btn" data-target="worlds-tournament">The tournament</button>
@@ -4814,6 +4815,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 
         <h4 class="worlds-sub">Finding your way around the EXPO</h4>
         <p>The Expo area is a little confusing to navigate, and you may walk in circles. With it being Worlds, I think there will be plenty of ushers and signs, but just in case there aren&rsquo;t, feel free to ask any of us, even if we look like the world owes us a Moonbreon card. Trust me, we&rsquo;re approachable.</p>
+        <p>There&rsquo;s a huge food court right next to the Expo halls. Unless you only have time to be at Worlds and then catch your flight straight after, I wouldn&rsquo;t recommend it. The food is mediocre, most of the stalls are usually closed, and the prices can be insane. I can&rsquo;t complain about the bar there though, lol.</p>
 
         <h4 class="worlds-sub">Taxis and ride-hailing apps</h4>
         <p>I&rsquo;m not a travel guide, so all I&rsquo;ll say is that most Singaporeans have four main ride-hailing apps: Grab, Zig by Comfort, Gojek and Tada. Some of us (when we&rsquo;re not feeling the richest) cross-check prices across all four apps and try to book the cheapest ride. Keyword: try. You&rsquo;re not guaranteed a ride from the cheapest app, because if you can have multiple apps, so can the drivers.</p>
@@ -4832,10 +4834,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <p><strong>Dish 1: Economic Rice.</strong> Go to an Economic Rice stall, basically a store where you can see a plethora of dishes displayed, like curry chicken, sweet and sour pork and stir-fried vegetables, and go crazy. Think of it as your Panda Express, but smaller in portion and probably better tasting (I hope). You choose the dishes you want to eat with rice. We usually go for three dishes, but hey, there&rsquo;s no hard and fast rule.</p>
         <p><strong>Dish 2: Roti Prata with fish curry.</strong> Try it from an Indian Muslim stall at the coffeeshop (usually). You&rsquo;ll know a stall serves prata if it has a big iron griddle, and they usually have a bunch of curries in their display cabinet. Bonus: if they sell it, try an extra serving of Murtabak or Roti John. Either one, not both, or you might die of fullness. Murtabak and Roti John are less marketed and less popular in food guides, but boy do they hit the right spot.</p>
 
-        <h4 class="worlds-sub">The food court next to the Expo halls</h4>
-        <p>There&rsquo;s a huge food court right next to the Expo halls. Unless you only have time to be at Worlds and then catch your flight straight after, I wouldn&rsquo;t recommend it. The food is mediocre, most of the stalls are usually closed, and the prices can be insane. I can&rsquo;t complain about the bar there though, lol.</p>
-
-        <h4 class="worlds-sub">One MRT stop away: Jewel</h4>
+<h4 class="worlds-sub">One MRT stop away: Jewel</h4>
         <p>You&rsquo;re very near Changi Airport, just one MRT stop away on the East-West Line (EWL). If you don&rsquo;t want to venture too far, maybe because you aren&rsquo;t here for long, <a href="https://jewelchangiairport.com/en/shop/pokemon-center-singapore.html" target="_blank" rel="noopener">Jewel</a> is a fantastic place to find good food. It&rsquo;s obviously not the cheapest, but hey, our one and only Pok&eacute;mon Center is there too, on Level 4.</p>
 
         <h4 class="worlds-sub">A bit further out: Tampines</h4>
@@ -8130,6 +8129,12 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
       +(nextP?'<a href="#/pokedex/'+nextP.number+'">#'+dexNumber(nextP.number)+' '+escapeHtml(nextP.name)+' &rarr;</a>':'<span></span>')
       +'</div>';
   }
+  var GEN_GAMES = {1:'Red / Blue / Yellow',2:'Gold / Silver / Crystal',3:'Ruby / Sapphire / Emerald',4:'Diamond / Pearl / Platinum',5:'Black / White',6:'X / Y',7:'Sun / Moon',8:'Sword / Shield',9:'Scarlet / Violet'};
+  function introducedInText(p){
+    if(p.generation==null||!GEN_GAMES[p.generation]) return 'Not recorded';
+    if(p.number===808||p.number===809) return 'Generation 7 (first appeared in Pok\u00e9mon GO)';
+    return 'Generation '+p.generation+' ('+GEN_GAMES[p.generation]+')';
+  }
   function pokedexEntryHTML(p){
     var related=(p.relatedNumbers||[]).filter(function(n){return POKEDEX_BY_NUMBER[n];}).map(function(n){return '<a href="#/pokedex/'+n+'">'+escapeHtml(POKEDEX_BY_NUMBER[n].name)+'’s entry →</a>';}).join('');
     var generation=GENERATIONS.find(function(g){return g.id===p.generation;});
@@ -8142,7 +8147,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     return '<a href="#/pokedex">← All Pokédex entries</a><header class="pokedex-identity"><p class="pokedex-kicker">National Pokédex · #'+dexNumber(p.number)+'</p><h1>'+escapeHtml(p.name)+'</h1></header>'
       +pokedexPrevNextHTML(p,false)
       +'<div class="pokedex-art" aria-label="Normal and shiny appearance">'+pokedexImageHTML(p,'normal')+pokedexImageHTML(p,'shiny')+'</div>'
-      +'<section class="pokedex-facts" aria-label="Basic facts"><dl class="pokedex-measures"><div><dt>Type</dt><dd>'+escapeHtml((p.types||[]).join(' / ')||'Not recorded')+'</dd></div><div><dt>Category</dt><dd>'+escapeHtml(p.category||'Not recorded')+'</dd></div><div><dt>Generation</dt><dd>'+escapeHtml(p.generation==null?'Not recorded':String(p.generation))+'</dd></div><div><dt>Height</dt><dd>'+(p.heightDm==null?'Not recorded':(p.heightDm/10).toFixed(1)+' m')+'</dd></div><div><dt>Weight</dt><dd>'+(p.weightHg==null?'Not recorded':(p.weightHg/10).toFixed(1)+' kg')+'</dd></div></dl>'+pokedexReferencesHTML(p,p.coreSourceIds)+'</section>'
+      +'<section class="pokedex-facts" aria-label="Basic facts"><dl class="pokedex-measures"><div><dt>Type</dt><dd>'+escapeHtml((p.types||[]).join(' / ')||'Not recorded')+'</dd></div><div><dt>Category</dt><dd>'+escapeHtml(p.category||'Not recorded')+'</dd></div><div><dt>Introduced in</dt><dd>'+escapeHtml(introducedInText(p))+'</dd></div><div><dt>Height</dt><dd>'+(p.heightDm==null?'Not recorded':(p.heightDm/10).toFixed(1)+' m')+'</dd></div><div><dt>Weight</dt><dd>'+(p.weightHg==null?'Not recorded':(p.weightHg/10).toFixed(1)+' kg')+'</dd></div></dl>'+pokedexReferencesHTML(p,p.coreSourceIds)+'</section>'
       +'<section class="pokedex-section pokedex-from"><h2>From the Pokédex</h2>'+(p.dexEntry?(p.dexEntry.mode==='official'?'<p class="pokedex-caption">'+escapeHtml(p.dexEntry.game)+'</p><p class="pokedex-summary-label">Official Pokédex entry</p><p class="pokedex-official-quote">“'+escapeHtml(p.dexEntry.text)+'”</p>':'<p class="pokedex-caption">'+escapeHtml(p.dexEntry.game)+'</p><p class="pokedex-summary-label">ItemSixHQ summary</p><p>'+escapeHtml(p.dexEntry.text)+'</p><p class="pokedex-caption">Based on '+escapeHtml(p.name)+'’s in-game Pokédex entry in '+escapeHtml(p.dexEntry.game)+'. This is a paraphrase, not an official quotation.</p>')+pokedexReferencesHTML(p,p.dexEntry.sourceIds):'<p class="muted">A game-labelled summary is still being researched.</p>')+'</section>'
       +'<div class="pokedex-history"><section class="pokedex-section pokedex-game"><h2>First Game Appearance</h2>'+gameHTML+'</section><section class="pokedex-section pokedex-anime"><h2>Anime Debut</h2>'+pokedexAnimeHTML(p)+'</section></div>'
       +'<section class="pokedex-section pokedex-fun"><h2>Fun Fact'+(fact && fact.category?' <span class="pokedex-fact-category">· '+escapeHtml(fact.category)+'</span>':'')+'</h2>'+(factReady?(fact.timeSensitive?'<p class="pokedex-caption">As of '+escapeHtml(fact.asOf)+'</p>':'')+'<p>'+escapeHtml(fact.text)+'</p>'+pokedexReferencesHTML(p,fact.sourceIds):'<p>I don’t have a fun fact about '+escapeHtml(p.name)+' yet.</p><p class="muted">Got one? Send it over and, if it checks out, I’ll put it up here.</p><p>'+pokedexFactLinkHTML(p,true)+'</p>')+(factReady?'<p class="muted pokedex-fact-invite">Know another one? '+pokedexFactLinkHTML(p,false)+'</p>':'')+'</section>'
