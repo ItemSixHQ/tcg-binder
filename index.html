@@ -2411,6 +2411,51 @@ html[data-version="crystal"] .home-version-card-crystal{box-shadow:0 0 0 2px var
   .hl-btn{flex:1 1 130px;}
 }
 @media (prefers-reduced-motion:reduce){ .hl-btn{transition:none;} }
+.games-jump{margin:0 0 1.4rem;}
+.hl-share{display:flex;justify-content:center;margin:1rem 0 0;}
+.hl-share .hl-copied{margin:.5rem 0 0;font-size:.85rem;font-weight:600;color:var(--version-crystal-text);}
+.games-share a{color:var(--link);text-decoration:underline;font-weight:600;}
+.dd-form{position:relative;display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1rem;}
+.dd-input{flex:1 1 220px;min-height:44px;padding:.6rem .9rem;border-radius:10px;border:2px solid var(--border);background:var(--surface);color:var(--ink);font:inherit;}
+.dd-input:focus{outline:none;border-color:var(--version-crystal-text);box-shadow:0 0 0 3px rgba(var(--version-crystal-rgb),.3);}
+.dd-suggest{position:absolute;top:100%;left:0;right:0;z-index:5;margin:.25rem 0 0;padding:.25rem;list-style:none;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45);max-height:260px;overflow:auto;}
+.dd-suggest[hidden]{display:none;}
+.dd-suggest button{display:flex;gap:.6rem;align-items:center;width:100%;text-align:left;padding:.5rem .6rem;border:0;border-radius:8px;background:transparent;color:var(--ink);font:inherit;cursor:pointer;min-height:40px;}
+.dd-suggest button:hover,.dd-suggest button:focus-visible,.dd-suggest button[aria-selected="true"]{background:rgba(var(--version-crystal-rgb),.22);outline:none;}
+.dd-suggest .dd-s-num{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.72rem;color:var(--ink-muted);}
+.dd-count{margin:0 0 .6rem;font-size:.85rem;color:var(--ink-muted);}
+.dd-scroll{overflow-x:auto;}
+.dd-table{width:100%;border-collapse:separate;border-spacing:0 .35rem;min-width:520px;}
+.dd-table th{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-muted);text-align:center;padding:0 .2rem .2rem;}
+.dd-table th:first-child,.dd-table td:first-child{text-align:left;}
+.dd-table td{padding:.5rem .35rem;text-align:center;font-size:.82rem;font-weight:600;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.dd-table td:first-child{display:table-cell;border-left:1px solid var(--border);border-radius:10px 0 0 10px;white-space:nowrap;}
+.dd-table td:last-child{border-right:1px solid var(--border);border-radius:0 10px 10px 0;}
+.dd-who{display:flex;align-items:center;gap:.4rem;}
+.dd-who img,.dd-who .hl-sprite-fallback{width:36px;height:36px;object-fit:contain;image-rendering:pixelated;font-size:.6rem;}
+.dd-ok{background:#2E7D53 !important;color:#fff;border-color:#2E7D53 !important;}
+.dd-near{background:#B8860B !important;color:#fff;border-color:#B8860B !important;}
+.dd-no{color:var(--ink);}
+:root:not([data-theme="light"]) .dd-ok{background:#2F7A4C !important;}
+.dd-end{margin:1rem 0 0;text-align:center;}
+.dd-end .hl-card{max-width:260px;margin:.6rem auto 0;}
+.wg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin-top:.6rem;width:100%;max-width:560px;}
+.wg-btn{min-height:48px;padding:.5rem .6rem;border-radius:12px;border:2px solid var(--version-crystal-text);background:var(--version-crystal);color:var(--version-crystal-ink);font:inherit;font-weight:700;font-size:.82rem;cursor:pointer;line-height:1.2;}
+.wg-btn small{display:block;font-weight:600;opacity:.85;font-size:.7rem;}
+.wg-btn:hover,.wg-btn:focus-visible{box-shadow:0 6px 14px -8px rgba(var(--version-crystal-rgb),1);}
+.wg-btn[disabled]{opacity:.45;cursor:default;}
+.wg-btn.wg-correct{background:#2E7D53;border-color:#2E7D53;color:#fff;opacity:1;}
+.wg-btn.wg-wrong{background:#B3382C;border-color:#B3382C;color:#fff;opacity:1;}
+.wg-stage{display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+@media(max-width:640px){
+  .dd-table{min-width:0;table-layout:fixed;}
+  .dd-table th{font-size:.54rem;letter-spacing:.03em;padding:0 .05rem .2rem;}
+  .dd-table td{padding:.5rem .1rem;font-size:.66rem;overflow-wrap:anywhere;}
+  .dd-table th:first-child,.dd-table td:first-child{width:23%;}
+  .dd-table td:first-child{white-space:normal;padding-left:.35rem;}
+  .dd-who img,.dd-who .hl-sprite-fallback{display:none;}
+  .wg-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
 .route-card{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);}
 .route-card h4{margin:0 0 .7rem;font-size:.95rem;}
 .route-steps{list-style:none;margin:0;padding:0;}
@@ -3041,7 +3086,7 @@ html[data-version="crystal"] .home-version-card-crystal{box-shadow:0 0 0 2px var
               <span class="dest-card-kicker">Crystal Version &middot; Games</span>
               <span class="dest-card-title">Web games you can play right here</span>
               <span class="dest-card-desc">Little games built into the site. No judgement if you lose to a Magikarp. I might add a high score in the future!</span>
-              <span class="dest-card-cta">Play Higher or Lower &rarr;</span>
+              <span class="dest-card-cta">Play today&rsquo;s puzzle &rarr;</span>
             </span>
           </a>
         </div>
@@ -4471,13 +4516,44 @@ html[data-version="crystal"] .home-version-card-crystal{box-shadow:0 0 0 2px var
         <h2>Small games, built into the site.</h2>
         <p class="muted explore-hero-sub">Quick ones you can play in a minute, using the same Pok&eacute;dex data as the rest of the site. No sign-up, nothing collected. The only pressure is your own pride. (If it makes you feel any better, I suck at this too.)</p>
       </div>
+      <div class="gen-section-nav games-jump" role="navigation" aria-label="Jump to a game">
+        <button type="button" class="gen-section-nav-btn" data-target="dd-game">Daily puzzle</button>
+        <button type="button" class="gen-section-nav-btn" data-target="hl-game">Higher or Lower</button>
+        <button type="button" class="gen-section-nav-btn" data-target="wg-game">Which generation?</button>
+      </div>
+
+      <section class="hl-game dd-game" id="dd-game" aria-labelledby="dd-title">
+        <span class="hl-tag">Daily puzzle</span>
+        <h3 id="dd-title">Guess today&rsquo;s Pok&eacute;mon</h3>
+        <p class="muted">Everyone gets the same hidden Pok&eacute;mon each day. Guess a name and you get clues for its types, generation, height and weight. You have 8 guesses. A new one arrives at midnight Singapore time.</p>
+        <div class="hl-stats" aria-label="Daily stats"><span>Streak <b id="dd-streak">0</b></span><span>Best <b id="dd-best">0</b></span><span>Played <b id="dd-played">0</b></span></div>
+        <div id="dd-area"><p class="muted" id="dd-loading">Loading Pok&eacute;mon&hellip;</p></div>
+        <p class="muted hl-note">Green means a match, yellow means the type is there but in the other slot, and an arrow means the answer is higher or lower. Measurements are each Pok&eacute;mon&rsquo;s base form.</p>
+      </section>
+
       <section class="hl-game" id="hl-game" aria-labelledby="hl-title">
-        <span class="hl-tag">Game 1</span>
+        <span class="hl-tag">Streak game</span>
         <h3 id="hl-title">Higher or Lower</h3>
         <p class="muted">You see one Pok&eacute;mon&rsquo;s height or weight. Guess whether the next one is higher or lower. How long can you keep the streak going?</p>
         <div class="hl-stats" aria-label="Score"><span>Streak <b id="hl-streak">0</b></span><span>Best <b id="hl-best">0</b></span></div>
         <div id="hl-board" class="hl-board"><p class="muted" id="hl-loading">Loading Pok&eacute;mon&hellip;</p></div>
+        <div class="hl-share"><button type="button" class="hl-btn hl-btn-ghost" data-share="hl">Copy my streak</button></div>
         <p class="muted hl-note">Heights and weights are each Pok&eacute;mon&rsquo;s base form. Your best streak is saved only in this browser.</p>
+      </section>
+
+      <section class="hl-game" id="wg-game" aria-labelledby="wg-title">
+        <span class="hl-tag">Streak game</span>
+        <h3 id="wg-title">Which generation is it from?</h3>
+        <p class="muted">You see a Pok&eacute;mon. Pick the generation it first appeared in. One wrong answer ends the streak.</p>
+        <div class="hl-stats" aria-label="Score"><span>Streak <b id="wg-streak">0</b></span><span>Best <b id="wg-best">0</b></span></div>
+        <div id="wg-area"><p class="muted">Loading Pok&eacute;mon&hellip;</p></div>
+        <div class="hl-share"><button type="button" class="hl-btn hl-btn-ghost" data-share="wg">Copy my streak</button></div>
+        <p class="muted hl-note">Generation is the one where the Pok&eacute;mon was introduced. Your best streak is saved only in this browser.</p>
+      </section>
+
+      <section class="hl-game games-share" aria-labelledby="games-share-title">
+        <h3 id="games-share-title">Share your scores</h3>
+        <p class="muted">Every game has a copy button. Paste your result in the Pok&eacute;mon channel of <a href="https://discord.gg/xKAqasVBZ5" target="_blank" rel="noopener">my Discord</a> and see how everyone else did.</p>
       </section>
     </main>
   </div>
@@ -6674,8 +6750,280 @@ html[data-version="crystal"] .home-version-card-crystal{box-shadow:0 0 0 2px var
     HL.focusNext = true;
     hlRender();
   }
+  /* ---------- Crystal Version: shared helpers, Daily puzzle, Which generation ----------
+     Same rules as Higher or Lower: built only from pokedex-data.json, no
+     network calls, no tracking, all state kept in the visitor's own browser. */
+  var GEN_REGION = {1:'Kanto',2:'Johto',3:'Hoenn',4:'Sinnoh',5:'Unova',6:'Kalos',7:'Alola',8:'Galar',9:'Paldea'};
+  var GAME_POOL = null;
+  function gamePool(){
+    if(!GAME_POOL){
+      GAME_POOL = POKEDEX_ENTRIES.filter(function(p){
+        return p.number > 0 && p.heightDm > 0 && p.weightHg > 0 && p.generation >= 1 && p.generation <= 9 && p.types && p.types.length && p.images && p.images.normal && p.images.normal.src && p.images.normal.rightsStatus === 'approved';
+      }).sort(function(a,b){ return a.number - b.number; });
+    }
+    return GAME_POOL;
+  }
+  function gStoreGet(key){ try{ return JSON.parse(localStorage.getItem(key)||'null'); }catch(e){ return null; } }
+  function gStoreSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+  function gNorm(str){
+    return String(str||'').replace(/♀/g,'f').replace(/♂/g,'m').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+  }
+  function gSpriteHTML(p, cls){
+    var img = p.images && p.images.normal;
+    if(img && img.src) return '<img class="'+(cls||'hl-sprite')+'" src="'+escapeHtml(img.src)+'" alt="'+escapeHtml(p.name)+'" width="112" height="112" data-hl-sprite="'+p.number+'">';
+    return '<span class="hl-sprite-fallback" aria-hidden="true">#'+dexNumber(p.number)+'</span>';
+  }
+  function gWireSprites(root){
+    root.querySelectorAll('img[data-hl-sprite]').forEach(function(im){
+      im.addEventListener('error', function(){
+        var span = document.createElement('span');
+        span.className = 'hl-sprite-fallback'; span.setAttribute('aria-hidden','true');
+        span.textContent = '#'+dexNumber(parseInt(im.getAttribute('data-hl-sprite'),10));
+        im.replaceWith(span);
+      });
+    });
+  }
+  function gCopy(text, noteEl){
+    function done(ok){
+      if(!noteEl) return;
+      noteEl.textContent = ok ? 'Copied! Paste it in the Discord.' : 'Couldn’t copy automatically. Select the text and copy it.';
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ fallback(); });
+    } else fallback();
+    function fallback(){
+      try{
+        var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select(); var ok = document.execCommand('copy'); document.body.removeChild(ta); done(ok);
+      }catch(e){ done(false); }
+    }
+  }
+  function gShowCopied(btn, text){
+    var holder = btn.closest('.hl-share') || btn.parentNode;
+    var note = holder.querySelector('.hl-copied');
+    if(!note){ note = document.createElement('p'); note.className = 'hl-copied'; note.setAttribute('role','status'); holder.appendChild(note); }
+    gCopy(text, note);
+  }
+
+  /* ----- Daily puzzle ----- */
+  var DD_MAX = 8;
+  var DD = { target:null, key:'', num:0, guesses:[], status:'playing', suggest:[], sel:-1 };
+  function ddTodayKey(){ return new Date(Date.now() + 8*3600*1000).toISOString().slice(0,10); }   /* Singapore date */
+  function ddDayNumber(key){ return Math.round((Date.parse(key+'T00:00:00Z') - Date.parse('2026-10-07T00:00:00Z'))/864e5) + 1; }
+  function ddYesterdayKey(key){ return new Date(Date.parse(key+'T00:00:00Z') - 864e5).toISOString().slice(0,10); }
+  function ddStats(){ var st = gStoreGet('itemsixhq_dd_stats'); return st && typeof st === 'object' ? st : {played:0, wins:0, streak:0, best:0, lastWin:''}; }
+  function ddCompare(g, t){
+    function typeCell(i){
+      var gt = g.types[i], tt = t.types[i];
+      if(gt === undefined && tt === undefined) return 'ok';
+      if(gt === undefined) return 'no';
+      if(gt === tt) return 'ok';
+      return t.types.indexOf(gt) > -1 ? 'near' : 'no';
+    }
+    function num(a, b){ return a === b ? 'ok' : (b > a ? 'up' : 'down'); }
+    return [typeCell(0), typeCell(1), num(g.generation, t.generation), num(g.heightDm, t.heightDm), num(g.weightHg, t.weightHg)];
+  }
+  function ddCellText(g, i){
+    if(i === 0) return g.types[0];
+    if(i === 1) return g.types[1] || 'None';
+    if(i === 2) return 'Gen '+g.generation;
+    if(i === 3) return (g.heightDm/10).toFixed(1)+' m';
+    return (g.weightHg/10).toFixed(1)+' kg';
+  }
+  var DD_CELL_LABEL = ['Type 1','Type 2','Generation','Height','Weight'];
+  function ddCellHTML(res, text, i){
+    var cls = res === 'ok' ? 'dd-ok' : res === 'near' ? 'dd-near' : 'dd-no';
+    var arrow = res === 'up' ? ' ↑' : res === 'down' ? ' ↓' : '';
+    var meaning = res === 'ok' ? 'matches' : res === 'near' ? 'type is in the other slot' : res === 'up' ? 'answer is higher' : res === 'down' ? 'answer is lower' : 'does not match';
+    return '<td class="'+cls+'" aria-label="'+DD_CELL_LABEL[i]+': '+escapeHtml(text)+', '+meaning+'">'+escapeHtml(text)+arrow+'</td>';
+  }
+  function ddLoad(){
+    DD.key = ddTodayKey(); DD.num = ddDayNumber(DD.key);
+    var pool = gamePool();
+    DD.target = pool[(((DD.num - 1) * 409 + 17) % pool.length + pool.length) % pool.length];
+    var saved = gStoreGet('itemsixhq_dd_state');
+    DD.guesses = []; DD.status = 'playing';
+    if(saved && saved.key === DD.key && Array.isArray(saved.guesses)){
+      saved.guesses.forEach(function(n){ var p = POKEDEX_BY_NUMBER[n]; if(p) DD.guesses.push(p); });
+      DD.status = saved.status || 'playing';
+      if(DD.status === 'playing' && DD.guesses.some(function(g){ return g === DD.target; })) DD.status = 'won';
+    }
+  }
+  function ddSave(){ gStoreSet('itemsixhq_dd_state', {key:DD.key, guesses:DD.guesses.map(function(g){return g.number;}), status:DD.status}); }
+  function ddFinish(won){
+    var st = ddStats();
+    st.played++;
+    if(won){ st.wins++; st.streak = (st.lastWin === ddYesterdayKey(DD.key)) ? st.streak + 1 : 1; st.lastWin = DD.key; if(st.streak > st.best) st.best = st.streak; }
+    else { st.streak = 0; }
+    gStoreSet('itemsixhq_dd_stats', st);
+  }
+  function ddShareText(){
+    var rows = DD.guesses.map(function(g){
+      return ddCompare(g, DD.target).map(function(r){ return r==='ok'?'🟩':r==='near'?'🟨':r==='up'?'🔼':r==='down'?'🔽':'⬛'; }).join('');
+    });
+    var score = DD.status === 'won' ? DD.guesses.length+'/'+DD_MAX : 'X/'+DD_MAX;
+    return 'ItemSixHQ Daily #'+DD.num+' '+score+'\n'+rows.join('\n')+'\nitemsixhq.com/#/games';
+  }
+  function ddRender(){
+    var area = document.getElementById('dd-area');
+    if(!area || !DD.target) return;
+    var st = ddStats();
+    document.getElementById('dd-streak').textContent = st.streak;
+    document.getElementById('dd-best').textContent = st.best;
+    document.getElementById('dd-played').textContent = st.played;
+    var html = '';
+    if(DD.status === 'playing'){
+      html += '<div class="dd-form"><input class="dd-input" id="dd-input" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type a Pokémon name" aria-label="Pokémon name" role="combobox" aria-expanded="false" aria-controls="dd-suggest">'
+        + '<button type="button" class="hl-btn" data-dd="guess">Guess</button><ul class="dd-suggest" id="dd-suggest" role="listbox" hidden></ul></div>'
+        + '<p class="dd-count" id="dd-count" role="status">Guess '+(DD.guesses.length+1)+' of '+DD_MAX+'</p><p class="dd-msg muted" id="dd-msg" role="status"></p>';
+    }
+    if(DD.guesses.length){
+      html += '<div class="dd-scroll"><table class="dd-table"><thead><tr><th scope="col">Pokémon</th><th scope="col">Type 1</th><th scope="col">Type 2</th><th scope="col">Gen</th><th scope="col">Height</th><th scope="col">Weight</th></tr></thead><tbody>';
+      DD.guesses.slice().reverse().forEach(function(g){
+        var res = ddCompare(g, DD.target);
+        html += '<tr><td><span class="dd-who">'+gSpriteHTML(g)+'<span>'+escapeHtml(g.name)+'</span></span></td>'
+          + res.map(function(r,i){ return ddCellHTML(r, ddCellText(g,i), i); }).join('')+'</tr>';
+      });
+      html += '</tbody></table></div>';
+    }
+    if(DD.status !== 'playing'){
+      var t = DD.target, won = DD.status === 'won';
+      html += '<div class="dd-end"><p class="hl-result '+(won?'hl-right':'hl-wrong')+'" role="status">'+(won ? 'You got it in '+DD.guesses.length+(DD.guesses.length===1?' guess!':' guesses!') : 'Out of guesses. Today’s Pokémon was '+escapeHtml(t.name)+'.')+'</p>'
+        + '<div class="hl-card">'+gSpriteHTML(t)+'<span class="hl-name">'+escapeHtml(t.name)+'</span><span class="hl-num">#'+dexNumber(t.number)+'</span><a class="hl-card-link" href="#/pokedex/'+t.number+'">See the entry</a></div>'
+        + '<div class="hl-share"><button type="button" class="hl-btn" data-dd="share">Copy my result</button></div>'
+        + '<p class="muted">Come back tomorrow for a new one.</p></div>';
+    }
+    area.innerHTML = html;
+    gWireSprites(area);
+    var input = document.getElementById('dd-input');
+    if(input && DD.focusInput){ DD.focusInput = false; input.focus(); }
+  }
+  function ddUpdateSuggest(){
+    var input = document.getElementById('dd-input'), list = document.getElementById('dd-suggest');
+    if(!input || !list) return;
+    var q = gNorm(input.value);
+    if(!q){ list.hidden = true; list.innerHTML = ''; DD.suggest = []; input.setAttribute('aria-expanded','false'); return; }
+    var used = {}; DD.guesses.forEach(function(g){ used[g.number] = 1; });
+    var starts = [], contains = [], usedHit = false;
+    gamePool().forEach(function(p){
+      var n = gNorm(p.name);
+      var hit = n.indexOf(q) === 0 ? 0 : (n.indexOf(q) > -1 ? 1 : -1);
+      if(hit < 0) return;
+      if(used[p.number]){ usedHit = true; return; }
+      if(hit === 0) starts.push(p); else contains.push(p);
+    });
+    DD.suggest = starts.concat(contains).slice(0, 8); DD.sel = -1;
+    if(!DD.suggest.length){ list.innerHTML = '<li class="muted" style="padding:.5rem .6rem">'+(usedHit ? 'You already guessed that one.' : 'No match. Check the spelling.')+'</li>'; list.hidden = false; input.setAttribute('aria-expanded','true'); return; }
+    list.innerHTML = DD.suggest.map(function(p,i){
+      return '<li role="presentation"><button type="button" role="option" aria-selected="false" data-dd-pick="'+p.number+'"><span class="dd-s-num">#'+dexNumber(p.number)+'</span><span>'+escapeHtml(p.name)+'</span></button></li>';
+    }).join('');
+    list.hidden = false; input.setAttribute('aria-expanded','true');
+  }
+  function ddSetMsg(m){ var el = document.getElementById('dd-msg'); if(el) el.textContent = m || ''; }
+  function ddSubmit(p){
+    if(DD.status !== 'playing') return;
+    if(!p){ ddSetMsg('Pick a Pokémon from the list, or type its full name.'); return; }
+    if(DD.guesses.indexOf(p) > -1){ ddSetMsg('You already guessed '+p.name+'.'); var sl = document.getElementById('dd-suggest'); if(sl) sl.hidden = true; return; }
+    DD.guesses.push(p);
+    if(p === DD.target){ DD.status = 'won'; ddFinish(true); }
+    else if(DD.guesses.length >= DD_MAX){ DD.status = 'lost'; ddFinish(false); }
+    ddSave(); DD.focusInput = true; ddRender();
+  }
+  function ddGuessFromInput(){
+    var input = document.getElementById('dd-input');
+    if(!input) return;
+    var q = gNorm(input.value);
+    if(!q){ ddSetMsg('Type a Pokémon name first.'); return; }
+    var exact = gamePool().filter(function(p){ return gNorm(p.name) === q; })[0];
+    if(exact){ ddSubmit(exact); return; }
+    if(DD.sel > -1 && DD.suggest[DD.sel]){ ddSubmit(DD.suggest[DD.sel]); return; }
+    if(DD.suggest.length === 1){ ddSubmit(DD.suggest[0]); return; }
+    ddSetMsg('Pick a Pokémon from the list, or type its full name.');
+  }
+
+  /* ----- Which generation? ----- */
+  var WG = { cur:null, streak:0, best:0, state:'guess', picked:0, focus:false };
+  function wgLoadBest(){ try{ var v = parseInt(localStorage.getItem('itemsixhq_wg_best')||'0',10); WG.best = isNaN(v)?0:v; }catch(e){ WG.best = 0; } }
+  function wgNext(){
+    var pool = gamePool(), p, tries = 0;
+    do { p = pool[Math.floor(Math.random()*pool.length)]; tries++; } while(WG.cur && p === WG.cur && tries < 50);
+    WG.cur = p; WG.state = 'guess'; WG.picked = 0;
+  }
+  function wgRender(){
+    var area = document.getElementById('wg-area');
+    if(!area || !WG.cur) return;
+    var p = WG.cur, html = '<div class="wg-stage hl-card">'+gSpriteHTML(p)+'<span class="hl-name">'+escapeHtml(p.name)+'</span><span class="hl-num">#'+dexNumber(p.number)+'</span></div>';
+    html += '<div class="hl-actions"><p class="hl-q">Which generation is '+escapeHtml(p.name)+' from?</p><div class="wg-grid" role="group" aria-label="Choose a generation">';
+    for(var g = 1; g <= 9; g++){
+      var cls = 'wg-btn', dis = WG.state !== 'guess' ? ' disabled' : '';
+      if(WG.state !== 'guess'){
+        if(g === p.generation) cls += ' wg-correct';
+        else if(g === WG.picked) cls += ' wg-wrong';
+      }
+      html += '<button type="button" class="'+cls+'" data-wg="'+g+'"'+dis+'>Gen '+g+'<small>'+GEN_REGION[g]+'</small></button>';
+    }
+    html += '</div>';
+    if(WG.state === 'right'){
+      html += '<p class="hl-result hl-right" role="status">Correct! '+escapeHtml(p.name)+' is from Generation '+p.generation+' ('+GEN_REGION[p.generation]+').</p><div class="hl-btns"><button type="button" class="hl-btn" data-wg-act="next">Next one</button> <a class="hl-card-link" href="#/pokedex/'+p.number+'">See the entry</a></div>';
+    } else if(WG.state === 'wrong'){
+      html += '<p class="hl-result hl-wrong" role="status">Not quite. '+escapeHtml(p.name)+' is from Generation '+p.generation+' ('+GEN_REGION[p.generation]+'). Final streak: '+WG.streak+'.</p><div class="hl-btns"><button type="button" class="hl-btn" data-wg-act="again">Play again</button> <a class="hl-card-link" href="#/pokedex/'+p.number+'">See the entry</a></div>';
+    }
+    html += '</div>';
+    area.innerHTML = html;
+    gWireSprites(area);
+    document.getElementById('wg-streak').textContent = WG.streak;
+    document.getElementById('wg-best').textContent = WG.best;
+    if(WG.focus){ WG.focus = false; var f = area.querySelector('.hl-btns .hl-btn') || area.querySelector('.wg-btn:not([disabled])'); if(f) f.focus(); }
+  }
+
+  /* ----- Games view entry point (replaces the Higher or Lower-only one) ----- */
+  function hlShareText(){ return 'ItemSixHQ Higher or Lower: streak of '+HL.streak+' (best '+HL.best+')\nitemsixhq.com/#/games'; }
+  function wgShareText(){ return 'ItemSixHQ Which generation: streak of '+WG.streak+' (best '+WG.best+')\nitemsixhq.com/#/games'; }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target : null;
+    if(!t) return;
+    var b;
+    if((b = t.closest('[data-dd]'))){
+      var a = b.getAttribute('data-dd');
+      if(a === 'guess') ddGuessFromInput();
+      else if(a === 'share') gShowCopied(b, ddShareText());
+      return;
+    }
+    if((b = t.closest('[data-dd-pick]'))){ ddSubmit(POKEDEX_BY_NUMBER[parseInt(b.getAttribute('data-dd-pick'),10)]); return; }
+    if((b = t.closest('[data-wg]')) && WG.state === 'guess'){
+      var pick = parseInt(b.getAttribute('data-wg'),10);
+      WG.picked = pick;
+      if(pick === WG.cur.generation){
+        WG.streak++; WG.state = 'right';
+        if(WG.streak > WG.best){ WG.best = WG.streak; try{ localStorage.setItem('itemsixhq_wg_best', String(WG.best)); }catch(err){} }
+      } else { WG.state = 'wrong'; }
+      WG.focus = true; wgRender(); return;
+    }
+    if((b = t.closest('[data-wg-act]'))){
+      if(b.getAttribute('data-wg-act') === 'again') WG.streak = 0;
+      wgNext(); WG.focus = true; wgRender(); return;
+    }
+    if((b = t.closest('[data-share]'))){
+      gShowCopied(b, b.getAttribute('data-share') === 'hl' ? hlShareText() : wgShareText());
+      return;
+    }
+    if(!t.closest('.dd-form')){ var l = document.getElementById('dd-suggest'); if(l) l.hidden = true; }
+  });
+  document.addEventListener('input', function(e){
+    if(e.target && e.target.id === 'dd-input'){ ddSetMsg(''); ddUpdateSuggest(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(!e.target || e.target.id !== 'dd-input') return;
+    if(e.key === 'Enter'){ e.preventDefault(); ddGuessFromInput(); }
+    else if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      if(!DD.suggest.length) return;
+      e.preventDefault();
+      DD.sel = e.key === 'ArrowDown' ? Math.min(DD.suggest.length-1, DD.sel+1) : Math.max(0, DD.sel-1);
+      document.querySelectorAll('#dd-suggest button').forEach(function(bn,i){ bn.setAttribute('aria-selected', i===DD.sel?'true':'false'); });
+    } else if(e.key === 'Escape'){ var l = document.getElementById('dd-suggest'); if(l) l.hidden = true; }
+  });
   function renderGamesView(){
-    hlLoadBest();
+    hlLoadBest(); wgLoadBest();
     var board = document.getElementById('hl-board');
     ensurePokedexData(function(){
       if(!HL.pool){
@@ -6685,8 +7033,14 @@ html[data-version="crystal"] .home-version-card-crystal{box-shadow:0 0 0 2px var
       }
       if(!HL.a || !HL.b) hlNewGame();
       hlRender();
+      ddLoad(); ddRender();
+      if(!WG.cur) wgNext();
+      wgRender();
     }, function(){
-      if(board) board.innerHTML = '<p class="muted">Couldn&rsquo;t load the Pok&eacute;mon data just now. Refresh the page to try again.</p>';
+      var msg = '<p class="muted">Couldn&rsquo;t load the Pok&eacute;mon data just now. Refresh the page to try again.</p>';
+      if(board) board.innerHTML = msg;
+      var da = document.getElementById('dd-area'); if(da) da.innerHTML = msg;
+      var wa = document.getElementById('wg-area'); if(wa) wa.innerHTML = msg;
     });
   }
   document.addEventListener('click', function(e){
