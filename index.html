@@ -96,6 +96,10 @@
   --version-yellow-ink:#241C02;
   --version-yellow-rgb:227,183,42;
   --version-yellow-text:#7A5C00;
+  --version-crystal:#2DBFB0;
+  --version-crystal-ink:#04211E;
+  --version-crystal-rgb:45,191,176;
+  --version-crystal-text:#0A6A62;
   /* Correction pass (Sept 2026) - the permanent ItemSixHQ Purple shell
      identity token. Constant regardless of which Version is selected;
      only data-theme switches its value (see both dark blocks below). */
@@ -141,6 +145,10 @@
     --version-yellow-ink:#241C02;
     --version-yellow-rgb:232,197,71;
     --version-yellow-text:#E8C547;
+    --version-crystal:#4FD1C5;
+    --version-crystal-ink:#04211E;
+    --version-crystal-rgb:79,209,197;
+    --version-crystal-text:#4FD1C5;
     /* Dark mode already reads as purple through --border - reuse it
        rather than invent a second purple that could drift out of sync. */
     --shell-accent:var(--border);
@@ -156,6 +164,7 @@
   :root:not([data-theme="light"])[data-version="red"]{--env-page-bg:#26191D;}
   :root:not([data-theme="light"])[data-version="blue"]{--env-page-bg:#171B29;}
   :root:not([data-theme="light"])[data-version="yellow"]{--env-page-bg:#262313;}
+  :root:not([data-theme="light"])[data-version="crystal"]{--env-page-bg:#142628;}
 }
 :root[data-theme="dark"]{
   --bg:#1C1926;
@@ -184,6 +193,10 @@
   --version-yellow-ink:#241C02;
   --version-yellow-rgb:232,197,71;
   --version-yellow-text:#E8C547;
+  --version-crystal:#4FD1C5;
+  --version-crystal-ink:#04211E;
+  --version-crystal-rgb:79,209,197;
+  --version-crystal-text:#4FD1C5;
   --shell-accent:var(--border);
 }
 /* Nav + Version Environment pass (Sept 2026) - same dark --env-page-bg
@@ -195,6 +208,7 @@
 :root[data-theme="dark"][data-version="red"]{--env-page-bg:#26191D;}
 :root[data-theme="dark"][data-version="blue"]{--env-page-bg:#171B29;}
 :root[data-theme="dark"][data-version="yellow"]{--env-page-bg:#262313;}
+:root[data-theme="dark"][data-version="crystal"]{--env-page-bg:#142628;}
 *,*::before,*::after{box-sizing:border-box;}
 html{color-scheme:light dark;}
 /* Nav + Version Environment pass (Sept 2026): background now reads the
@@ -661,6 +675,7 @@ html[data-version="blue"]{--env-accent:var(--version-blue);--env-accent-ink:var(
 html[data-version="red"]{--env-page-bg:#F9DED2;}
 html[data-version="blue"]{--env-page-bg:#D9E7FB;}
 html[data-version="yellow"]{--env-page-bg:#FAF0C6;}
+html[data-version="crystal"]{--env-page-bg:#D6F1EE;}
 #site-header,#view-home{transition:background-color .2s ease,background-image .2s ease;}
 html[data-version] #site-header{background-image:radial-gradient(1200px 520px at 12% 0%, rgba(var(--env-accent-rgb),.28), transparent 66%);}
 html[data-version] #view-home{background-image:radial-gradient(1300px 900px at 88% 0%, rgba(var(--env-accent-rgb),.18), transparent 62%),radial-gradient(900px 600px at 8% 40%, rgba(var(--env-accent-rgb),.10), transparent 60%);background-repeat:no-repeat;}
@@ -1067,13 +1082,15 @@ a.dest-card:hover{border-color:var(--ink-muted);transform:translateY(-2px);box-s
    are left in place, unused, rather than deleted - lower risk than editing
    CSS nothing currently depends on. */
 .home-version-section{margin:1.4rem 0 0;}
-.home-version-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem;align-items:stretch;}
+.home-version-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.85rem;align-items:stretch;}
+@media(max-width:1040px){ .home-version-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
 @media(max-width:760px){ .home-version-grid{grid-template-columns:minmax(0,1fr);} }
 
 .home-version-card{position:relative;display:flex;flex-direction:column;}
 .home-version-card-red{background:linear-gradient(165deg, color-mix(in srgb, var(--version-red) 75%, white) 0%, var(--version-red) 40%, color-mix(in srgb, var(--version-red) 80%, black) 100%);}
 .home-version-card-blue{background:linear-gradient(165deg, color-mix(in srgb, var(--version-blue) 75%, white) 0%, var(--version-blue) 40%, color-mix(in srgb, var(--version-blue) 80%, black) 100%);}
 .home-version-card-yellow{background:linear-gradient(165deg, color-mix(in srgb, var(--version-yellow) 75%, white) 0%, var(--version-yellow) 40%, color-mix(in srgb, var(--version-yellow) 80%, black) 100%);}
+.home-version-card-crystal{background:linear-gradient(165deg, color-mix(in srgb, var(--version-crystal) 75%, white) 0%, var(--version-crystal) 40%, color-mix(in srgb, var(--version-crystal) 80%, black) 100%);}
 
 /* Ridged top plate - a few raised stripes standing in for a cartridge's
    embossed grip/label bar. Texture only, no wordmark. */
@@ -1165,13 +1182,20 @@ html[data-version] #view-home .home-version-card-yellow .dest-card-cta{color:#24
 
 html[data-version="red"] .home-version-card-red .version-path-status,
 html[data-version="blue"] .home-version-card-blue .version-path-status,
-html[data-version="yellow"] .home-version-card-yellow .version-path-status{display:flex;}
+html[data-version="yellow"] .home-version-card-yellow .version-path-status,
+html[data-version="crystal"] .home-version-card-crystal .version-path-status{display:flex;}
 html[data-version="red"] .home-version-card-blue,
 html[data-version="red"] .home-version-card-yellow,
 html[data-version="blue"] .home-version-card-red,
 html[data-version="blue"] .home-version-card-yellow,
 html[data-version="yellow"] .home-version-card-red,
-html[data-version="yellow"] .home-version-card-blue{opacity:.88;}
+html[data-version="yellow"] .home-version-card-blue,
+html[data-version="red"] .home-version-card-crystal,
+html[data-version="blue"] .home-version-card-crystal,
+html[data-version="yellow"] .home-version-card-crystal,
+html[data-version="crystal"] .home-version-card-red,
+html[data-version="crystal"] .home-version-card-blue,
+html[data-version="crystal"] .home-version-card-yellow{opacity:.88;}
 @media (prefers-reduced-motion:reduce){ .home-version-card{transition:none;} }
 
 /* News card (Sept 2026) - fills the third slot in the Jack/Worlds trio
@@ -2339,6 +2363,54 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
 .terms-block h4.worlds-sub{margin:1.2rem 0 .3rem;font-size:.95rem;font-weight:700;color:var(--ink);}
 .ask-series{grid-template-columns:repeat(4,1fr);}
 @media (max-width:760px){.ask-series{grid-template-columns:repeat(2,1fr);}.ask-series .video-title{font-size:.8rem;}}
+/* Crystal Version (Games), Oct 2026: fourth registered Version. Dark ink on the bright teal card, same approach as the Yellow card. */
+#view-home .home-version-card-crystal .dest-card-kicker{color:rgba(4,33,30,.88);}
+#view-home .home-version-card-crystal .dest-card-title{color:#04211E;text-shadow:none;}
+#view-home .home-version-card-crystal .dest-card-desc{color:rgba(4,33,30,.9);}
+html[data-version] #view-home .home-version-card-crystal .dest-card-cta{color:#04211E;}
+.home-version-card-crystal .version-path-selected-text{color:#04211E;text-shadow:none;}
+.home-version-window.home-version-window-art{display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#0E3B38,#0A2A33);}
+.home-version-window-art svg{width:100%;height:100%;display:block;}
+html[data-version="crystal"] .home-version-card-crystal{box-shadow:0 0 0 2px var(--version-crystal);}
+/* Games view */
+#view-games{padding-top:2.25rem;}
+.games-hub .explore-hero .eyebrow{color:var(--version-crystal-text);}
+.hl-game{margin:1.8rem 0 2.4rem;padding:1.6rem 1.6rem 1.4rem;background:rgba(var(--version-crystal-rgb),.09);border:2px solid rgba(var(--version-crystal-rgb),.55);border-radius:16px;}
+.hl-game h3{margin:0 0 .3rem;font-size:1.25rem;}
+.hl-tag{display:inline-block;margin:0 0 .5rem;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--version-crystal-text);}
+.hl-stats{display:flex;gap:1.2rem;margin:.9rem 0 1rem;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-muted);}
+.hl-stats b{font-size:1.15rem;color:var(--ink);margin-left:.3rem;}
+.hl-board{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:1rem;align-items:stretch;}
+.hl-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.25rem;padding:1.1rem .8rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;min-width:0;}
+.hl-card-hidden{border-style:dashed;}
+.hl-sprite{width:112px;height:112px;object-fit:contain;image-rendering:pixelated;}
+.hl-sprite-fallback{width:112px;height:112px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',ui-monospace,monospace;color:var(--ink-muted);}
+.hl-name{font-weight:700;font-size:1.05rem;overflow-wrap:anywhere;}
+.hl-num{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.72rem;color:var(--ink-muted);}
+.hl-label{margin-top:.35rem;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-muted);}
+.hl-value{font-size:1.5rem;font-weight:800;line-height:1.1;}
+.hl-value-q{color:var(--version-crystal-text);}
+.hl-card-link{font-size:.78rem;margin-top:.25rem;}
+.hl-vs{align-self:center;font-family:'Press Start 2P',ui-monospace,monospace;font-size:.62rem;color:var(--ink-muted);}
+.hl-actions{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:.7rem;margin-top:.2rem;text-align:center;}
+.hl-q{margin:0;font-weight:600;}
+.hl-btns{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;}
+.hl-btn{min-height:44px;padding:.65rem 1.4rem;border-radius:999px;border:2px solid var(--version-crystal-text);background:var(--version-crystal);color:var(--version-crystal-ink);font:inherit;font-weight:700;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;}
+.hl-btn:hover,.hl-btn:focus-visible{transform:translateY(-1px);box-shadow:0 6px 14px -8px rgba(var(--version-crystal-rgb),1);}
+.hl-btn.hl-btn-ghost{background:transparent;color:var(--ink);border-color:var(--border);}
+.hl-result{margin:0;font-weight:700;}
+.hl-result.hl-right{color:var(--good,#2E7D53);}
+.hl-result.hl-wrong{color:var(--danger,#B3382C);}
+.hl-note{margin:1.1rem 0 0;font-size:.8rem;}
+@media(max-width:640px){
+  .hl-game{padding:1.1rem .9rem 1rem;}
+  .hl-board{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.6rem;}
+  .hl-vs{display:none;}
+  .hl-sprite,.hl-sprite-fallback{width:84px;height:84px;}
+  .hl-value{font-size:1.2rem;}
+  .hl-btn{flex:1 1 130px;}
+}
+@media (prefers-reduced-motion:reduce){ .hl-btn{transition:none;} }
 .route-card{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);}
 .route-card h4{margin:0 0 .7rem;font-size:.95rem;}
 .route-steps{list-style:none;margin:0;padding:0;}
@@ -2691,7 +2763,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <!-- Populated by renderVersionSelector() from VERSION_REGISTRY at boot -
              see initVersionSelector(). Kept as an empty, correctly-labelled
              radiogroup here rather than hand-duplicated per-Version markup. -->
-        <div class="version-select version-select-mobile" role="radiogroup" aria-label="Choose a Version: Red, Blue or Yellow"></div>
+        <div class="version-select version-select-mobile" role="radiogroup" aria-label="Choose a Version: Red, Blue, Yellow or Crystal"></div>
         <!-- Nav + Version Environment pass (Sept 2026): selected-Version contextual
              entrance, immediately associated with the mobile selector above it.
              Label/href are driven by SELECTED_VERSION (updateVersionEntranceLinks(),
@@ -2734,6 +2806,10 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
             <a href="#/collect" class="nav-binder-link" data-select-version="yellow">
               <span class="nav-binder-link-title">Yellow Version &middot; Jolteon&rsquo;s Binder</span>
               <span class="nav-binder-link-desc">Trade with me here</span>
+            </a>
+            <a href="#/games" class="nav-binder-link" data-select-version="crystal">
+              <span class="nav-binder-link-title">Crystal Version &middot; Games</span>
+              <span class="nav-binder-link-desc">Mini-games on this site</span>
             </a>
             <!-- Jack's Personal Binder (#/mybinder) is still out of this dropdown
                  until it has content in it - the page still works, it just isn't
@@ -2902,7 +2978,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
            Collection" card's copy/photo verbatim (moved up from the trio
            below, not duplicated) per Jack's explicit instruction. -->
 
-      <section class="home-version-section" aria-label="Choose a Version: Red, Blue or Yellow">
+      <section class="home-version-section" aria-label="Choose a Version: Red, Blue, Yellow or Crystal">
         <div class="home-version-grid">
           <a href="#/explore" class="dest-card home-version-card home-version-card-red" data-select-version="red">
             <span class="version-path-status"><span class="version-path-light" aria-hidden="true"></span><span class="version-path-selected-text">Selected</span></span>
@@ -2944,6 +3020,28 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
               <span class="dest-card-title">Trade with me here</span>
               <span class="dest-card-desc">My Pok&eacute;mon TCG collection, all in one place. Probably too many cards in general. Come trade with me. It&rsquo;s called Trading Card Game, right?</span>
               <span class="dest-card-cta">Browse Jolteon&rsquo;s Binder &rarr;</span>
+            </span>
+          </a>
+          <a href="#/games" class="dest-card home-version-card home-version-card-crystal" data-select-version="crystal">
+            <span class="version-path-status"><span class="version-path-light" aria-hidden="true"></span><span class="version-path-selected-text">Selected</span></span>
+            <span class="home-version-ridge" aria-hidden="true"></span>
+            <span class="dest-card-visual home-version-window home-version-window-art">
+              <svg viewBox="0 0 200 230" role="img" aria-label="Two cards with an up arrow and a down arrow between them" xmlns="http://www.w3.org/2000/svg">
+                <rect x="14" y="30" width="72" height="104" rx="9" fill="#12504B" stroke="#4FD1C5" stroke-width="3"/>
+                <rect x="114" y="96" width="72" height="104" rx="9" fill="#12504B" stroke="#4FD1C5" stroke-width="3"/>
+                <circle cx="50" cy="68" r="14" fill="none" stroke="#4FD1C5" stroke-width="3"/>
+                <path d="M30 110h40M30 120h26" stroke="#4FD1C5" stroke-width="3" stroke-linecap="round"/>
+                <text x="150" y="152" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="34" font-weight="700" fill="#4FD1C5">?</text>
+                <path d="M100 58l-11 15h22z" fill="#4FD1C5"/>
+                <path d="M100 172l-11-15h22z" fill="#4FD1C5"/>
+              </svg>
+            </span>
+            <span class="home-version-notch" aria-hidden="true"></span>
+            <span class="dest-card-body">
+              <span class="dest-card-kicker">Crystal Version &middot; Games</span>
+              <span class="dest-card-title">Web games you can play right here</span>
+              <span class="dest-card-desc">Little games built into the site. No judgement if you lose to a Magikarp. I might add a high score in the future!</span>
+              <span class="dest-card-cta">Play Higher or Lower &rarr;</span>
             </span>
           </a>
         </div>
@@ -3258,7 +3356,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <h3>How this site is made</h3>
           <p>Besides vibecoding the website (with Claude), nothing here is stolen. If I used a source from elsewhere, I credited it.</p>
           <p>No generated images. Unless it&rsquo;s credited, every image is a photo I took or something I drew by hand myself. The only exception is official Pok&eacute;mon sprites and artwork, which are &copy; Nintendo / Creatures Inc. / GAME FREAK / The Pok&eacute;mon Company and credited as such.</p>
-          <p>The ideas and the writing are mine, and I&rsquo;m still rewriting a few older pages in my own voice. The one exception is the Pok&eacute;dex: its facts (the dex text, where to find each Pok&eacute;mon, its first anime appearance) are pulled from the official games, Bulbapedia and Pok&eacute;mon Database, compiled with Claude&rsquo;s help, and every entry lists its sources. The 3 Versions you see? I birthed those from my weird brain. I doubt any AI could think of this, tbh.</p>
+          <p>The ideas and the writing are mine, and I&rsquo;m still rewriting a few older pages in my own voice. The one exception is the Pok&eacute;dex: its facts (the dex text, where to find each Pok&eacute;mon, its first anime appearance) are pulled from the official games, Bulbapedia and Pok&eacute;mon Database, compiled with Claude&rsquo;s help, and every entry lists its sources. The 4 Versions you see? I birthed those from my weird brain. I doubt any AI could think of this, tbh.</p>
           </div>
 
           <div class="terms-block" id="about-privacy-credits">
@@ -4362,6 +4460,29 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   </main></div>
   <div id="view-play-games-detail" hidden><main class="wrap play-hub"><div id="play-games-detail-content"></div></main></div>
 
+  <!-- Crystal Version / Games landing (Oct 2026). Fourth registered Version.
+       Games are plain client-side mini-games built from pokedex-data.json,
+       so they add no new facts to verify and collect nothing. More games
+       can be added below the first one. -->
+  <div id="view-games" hidden>
+    <main class="wrap almanac-hub explore-hub games-hub">
+      <div class="explore-hero">
+        <p class="eyebrow">Crystal Version &middot; Games</p>
+        <h2>Small games, built into the site.</h2>
+        <p class="muted explore-hero-sub">Quick ones you can play in a minute, using the same Pok&eacute;dex data as the rest of the site. No sign-up, nothing collected. The only pressure is your own pride. (If it makes you feel any better, I suck at this too.)</p>
+      </div>
+      <section class="hl-game" id="hl-game" aria-labelledby="hl-title">
+        <span class="hl-tag">Game 1</span>
+        <h3 id="hl-title">Higher or Lower</h3>
+        <p class="muted">You see one Pok&eacute;mon&rsquo;s height or weight. Guess whether the next one is higher or lower. How long can you keep the streak going?</p>
+        <div class="hl-stats" aria-label="Score"><span>Streak <b id="hl-streak">0</b></span><span>Best <b id="hl-best">0</b></span></div>
+        <div id="hl-board" class="hl-board"><p class="muted" id="hl-loading">Loading Pok&eacute;mon&hellip;</p></div>
+        <p class="muted hl-note">Heights and weights are each Pok&eacute;mon&rsquo;s base form. Your best streak is saved only in this browser.</p>
+      </section>
+    </main>
+  </div>
+
+
   <!-- Green Version / Binder landing (Sept 2026 redesign). Architectural
        sibling to #/explore and #/play - hero, then a featured pillar for
        the main destination (The Binder), then the other two real
@@ -4723,7 +4844,6 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
           <button type="button" class="gen-section-nav-btn" data-target="worlds-getting-there">Getting there</button>
           <button type="button" class="gen-section-nav-btn" data-target="worlds-eat">Where to eat</button>
           <button type="button" class="gen-section-nav-btn" data-target="worlds-do">Things to do</button>
-          <button type="button" class="gen-section-nav-btn" data-target="worlds-stay">Where to stay</button>
           <button type="button" class="gen-section-nav-btn" data-target="worlds-play">Where to play</button>
         </div>
 
@@ -4855,13 +4975,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
         <h4 class="worlds-sub">For the gym rats</h4>
         <p>If you&rsquo;re an Anytime Fitness member, there are several branches around Tampines, including one at Blk 506 Tampines Central 1 and one at 7 Tampines Grande. Check the walk on Google Maps first, since some are a bit of a walk from the malls.</p>
 
-        <p class="muted">More venue-area recommendations, like where to get singles, will follow as I put them together.</p>
-        </div>
+        <p>Looking for somewhere to stay? <a href="https://thetravelintern.com/staycation-in-singapore-hotels/" target="_blank" rel="noopener nofollow">Check out this article for different ideas of lodging</a>.</p>
 
-        <div class="terms-block" id="worlds-stay">
-        <h3>Where to stay</h3>
-        <p>I&rsquo;m not the right person to tell you where to stay. I&rsquo;m local, so I obviously don&rsquo;t visit hotels much. There are plenty of travel guides that recommend where to stay, but here&rsquo;s a guide to a different kind of lodging, if you want to explore something different: <a href="https://thetravelintern.com/staycation-in-singapore-hotels/" target="_blank" rel="noopener nofollow">Staycation in Singapore hotels by The Travel Intern (thetravelintern.com)</a>.</p>
-        <p class="muted">That link is someone else&rsquo;s blog, and it earns affiliate commissions from its booking links. I don&rsquo;t get anything from it.</p>
+        <p class="muted">More venue-area recommendations, like where to get singles, will follow as I put them together.</p>
         </div>
 
         <div class="terms-block" id="worlds-play">
@@ -6467,6 +6583,120 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     grid.innerHTML = ASK_SERIES.map(clipCardHTML).join('');
     wireThumbFallbacks(grid);
   }
+
+  /* ---------- Crystal Version: Higher or Lower ----------
+     Built entirely from pokedex-data.json (height/weight of each species'
+     base form, normal sprite). No new facts, no network calls beyond the
+     data the Pokedex already loads, no tracking. Best streak is stored in
+     the visitor's own browser only (try/catch: private windows can throw). */
+  var HL = { pool:null, a:null, b:null, stat:'weight', streak:0, best:0, state:'idle', focusNext:false };
+  function hlLoadBest(){ try{ var v = parseInt(localStorage.getItem('itemsixhq_hl_best')||'0',10); HL.best = isNaN(v)?0:v; }catch(e){ HL.best = 0; } }
+  function hlSaveBest(){ try{ localStorage.setItem('itemsixhq_hl_best', String(HL.best)); }catch(e){} }
+  function hlValue(p, stat){ return stat==='weight' ? p.weightHg : p.heightDm; }
+  function hlFormat(p, stat){ return stat==='weight' ? (p.weightHg/10).toFixed(1)+' kg' : (p.heightDm/10).toFixed(1)+' m'; }
+  function hlPick(exclude, stat){
+    var tries = 0, p;
+    do { p = HL.pool[Math.floor(Math.random()*HL.pool.length)]; tries++; }
+    while(exclude && (p === exclude || hlValue(p,stat) === hlValue(exclude,stat)) && tries < 200);
+    return p;
+  }
+  function hlNextRound(){
+    HL.stat = Math.random() < 0.5 ? 'weight' : 'height';
+    if(!HL.a) HL.a = hlPick(null, HL.stat);
+    HL.b = hlPick(HL.a, HL.stat);
+    HL.state = 'guess';
+  }
+  function hlNewGame(){ HL.streak = 0; HL.a = null; hlNextRound(); }
+  function hlSpriteHTML(p){
+    var img = p.images && p.images.normal;
+    if(img && img.src) return '<img class="hl-sprite" src="'+escapeHtml(img.src)+'" alt="'+escapeHtml(p.name)+'" width="112" height="112" data-hl-sprite="'+p.number+'">';
+    return '<span class="hl-sprite-fallback" aria-hidden="true">#'+dexNumber(p.number)+'</span>';
+  }
+  function hlCardHTML(p, valueText, hidden){
+    var label = HL.stat==='weight' ? 'Weight' : 'Height';
+    return '<div class="hl-card'+(hidden?' hl-card-hidden':'')+'">'+hlSpriteHTML(p)
+      +'<span class="hl-name">'+escapeHtml(p.name)+'</span><span class="hl-num">#'+dexNumber(p.number)+'</span>'
+      +'<span class="hl-label">'+label+'</span>'
+      +(hidden?'<span class="hl-value hl-value-q" aria-label="Hidden until you guess">?</span>':'<span class="hl-value">'+escapeHtml(valueText)+'</span>')
+      +(hidden?'':'<a class="hl-card-link" href="#/pokedex/'+p.number+'">See the entry</a>')
+      +'</div>';
+  }
+  function hlRender(){
+    var board = document.getElementById('hl-board');
+    if(!board || !HL.a || !HL.b) return;
+    var heavier = HL.stat==='weight';
+    var up = heavier ? 'Heavier' : 'Taller', down = heavier ? 'Lighter' : 'Shorter';
+    var revealed = HL.state !== 'guess';
+    var html = hlCardHTML(HL.a, hlFormat(HL.a, HL.stat), false)
+      + '<span class="hl-vs" aria-hidden="true">VS</span>'
+      + hlCardHTML(HL.b, hlFormat(HL.b, HL.stat), !revealed)
+      + '<div class="hl-actions">';
+    if(HL.state === 'guess'){
+      html += '<p class="hl-q">Is '+escapeHtml(HL.b.name)+' '+up.toLowerCase()+' or '+down.toLowerCase()+' than '+escapeHtml(HL.a.name)+'?</p>'
+        + '<div class="hl-btns"><button type="button" class="hl-btn" data-hl="higher">'+up+'</button><button type="button" class="hl-btn" data-hl="lower">'+down+'</button></div>';
+    } else if(HL.state === 'right'){
+      html += '<p class="hl-result hl-right" role="status">Correct! '+escapeHtml(HL.b.name)+' is '+escapeHtml(hlFormat(HL.b, HL.stat))+'.</p>'
+        + '<div class="hl-btns"><button type="button" class="hl-btn" data-hl="next">Next round</button></div>';
+    } else {
+      html += '<p class="hl-result hl-wrong" role="status">Not quite. '+escapeHtml(HL.b.name)+' is '+escapeHtml(hlFormat(HL.b, HL.stat))+'. Final streak: '+HL.streak+'.</p>'
+        + '<div class="hl-btns"><button type="button" class="hl-btn" data-hl="again">Play again</button></div>';
+    }
+    html += '</div>';
+    board.innerHTML = html;
+    var sEl = document.getElementById('hl-streak'), bEl = document.getElementById('hl-best');
+    if(sEl) sEl.textContent = HL.streak;
+    if(bEl) bEl.textContent = HL.best;
+    board.querySelectorAll('img[data-hl-sprite]').forEach(function(im){
+      im.addEventListener('error', function(){
+        var span = document.createElement('span');
+        span.className = 'hl-sprite-fallback'; span.setAttribute('aria-hidden','true');
+        span.textContent = '#'+dexNumber(parseInt(im.getAttribute('data-hl-sprite'),10));
+        im.replaceWith(span);
+      });
+    });
+    if(HL.focusNext){
+      HL.focusNext = false;
+      var first = board.querySelector('.hl-btn');
+      if(first) first.focus();
+    }
+  }
+  function hlGuess(dir){
+    if(HL.state !== 'guess') return;
+    var av = hlValue(HL.a, HL.stat), bv = hlValue(HL.b, HL.stat);
+    var correct = (dir === 'higher') ? bv > av : bv < av;
+    if(correct){
+      HL.streak++;
+      if(HL.streak > HL.best){ HL.best = HL.streak; hlSaveBest(); }
+      HL.state = 'right';
+    } else {
+      HL.state = 'wrong';
+    }
+    HL.focusNext = true;
+    hlRender();
+  }
+  function renderGamesView(){
+    hlLoadBest();
+    var board = document.getElementById('hl-board');
+    ensurePokedexData(function(){
+      if(!HL.pool){
+        HL.pool = POKEDEX_ENTRIES.filter(function(p){
+          return p.number > 0 && p.heightDm > 0 && p.weightHg > 0 && p.images && p.images.normal && p.images.normal.src && p.images.normal.rightsStatus === 'approved';
+        });
+      }
+      if(!HL.a || !HL.b) hlNewGame();
+      hlRender();
+    }, function(){
+      if(board) board.innerHTML = '<p class="muted">Couldn&rsquo;t load the Pok&eacute;mon data just now. Refresh the page to try again.</p>';
+    });
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest && e.target.closest('[data-hl]');
+    if(!btn) return;
+    var act = btn.getAttribute('data-hl');
+    if(act === 'higher' || act === 'lower') hlGuess(act);
+    else if(act === 'next'){ HL.a = HL.b; hlNextRound(); HL.focusNext = true; hlRender(); }
+    else if(act === 'again'){ hlNewGame(); HL.focusNext = true; hlRender(); }
+  });
 
   function renderPressClips(){
     var sec = document.getElementById('press-clips-section');
@@ -8888,7 +9118,9 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     'play-games':'blue', 'play-games-detail':'blue',
     /* Green / Binder & trade */
     collect:'yellow', catalog:'yellow', japan:'yellow', mybinder:'yellow', set:'yellow', setjp:'yellow', hunting:'yellow',
-    'bulk-binder':'yellow'
+    'bulk-binder':'yellow',
+    /* Crystal / Games */
+    games:'crystal'
   };
   /* Resolves a parsed view name to the attribute value exposed on <html>.
      The one explicit purple->global conversion the correction brief asked
@@ -8898,7 +9130,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      alongside 'red'/'blue' as of the Green identity pass (Sept 2026). */
   function routeVersionAttr(view){
     var cls = ROUTE_VERSION_CLASS[view];
-    if(cls === 'red' || cls === 'blue' || cls === 'yellow') return cls;
+    if(cls === 'red' || cls === 'blue' || cls === 'yellow' || cls === 'crystal') return cls;
     return 'global';
   }
 
@@ -8937,11 +9169,13 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
   var VERSION_ICON_EXPLORE = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2.2-1 5-1 8 0v13c-3-1-5.8-1-8 0z"/><path d="M20 5.5c-2.2-1-5-1-8 0v13c3-1 5.8-1 8 0z"/></svg>';
   var VERSION_ICON_PLAY = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7" width="12" height="14" rx="1.6" transform="rotate(-8 9.5 14)"/><rect x="8.5" y="3" width="12" height="14" rx="1.6"/></svg>';
   var VERSION_ICON_BINDER = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h11a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5z"/><path d="M5 4.5v17"/><circle cx="5" cy="9" r="1"/><circle cx="5" cy="14" r="1"/></svg>';
+  var VERSION_ICON_GAMES = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="18" cy="13.5" r=".9"/></svg>';
   var VERSION_ICON_SOON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3.2M12 17.8V21M3 12h3.2M17.8 12H21M5.6 5.6l2.3 2.3M16.1 16.1l2.3 2.3M18.4 5.6l-2.3 2.3M7.9 16.1l-2.3 2.3"/></svg>';
   var VERSION_REGISTRY = {
     red:   { id:'red',   order:0, label:'Red',   role:'Explore', tagline:'Pok\u00e9dex, regions & lore',       icon:VERSION_ICON_EXPLORE, accentVar:'--version-red',   inkVar:'--version-red-ink',   rgbVar:'--version-red-rgb',   landingRoute:'#/explore' },
     blue:  { id:'blue',  order:1, label:'Blue',  role:'Play',    tagline:'TCG rules, decks & games',        icon:VERSION_ICON_PLAY,    accentVar:'--version-blue',  inkVar:'--version-blue-ink',  rgbVar:'--version-blue-rgb',  landingRoute:'#/play' },
-    yellow: { id:'yellow', order:2, label:'Yellow', role:'Jolteon\u2019s Binder',  tagline:'Trade & browse the collection',   icon:VERSION_ICON_BINDER,  accentVar:'--version-yellow', inkVar:'--version-yellow-ink', rgbVar:'--version-yellow-rgb', landingRoute:'#/collect' }
+    yellow: { id:'yellow', order:2, label:'Yellow', role:'Jolteon\u2019s Binder',  tagline:'Trade & browse the collection',   icon:VERSION_ICON_BINDER,  accentVar:'--version-yellow', inkVar:'--version-yellow-ink', rgbVar:'--version-yellow-rgb', landingRoute:'#/collect' },
+    crystal: { id:'crystal', order:3, label:'Crystal', role:'Games', tagline:'Mini-games on this site', icon:VERSION_ICON_GAMES, accentVar:'--version-crystal', inkVar:'--version-crystal-ink', rgbVar:'--version-crystal-rgb', landingRoute:'#/games' }
   };
   /* Yellow Version redesign (Sept 2026): Yellow is shown on the two full
      selector instances (.version-select-primary, .version-select-mobile)
@@ -9027,8 +9261,8 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
      always wins on this element specifically, without having to exclude
      .nav-version-switch-dot from that generic loop. */
   function updateNavVersionSwitch(){
-    var onGreenRoute = ROUTE_VERSION_CLASS[parseRoute().view] === 'yellow';
-    var current = onGreenRoute ? 'yellow' : SELECTED_VERSION;
+    var routeCls = ROUTE_VERSION_CLASS[parseRoute().view];
+    var current = (routeCls === 'yellow' || routeCls === 'crystal') ? routeCls : SELECTED_VERSION;
     document.querySelectorAll('.nav-version-switch-dot').forEach(function(el){
       if(el.getAttribute('data-select-version') === current) el.setAttribute('aria-current', 'true');
       else el.removeAttribute('aria-current');
@@ -9239,6 +9473,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     play:                { title: 'Blue Version - Play', description: 'Play Pokemon - cards, games and practical guides for actually playing, starting with the Pokemon TCG.' },
     'play-games':        { title: 'Video Games - Play', description: 'Every mainline Pokemon generation, Kanto to Paldea, plus the Legends sub-series - what came out, when, and why it mattered.' },
     collect:             { title: "Yellow Version - Jolteon's Binder", description: "Browse Jack's Pokemon TCG collection, Jolteon's Binder, and see how trading works." },
+    games:               { title: 'Crystal Version - Games', description: 'Quick Pokemon games built from the Pokedex data on this site. No sign-up, nothing collected.' },
     'bulk-binder':       { title: 'Bulk Binder - Yellow Version', description: "A searchable catalogue of the ordinary Pokemon cards Jack owns in bulk, separate from the curated Binder." }
   };
 
@@ -9345,6 +9580,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     if(hash === 'almanac') return {view:'almanac'};
     if(hash === 'explore') return {view:'explore'};
     if(hash === 'collect') return {view:'collect'};
+    if(hash === 'games') return {view:'games'};
     if(hash === 'pokedex') return {view:'pokedex'};
     var pdm = hash.match(/^pokedex\/(\d+)$/);
     if(pdm) return {view:'pokedex-entry', number:Number(pdm[1])};
@@ -9428,6 +9664,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     document.getElementById('view-almanac').hidden = r.view !== 'almanac';
     document.getElementById('view-explore').hidden = r.view !== 'explore';
     document.getElementById('view-collect').hidden = r.view !== 'collect';
+    document.getElementById('view-games').hidden = r.view !== 'games';
     document.getElementById('view-pokedex').hidden = r.view !== 'pokedex' && r.view !== 'pokedex-entry';
     document.getElementById('view-almanac-generations').hidden = r.view !== 'almanac-generations';
     document.getElementById('view-almanac-gen').hidden = r.view !== 'almanac-gen';
@@ -9455,7 +9692,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     var versionNavBtn = document.getElementById('version-nav-btn');
     if(versionNavBtn){
       var routeVerCls = ROUTE_VERSION_CLASS[r.view];
-      var onVersionRoute = routeVerCls === 'red' || routeVerCls === 'blue' || routeVerCls === 'yellow';
+      var onVersionRoute = routeVerCls === 'red' || routeVerCls === 'blue' || routeVerCls === 'yellow' || routeVerCls === 'crystal';
       versionNavBtn.classList.toggle('active', onVersionRoute);
       if(onVersionRoute){
         versionNavBtn.style.setProperty('--v-accent', 'var(--version-'+routeVerCls+')');
@@ -9504,6 +9741,7 @@ a.gen-tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)
     else if(r.view === 'play-games'){ renderVideoGamesHub(); }
     else if(r.view === 'play-games-detail'){ renderVideoGameDetail(r.seriesId); }
     else if(r.view === 'bulk-binder'){ renderBulkBinderView(); }
+    else if(r.view === 'games'){ renderGamesView(); }
     closeSetPanel();
     closeAllNavPanels();
     closeNavMenu();
